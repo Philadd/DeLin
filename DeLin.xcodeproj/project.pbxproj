@@ -3,10 +3,19 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3663F290235EF9E800B06F88 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3663F28F235EF9E800B06F88 /* NetworkExtension.framework */; };
+		3663F292235EF9F000B06F88 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3663F291235EF9F000B06F88 /* ExternalAccessory.framework */; };
+		3663F29A235EFA7C00B06F88 /* libLTLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3663F293235EFA7C00B06F88 /* libLTLink.a */; };
+		3663F29B235EFA7C00B06F88 /* libEasyLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3663F294235EFA7C00B06F88 /* libEasyLink.a */; };
+		3663F29C235EFA7C00B06F88 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3663F295235EFA7C00B06F88 /* libcrypto.a */; };
+		3663F29D235EFA7C00B06F88 /* GizWifiSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3663F296235EFA7C00B06F88 /* GizWifiSDK.framework */; };
+		3663F29E235EFA7C00B06F88 /* libWMOneShotConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3663F297235EFA7C00B06F88 /* libWMOneShotConfig.a */; };
+		3663F29F235EFA7C00B06F88 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3663F298235EFA7C00B06F88 /* libssl.a */; };
+		3663F2A0235EFA7C00B06F88 /* libEsptouch_v0.3.5.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3663F299235EFA7C00B06F88 /* libEsptouch_v0.3.5.3.a */; };
 		369C65F8235EE42F008D6230 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C65F7235EE42F008D6230 /* AppDelegate.m */; };
 		369C65FB235EE42F008D6230 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C65FA235EE42F008D6230 /* ViewController.m */; };
 		369C65FE235EE42F008D6230 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 369C65FC235EE42F008D6230 /* Main.storyboard */; };
@@ -15,6 +24,7 @@
 		369C6606235EE431008D6230 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C6605235EE431008D6230 /* main.m */; };
 		369C6610235EE431008D6230 /* DeLinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C660F235EE431008D6230 /* DeLinTests.m */; };
 		369C661B235EE431008D6230 /* DeLinUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C661A235EE431008D6230 /* DeLinUITests.m */; };
+		896FD80E889048BD4E4DCA1D /* libPods-DeLin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 884F754EB758212CC878A786 /* libPods-DeLin.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +45,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3663F28E235EF9D900B06F88 /* DeLin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeLin.entitlements; sourceTree = "<group>"; };
+		3663F28F235EF9E800B06F88 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		3663F291235EF9F000B06F88 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
+		3663F293235EFA7C00B06F88 /* libLTLink.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLTLink.a; path = StaticLibrary/libLTLink.a; sourceTree = "<group>"; };
+		3663F294235EFA7C00B06F88 /* libEasyLink.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libEasyLink.a; path = StaticLibrary/libEasyLink.a; sourceTree = "<group>"; };
+		3663F295235EFA7C00B06F88 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = StaticLibrary/libcrypto.a; sourceTree = "<group>"; };
+		3663F296235EFA7C00B06F88 /* GizWifiSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GizWifiSDK.framework; path = StaticLibrary/GizWifiSDK.framework; sourceTree = "<group>"; };
+		3663F297235EFA7C00B06F88 /* libWMOneShotConfig.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libWMOneShotConfig.a; path = StaticLibrary/libWMOneShotConfig.a; sourceTree = "<group>"; };
+		3663F298235EFA7C00B06F88 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = StaticLibrary/libssl.a; sourceTree = "<group>"; };
+		3663F299235EFA7C00B06F88 /* libEsptouch_v0.3.5.3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libEsptouch_v0.3.5.3.a; path = StaticLibrary/libEsptouch_v0.3.5.3.a; sourceTree = "<group>"; };
 		369C65F3235EE42F008D6230 /* DeLin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeLin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		369C65F6235EE42F008D6230 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		369C65F7235EE42F008D6230 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -51,6 +71,9 @@
 		369C6616235EE431008D6230 /* DeLinUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeLinUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		369C661A235EE431008D6230 /* DeLinUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeLinUITests.m; sourceTree = "<group>"; };
 		369C661C235EE431008D6230 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		817BB96CDCA8A246ED304146 /* Pods-DeLin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeLin.release.xcconfig"; path = "Target Support Files/Pods-DeLin/Pods-DeLin.release.xcconfig"; sourceTree = "<group>"; };
+		884F754EB758212CC878A786 /* libPods-DeLin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DeLin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3FDF79274E40EC050E0E6A7 /* Pods-DeLin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeLin.debug.xcconfig"; path = "Target Support Files/Pods-DeLin/Pods-DeLin.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +81,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3663F29A235EFA7C00B06F88 /* libLTLink.a in Frameworks */,
+				3663F29B235EFA7C00B06F88 /* libEasyLink.a in Frameworks */,
+				3663F29C235EFA7C00B06F88 /* libcrypto.a in Frameworks */,
+				3663F29D235EFA7C00B06F88 /* GizWifiSDK.framework in Frameworks */,
+				3663F29E235EFA7C00B06F88 /* libWMOneShotConfig.a in Frameworks */,
+				3663F29F235EFA7C00B06F88 /* libssl.a in Frameworks */,
+				3663F2A0235EFA7C00B06F88 /* libEsptouch_v0.3.5.3.a in Frameworks */,
+				3663F292235EF9F000B06F88 /* ExternalAccessory.framework in Frameworks */,
+				896FD80E889048BD4E4DCA1D /* libPods-DeLin.a in Frameworks */,
+				3663F290235EF9E800B06F88 /* NetworkExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +118,8 @@
 				369C660E235EE431008D6230 /* DeLinTests */,
 				369C6619235EE431008D6230 /* DeLinUITests */,
 				369C65F4235EE42F008D6230 /* Products */,
+				4F854F2550EE1053CDFD0355 /* Pods */,
+				AE2F5E7F8EC8AF70C415193D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +136,7 @@
 		369C65F5235EE42F008D6230 /* DeLin */ = {
 			isa = PBXGroup;
 			children = (
+				3663F28E235EF9D900B06F88 /* DeLin.entitlements */,
 				369C65F6235EE42F008D6230 /* AppDelegate.h */,
 				369C65F7235EE42F008D6230 /* AppDelegate.m */,
 				369C65F9235EE42F008D6230 /* ViewController.h */,
@@ -132,6 +168,32 @@
 			path = DeLinUITests;
 			sourceTree = "<group>";
 		};
+		4F854F2550EE1053CDFD0355 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B3FDF79274E40EC050E0E6A7 /* Pods-DeLin.debug.xcconfig */,
+				817BB96CDCA8A246ED304146 /* Pods-DeLin.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		AE2F5E7F8EC8AF70C415193D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3663F296235EFA7C00B06F88 /* GizWifiSDK.framework */,
+				3663F295235EFA7C00B06F88 /* libcrypto.a */,
+				3663F294235EFA7C00B06F88 /* libEasyLink.a */,
+				3663F299235EFA7C00B06F88 /* libEsptouch_v0.3.5.3.a */,
+				3663F293235EFA7C00B06F88 /* libLTLink.a */,
+				3663F298235EFA7C00B06F88 /* libssl.a */,
+				3663F297235EFA7C00B06F88 /* libWMOneShotConfig.a */,
+				3663F291235EF9F000B06F88 /* ExternalAccessory.framework */,
+				3663F28F235EF9E800B06F88 /* NetworkExtension.framework */,
+				884F754EB758212CC878A786 /* libPods-DeLin.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -139,9 +201,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 369C661F235EE431008D6230 /* Build configuration list for PBXNativeTarget "DeLin" */;
 			buildPhases = (
+				234B644682893F773A006B04 /* [CP] Check Pods Manifest.lock */,
 				369C65EF235EE42F008D6230 /* Sources */,
 				369C65F0235EE42F008D6230 /* Frameworks */,
 				369C65F1235EE42F008D6230 /* Resources */,
+				223C082CB61A558201F554A9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -199,6 +263,20 @@
 				TargetAttributes = {
 					369C65F2235EE42F008D6230 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.AccessWiFi = {
+								enabled = 1;
+							};
+							com.apple.HotspotConfiguration = {
+								enabled = 1;
+							};
+							com.apple.NetworkExtensions.iOS = {
+								enabled = 1;
+							};
+							com.apple.WAC = {
+								enabled = 1;
+							};
+						};
 					};
 					369C660A235EE431008D6230 = {
 						CreatedOnToolsVersion = 10.1;
@@ -256,6 +334,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		223C082CB61A558201F554A9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DeLin/Pods-DeLin-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DeLin/Pods-DeLin-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DeLin/Pods-DeLin-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		234B644682893F773A006B04 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DeLin-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		369C65EF235EE42F008D6230 /* Sources */ = {
@@ -433,14 +553,24 @@
 		};
 		369C6620235EE431008D6230 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3FDF79274E40EC050E0E6A7 /* Pods-DeLin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DeLin/DeLin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5FAMV3D32N;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/StaticLibrary",
+				);
 				INFOPLIST_FILE = DeLin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/StaticLibrary",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.thingcom.DeLin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -450,14 +580,24 @@
 		};
 		369C6621235EE431008D6230 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 817BB96CDCA8A246ED304146 /* Pods-DeLin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DeLin/DeLin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5FAMV3D32N;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/StaticLibrary",
+				);
 				INFOPLIST_FILE = DeLin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/StaticLibrary",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.thingcom.DeLin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
