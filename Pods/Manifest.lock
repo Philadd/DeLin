@@ -17,6 +17,7 @@ PODS:
   - ASProgressPopUpView (0.8)
   - Bugly (2.5.0)
   - CocoaAsyncSocket (7.6.3)
+  - CTMediator (25)
   - IQKeyboardManager (3.3.7)
   - Masonry (1.1.0)
   - MBProgressHUD (1.0.0)
@@ -29,6 +30,7 @@ DEPENDENCIES:
   - ASProgressPopUpView
   - Bugly
   - CocoaAsyncSocket
+  - CTMediator
   - IQKeyboardManager
   - Masonry
   - MBProgressHUD
@@ -42,6 +44,7 @@ SPEC REPOS:
     - ASProgressPopUpView
     - Bugly
     - CocoaAsyncSocket
+    - CTMediator
     - IQKeyboardManager
     - Masonry
     - MBProgressHUD
@@ -54,6 +57,7 @@ SPEC CHECKSUMS:
   ASProgressPopUpView: 945c19297da09a625db48a5a37cabd7756916b9b
   Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
   CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
+  CTMediator: 830c1fc204b3a6abf2a059510c7380f56343da0f
   IQKeyboardManager: 249c3946acf61345c18b038eb50863fe2793e3a8
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
@@ -61,6 +65,6 @@ SPEC CHECKSUMS:
   RDVTabBarController: 67794f7a7a37f8e32f046f85ac67d06ab92d624a
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
 
-PODFILE CHECKSUM: 55a6c76a04da4f8c242c9926f7fffbbdae2b8a5d
+PODFILE CHECKSUM: 05b9e301bfbd0d05c01920d87d4a8ccf167abd9a
 
 COCOAPODS: 1.7.3

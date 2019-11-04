@@ -21,7 +21,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //错误日志上报
-    [Bugly startWithAppId:@"d01e9040cb"];
+    //[Bugly startWithAppId:@"d01e9040cb"];
     
     [self customizeInterface];
     [self initGiz];
@@ -40,8 +40,8 @@
 }
 
 - (void)initGiz{
-    //NSDictionary *parameters =@{@"appId":GizAppId,@"appSecret": GizAppSecret};
-    //[GizWifiSDK startWithAppInfo:parameters productInfo:nil cloudServiceInfo: nil autoSetDeviceDomain:YES];
+    NSDictionary *parameters =@{@"appId":GizAppId,@"appSecret": GizAppSecret};
+    [GizWifiSDK startWithAppInfo:parameters productInfo:nil cloudServiceInfo: nil autoSetDeviceDomain:YES];
 }
 
 - (void)customizeInterface {

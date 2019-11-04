@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36588D4D2370189C008ADEAC /* ForgetpasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36588D492370189B008ADEAC /* ForgetpasswordViewController.m */; };
+		36588D4E2370189C008ADEAC /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36588D4C2370189C008ADEAC /* RegisterViewController.m */; };
 		3663F290235EF9E800B06F88 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3663F28F235EF9E800B06F88 /* NetworkExtension.framework */; };
 		3663F292235EF9F000B06F88 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3663F291235EF9F000B06F88 /* ExternalAccessory.framework */; };
 		3663F29A235EFA7C00B06F88 /* libLTLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3663F293235EFA7C00B06F88 /* libLTLink.a */; };
@@ -69,6 +71,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		36588D492370189B008ADEAC /* ForgetpasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetpasswordViewController.m; sourceTree = "<group>"; };
+		36588D4A2370189B008ADEAC /* ForgetpasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetpasswordViewController.h; sourceTree = "<group>"; };
+		36588D4B2370189B008ADEAC /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		36588D4C2370189C008ADEAC /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		3663F28E235EF9D900B06F88 /* DeLin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeLin.entitlements; sourceTree = "<group>"; };
 		3663F28F235EF9E800B06F88 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		3663F291235EF9F000B06F88 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
@@ -198,6 +204,10 @@
 			children = (
 				368AB2F1235F0450002B6D37 /* LoginViewController.h */,
 				368AB2F2235F0450002B6D37 /* LoginViewController.m */,
+				36588D4B2370189B008ADEAC /* RegisterViewController.h */,
+				36588D4C2370189C008ADEAC /* RegisterViewController.m */,
+				36588D4A2370189B008ADEAC /* ForgetpasswordViewController.h */,
+				36588D492370189B008ADEAC /* ForgetpasswordViewController.m */,
 			);
 			path = Userinfo;
 			sourceTree = "<group>";
@@ -286,15 +296,15 @@
 			isa = PBXGroup;
 			children = (
 				368AB326235F0623002B6D37 /* APConfigureNetController.h */,
-				368AB327235F0623002B6D37 /* APFinishNetController.h */,
-				368AB328235F0623002B6D37 /* ConnectNetController.h */,
-				368AB329235F0623002B6D37 /* ConfigureNetController.m */,
-				368AB32A235F0623002B6D37 /* APConnectNetController.h */,
 				368AB32B235F0623002B6D37 /* APConfigureNetController.m */,
+				368AB327235F0623002B6D37 /* APFinishNetController.h */,
 				368AB32C235F0623002B6D37 /* APFinishNetController.m */,
-				368AB32D235F0623002B6D37 /* ConnectNetController.m */,
+				368AB32A235F0623002B6D37 /* APConnectNetController.h */,
 				368AB32E235F0623002B6D37 /* APConnectNetController.m */,
+				368AB328235F0623002B6D37 /* ConnectNetController.h */,
+				368AB32D235F0623002B6D37 /* ConnectNetController.m */,
 				368AB32F235F0623002B6D37 /* ConfigureNetController.h */,
+				368AB329235F0623002B6D37 /* ConfigureNetController.m */,
 			);
 			path = ESP;
 			sourceTree = "<group>";
@@ -593,9 +603,11 @@
 				368AB338235F0623002B6D37 /* UIViewController+Common.m in Sources */,
 				368AB334235F0623002B6D37 /* NSString+Rounding.m in Sources */,
 				368AB343235F0623002B6D37 /* APFinishNetController.m in Sources */,
+				36588D4E2370189C008ADEAC /* RegisterViewController.m in Sources */,
 				368AB33F235F0623002B6D37 /* UILabel+YBAttributeTextTapAction.m in Sources */,
 				368AB339235F0623002B6D37 /* NSString+Common.m in Sources */,
 				368AB345235F0623002B6D37 /* APConnectNetController.m in Sources */,
+				36588D4D2370189C008ADEAC /* ForgetpasswordViewController.m in Sources */,
 				368AB330235F0623002B6D37 /* UIColor+ColorChange.m in Sources */,
 				368AB33D235F0623002B6D37 /* YTFAlertController.m in Sources */,
 				368AB342235F0623002B6D37 /* APConfigureNetController.m in Sources */,

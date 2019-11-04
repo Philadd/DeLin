@@ -55,6 +55,11 @@ SOFTWARE.
 Copyright (C) 2017 Tencent Bugly, Inc. All rights reserved.
 
 
+## CTMediator
+
+MIT
+
+
 ## CocoaAsyncSocket
 
 Public Domain License
