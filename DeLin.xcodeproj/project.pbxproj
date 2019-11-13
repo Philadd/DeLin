@@ -42,6 +42,10 @@
 		368AB344235F0623002B6D37 /* ConnectNetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368AB32D235F0623002B6D37 /* ConnectNetController.m */; };
 		368AB345235F0623002B6D37 /* APConnectNetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368AB32E235F0623002B6D37 /* APConnectNetController.m */; };
 		368AB349235F0678002B6D37 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368AB347235F0678002B6D37 /* BaseViewController.m */; };
+		369309DD237BE632003DAFBD /* GizManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 369309DC237BE632003DAFBD /* GizManager.m */; };
+		369309E2237BE679003DAFBD /* img_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 369309DF237BE679003DAFBD /* img_logo@2x.png */; };
+		369309E3237BE679003DAFBD /* img_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 369309E0237BE679003DAFBD /* img_logo.png */; };
+		369309E4237BE679003DAFBD /* img_logo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 369309E1237BE679003DAFBD /* img_logo@3x.png */; };
 		369C65F8235EE42F008D6230 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C65F7235EE42F008D6230 /* AppDelegate.m */; };
 		369C65FB235EE42F008D6230 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C65FA235EE42F008D6230 /* ViewController.m */; };
 		369C65FE235EE42F008D6230 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 369C65FC235EE42F008D6230 /* Main.storyboard */; };
@@ -133,6 +137,11 @@
 		368AB347235F0678002B6D37 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		368AB348235F0678002B6D37 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		368AB34B235F0769002B6D37 /* DeLin-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DeLin-Prefix.pch"; sourceTree = "<group>"; };
+		369309DB237BE632003DAFBD /* GizManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GizManager.h; sourceTree = "<group>"; };
+		369309DC237BE632003DAFBD /* GizManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GizManager.m; sourceTree = "<group>"; };
+		369309DF237BE679003DAFBD /* img_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_logo@2x.png"; sourceTree = "<group>"; };
+		369309E0237BE679003DAFBD /* img_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_logo.png; sourceTree = "<group>"; };
+		369309E1237BE679003DAFBD /* img_logo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_logo@3x.png"; sourceTree = "<group>"; };
 		369C65F3235EE42F008D6230 /* DeLin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeLin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		369C65F6235EE42F008D6230 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		369C65F7235EE42F008D6230 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -202,6 +211,7 @@
 		368AB2F0235F040F002B6D37 /* Userinfo */ = {
 			isa = PBXGroup;
 			children = (
+				369309DE237BE645003DAFBD /* image_icon */,
 				368AB2F1235F0450002B6D37 /* LoginViewController.h */,
 				368AB2F2235F0450002B6D37 /* LoginViewController.m */,
 				36588D4B2370189B008ADEAC /* RegisterViewController.h */,
@@ -318,6 +328,25 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		369309DA237BE5E7003DAFBD /* GizManager */ = {
+			isa = PBXGroup;
+			children = (
+				369309DB237BE632003DAFBD /* GizManager.h */,
+				369309DC237BE632003DAFBD /* GizManager.m */,
+			);
+			path = GizManager;
+			sourceTree = "<group>";
+		};
+		369309DE237BE645003DAFBD /* image_icon */ = {
+			isa = PBXGroup;
+			children = (
+				369309E0237BE679003DAFBD /* img_logo.png */,
+				369309DF237BE679003DAFBD /* img_logo@2x.png */,
+				369309E1237BE679003DAFBD /* img_logo@3x.png */,
+			);
+			path = image_icon;
+			sourceTree = "<group>";
+		};
 		369C65EA235EE42F008D6230 = {
 			isa = PBXGroup;
 			children = (
@@ -343,6 +372,7 @@
 		369C65F5235EE42F008D6230 /* DeLin */ = {
 			isa = PBXGroup;
 			children = (
+				369309DA237BE5E7003DAFBD /* GizManager */,
 				368AB2FE235F0623002B6D37 /* OC_Category */,
 				368AB2EF235F03CA002B6D37 /* Main */,
 				3663F28E235EF9D900B06F88 /* DeLin.entitlements */,
@@ -524,7 +554,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				369C6603235EE431008D6230 /* LaunchScreen.storyboard in Resources */,
+				369309E2237BE679003DAFBD /* img_logo@2x.png in Resources */,
 				369C6600235EE431008D6230 /* Assets.xcassets in Resources */,
+				369309E3237BE679003DAFBD /* img_logo.png in Resources */,
+				369309E4237BE679003DAFBD /* img_logo@3x.png in Resources */,
 				369C65FE235EE42F008D6230 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -602,6 +635,7 @@
 				368AB33B235F0623002B6D37 /* NullSafe.m in Sources */,
 				368AB338235F0623002B6D37 /* UIViewController+Common.m in Sources */,
 				368AB334235F0623002B6D37 /* NSString+Rounding.m in Sources */,
+				369309DD237BE632003DAFBD /* GizManager.m in Sources */,
 				368AB343235F0623002B6D37 /* APFinishNetController.m in Sources */,
 				36588D4E2370189C008ADEAC /* RegisterViewController.m in Sources */,
 				368AB33F235F0623002B6D37 /* UILabel+YBAttributeTextTapAction.m in Sources */,

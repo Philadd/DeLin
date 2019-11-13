@@ -26,8 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIImage *backImage = [UIImage imageNamed:@"loginView"];
-    self.view.layer.contents = (id)backImage.CGImage;
+    self.view.layer.backgroundColor = [UIColor colorWithRed:242/255.0 green:242/255.0 blue:242/255.0 alpha:1.0].CGColor;
     
     [self setNavItem];
     _emailTF = [self emailTF];
@@ -47,8 +46,8 @@
 - (UITextField *)emailTF{
     if (!_emailTF) {
         _emailTF = [[UITextField alloc] init];
-        _emailTF.backgroundColor = [UIColor clearColor];
-        _emailTF.font = [UIFont systemFontOfSize:15.f];
+        _emailTF.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+        _emailTF.font = [UIFont systemFontOfSize:16.f];
         _emailTF.textColor = [UIColor whiteColor];
         _emailTF.clearButtonMode = UITextFieldViewModeWhileEditing;
         _emailTF.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -58,17 +57,15 @@
         [_emailTF addTarget:self action:@selector(textFieldTextChange:) forControlEvents:UIControlEventEditingChanged];
         [self.view addSubview:_emailTF];
         [_emailTF mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(280), yAutoFit(40)));
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(40)));
             make.top.equalTo(self.view.mas_top).offset(yAutoFit(200));
             make.centerX.mas_equalTo(self.view.mas_centerX);
         }];
         
-        _emailTF.layer.borderWidth = 1.0;
-        _emailTF.layer.borderColor = [UIColor whiteColor].CGColor;
-        _emailTF.layer.cornerRadius = 10.f;
+        _emailTF.layer.borderWidth = 0.5;
+        _emailTF.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
+        _emailTF.layer.cornerRadius = 2.5f;
         _emailTF.placeholder = LocalString(@"e-mail");
-        [_emailTF setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
-        [_emailTF setValue:[UIFont boldSystemFontOfSize:16] forKeyPath:@"_placeholderLabel.font"];
     }
     return _emailTF;
 }
@@ -76,8 +73,8 @@
 - (UITextField *)passwordTF{
     if (!_passwordTF) {
         _passwordTF = [[UITextField alloc] init];
-        _passwordTF.backgroundColor = [UIColor clearColor];
-        _passwordTF.font = [UIFont systemFontOfSize:15.f];
+        _passwordTF.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+        _passwordTF.font = [UIFont systemFontOfSize:16.f];
         _passwordTF.textColor = [UIColor whiteColor];
         _passwordTF.clearButtonMode = UITextFieldViewModeWhileEditing;
         _passwordTF.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -87,17 +84,15 @@
         [_passwordTF addTarget:self action:@selector(textFieldTextChange:) forControlEvents:UIControlEventEditingChanged];
         [self.view addSubview:_passwordTF];
         [_passwordTF mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(280), yAutoFit(40)));
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(40)));
             make.top.equalTo(self.emailTF.mas_bottom).offset(yAutoFit(30));
             make.centerX.mas_equalTo(self.view.mas_centerX);
         }];
         
-        _passwordTF.layer.borderWidth = 1.0;
-        _passwordTF.layer.borderColor = [UIColor whiteColor].CGColor;
-        _passwordTF.layer.cornerRadius = 10.f;
+        _passwordTF.layer.borderWidth = 0.5;
+        _passwordTF.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
+        _passwordTF.layer.cornerRadius = 2.5f;
         _passwordTF.placeholder = LocalString(@"password");
-        [_passwordTF setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
-        [_passwordTF setValue:[UIFont boldSystemFontOfSize:16] forKeyPath:@"_placeholderLabel.font"];
         
     }
     return _passwordTF;
@@ -106,8 +101,8 @@
 - (UITextField *)repeatpasswordTF{
     if (!_repeatpasswordTF) {
         _repeatpasswordTF = [[UITextField alloc] init];
-        _repeatpasswordTF.backgroundColor = [UIColor clearColor];
-        _repeatpasswordTF.font = [UIFont systemFontOfSize:15.f];
+        _repeatpasswordTF.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+        _repeatpasswordTF.font = [UIFont systemFontOfSize:16.f];
         _repeatpasswordTF.textColor = [UIColor whiteColor];
         _repeatpasswordTF.clearButtonMode = UITextFieldViewModeWhileEditing;
         _repeatpasswordTF.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -117,17 +112,15 @@
         [_repeatpasswordTF addTarget:self action:@selector(textFieldTextChange:) forControlEvents:UIControlEventEditingChanged];
         [self.view addSubview:_repeatpasswordTF];
         [_repeatpasswordTF mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(280), yAutoFit(40)));
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(40)));
             make.top.equalTo(self.passwordTF.mas_bottom).offset(yAutoFit(30));
             make.centerX.mas_equalTo(self.view.mas_centerX);
         }];
         
-        _repeatpasswordTF.layer.borderWidth = 1.0;
-        _repeatpasswordTF.layer.borderColor = [UIColor whiteColor].CGColor;
-        _repeatpasswordTF.layer.cornerRadius = 10.f;
+        _repeatpasswordTF.layer.borderWidth = 0.5;
+        _repeatpasswordTF.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
+        _repeatpasswordTF.layer.cornerRadius = 2.5f;
         _repeatpasswordTF.placeholder = LocalString(@"repeat password");
-        [_repeatpasswordTF setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
-        [_repeatpasswordTF setValue:[UIFont boldSystemFontOfSize:16] forKeyPath:@"_placeholderLabel.font"];
     }
     return _repeatpasswordTF;
 }
@@ -172,22 +165,23 @@
         _RegisterBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_RegisterBtn setTitle:LocalString(@"Register") forState:UIControlStateNormal];
         [_RegisterBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
-        [_RegisterBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_RegisterBtn setBackgroundColor:[UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:0.6]];
+        [_RegisterBtn setTitleColor:[UIColor colorWithHexString:@"333333"] forState:UIControlStateNormal];
+        [_RegisterBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.6f]];
         [_RegisterBtn addTarget:self action:@selector(registerLogin) forControlEvents:UIControlEventTouchUpInside];
         _RegisterBtn.enabled = YES;
         [self.view addSubview:_RegisterBtn];
         [_RegisterBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(280), yAutoFit(40)));
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(50)));
             make.top.equalTo(self.repeatpasswordTF.mas_bottom).offset(yAutoFit(45));
             make.centerX.mas_equalTo(self.view.mas_centerX);
         }];
-        
-        _RegisterBtn.layer.borderWidth = 1.0;
-        _RegisterBtn.layer.borderColor = [UIColor whiteColor].CGColor;
-        _RegisterBtn.layer.cornerRadius = 10.f;
-        
-        
+        _RegisterBtn.layer.borderWidth = 0.5;
+        _RegisterBtn.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
+        _RegisterBtn.layer.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.16].CGColor;
+        _RegisterBtn.layer.shadowOffset = CGSizeMake(0,2.5);
+        _RegisterBtn.layer.shadowRadius = 3;
+        _RegisterBtn.layer.shadowOpacity = 1;
+        _RegisterBtn.layer.cornerRadius = 2.5;
     }
     return _RegisterBtn;
 }

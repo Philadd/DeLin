@@ -25,7 +25,7 @@
 #import "YAlertViewController.h"
 #import "NSDate+Common.h"
 #import <GizWifiSDK/GizWifiSDK.h>
-//#import "GizManage.h"
+#import "GizManager.h"
 #import "NSString+HexToBytes.h"
 #import "GosTipView.h"
 
