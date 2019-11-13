@@ -18,6 +18,7 @@
 #import "NSString+Common.h"
 #import "UIColor+ColorChange.h"
 #import "UIButton+Common.h"
+#import "UIViewController+BarButton.h"
 #import "UIViewController+Common.h"
 #import <Masonry/Masonry.h>
 #import <MJRefresh/MJRefresh.h>

@@ -41,11 +41,18 @@
 		368AB343235F0623002B6D37 /* APFinishNetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368AB32C235F0623002B6D37 /* APFinishNetController.m */; };
 		368AB344235F0623002B6D37 /* ConnectNetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368AB32D235F0623002B6D37 /* ConnectNetController.m */; };
 		368AB345235F0623002B6D37 /* APConnectNetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368AB32E235F0623002B6D37 /* APConnectNetController.m */; };
-		368AB349235F0678002B6D37 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368AB347235F0678002B6D37 /* BaseViewController.m */; };
 		369309DD237BE632003DAFBD /* GizManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 369309DC237BE632003DAFBD /* GizManager.m */; };
 		369309E2237BE679003DAFBD /* img_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 369309DF237BE679003DAFBD /* img_logo@2x.png */; };
 		369309E3237BE679003DAFBD /* img_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 369309E0237BE679003DAFBD /* img_logo.png */; };
 		369309E4237BE679003DAFBD /* img_logo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 369309E1237BE679003DAFBD /* img_logo@3x.png */; };
+		369309F6237C033B003DAFBD /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 369309F4237C033B003DAFBD /* BaseViewController.m */; };
+		36930A09237C064D003DAFBD /* DeviceNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36930A01237C064D003DAFBD /* DeviceNetworkViewController.m */; };
+		36930A0A237C064D003DAFBD /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36930A02237C064D003DAFBD /* WelcomeViewController.m */; };
+		36930A0B237C064D003DAFBD /* FinishNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36930A05237C064D003DAFBD /* FinishNetworkViewController.m */; };
+		36930A0C237C064D003DAFBD /* ConnectNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36930A06237C064D003DAFBD /* ConnectNetworkViewController.m */; };
+		36930A0F237C0914003DAFBD /* UIViewController+BarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 36930A0D237C0914003DAFBD /* UIViewController+BarButton.m */; };
+		36930A15237C09D6003DAFBD /* WorktimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36930A13237C09D6003DAFBD /* WorktimeCell.m */; };
+		36930A16237C09D6003DAFBD /* DeviceListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36930A14237C09D6003DAFBD /* DeviceListCell.m */; };
 		369C65F8235EE42F008D6230 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C65F7235EE42F008D6230 /* AppDelegate.m */; };
 		369C65FB235EE42F008D6230 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C65FA235EE42F008D6230 /* ViewController.m */; };
 		369C65FE235EE42F008D6230 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 369C65FC235EE42F008D6230 /* Main.storyboard */; };
@@ -134,14 +141,28 @@
 		368AB32D235F0623002B6D37 /* ConnectNetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectNetController.m; sourceTree = "<group>"; };
 		368AB32E235F0623002B6D37 /* APConnectNetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APConnectNetController.m; sourceTree = "<group>"; };
 		368AB32F235F0623002B6D37 /* ConfigureNetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigureNetController.h; sourceTree = "<group>"; };
-		368AB347235F0678002B6D37 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
-		368AB348235F0678002B6D37 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		368AB34B235F0769002B6D37 /* DeLin-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DeLin-Prefix.pch"; sourceTree = "<group>"; };
 		369309DB237BE632003DAFBD /* GizManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GizManager.h; sourceTree = "<group>"; };
 		369309DC237BE632003DAFBD /* GizManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GizManager.m; sourceTree = "<group>"; };
 		369309DF237BE679003DAFBD /* img_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_logo@2x.png"; sourceTree = "<group>"; };
 		369309E0237BE679003DAFBD /* img_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_logo.png; sourceTree = "<group>"; };
 		369309E1237BE679003DAFBD /* img_logo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_logo@3x.png"; sourceTree = "<group>"; };
+		369309F4237C033B003DAFBD /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		369309F5237C033B003DAFBD /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		36930A01237C064D003DAFBD /* DeviceNetworkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceNetworkViewController.m; sourceTree = "<group>"; };
+		36930A02237C064D003DAFBD /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
+		36930A03237C064D003DAFBD /* ConnectNetworkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectNetworkViewController.h; sourceTree = "<group>"; };
+		36930A04237C064D003DAFBD /* DeviceNetworkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceNetworkViewController.h; sourceTree = "<group>"; };
+		36930A05237C064D003DAFBD /* FinishNetworkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinishNetworkViewController.m; sourceTree = "<group>"; };
+		36930A06237C064D003DAFBD /* ConnectNetworkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectNetworkViewController.m; sourceTree = "<group>"; };
+		36930A07237C064D003DAFBD /* FinishNetworkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinishNetworkViewController.h; sourceTree = "<group>"; };
+		36930A08237C064D003DAFBD /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
+		36930A0D237C0914003DAFBD /* UIViewController+BarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BarButton.m"; sourceTree = "<group>"; };
+		36930A0E237C0914003DAFBD /* UIViewController+BarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BarButton.h"; sourceTree = "<group>"; };
+		36930A11237C09D6003DAFBD /* WorktimeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorktimeCell.h; sourceTree = "<group>"; };
+		36930A12237C09D6003DAFBD /* DeviceListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceListCell.h; sourceTree = "<group>"; };
+		36930A13237C09D6003DAFBD /* WorktimeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorktimeCell.m; sourceTree = "<group>"; };
+		36930A14237C09D6003DAFBD /* DeviceListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceListCell.m; sourceTree = "<group>"; };
 		369C65F3235EE42F008D6230 /* DeLin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeLin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		369C65F6235EE42F008D6230 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		369C65F7235EE42F008D6230 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -201,6 +222,7 @@
 		368AB2EF235F03CA002B6D37 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				36930A00237C0618003DAFBD /* MyDevice */,
 				368AB346235F0678002B6D37 /* Base */,
 				368AB325235F0623002B6D37 /* ESP */,
 				368AB2F0235F040F002B6D37 /* Userinfo */,
@@ -252,6 +274,8 @@
 		368AB302235F0623002B6D37 /* UIButton */ = {
 			isa = PBXGroup;
 			children = (
+				36930A0E237C0914003DAFBD /* UIViewController+BarButton.h */,
+				36930A0D237C0914003DAFBD /* UIViewController+BarButton.m */,
 				368AB303235F0623002B6D37 /* NodeButton.m */,
 				368AB304235F0623002B6D37 /* NodeButton.h */,
 			);
@@ -322,8 +346,8 @@
 		368AB346235F0678002B6D37 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				368AB347235F0678002B6D37 /* BaseViewController.m */,
-				368AB348235F0678002B6D37 /* BaseViewController.h */,
+				369309F5237C033B003DAFBD /* BaseViewController.h */,
+				369309F4237C033B003DAFBD /* BaseViewController.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -345,6 +369,32 @@
 				369309E1237BE679003DAFBD /* img_logo@3x.png */,
 			);
 			path = image_icon;
+			sourceTree = "<group>";
+		};
+		36930A00237C0618003DAFBD /* MyDevice */ = {
+			isa = PBXGroup;
+			children = (
+				36930A08237C064D003DAFBD /* WelcomeViewController.h */,
+				36930A02237C064D003DAFBD /* WelcomeViewController.m */,
+				36930A04237C064D003DAFBD /* DeviceNetworkViewController.h */,
+				36930A01237C064D003DAFBD /* DeviceNetworkViewController.m */,
+				36930A03237C064D003DAFBD /* ConnectNetworkViewController.h */,
+				36930A06237C064D003DAFBD /* ConnectNetworkViewController.m */,
+				36930A07237C064D003DAFBD /* FinishNetworkViewController.h */,
+				36930A05237C064D003DAFBD /* FinishNetworkViewController.m */,
+			);
+			path = MyDevice;
+			sourceTree = "<group>";
+		};
+		36930A10237C09BB003DAFBD /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				36930A12237C09D6003DAFBD /* DeviceListCell.h */,
+				36930A14237C09D6003DAFBD /* DeviceListCell.m */,
+				36930A11237C09D6003DAFBD /* WorktimeCell.h */,
+				36930A13237C09D6003DAFBD /* WorktimeCell.m */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		369C65EA235EE42F008D6230 = {
@@ -372,6 +422,7 @@
 		369C65F5235EE42F008D6230 /* DeLin */ = {
 			isa = PBXGroup;
 			children = (
+				36930A10237C09BB003DAFBD /* Cell */,
 				369309DA237BE5E7003DAFBD /* GizManager */,
 				368AB2FE235F0623002B6D37 /* OC_Category */,
 				368AB2EF235F03CA002B6D37 /* Main */,
@@ -626,8 +677,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				368AB2F3235F0450002B6D37 /* LoginViewController.m in Sources */,
-				368AB349235F0678002B6D37 /* BaseViewController.m in Sources */,
 				369C65FB235EE42F008D6230 /* ViewController.m in Sources */,
+				36930A16237C09D6003DAFBD /* DeviceListCell.m in Sources */,
 				368AB335235F0623002B6D37 /* NSString+HexToBytes.m in Sources */,
 				369C6606235EE431008D6230 /* main.m in Sources */,
 				368AB337235F0623002B6D37 /* NSObject+Common.m in Sources */,
@@ -636,23 +687,30 @@
 				368AB338235F0623002B6D37 /* UIViewController+Common.m in Sources */,
 				368AB334235F0623002B6D37 /* NSString+Rounding.m in Sources */,
 				369309DD237BE632003DAFBD /* GizManager.m in Sources */,
+				36930A0B237C064D003DAFBD /* FinishNetworkViewController.m in Sources */,
 				368AB343235F0623002B6D37 /* APFinishNetController.m in Sources */,
 				36588D4E2370189C008ADEAC /* RegisterViewController.m in Sources */,
 				368AB33F235F0623002B6D37 /* UILabel+YBAttributeTextTapAction.m in Sources */,
 				368AB339235F0623002B6D37 /* NSString+Common.m in Sources */,
 				368AB345235F0623002B6D37 /* APConnectNetController.m in Sources */,
 				36588D4D2370189C008ADEAC /* ForgetpasswordViewController.m in Sources */,
+				36930A09237C064D003DAFBD /* DeviceNetworkViewController.m in Sources */,
 				368AB330235F0623002B6D37 /* UIColor+ColorChange.m in Sources */,
+				369309F6237C033B003DAFBD /* BaseViewController.m in Sources */,
 				368AB33D235F0623002B6D37 /* YTFAlertController.m in Sources */,
 				368AB342235F0623002B6D37 /* APConfigureNetController.m in Sources */,
 				368AB33A235F0623002B6D37 /* NSDate+Common.m in Sources */,
+				36930A0C237C064D003DAFBD /* ConnectNetworkViewController.m in Sources */,
 				368AB344235F0623002B6D37 /* ConnectNetController.m in Sources */,
 				368AB33C235F0623002B6D37 /* TouchTableView.m in Sources */,
 				368AB341235F0623002B6D37 /* ConfigureNetController.m in Sources */,
+				36930A15237C09D6003DAFBD /* WorktimeCell.m in Sources */,
 				369C65F8235EE42F008D6230 /* AppDelegate.m in Sources */,
 				368AB332235F0623002B6D37 /* GosAlertView.m in Sources */,
+				36930A0F237C0914003DAFBD /* UIViewController+BarButton.m in Sources */,
 				368AB336235F0623002B6D37 /* UIButton+Common.m in Sources */,
 				368AB333235F0623002B6D37 /* GosTipView.m in Sources */,
+				36930A0A237C064D003DAFBD /* WelcomeViewController.m in Sources */,
 				368AB331235F0623002B6D37 /* NodeButton.m in Sources */,
 				368AB33E235F0623002B6D37 /* YAlertViewController.m in Sources */,
 			);
