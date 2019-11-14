@@ -12,4 +12,5 @@ pod 'IQKeyboardManager'
 pod 'AFNetworking'
 pod 'Bugly'
 pod "CTMediator"
+pod 'MMDrawerController'
 end

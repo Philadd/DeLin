@@ -14,6 +14,7 @@
 #import <Foundation/Foundation.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "TouchTableView.h"
+#import "UINavigationBar+handle.h"
 #import "NSObject+Common.h"
 #import "NSString+Common.h"
 #import "UIColor+ColorChange.h"

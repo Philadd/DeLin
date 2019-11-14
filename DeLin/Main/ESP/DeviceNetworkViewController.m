@@ -32,8 +32,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setNavItem];
-    UIImage *backImage = [UIImage imageNamed:@"loginView"];
-    self.view.layer.contents = (id)backImage.CGImage;
     
     _Label_1 = [self Label_1];
     _Label_2 = [self Label_2];
@@ -47,7 +45,7 @@
 }
 
 - (void)setNavItem{
-    self.navigationItem.title = LocalString(@"Add Robot");
+    
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
     backItem.title = @"Back";
     self.navigationItem.backBarButtonItem = backItem;

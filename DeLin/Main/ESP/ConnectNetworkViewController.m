@@ -25,9 +25,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setNavItem];
-    
-    UIImage *backImage = [UIImage imageNamed:@"loginView"];
-    self.view.layer.contents = (id)backImage.CGImage;
 
     _connectBtn = [self connectBtn];
     _LandroidTextView = [self LandroidTextView];

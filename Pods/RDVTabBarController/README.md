@@ -83,7 +83,7 @@ tabBar.translucent = YES;
 tabBar.backgroundView.backgroundColor = [UIColor colorWithRed:245/255.0
                                                         green:245/255.0
                                                          blue:245/255.0
-                                                        alpha:0.9]];
+                                                        alpha:0.9];
 
 // Inside the tabbed viewControllers
 - (void)viewDidLoad {
@@ -105,8 +105,8 @@ tabBar.backgroundView.backgroundColor = [UIColor colorWithRed:245/255.0
 ## Requirements
 
 * ARC
-* iOS 5.0 or later
-* Xcode 5
+* iOS 8.0 or later
+* Xcode 11
 
 ## Contact
 

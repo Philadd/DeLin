@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3618FC59237D26CF00255426 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3618FC58237D26CF00255426 /* MainViewController.m */; };
+		3618FC5C237D27B100255426 /* MMSideDrawerSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3618FC5B237D27B100255426 /* MMSideDrawerSectionHeaderView.m */; };
+		3618FC5F237D27CB00255426 /* LeftDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3618FC5E237D27CB00255426 /* LeftDrawerViewController.m */; };
+		3618FC63237D7F3A00255426 /* UINavigationBar+handle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3618FC62237D7F3A00255426 /* UINavigationBar+handle.m */; };
 		36588D4D2370189C008ADEAC /* ForgetpasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36588D492370189B008ADEAC /* ForgetpasswordViewController.m */; };
 		36588D4E2370189C008ADEAC /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36588D4C2370189C008ADEAC /* RegisterViewController.m */; };
 		3663F290235EF9E800B06F88 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3663F28F235EF9E800B06F88 /* NetworkExtension.framework */; };
@@ -36,18 +40,13 @@
 		368AB33E235F0623002B6D37 /* YAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368AB31C235F0623002B6D37 /* YAlertViewController.m */; };
 		368AB33F235F0623002B6D37 /* UILabel+YBAttributeTextTapAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 368AB31E235F0623002B6D37 /* UILabel+YBAttributeTextTapAction.m */; };
 		368AB340235F0623002B6D37 /* AAProgressCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 368AB321235F0623002B6D37 /* AAProgressCircleView.m */; };
-		368AB341235F0623002B6D37 /* ConfigureNetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368AB329235F0623002B6D37 /* ConfigureNetController.m */; };
-		368AB342235F0623002B6D37 /* APConfigureNetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368AB32B235F0623002B6D37 /* APConfigureNetController.m */; };
-		368AB343235F0623002B6D37 /* APFinishNetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368AB32C235F0623002B6D37 /* APFinishNetController.m */; };
-		368AB344235F0623002B6D37 /* ConnectNetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368AB32D235F0623002B6D37 /* ConnectNetController.m */; };
-		368AB345235F0623002B6D37 /* APConnectNetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368AB32E235F0623002B6D37 /* APConnectNetController.m */; };
 		369309DD237BE632003DAFBD /* GizManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 369309DC237BE632003DAFBD /* GizManager.m */; };
 		369309E2237BE679003DAFBD /* img_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 369309DF237BE679003DAFBD /* img_logo@2x.png */; };
 		369309E3237BE679003DAFBD /* img_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 369309E0237BE679003DAFBD /* img_logo.png */; };
 		369309E4237BE679003DAFBD /* img_logo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 369309E1237BE679003DAFBD /* img_logo@3x.png */; };
 		369309F6237C033B003DAFBD /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 369309F4237C033B003DAFBD /* BaseViewController.m */; };
 		36930A09237C064D003DAFBD /* DeviceNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36930A01237C064D003DAFBD /* DeviceNetworkViewController.m */; };
-		36930A0A237C064D003DAFBD /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36930A02237C064D003DAFBD /* WelcomeViewController.m */; };
+		36930A0A237C064D003DAFBD /* DeviceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36930A02237C064D003DAFBD /* DeviceListViewController.m */; };
 		36930A0B237C064D003DAFBD /* FinishNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36930A05237C064D003DAFBD /* FinishNetworkViewController.m */; };
 		36930A0C237C064D003DAFBD /* ConnectNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36930A06237C064D003DAFBD /* ConnectNetworkViewController.m */; };
 		36930A0F237C0914003DAFBD /* UIViewController+BarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 36930A0D237C0914003DAFBD /* UIViewController+BarButton.m */; };
@@ -82,6 +81,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3618FC57237D26CF00255426 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		3618FC58237D26CF00255426 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		3618FC5A237D27B100255426 /* MMSideDrawerSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSideDrawerSectionHeaderView.h; sourceTree = "<group>"; };
+		3618FC5B237D27B100255426 /* MMSideDrawerSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSideDrawerSectionHeaderView.m; sourceTree = "<group>"; };
+		3618FC5D237D27CB00255426 /* LeftDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftDrawerViewController.h; sourceTree = "<group>"; };
+		3618FC5E237D27CB00255426 /* LeftDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftDrawerViewController.m; sourceTree = "<group>"; };
+		3618FC61237D7F3A00255426 /* UINavigationBar+handle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+handle.h"; sourceTree = "<group>"; };
+		3618FC62237D7F3A00255426 /* UINavigationBar+handle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+handle.m"; sourceTree = "<group>"; };
 		36588D492370189B008ADEAC /* ForgetpasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetpasswordViewController.m; sourceTree = "<group>"; };
 		36588D4A2370189B008ADEAC /* ForgetpasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetpasswordViewController.h; sourceTree = "<group>"; };
 		36588D4B2370189B008ADEAC /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -131,16 +138,6 @@
 		368AB322235F0623002B6D37 /* UIButton+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Common.h"; sourceTree = "<group>"; };
 		368AB323235F0623002B6D37 /* UIViewController+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Common.h"; sourceTree = "<group>"; };
 		368AB324235F0623002B6D37 /* NSObject+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Common.h"; sourceTree = "<group>"; };
-		368AB326235F0623002B6D37 /* APConfigureNetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APConfigureNetController.h; sourceTree = "<group>"; };
-		368AB327235F0623002B6D37 /* APFinishNetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APFinishNetController.h; sourceTree = "<group>"; };
-		368AB328235F0623002B6D37 /* ConnectNetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectNetController.h; sourceTree = "<group>"; };
-		368AB329235F0623002B6D37 /* ConfigureNetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigureNetController.m; sourceTree = "<group>"; };
-		368AB32A235F0623002B6D37 /* APConnectNetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APConnectNetController.h; sourceTree = "<group>"; };
-		368AB32B235F0623002B6D37 /* APConfigureNetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APConfigureNetController.m; sourceTree = "<group>"; };
-		368AB32C235F0623002B6D37 /* APFinishNetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APFinishNetController.m; sourceTree = "<group>"; };
-		368AB32D235F0623002B6D37 /* ConnectNetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectNetController.m; sourceTree = "<group>"; };
-		368AB32E235F0623002B6D37 /* APConnectNetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APConnectNetController.m; sourceTree = "<group>"; };
-		368AB32F235F0623002B6D37 /* ConfigureNetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigureNetController.h; sourceTree = "<group>"; };
 		368AB34B235F0769002B6D37 /* DeLin-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DeLin-Prefix.pch"; sourceTree = "<group>"; };
 		369309DB237BE632003DAFBD /* GizManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GizManager.h; sourceTree = "<group>"; };
 		369309DC237BE632003DAFBD /* GizManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GizManager.m; sourceTree = "<group>"; };
@@ -150,13 +147,13 @@
 		369309F4237C033B003DAFBD /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		369309F5237C033B003DAFBD /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		36930A01237C064D003DAFBD /* DeviceNetworkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceNetworkViewController.m; sourceTree = "<group>"; };
-		36930A02237C064D003DAFBD /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
+		36930A02237C064D003DAFBD /* DeviceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceListViewController.m; sourceTree = "<group>"; };
 		36930A03237C064D003DAFBD /* ConnectNetworkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectNetworkViewController.h; sourceTree = "<group>"; };
 		36930A04237C064D003DAFBD /* DeviceNetworkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceNetworkViewController.h; sourceTree = "<group>"; };
 		36930A05237C064D003DAFBD /* FinishNetworkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinishNetworkViewController.m; sourceTree = "<group>"; };
 		36930A06237C064D003DAFBD /* ConnectNetworkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectNetworkViewController.m; sourceTree = "<group>"; };
 		36930A07237C064D003DAFBD /* FinishNetworkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinishNetworkViewController.h; sourceTree = "<group>"; };
-		36930A08237C064D003DAFBD /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
+		36930A08237C064D003DAFBD /* DeviceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceListViewController.h; sourceTree = "<group>"; };
 		36930A0D237C0914003DAFBD /* UIViewController+BarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BarButton.m"; sourceTree = "<group>"; };
 		36930A0E237C0914003DAFBD /* UIViewController+BarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BarButton.h"; sourceTree = "<group>"; };
 		36930A11237C09D6003DAFBD /* WorktimeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorktimeCell.h; sourceTree = "<group>"; };
@@ -219,6 +216,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3618FC60237D7F0700255426 /* NavigationBarHandle */ = {
+			isa = PBXGroup;
+			children = (
+				3618FC61237D7F3A00255426 /* UINavigationBar+handle.h */,
+				3618FC62237D7F3A00255426 /* UINavigationBar+handle.m */,
+			);
+			path = NavigationBarHandle;
+			sourceTree = "<group>";
+		};
 		368AB2EF235F03CA002B6D37 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,19 +253,20 @@
 		368AB2FE235F0623002B6D37 /* OC_Category */ = {
 			isa = PBXGroup;
 			children = (
-				368AB2FF235F0623002B6D37 /* UIColor+ColorChange.m */,
-				368AB300235F0623002B6D37 /* NSDate+Common.h */,
-				368AB301235F0623002B6D37 /* NSString+Common.h */,
+				3618FC60237D7F0700255426 /* NavigationBarHandle */,
 				368AB302235F0623002B6D37 /* UIButton */,
 				368AB305235F0623002B6D37 /* Util */,
 				368AB30E235F0623002B6D37 /* UIButton+Common.m */,
 				368AB30F235F0623002B6D37 /* UILabel+YBAttributeTextTapAction.h */,
 				368AB310235F0623002B6D37 /* NSObject+Common.m */,
 				368AB311235F0623002B6D37 /* UIViewController+Common.m */,
+				368AB301235F0623002B6D37 /* NSString+Common.h */,
 				368AB312235F0623002B6D37 /* NSString+Common.m */,
+				368AB300235F0623002B6D37 /* NSDate+Common.h */,
 				368AB313235F0623002B6D37 /* NSDate+Common.m */,
 				368AB314235F0623002B6D37 /* NullSafe.m */,
 				368AB315235F0623002B6D37 /* UIColor+ColorChange.h */,
+				368AB2FF235F0623002B6D37 /* UIColor+ColorChange.m */,
 				368AB316235F0623002B6D37 /* TableView+Touch */,
 				368AB319235F0623002B6D37 /* View */,
 				368AB31E235F0623002B6D37 /* UILabel+YBAttributeTextTapAction.m */,
@@ -329,16 +336,12 @@
 		368AB325235F0623002B6D37 /* ESP */ = {
 			isa = PBXGroup;
 			children = (
-				368AB326235F0623002B6D37 /* APConfigureNetController.h */,
-				368AB32B235F0623002B6D37 /* APConfigureNetController.m */,
-				368AB327235F0623002B6D37 /* APFinishNetController.h */,
-				368AB32C235F0623002B6D37 /* APFinishNetController.m */,
-				368AB32A235F0623002B6D37 /* APConnectNetController.h */,
-				368AB32E235F0623002B6D37 /* APConnectNetController.m */,
-				368AB328235F0623002B6D37 /* ConnectNetController.h */,
-				368AB32D235F0623002B6D37 /* ConnectNetController.m */,
-				368AB32F235F0623002B6D37 /* ConfigureNetController.h */,
-				368AB329235F0623002B6D37 /* ConfigureNetController.m */,
+				36930A04237C064D003DAFBD /* DeviceNetworkViewController.h */,
+				36930A01237C064D003DAFBD /* DeviceNetworkViewController.m */,
+				36930A03237C064D003DAFBD /* ConnectNetworkViewController.h */,
+				36930A06237C064D003DAFBD /* ConnectNetworkViewController.m */,
+				36930A07237C064D003DAFBD /* FinishNetworkViewController.h */,
+				36930A05237C064D003DAFBD /* FinishNetworkViewController.m */,
 			);
 			path = ESP;
 			sourceTree = "<group>";
@@ -374,14 +377,14 @@
 		36930A00237C0618003DAFBD /* MyDevice */ = {
 			isa = PBXGroup;
 			children = (
-				36930A08237C064D003DAFBD /* WelcomeViewController.h */,
-				36930A02237C064D003DAFBD /* WelcomeViewController.m */,
-				36930A04237C064D003DAFBD /* DeviceNetworkViewController.h */,
-				36930A01237C064D003DAFBD /* DeviceNetworkViewController.m */,
-				36930A03237C064D003DAFBD /* ConnectNetworkViewController.h */,
-				36930A06237C064D003DAFBD /* ConnectNetworkViewController.m */,
-				36930A07237C064D003DAFBD /* FinishNetworkViewController.h */,
-				36930A05237C064D003DAFBD /* FinishNetworkViewController.m */,
+				36930A08237C064D003DAFBD /* DeviceListViewController.h */,
+				36930A02237C064D003DAFBD /* DeviceListViewController.m */,
+				3618FC57237D26CF00255426 /* MainViewController.h */,
+				3618FC58237D26CF00255426 /* MainViewController.m */,
+				3618FC5D237D27CB00255426 /* LeftDrawerViewController.h */,
+				3618FC5E237D27CB00255426 /* LeftDrawerViewController.m */,
+				3618FC5A237D27B100255426 /* MMSideDrawerSectionHeaderView.h */,
+				3618FC5B237D27B100255426 /* MMSideDrawerSectionHeaderView.m */,
 			);
 			path = MyDevice;
 			sourceTree = "<group>";
@@ -685,32 +688,31 @@
 				368AB340235F0623002B6D37 /* AAProgressCircleView.m in Sources */,
 				368AB33B235F0623002B6D37 /* NullSafe.m in Sources */,
 				368AB338235F0623002B6D37 /* UIViewController+Common.m in Sources */,
+				3618FC63237D7F3A00255426 /* UINavigationBar+handle.m in Sources */,
 				368AB334235F0623002B6D37 /* NSString+Rounding.m in Sources */,
 				369309DD237BE632003DAFBD /* GizManager.m in Sources */,
 				36930A0B237C064D003DAFBD /* FinishNetworkViewController.m in Sources */,
-				368AB343235F0623002B6D37 /* APFinishNetController.m in Sources */,
 				36588D4E2370189C008ADEAC /* RegisterViewController.m in Sources */,
 				368AB33F235F0623002B6D37 /* UILabel+YBAttributeTextTapAction.m in Sources */,
+				3618FC5F237D27CB00255426 /* LeftDrawerViewController.m in Sources */,
 				368AB339235F0623002B6D37 /* NSString+Common.m in Sources */,
-				368AB345235F0623002B6D37 /* APConnectNetController.m in Sources */,
 				36588D4D2370189C008ADEAC /* ForgetpasswordViewController.m in Sources */,
 				36930A09237C064D003DAFBD /* DeviceNetworkViewController.m in Sources */,
 				368AB330235F0623002B6D37 /* UIColor+ColorChange.m in Sources */,
 				369309F6237C033B003DAFBD /* BaseViewController.m in Sources */,
 				368AB33D235F0623002B6D37 /* YTFAlertController.m in Sources */,
-				368AB342235F0623002B6D37 /* APConfigureNetController.m in Sources */,
 				368AB33A235F0623002B6D37 /* NSDate+Common.m in Sources */,
 				36930A0C237C064D003DAFBD /* ConnectNetworkViewController.m in Sources */,
-				368AB344235F0623002B6D37 /* ConnectNetController.m in Sources */,
+				3618FC59237D26CF00255426 /* MainViewController.m in Sources */,
 				368AB33C235F0623002B6D37 /* TouchTableView.m in Sources */,
-				368AB341235F0623002B6D37 /* ConfigureNetController.m in Sources */,
 				36930A15237C09D6003DAFBD /* WorktimeCell.m in Sources */,
 				369C65F8235EE42F008D6230 /* AppDelegate.m in Sources */,
 				368AB332235F0623002B6D37 /* GosAlertView.m in Sources */,
+				3618FC5C237D27B100255426 /* MMSideDrawerSectionHeaderView.m in Sources */,
 				36930A0F237C0914003DAFBD /* UIViewController+BarButton.m in Sources */,
 				368AB336235F0623002B6D37 /* UIButton+Common.m in Sources */,
 				368AB333235F0623002B6D37 /* GosTipView.m in Sources */,
-				36930A0A237C064D003DAFBD /* WelcomeViewController.m in Sources */,
+				36930A0A237C064D003DAFBD /* DeviceListViewController.m in Sources */,
 				368AB331235F0623002B6D37 /* NodeButton.m in Sources */,
 				368AB33E235F0623002B6D37 /* YAlertViewController.m in Sources */,
 			);

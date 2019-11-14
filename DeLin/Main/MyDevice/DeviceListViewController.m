@@ -6,7 +6,7 @@
 //  Copyright © 2018 yusz. All rights reserved.
 //
 
-#import "WelcomeViewController.h"
+#import "DeviceListViewController.h"
 #import "LoginViewController.h"
 #import "DeviceNetworkViewController.h"
 #import "ConnectNetworkViewController.h"
@@ -17,7 +17,7 @@
 NSString *const CellIdentifier_DeviceList = @"CellID_DeviceList";
 
 
-@interface WelcomeViewController () <UITableViewDelegate, UITableViewDataSource, GizWifiSDKDelegate>
+@interface DeviceListViewController () <UITableViewDelegate, UITableViewDataSource, GizWifiSDKDelegate>
 
 ///@brife ui和功能各模块
 @property (strong, nonatomic)  UILabel *deviceLabel;
@@ -33,12 +33,11 @@ NSString *const CellIdentifier_DeviceList = @"CellID_DeviceList";
 
 @end
 
-@implementation WelcomeViewController
+@implementation DeviceListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIImage *backImage = [UIImage imageNamed:@"loginView"];
-    self.view.layer.contents = (id)backImage.CGImage;
+    
     [self setNavItem];
     
     self.deviceLabel = [self deviceLabel];
@@ -66,10 +65,6 @@ NSString *const CellIdentifier_DeviceList = @"CellID_DeviceList";
 
 #pragma mark - Lazy load
 - (void)setNavItem{
-    self.navigationItem.title = LocalString(@"Device List");
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
-    backItem.title = @"Cancel";
-    self.navigationItem.backBarButtonItem = backItem;
     
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     rightButton.frame = CGRectMake(0, 0, 30, 30);

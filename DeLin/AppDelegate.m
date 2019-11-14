@@ -56,6 +56,7 @@
     
     //去掉透明后导航栏下边的黑边
     [_navigationBarAppearance setShadowImage:[[UIImage alloc] init]];
+    [_navigationBarAppearance clearsContextBeforeDrawing];
     
 }
 
