@@ -18,7 +18,7 @@ PODS:
   - Bugly (2.5.0)
   - CocoaAsyncSocket (7.6.3)
   - CTMediator (25)
-  - IQKeyboardManager (3.3.7)
+  - IQKeyboardManager (6.5.3)
   - Masonry (1.1.0)
   - MBProgressHUD (1.0.0)
   - MJRefresh (3.2.0)
@@ -58,7 +58,7 @@ SPEC CHECKSUMS:
   Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
   CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
   CTMediator: 830c1fc204b3a6abf2a059510c7380f56343da0f
-  IQKeyboardManager: 249c3946acf61345c18b038eb50863fe2793e3a8
+  IQKeyboardManager: c2f901164d56807a35788483584d09fa69192e8e
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437

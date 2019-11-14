@@ -48,7 +48,7 @@
         _emailTF = [[UITextField alloc] init];
         _emailTF.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
         _emailTF.font = [UIFont systemFontOfSize:16.f];
-        _emailTF.textColor = [UIColor whiteColor];
+        _emailTF.tintColor = [UIColor colorWithHexString:@"333333"];
         _emailTF.clearButtonMode = UITextFieldViewModeWhileEditing;
         _emailTF.autocorrectionType = UITextAutocorrectionTypeNo;
         _emailTF.delegate = self;
@@ -75,7 +75,7 @@
         _passwordTF = [[UITextField alloc] init];
         _passwordTF.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
         _passwordTF.font = [UIFont systemFontOfSize:16.f];
-        _passwordTF.textColor = [UIColor whiteColor];
+        _passwordTF.tintColor = [UIColor colorWithHexString:@"333333"];
         _passwordTF.clearButtonMode = UITextFieldViewModeWhileEditing;
         _passwordTF.autocorrectionType = UITextAutocorrectionTypeNo;
         _passwordTF.delegate = self;
@@ -103,7 +103,7 @@
         _repeatpasswordTF = [[UITextField alloc] init];
         _repeatpasswordTF.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
         _repeatpasswordTF.font = [UIFont systemFontOfSize:16.f];
-        _repeatpasswordTF.textColor = [UIColor whiteColor];
+        _repeatpasswordTF.tintColor = [UIColor colorWithHexString:@"333333"];
         _repeatpasswordTF.clearButtonMode = UITextFieldViewModeWhileEditing;
         _repeatpasswordTF.autocorrectionType = UITextAutocorrectionTypeNo;
         _repeatpasswordTF.delegate = self;

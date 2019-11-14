@@ -39,7 +39,7 @@
         _emailTF = [[UITextField alloc] init];
         _emailTF.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
         _emailTF.font = [UIFont systemFontOfSize:16.f];
-        _emailTF.textColor = [UIColor whiteColor];
+        _emailTF.tintColor = [UIColor colorWithHexString:@"333333"];
         _emailTF.clearButtonMode = UITextFieldViewModeWhileEditing;
         _emailTF.autocorrectionType = UITextAutocorrectionTypeNo;
         _emailTF.delegate = self;

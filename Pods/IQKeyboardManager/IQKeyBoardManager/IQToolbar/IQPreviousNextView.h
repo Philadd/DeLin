@@ -1,7 +1,7 @@
 //
-//  UIWindow+Hierarchy.h
+// IQPreviousNextView.h
 // https://github.com/hackiftekhar/IQKeyboardManager
-// Copyright (c) 2013-15 Iftekhar Qurashi.
+// Copyright (c) 2013-16 Iftekhar Qurashi.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -21,28 +21,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <UIKit/UIWindow.h>
-
-@class UIViewController;
-
+#import <UIKit/UIView.h>
 /**
- UIWindow hierarchy category.
+ If you need to enable previous/next toolbar button with some complex hierarchy where your textFields are not in same view, then make the top view as IQPreviousNextView.
  */
-@interface UIWindow (IQ_UIWindow_Hierarchy)
-
-///----------------------
-/// @name viewControllers
-///----------------------
-
-/**
- Returns the current Top Most ViewController in hierarchy.
- */
-@property (nullable, nonatomic, readonly, strong) UIViewController *topMostController;
-
-/**
- Returns the topViewController in stack of topMostController.
- */
-@property (nullable, nonatomic, readonly, strong) UIViewController *currentViewController;
-
+@interface IQPreviousNextView : UIView
 
 @end

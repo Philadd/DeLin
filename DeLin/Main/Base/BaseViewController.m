@@ -24,11 +24,11 @@
     /** 设置导航栏背景图片 */
     [delegate.navigationBarAppearance setBackgroundImage:[UIImage imageNamed:@"background_navItem"] forBarMetrics:UIBarMetricsDefault];
     
-    [delegate.navigationBarAppearance setTintColor:[UIColor whiteColor]];//返回按钮的箭头颜色
+    [delegate.navigationBarAppearance setTintColor:[UIColor blackColor]];//返回按钮的箭头颜色
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
     NSDictionary *textAttributes = @{
                                      NSFontAttributeName: [UIFont systemFontOfSize:17.f],
-                                     NSForegroundColorAttributeName: [UIColor whiteColor],
+                                     NSForegroundColorAttributeName: [UIColor blackColor],
                                      };
     [delegate.navigationBarAppearance setTitleTextAttributes:textAttributes];
     

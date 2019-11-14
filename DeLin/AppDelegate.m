@@ -10,7 +10,7 @@
 #import <Bugly/Bugly.h>
 #import <GizWifiSDK/GizWifiSDK.h>
 #import "LoginViewController.h"
-
+#import "IQKeyboardManager.h"
 @interface AppDelegate ()
 
 @end
@@ -24,6 +24,7 @@
     //[Bugly startWithAppId:@"d01e9040cb"];
     
     [self customizeInterface];
+    [self keyBoardManager];
     [self initGiz];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -53,6 +54,15 @@
     [_navigationBarAppearance setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
     //去掉透明后导航栏下边的黑边
     [_navigationBarAppearance setShadowImage:[[UIImage alloc] init]];
+    
+}
+
+- (void)keyBoardManager{
+    
+    IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
+    manager.toolbarDoneBarButtonItemText = LocalString(@"Done");
+    manager.shouldResignOnTouchOutside = YES;//键盘弹出时，点击背景，键盘收回
+    manager.shouldToolbarUsesTextFieldTintColor = YES;
     
 }
 
