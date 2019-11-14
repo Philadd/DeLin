@@ -218,8 +218,7 @@
         NSLog(@"注册成功");
         [NSObject showHudTipStr:LocalString(@"Registration successful")];
         //返回上一级视图
-        UIViewController *viewCtl =self.navigationController.viewControllers[1];
-        [self.navigationController popToViewController:viewCtl animated:YES];
+        [self.navigationController popToRootViewControllerAnimated:YES];
         
     } else {
         // 注册失败

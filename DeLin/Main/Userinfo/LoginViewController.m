@@ -9,7 +9,7 @@
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
 #import "ForgetpasswordViewController.h"
-//#import "MainViewController.h"
+#import "WelcomeViewController.h"
 
 @interface LoginViewController ()<UITextFieldDelegate,GizWifiSDKDelegate>
 
@@ -298,9 +298,9 @@
         }
         [userDefaults synchronize];
         
-        //        WelcomeViewController *WelcomeVC = [[WelcomeViewController alloc] init];
-        //        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:WelcomeVC];
-        //        [self presentViewController:nav animated:YES completion:nil];
+        WelcomeViewController *WelcomeVC = [[WelcomeViewController alloc] init];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:WelcomeVC];
+        [self presentViewController:nav animated:YES completion:nil];
         
     } else {
         // 登录失败
