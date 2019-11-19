@@ -52,14 +52,6 @@ NSString *const CellIdentifier_DeviceList = @"CellID_DeviceList";
     GizManager *manager = [GizManager shareInstance];
     [GizWifiSDK sharedInstance].delegate = self;
     [[GizWifiSDK sharedInstance] getBoundDevices:manager.uid token:manager.token];
-    
-//    //无法加入网络，需移除
-//    NSString *wifiName = @"XPG-GAgent";
-//    if (@available(iOS 11.0, *)) {
-//        [[NEHotspotConfigurationManager sharedManager] removeConfigurationForSSID:wifiName];
-//    } else {
-//        // Fallback on earlier versions
-//    }
   
 }
 
@@ -82,13 +74,13 @@ NSString *const CellIdentifier_DeviceList = @"CellID_DeviceList";
         _deviceLabel = [[UILabel alloc] init];
         _deviceLabel.font = [UIFont systemFontOfSize:15.f];
         _deviceLabel.backgroundColor = [UIColor clearColor];
-        _deviceLabel.textColor = [UIColor whiteColor];
+        _deviceLabel.textColor = [UIColor blackColor];
         _deviceLabel.textAlignment = NSTextAlignmentCenter;
         _deviceLabel.text = LocalString(@"Please select a device or add a new one");
-//        //自动折行设置
-//        [_deviceLabel setLineBreakMode:NSLineBreakByWordWrapping];
-//        _deviceLabel.numberOfLines = 0;
-//        _deviceLabel.textAlignment = NSTextAlignmentLeft;
+        //自动折行设置
+        [_deviceLabel setLineBreakMode:NSLineBreakByWordWrapping];
+        _deviceLabel.numberOfLines = 0;
+        _deviceLabel.textAlignment = NSTextAlignmentLeft;
         _deviceLabel.adjustsFontSizeToFitWidth = YES;
         [self.view addSubview:_deviceLabel];
         [_deviceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -103,7 +95,7 @@ NSString *const CellIdentifier_DeviceList = @"CellID_DeviceList";
 - (UITableView *)deviceTable{
     if (!_deviceTable) {
         _deviceTable = ({
-            UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, yAutoFit(110), ScreenWidth, ScreenHeight - getRectNavAndStatusHight - yAutoFit(40) - yAutoFit(40) - yAutoFit(40)) style:UITableViewStylePlain];
+            UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, yAutoFit(110), ScreenWidth, ScreenHeight - getRectNavAndStatusHight - yAutoFit(40) - yAutoFit(60) - yAutoFit(60)) style:UITableViewStylePlain];
             tableView.backgroundColor = [UIColor clearColor];
             tableView.dataSource = self;
             tableView.delegate = self;
@@ -126,24 +118,26 @@ NSString *const CellIdentifier_DeviceList = @"CellID_DeviceList";
 - (UIButton *)addButton{
     if (!_addButton) {
         _addButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_addButton setTitle:LocalString(@"➕") forState:UIControlStateNormal];
-        [_addButton.titleLabel setFont:[UIFont systemFontOfSize:24.f]];
+        [_addButton setImage:[UIImage imageNamed:@"add_Btn"] forState:UIControlStateNormal];
+        [_addButton.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_addButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_addButton setBackgroundColor:[UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:0.6]];
-        [_addButton addTarget:self action:@selector(addlandroid) forControlEvents:UIControlEventTouchUpInside];
+        [_addButton setBackgroundColor:[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0]];
+        [_addButton addTarget:self action:@selector(goNetwork) forControlEvents:UIControlEventTouchUpInside];
         _addButton.enabled = YES;
         [self.view addSubview:_addButton];
         [_addButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(280), yAutoFit(50)));
-            make.bottom.equalTo(self.view.mas_bottom).offset(yAutoFit(-60));
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(50)));
+            make.bottom.equalTo(self.view.mas_bottom).offset(yAutoFit(-50));
             make.centerX.mas_equalTo(self.view.mas_centerX);
         }];
         
-        _addButton.layer.borderWidth = 1.0;
-        _addButton.layer.borderColor = [UIColor whiteColor].CGColor;
-        _addButton.layer.cornerRadius = 10.f;
-        
-        
+        _addButton.layer.borderWidth = 0.5;
+        _addButton.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
+        _addButton.layer.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.16].CGColor;
+        _addButton.layer.shadowOffset = CGSizeMake(0,2.5);
+        _addButton.layer.shadowRadius = 3;
+        _addButton.layer.shadowOpacity = 1;
+        _addButton.layer.cornerRadius = 2.5;
     }
     return _addButton;
 }
@@ -283,15 +277,13 @@ NSString *const CellIdentifier_DeviceList = @"CellID_DeviceList";
     }
    
     [self refreshTableView:deviceList];
-    //NSLog(@"dasdadas%@",deviceList);
 }
 
 #pragma mark - Actions
 - (void)refreshTableView:(NSArray *)listArray{
     NSLog(@"设备数量%lu",(unsigned long)listArray.count);
-    NSArray *deviceList = listArray;
     NSMutableArray *deviceArray = [[NSMutableArray alloc] init];
-    for (GizWifiDevice *device in deviceList) {
+    for (GizWifiDevice *device in listArray) {
         if (device.isBind) {
             NSLog(@"绑定设备%@",device.productName);
         }
@@ -303,41 +295,9 @@ NSString *const CellIdentifier_DeviceList = @"CellID_DeviceList";
     [self.deviceTable reloadData];
 }
 
-- (void)addlandroid {
+- (void)goNetwork {
     DeviceNetworkViewController *VC = [[DeviceNetworkViewController alloc] init];
     [self.navigationController pushViewController:VC animated:YES];
-  
-//    if (@available(iOS 11.0, *)) {
-//        NEHotspotConfiguration *hotspotConfig = [[NEHotspotConfiguration alloc] initWithSSID:wifiName passphrase:@"123456789" isWEP:NO];
-//        // 开始连接 (调用此方法后系统会自动弹窗确认)
-//
-//        //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//        [[NEHotspotConfigurationManager sharedManager] applyConfiguration:hotspotConfig completionHandler:^(NSError * _Nullable error) {
-//            NSLog(@"aaaaa");
-//            if ([[GizManager getCurrentWifi] isEqualToString:wifiName]) {
-//                //[MBProgressHUD hideHUDForView:self.view animated:YES];//隐藏加载UI
-//                if (error) {
-//                    //无法加入网络，需移除
-//                    [[NEHotspotConfigurationManager sharedManager] removeConfigurationForSSID:wifiName];
-//                    [NSObject showHudTipStr:@"Can't connect hotspots"];
-//                    NSLog(@"无法连接热点%@",error);
-//                    [self showAlert];
-//                }else{
-//                    //连接wifi成功
-//                    NSLog(@"连接WiFi成功");
-//                    [NSObject showHudTipStr:@"Successfully connected to hotspots"];
-//                    addLandroidDeviceViewController *VC = [[addLandroidDeviceViewController alloc] init];
-//                    [self.navigationController pushViewController:VC animated:YES];
-//                }
-//            }else{
-//                [self showAlert];
-//            }
-//        }];
-//
-//    }else{
-//        [self showAlert];
-//    }
-   
 }
 
 #pragma mark ---LMPopInputPassViewDelegate

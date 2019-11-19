@@ -60,6 +60,9 @@
 		369C6606235EE431008D6230 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C6605235EE431008D6230 /* main.m */; };
 		369C6610235EE431008D6230 /* DeLinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C660F235EE431008D6230 /* DeLinTests.m */; };
 		369C661B235EE431008D6230 /* DeLinUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C661A235EE431008D6230 /* DeLinUITests.m */; };
+		36BF86C72383CCC8009EA9AB /* add_Btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BF86C42383CCC8009EA9AB /* add_Btn.png */; };
+		36BF86C82383CCC8009EA9AB /* add_Btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BF86C52383CCC8009EA9AB /* add_Btn@2x.png */; };
+		36BF86C92383CCC8009EA9AB /* add_Btn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BF86C62383CCC8009EA9AB /* add_Btn@3x.png */; };
 		896FD80E889048BD4E4DCA1D /* libPods-DeLin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 884F754EB758212CC878A786 /* libPods-DeLin.a */; };
 /* End PBXBuildFile section */
 
@@ -176,6 +179,9 @@
 		369C6616235EE431008D6230 /* DeLinUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeLinUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		369C661A235EE431008D6230 /* DeLinUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeLinUITests.m; sourceTree = "<group>"; };
 		369C661C235EE431008D6230 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		36BF86C42383CCC8009EA9AB /* add_Btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_Btn.png; sourceTree = "<group>"; };
+		36BF86C52383CCC8009EA9AB /* add_Btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_Btn@2x.png"; sourceTree = "<group>"; };
+		36BF86C62383CCC8009EA9AB /* add_Btn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_Btn@3x.png"; sourceTree = "<group>"; };
 		817BB96CDCA8A246ED304146 /* Pods-DeLin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeLin.release.xcconfig"; path = "Target Support Files/Pods-DeLin/Pods-DeLin.release.xcconfig"; sourceTree = "<group>"; };
 		884F754EB758212CC878A786 /* libPods-DeLin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DeLin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3FDF79274E40EC050E0E6A7 /* Pods-DeLin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeLin.debug.xcconfig"; path = "Target Support Files/Pods-DeLin/Pods-DeLin.debug.xcconfig"; sourceTree = "<group>"; };
@@ -377,6 +383,7 @@
 		36930A00237C0618003DAFBD /* MyDevice */ = {
 			isa = PBXGroup;
 			children = (
+				36BF86C32383CC63009EA9AB /* image_icon */,
 				36930A08237C064D003DAFBD /* DeviceListViewController.h */,
 				36930A02237C064D003DAFBD /* DeviceListViewController.m */,
 				3618FC57237D26CF00255426 /* MainViewController.h */,
@@ -460,6 +467,16 @@
 				369C661C235EE431008D6230 /* Info.plist */,
 			);
 			path = DeLinUITests;
+			sourceTree = "<group>";
+		};
+		36BF86C32383CC63009EA9AB /* image_icon */ = {
+			isa = PBXGroup;
+			children = (
+				36BF86C42383CCC8009EA9AB /* add_Btn.png */,
+				36BF86C52383CCC8009EA9AB /* add_Btn@2x.png */,
+				36BF86C62383CCC8009EA9AB /* add_Btn@3x.png */,
+			);
+			path = image_icon;
 			sourceTree = "<group>";
 		};
 		4F854F2550EE1053CDFD0355 /* Pods */ = {
@@ -609,10 +626,13 @@
 			files = (
 				369C6603235EE431008D6230 /* LaunchScreen.storyboard in Resources */,
 				369309E2237BE679003DAFBD /* img_logo@2x.png in Resources */,
+				36BF86C72383CCC8009EA9AB /* add_Btn.png in Resources */,
 				369C6600235EE431008D6230 /* Assets.xcassets in Resources */,
 				369309E3237BE679003DAFBD /* img_logo.png in Resources */,
 				369309E4237BE679003DAFBD /* img_logo@3x.png in Resources */,
 				369C65FE235EE42F008D6230 /* Main.storyboard in Resources */,
+				36BF86C92383CCC8009EA9AB /* add_Btn@3x.png in Resources */,
+				36BF86C82383CCC8009EA9AB /* add_Btn@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

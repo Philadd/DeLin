@@ -29,7 +29,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         //创建基本视图
         [self createSubview];
         //创建路径及layer
-        //[self createLayerPath];
+        [self createLayerPath];
     }
     return self;
 }
@@ -91,7 +91,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     //#C8A159 #EBD6AB  C6A05D
     CAGradientLayer *leftGradientLayer = [CAGradientLayer layer];
     leftGradientLayer.frame = CGRectMake(0, 0, lineWH/2, lineWH);
-    [leftGradientLayer setColors:[NSArray arrayWithObjects:(id)kRGBColor(0x3987F8).CGColor, (id)kRGBColor(0x3987F8).CGColor, nil]];
+    [leftGradientLayer setColors:[NSArray arrayWithObjects:(id)kRGBColor(0xFF9700).CGColor, (id)kRGBColor(0xFF9700).CGColor, nil]];
     [leftGradientLayer setLocations:@[@0.0,@1.0]];
     [leftGradientLayer setStartPoint:CGPointMake(0, 0)];
     [leftGradientLayer setEndPoint:CGPointMake(0, 1)];
@@ -99,7 +99,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     
     CAGradientLayer *rightGradientLayer = [CAGradientLayer layer];
     rightGradientLayer.frame = CGRectMake(lineWH/2, 0, lineWH/2, lineWH);
-    [rightGradientLayer setColors:[NSArray arrayWithObjects:(id)kRGBColor(0x3987F8).CGColor, (id)kRGBColor(0x3987F8).CGColor, nil]];
+    [rightGradientLayer setColors:[NSArray arrayWithObjects:(id)kRGBColor(0xFF9700).CGColor, (id)kRGBColor(0xFF9700).CGColor, nil]];
     [rightGradientLayer setLocations:@[@0.0,@1.0]];
     [rightGradientLayer setStartPoint:CGPointMake(0, 0)];
     [rightGradientLayer setEndPoint:CGPointMake(0, 1)];

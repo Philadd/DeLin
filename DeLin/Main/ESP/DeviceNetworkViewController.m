@@ -45,10 +45,7 @@
 }
 
 - (void)setNavItem{
-    
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
-    backItem.title = @"Back";
-    self.navigationItem.backBarButtonItem = backItem;
+    self.navigationItem.title = LocalString(@"Add Robot");
 }
 
 - (UIImageView *)deviceImage{
@@ -70,7 +67,7 @@
         _Label_1 = [[UILabel alloc] init];
         _Label_1.font = [UIFont systemFontOfSize:14.f];
         _Label_1.backgroundColor = [UIColor clearColor];
-        _Label_1.textColor = [UIColor whiteColor];
+        _Label_1.textColor = [UIColor blackColor];
         _Label_1.text = LocalString(@"Verify connection to your Wi-Fi network,then enter the network name and password.");
         //自动折行设置
         [_Label_1 setLineBreakMode:NSLineBreakByWordWrapping];
@@ -79,7 +76,7 @@
         _Label_1.adjustsFontSizeToFitWidth = YES;
         [self.view addSubview:_Label_1];
         [_Label_1 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(280),yAutoFit(60)));
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(320),yAutoFit(60)));
             make.top.equalTo(self.view.mas_top).offset(yAutoFit(300));
             make.centerX.mas_equalTo(self.view.mas_centerX);
         }];
@@ -93,7 +90,7 @@
         _Label_2 = [[UILabel alloc] init];
         _Label_2.font = [UIFont systemFontOfSize:14.f];
         _Label_2.backgroundColor = [UIColor clearColor];
-        _Label_2.textColor = [UIColor whiteColor];
+        _Label_2.textColor = [UIColor blackColor];
         _Label_2.textAlignment = NSTextAlignmentLeft;
         _Label_2.text = LocalString(@"Make sure to use 2.4GHz Wi-Fi network.");
         //自动折行设置
@@ -102,7 +99,7 @@
         _Label_2.textAlignment = NSTextAlignmentLeft;
         [self.view addSubview:_Label_2];
         [_Label_2 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(280), yAutoFit(40)));
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(40)));
             make.centerX.mas_equalTo(self.view.mas_centerX);
             make.top.equalTo(self.Label_1.mas_bottom).offset(yAutoFit(20));
         }];
@@ -113,9 +110,9 @@
 - (UITextField *)wifiNameTF{
     if (!_wifiNameTF) {
         _wifiNameTF = [[UITextField alloc] init];
-        _wifiNameTF.backgroundColor = [UIColor clearColor];
+        _wifiNameTF.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
         _wifiNameTF.font = [UIFont systemFontOfSize:15.f];
-        _wifiNameTF.textColor = [UIColor whiteColor];
+        _wifiNameTF.tintColor = [UIColor colorWithHexString:@"333333"];
         _wifiNameTF.clearButtonMode = UITextFieldViewModeWhileEditing;
         _wifiNameTF.autocorrectionType = UITextAutocorrectionTypeNo;
         _wifiNameTF.delegate = self;
@@ -124,20 +121,15 @@
         [_wifiNameTF addTarget:self action:@selector(textFieldTextChange) forControlEvents:UIControlEventEditingChanged];
         [self.view addSubview:_wifiNameTF];
         [_wifiNameTF mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(280), yAutoFit(40)));
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(40)));
             make.top.equalTo(self.Label_2.mas_bottom).offset(yAutoFit(30));
             make.centerX.mas_equalTo(self.view.mas_centerX);
         }];
-        _wifiNameTF.layer.borderWidth = 1.0;
-        _wifiNameTF.layer.borderColor = [UIColor whiteColor].CGColor;
-        _wifiNameTF.layer.cornerRadius = 10.f;
-        [_wifiNameTF setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
-        [_wifiNameTF setValue:[UIFont boldSystemFontOfSize:15] forKeyPath:@"_placeholderLabel.font"];
-        
-//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//        _wifiNameTF.text = [defaults objectForKey:@"wifiname"];
-        _wifiNameTF.text = [self getDeviceSSID];
-        
+        _wifiNameTF.layer.borderWidth = 0.5;
+        _wifiNameTF.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
+        _wifiNameTF.layer.cornerRadius = 2.5f;
+        //获取当前连接的Wi-FiSSID
+        _wifiNameTF.text = [self getDeviceSSID];  
         
     }
     return _wifiNameTF;
@@ -162,9 +154,9 @@
 - (UITextField *)passwordTF{
     if (!_passwordTF) {
         _passwordTF = [[UITextField alloc] init];
-        _passwordTF.backgroundColor = [UIColor clearColor];
+        _passwordTF.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
         _passwordTF.font = [UIFont systemFontOfSize:15.f];
-        _passwordTF.textColor = [UIColor whiteColor];
+        _passwordTF.tintColor = [UIColor colorWithHexString:@"333333"];
         _passwordTF.clearButtonMode = UITextFieldViewModeWhileEditing;
         _passwordTF.autocorrectionType = UITextAutocorrectionTypeNo;
         _passwordTF.delegate = self;
@@ -176,17 +168,14 @@
         [_passwordTF addTarget:self action:@selector(textFieldTextChange) forControlEvents:UIControlEventEditingChanged];
         [self.view addSubview:_passwordTF];
         [_passwordTF mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(280), yAutoFit(40)));
-            make.top.equalTo(self.wifiNameTF.mas_bottom).offset(30);
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(40)));
+            make.top.equalTo(self.wifiNameTF.mas_bottom).offset(yAutoFit(30));
             make.centerX.mas_equalTo(self.view.mas_centerX);
         }];
-        _passwordTF.layer.borderWidth = 1.0;
-        _passwordTF.layer.borderColor = [UIColor whiteColor].CGColor;
-        _passwordTF.layer.cornerRadius = 10.f;
+        _passwordTF.layer.borderWidth = 0.5;
+        _passwordTF.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
+        _passwordTF.layer.cornerRadius = 2.5f;
         _passwordTF.placeholder = LocalString(@"Wi-Fi Password");
-        [_passwordTF setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
-        [_passwordTF setValue:[UIFont boldSystemFontOfSize:15] forKeyPath:@"_placeholderLabel.font"];
-        
     }
     return _passwordTF;
 }
@@ -196,22 +185,24 @@
         _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_nextBtn setTitle:LocalString(@"Next") forState:UIControlStateNormal];
         [_nextBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
-        [_nextBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_nextBtn setBackgroundColor:[UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:0.6]];
+        [_nextBtn setTitleColor:[UIColor colorWithHexString:@"333333"] forState:UIControlStateNormal];
+        [_nextBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0f]];
         [_nextBtn addTarget:self action:@selector(next) forControlEvents:UIControlEventTouchUpInside];
         _nextBtn.enabled = YES;
         [self.view addSubview:_nextBtn];
         [_nextBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(280), yAutoFit(40)));
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(50)));
             make.top.equalTo(self.passwordTF.mas_bottom).offset(yAutoFit(30));
             make.centerX.mas_equalTo(self.view.mas_centerX);
         }];
-        
-        _nextBtn.layer.borderWidth = 1.0;
-        _nextBtn.layer.borderColor = [UIColor whiteColor].CGColor;
-        _nextBtn.layer.cornerRadius = 10.f;
-        
-        
+      
+        _nextBtn.layer.borderWidth = 0.5;
+        _nextBtn.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
+        _nextBtn.layer.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.16].CGColor;
+        _nextBtn.layer.shadowOffset = CGSizeMake(0,2.5);
+        _nextBtn.layer.shadowRadius = 3;
+        _nextBtn.layer.shadowOpacity = 1;
+        _nextBtn.layer.cornerRadius = 2.5;
     }
     return _nextBtn;
 }

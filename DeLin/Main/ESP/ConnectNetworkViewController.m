@@ -33,9 +33,7 @@
 
 - (void)setNavItem{
     self.navigationItem.title = LocalString(@"Add Robot");
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
-    backItem.title = @"Back";
-    self.navigationItem.backBarButtonItem = backItem;
+    
 }
 
 - (UIImageView *)deviceImage{
@@ -59,7 +57,7 @@
         _LandroidTextView.backgroundColor = [UIColor clearColor];
         _LandroidTextView.text = LocalString(@"1.Turn on your Robot.\n2.Move the cursor to\"WIFI Setting\",then press OK;the text Network Configuration……will appear.\n3.Press the connection buttton and wait for the process to complete.");
         _LandroidTextView.textAlignment = NSTextAlignmentLeft;
-        _LandroidTextView.textColor = [UIColor whiteColor];
+        _LandroidTextView.textColor = [UIColor blackColor];
         _LandroidTextView.font = [UIFont boldSystemFontOfSize:15];
         //_LandroidTextView.dataDetectorTypes = UIDataDetectorTypeAll;
         // 禁止编辑.设置为只读，不再能输入内容
@@ -74,7 +72,7 @@
         
         [self.view addSubview:_LandroidTextView];
         [_LandroidTextView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(300),yAutoFit(200)));
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(320),yAutoFit(200)));
             make.centerX.mas_equalTo(self.view.mas_centerX);
             make.top.equalTo(self.view.mas_top).offset(yAutoFit(300));
         }];
@@ -87,39 +85,29 @@
         _connectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_connectBtn setTitle:LocalString(@"Connect") forState:UIControlStateNormal];
         [_connectBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
-        [_connectBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_connectBtn setBackgroundColor:[UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:0.6]];
+        [_connectBtn setTitleColor:[UIColor colorWithHexString:@"333333"] forState:UIControlStateNormal];
+        [_connectBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0f]];
         [_connectBtn addTarget:self action:@selector(ConnectWifi) forControlEvents:UIControlEventTouchUpInside];
         _connectBtn.enabled = YES;
         [self.view addSubview:_connectBtn];
         [_connectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(280), yAutoFit(40)));
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(50)));
             make.top.equalTo(self.LandroidTextView.mas_bottom).offset(yAutoFit(30));
             make.centerX.mas_equalTo(self.view.mas_centerX);
         }];
-
-        _connectBtn.layer.borderWidth = 1.0;
-        _connectBtn.layer.borderColor = [UIColor whiteColor].CGColor;
-        _connectBtn.layer.cornerRadius = 10.f;
-
-
+        
+        _connectBtn.layer.borderWidth = 0.5;
+        _connectBtn.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
+        _connectBtn.layer.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.16].CGColor;
+        _connectBtn.layer.shadowOffset = CGSizeMake(0,2.5);
+        _connectBtn.layer.shadowRadius = 3;
+        _connectBtn.layer.shadowOpacity = 1;
+        _connectBtn.layer.cornerRadius = 2.5;
     }
     return _connectBtn;
 }
 
 -(void)ConnectWifi{
-    /*
-     *在App内连接ap热点
-     */
-//    NSString *wifiName = @"XPG-";
-//    NSLog(@"wifiName%@",[[GizManager getCurrentWifi] substringWithRange:NSMakeRange(0, 4)]);
-//    if ([[[GizManager getCurrentWifi] substringWithRange:NSMakeRange(0, 4)] isEqualToString:wifiName]) {
-//        finishViewController *VC = [[finishViewController alloc] init];
-//        [self.navigationController pushViewController:VC animated:YES];
-//    }else{
-//        [self showAlert];
-//    }
-
     NSString *wifiName = @"XPG-GAgent";
     if ([[GizManager getCurrentWifi] hasPrefix:wifiName]) {
         FinishNetworkViewController *VC = [[FinishNetworkViewController alloc] init];
