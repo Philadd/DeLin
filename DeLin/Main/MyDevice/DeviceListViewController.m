@@ -11,7 +11,7 @@
 #import "DeviceNetworkViewController.h"
 #import "ConnectNetworkViewController.h"
 #import "DeviceListCell.h"
-//#import "LMPopInputPasswordView.h"
+#import "InputPINViewController.h"
 
 
 NSString *const CellIdentifier_DeviceList = @"CellID_DeviceList";
@@ -208,52 +208,8 @@ NSString *const CellIdentifier_DeviceList = @"CellID_DeviceList";
     GizWifiDevice *device = _deviceArray[indexPath.row];
     [[GizManager shareInstance] setGizDevice:device];
     
-    //子线程延时1s
-    double delayInSeconds = 1.0;
-    dispatch_queue_t mainQueue = dispatch_get_main_queue();
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW,delayInSeconds * NSEC_PER_SEC);
-    dispatch_after(popTime, mainQueue, ^{
-        NSLog(@"延时执行的1秒");
-    });
-    
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    if ([defaults integerForKey:@"pincode"]) {
-//        [BluetoothDataManage shareInstance].pincode = (int)[defaults integerForKey:@"pincode"];
-//        NSMutableArray *dataContent = [[NSMutableArray alloc] init];
-//        [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//        [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//        [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//        [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//        [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//        [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//        [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//        [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//
-//        [self.bluetoothDataManage setDataType:0x0c];
-//        [self.bluetoothDataManage setDataContent: dataContent];
-//        [self.bluetoothDataManage sendBluetoothFrame];
-//
-//    }else{
-//        NSMutableArray *dataContent = [[NSMutableArray alloc] init];
-//        [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//        [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//        [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//        [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//        [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//        [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//        [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//        [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//
-//        [self.bluetoothDataManage setDataType:0x0c];
-//        [self.bluetoothDataManage setDataContent: dataContent];
-//        [self.bluetoothDataManage sendBluetoothFrame];
-//    }
-//
-//    _resultLabel = [[UILabel alloc] init];
-//    _popView = [[LMPopInputPasswordView alloc]init];
-//    _popView.frame = CGRectMake((self.view.frame.size.width - 250)*0.5, 50, 250, 150);
-//    _popView.delegate = self;
-//    [_popView pop];
+    InputPINViewController *inputVC = [[InputPINViewController alloc] init];
+    [self.navigationController pushViewController:inputVC animated:YES];
     
 }
 
@@ -300,63 +256,6 @@ NSString *const CellIdentifier_DeviceList = @"CellID_DeviceList";
     [self.navigationController pushViewController:VC animated:YES];
 }
 
-#pragma mark ---LMPopInputPassViewDelegate
-//-(void)buttonClickedAtIndex:(NSUInteger)index withText:(NSString *)text
-//{
-//    NSLog(@"buttonIndex = %li password=%@",(long)index,text);
-//    if(index == 1){
-//        if(text.length == 0){
-//            NSLog(@"密码长度不正确Incorrect password length");
-//            [NSObject showHudTipStr:LocalString(@"Incorrect PIN code length")];
-//            [[GizManager shareInstance].device setSubscribe:GizAppproductSecret subscribed:NO]; //解除订阅
-//        }else if(text.length < 4){
-//            NSLog(@"密码长度不正确");
-//            [NSObject showHudTipStr:LocalString(@"Incorrect PIN code length")];
-//            [[GizManager shareInstance].device setSubscribe:GizAppproductSecret subscribed:NO]; //解除订阅
-//        }else{
-//            _resultLabel.text = text;
-//            if ([text intValue] == [BluetoothDataManage shareInstance].pincode) {
-//
-//            }else{
-//                NSMutableArray *dataContent = [[NSMutableArray alloc] init];
-//                [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//                [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//                [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//                [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//                [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//                [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//                [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//                [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//
-//                [self.bluetoothDataManage setDataType:0x0c];
-//                [self.bluetoothDataManage setDataContent: dataContent];
-//                [self.bluetoothDataManage sendBluetoothFrame];
-//
-//                [NSObject showHudTipStr:LocalString(@"Incorrect PIN code")];
-//                [[GizManager shareInstance].device setSubscribe:GizAppproductSecret subscribed:NO]; //解除订阅
-//            }
-//            /*if ([_resultLabel.text isEqualToString:@"1234"]) {
-//             RDVViewController *rdvView = [[RDVViewController alloc] init];
-//             rdvView.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-//             [self presentViewController:rdvView animated:YES completion:nil];
-//             }*/
-//        }
-//    }else{
-//         [[GizManager shareInstance].device setSubscribe:GizAppproductSecret subscribed:NO]; //解除订阅
-//    }
-//}
-
-//-(void)deviceOrientationDidChange:(NSObject*)sender{
-//    UIDevice* device = [sender valueForKey:@"object"];
-//    if(device.orientation==UIInterfaceOrientationLandscapeLeft||device.orientation==UIInterfaceOrientationLandscapeRight)
-//    {
-//        _popView.frame = CGRectMake((self.view.frame.size.width - 250)*0.5, 50, 250, 150);
-//    }
-//    else if(device.orientation==UIInterfaceOrientationPortrait||device.orientation==UIInterfaceOrientationPortraitUpsideDown)
-//    {
-//        _popView.frame = CGRectMake((self.view.frame.size.width - 250)*0.5, 50, 250, 150);
-//    }
-//}
 
 //校准机器时间
 //- (void)setMowerTime{
