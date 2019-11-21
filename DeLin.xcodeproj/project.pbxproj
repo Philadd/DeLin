@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36085886238686B50094501B /* WorkTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36085885238686B50094501B /* WorkTimeViewController.m */; };
+		36085889238686E50094501B /* WorkAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36085888238686E50094501B /* WorkAreaViewController.m */; };
 		3618FC59237D26CF00255426 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3618FC58237D26CF00255426 /* MainViewController.m */; };
 		3618FC5C237D27B100255426 /* MMSideDrawerSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3618FC5B237D27B100255426 /* MMSideDrawerSectionHeaderView.m */; };
 		3618FC5F237D27CB00255426 /* LeftDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3618FC5E237D27CB00255426 /* LeftDrawerViewController.m */; };
@@ -97,6 +99,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		36085884238686B50094501B /* WorkTimeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkTimeViewController.h; sourceTree = "<group>"; };
+		36085885238686B50094501B /* WorkTimeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkTimeViewController.m; sourceTree = "<group>"; };
+		36085887238686E50094501B /* WorkAreaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkAreaViewController.h; sourceTree = "<group>"; };
+		36085888238686E50094501B /* WorkAreaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkAreaViewController.m; sourceTree = "<group>"; };
 		3618FC57237D26CF00255426 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		3618FC58237D26CF00255426 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		3618FC5A237D27B100255426 /* MMSideDrawerSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSideDrawerSectionHeaderView.h; sourceTree = "<group>"; };
@@ -249,6 +255,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		360858832386866C0094501B /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				36085884238686B50094501B /* WorkTimeViewController.h */,
+				36085885238686B50094501B /* WorkTimeViewController.m */,
+				36085887238686E50094501B /* WorkAreaViewController.h */,
+				36085888238686E50094501B /* WorkAreaViewController.m */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 		3618FC60237D7F0700255426 /* NavigationBarHandle */ = {
 			isa = PBXGroup;
 			children = (
@@ -410,6 +427,7 @@
 		36930A00237C0618003DAFBD /* MyDevice */ = {
 			isa = PBXGroup;
 			children = (
+				360858832386866C0094501B /* Setting */,
 				36BF86C32383CC63009EA9AB /* image_icon */,
 				36930A08237C064D003DAFBD /* DeviceListViewController.h */,
 				36930A02237C064D003DAFBD /* DeviceListViewController.m */,
@@ -769,6 +787,7 @@
 				36588D4E2370189C008ADEAC /* RegisterViewController.m in Sources */,
 				368AB33F235F0623002B6D37 /* UILabel+YBAttributeTextTapAction.m in Sources */,
 				3618FC5F237D27CB00255426 /* LeftDrawerViewController.m in Sources */,
+				36085889238686E50094501B /* WorkAreaViewController.m in Sources */,
 				368AB339235F0623002B6D37 /* NSString+Common.m in Sources */,
 				36588D4D2370189C008ADEAC /* ForgetpasswordViewController.m in Sources */,
 				36930A09237C064D003DAFBD /* DeviceNetworkViewController.m in Sources */,
@@ -782,6 +801,7 @@
 				36930A15237C09D6003DAFBD /* WorktimeCell.m in Sources */,
 				369C65F8235EE42F008D6230 /* AppDelegate.m in Sources */,
 				368AB332235F0623002B6D37 /* GosAlertView.m in Sources */,
+				36085886238686B50094501B /* WorkTimeViewController.m in Sources */,
 				3618FC5C237D27B100255426 /* MMSideDrawerSectionHeaderView.m in Sources */,
 				36930A0F237C0914003DAFBD /* UIViewController+BarButton.m in Sources */,
 				368AB336235F0623002B6D37 /* UIButton+Common.m in Sources */,

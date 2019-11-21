@@ -9,6 +9,8 @@
 #import "MainViewController.h"
 #import "MMDrawerController.h"
 #import "UIViewController+MMDrawerController.h"
+#import "WorkAreaViewController.h"
+#import "WorkTimeViewController.h"
 
 @interface MainViewController ()<GizWifiSDKDelegate>
 
@@ -335,16 +337,20 @@
     
     
 }
+
 - (void)goHome{
     
     
 }
+
 - (void)setWorkTime{
     
     
 }
+
 - (void)setArea{
-    
+    WorkAreaViewController *WorkAreaVC = [[WorkAreaViewController alloc] init];
+    [self.navigationController pushViewController:WorkAreaVC animated:YES];
     
 }
 
