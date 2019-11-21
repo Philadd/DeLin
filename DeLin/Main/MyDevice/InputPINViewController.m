@@ -8,6 +8,8 @@
 
 #import "InputPINViewController.h"
 #import "MainViewController.h"
+#import "MMDrawerController.h"
+#import "LeftDrawerViewController.h"
 
 @interface InputPINViewController () <UITextFieldDelegate>
 
@@ -178,12 +180,33 @@
     return _pinLabel;
 }
 
+- (void)initMMDrawerVC{
+    
+    LeftDrawerViewController *leftSideDrawerViewController = [[LeftDrawerViewController alloc] init];
+    leftSideDrawerViewController.userId = [GizManager shareInstance].uid;
+    
+    MainViewController *mainVC = [[MainViewController alloc] init];
+    
+    UINavigationController *leftNAV = [[UINavigationController alloc] initWithRootViewController:leftSideDrawerViewController];
+    UINavigationController *centerNAV = [[UINavigationController alloc] initWithRootViewController:mainVC];
+    
+    //    [leftNAV setRestorationIdentifier:@"leftNavigationControllerRestorationKey"];
+    //    [centerNAV setRestorationIdentifier:@"centerNavigationControllerRestorationKey"];
+    
+    MMDrawerController *drawerController = [[MMDrawerController alloc]initWithCenterViewController:centerNAV leftDrawerViewController:leftNAV];
+    [drawerController setShowsShadow:YES];
+    //[drawerController setRestorationIdentifier:@"MMDrawer"];
+    [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+    [drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+    [drawerController setMaximumLeftDrawerWidth:250.0];
+    
+    [self presentViewController:drawerController animated:NO completion:nil];
+    
+}
+
 #pragma mark - Actions
 - (void)enterMain{
-    MainViewController *mainVC = [[MainViewController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:mainVC];
-    mainVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentViewController:nav animated:YES completion:nil];
+    [self initMMDrawerVC];
 }
 
 -(void)check{

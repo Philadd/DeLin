@@ -7,8 +7,12 @@
 //
 
 #import "MainViewController.h"
+#import "MMDrawerController.h"
+#import "UIViewController+MMDrawerController.h"
 
 @interface MainViewController ()<GizWifiSDKDelegate>
+
+@property(nonatomic,strong) MMDrawerController * drawerController;
 
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UIView *msgCenterView;
@@ -37,6 +41,9 @@
     _stopedBtn = [self stopedBtn];
     _bgSetWorkView = [self bgSetWorkView];
     
+    //设置打开/关闭抽屉的手势
+    self.drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
+    self.drawerController.closeDrawerGestureModeMask =MMCloseDrawerGestureModeAll;
     
 }
 
@@ -54,7 +61,7 @@
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     leftButton.frame = CGRectMake(0, 0, 30, 30);
     [leftButton setImage:[UIImage imageNamed:@"userInfo_Btn"] forState:UIControlStateNormal];
-    [leftButton addTarget:self action:@selector(LeftDrawer) forControlEvents:UIControlEventTouchUpInside];
+    [leftButton addTarget:self action:@selector(leftDrawer) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftBarButton;
     
@@ -316,12 +323,14 @@
     return _bgSetWorkView;
 }
 
+#pragma mark - 左侧抽屉
+- (void)leftDrawer{
+    
+    [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+}
+
 #pragma mark - Actions
 
-- (void)LeftDrawer{
-    
-    
-}
 - (void)stoped{
     
     
