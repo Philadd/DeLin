@@ -998,7 +998,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/StaticLibrary",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.thingcom.DeLin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thingcom.DeLinMower;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1027,7 +1027,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/StaticLibrary",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.thingcom.DeLin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thingcom.DeLinMower;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
