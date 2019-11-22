@@ -332,6 +332,8 @@ static CGFloat cellHeight = 45.0;
     selectMinutesTF = [self.workTimeTable cellForRowAtIndexPath:selectIndexPath].contentView.subviews[2];
     selectHoursTF.textColor = [UIColor colorWithHexString:@"FF9700"];
     selectMinutesTF.textColor = [UIColor colorWithHexString:@"FF9700"];
+    selectHoursTF.tintColor = [UIColor colorWithHexString:@"FF9700"];//传达色彩
+    selectMinutesTF.tintColor = [UIColor colorWithHexString:@"FF9700"];
     [_workDatePickview selectRow:[_selectrowArray[selectIndexPath.row * 2] intValue] inComponent:0 animated:YES];
     [_workDatePickview selectRow:[_selectrowArray[selectIndexPath.row * 2 + 1] intValue] inComponent:1 animated:YES];
 }
