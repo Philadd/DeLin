@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef void(^CallBackBlock)(BOOL);
 
 @interface WorktimeCell : UITableViewCell
 @property (strong, nonatomic) UILabel *weekLabel;
-@property (strong, nonatomic) UIButton *timeBtn;
-@property (strong, nonatomic) UIButton *hoursBtn;
-@property (strong, nonatomic) UITextField *startHourTF;
-@property (strong, nonatomic) UITextField *startMinutesTF;
 @property (strong, nonatomic) UITextField *worksHoursTF;
 @property (strong, nonatomic) UITextField *worksMinutesTF;
+@property (strong,nonatomic) UISwitch *workTimeSwitch;
+
+@property (nonatomic,strong) CallBackBlock block;
+
 @end

@@ -22,63 +22,51 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         if (!_weekLabel) {
             _weekLabel = [[UILabel alloc] init];
-            _weekLabel.frame = CGRectMake(0, 15, ScreenWidth / 3.0, viewHeight - 30);
-            _weekLabel.font = [UIFont systemFontOfSize:14.f];
+            _weekLabel.frame = CGRectMake( yAutoFit(30) , 5, ScreenWidth / 3.0, viewHeight - 10);
+            _weekLabel.font = [UIFont systemFontOfSize:15.f];
             _weekLabel.textColor = [UIColor blackColor];
             [self.contentView addSubview:self.weekLabel];
         }
-        /*if (!_timeBtn) {
-         _timeBtn = [UIButton buttonWithTitle:@"00:00" titleColor:[UIColor blackColor]];
-         _timeBtn.frame = CGRectMake(ScreenWidth / 3.0, 15, ScreenWidth / 3.0, viewHeight - 30);
-         [_timeBtn.titleLabel setFont:[UIFont systemFontOfSize:15.0]];
-         [self.contentView addSubview:self.timeBtn];
-         }
-         if (!_hoursBtn) {
-         _hoursBtn = [UIButton buttonWithTitle:@"22.0h" titleColor:[UIColor blackColor]];
-         _hoursBtn.frame = CGRectMake(ScreenWidth / 3.0 * 2.0, 15, ScreenWidth / 3.0, viewHeight - 30);
-         [_hoursBtn.titleLabel setFont:[UIFont systemFontOfSize:15.0]];
-         [self.contentView addSubview:self.hoursBtn];
-         }*/
-        if (!_startHourTF) {
-            _startHourTF = [[UITextField alloc] init];
-            _startHourTF.frame = CGRectMake(ScreenWidth / 3.0 + 20 , 5, (ScreenWidth / 3.0)/2, viewHeight - 10);
-            _startHourTF.font = [UIFont systemFontOfSize:15.0];
-            [_startHourTF addTarget:self action:@selector(pushTag) forControlEvents:UIControlEventTouchUpInside];
-            _startHourTF.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-            [self.contentView addSubview:self.startHourTF];
-        }
-        if (!_startMinutesTF) {
-            _startMinutesTF = [[UITextField alloc] init];;
-            _startMinutesTF.frame = CGRectMake(ScreenWidth / 3.0 + 40, 5, (ScreenWidth / 3.0)/2 + 8, viewHeight - 10);
-            _startMinutesTF.font = [UIFont systemFontOfSize:15.0];
-            [_startMinutesTF addTarget:self action:@selector(pushTag) forControlEvents:UIControlEventTouchUpInside];
-            _startMinutesTF.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-            [self.contentView addSubview:self.startMinutesTF];
-        }
-        
         if (!_worksHoursTF) {
-            _worksHoursTF = [[UITextField alloc] init];;
-            _worksHoursTF.frame = CGRectMake(ScreenWidth / 3.0 * 1.5, 5, ScreenWidth / 3.0, viewHeight - 10);
+            _worksHoursTF = [[UITextField alloc] init];
+            _worksHoursTF.frame = CGRectMake(ScreenWidth / 3.0 + 20 , 5, (ScreenWidth / 3.0)/2, viewHeight - 10);
             _worksHoursTF.font = [UIFont systemFontOfSize:15.0];
             [_worksHoursTF addTarget:self action:@selector(pushTag) forControlEvents:UIControlEventTouchUpInside];
             _worksHoursTF.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+            _worksHoursTF.enabled = NO;
             [self.contentView addSubview:self.worksHoursTF];
         }
         if (!_worksMinutesTF) {
-            _worksMinutesTF = [[UITextField alloc] init];
-            _worksMinutesTF.frame = CGRectMake(ScreenWidth / 3.0 * 1.5 + 40, 5, ScreenWidth / 3.0, viewHeight - 10);
+            _worksMinutesTF = [[UITextField alloc] init];;
+            _worksMinutesTF.frame = CGRectMake(ScreenWidth / 3.0 + 40, 5, (ScreenWidth / 3.0)/2 + 8, viewHeight - 10);
             _worksMinutesTF.font = [UIFont systemFontOfSize:15.0];
             [_worksMinutesTF addTarget:self action:@selector(pushTag) forControlEvents:UIControlEventTouchUpInside];
             _worksMinutesTF.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+            _worksHoursTF.enabled = NO;
             [self.contentView addSubview:self.worksMinutesTF];
+        }
+        
+        if (!_workTimeSwitch) {
+            _workTimeSwitch = [[UISwitch alloc] init];
+            _workTimeSwitch.transform = CGAffineTransformMakeScale(1, 1);
+            [_workTimeSwitch setOn:NO animated:YES];
+            [_workTimeSwitch addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
+            [self.contentView addSubview:_workTimeSwitch];
+            [_workTimeSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(self.contentView.mas_right).offset(yAutoFit(-16.f));
+                make.centerY.equalTo(self.contentView.mas_centerY);
+            }];
+            _workTimeSwitch.tintColor = [UIColor colorWithHexString:@"A8A5A5"];
+            _workTimeSwitch.onTintColor = [UIColor colorWithHexString:@"FF9700"];
+            _workTimeSwitch.backgroundColor = [UIColor colorWithHexString:@"A8A5A5"];
+            _workTimeSwitch.layer.cornerRadius = 15.5f;
+            _workTimeSwitch.layer.masksToBounds = YES;
         }
     }
     return self;
 }
 
 - (void)done {
-    [_startHourTF resignFirstResponder];
-    [_startMinutesTF resignFirstResponder];
     [_worksHoursTF resignFirstResponder];
     [_worksMinutesTF resignFirstResponder];
 }
@@ -91,6 +79,13 @@
 {
     [textField resignFirstResponder];
     return YES;
+}
+
+- (void)switchAction:(id)sender{
+    UISwitch *switchButton = (UISwitch *)sender;
+    if (self.block) {
+        self.block(switchButton.isOn);
+    }
 }
 
 @end

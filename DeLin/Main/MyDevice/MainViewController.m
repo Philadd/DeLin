@@ -345,7 +345,9 @@
 
 - (void)setWorkTime{
     
-    
+    WorkTimeViewController *WorkTimeVC = [[WorkTimeViewController alloc] init];
+    [self.navigationController pushViewController:WorkTimeVC animated:YES];
+
 }
 
 - (void)setArea{
