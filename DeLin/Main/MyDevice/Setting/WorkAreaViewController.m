@@ -222,18 +222,26 @@
     return 40;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    
-    return self.workAeraArray.count;
-    
+// 返回多少行
+- (NSInteger)pickerView:(UIPickerView *)pickerView  numberOfRowsInComponent:(NSInteger)component
+{
+    return 16384;
 }
 
-#pragma mark - UIPickerViewDelegate
+// 返回的是component列的行显示的内容
+
 - (nullable NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     
-    return self.workAeraArray[row];
-    
+    return [NSString stringWithFormat:@"%@%@",self.workAeraArray[row % _workAeraArray.count],LocalString(@"m²")];
 }
 
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    
+    NSUInteger max = 16384;
+    
+    NSUInteger base0 = (max / 2) - (max / 2) % _workAeraArray.count;
+    [self.workAeraPicker selectRow:[_workAeraPicker selectedRowInComponent:component] % _workAeraArray.count + base0 inComponent:component animated:NO];
+
+}
 
 @end

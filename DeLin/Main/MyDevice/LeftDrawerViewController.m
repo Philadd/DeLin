@@ -27,16 +27,8 @@ NSString *const kCellIdentifier_leftDrawer = @"leftDrawerCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = LocalString(@"用户信息");
-    [self.view setBackgroundColor:[UIColor colorWithRed:66.0/255.0
-                                                  green:69.0/255.0
-                                                   blue:71.0/255.0
-                                                  alpha:1.0]];
-    
-    UIColor *barColor = [UIColor colorWithRed:161.0/255.0
-                                        green:164.0/255.0
-                                         blue:166.0/255.0
-                                        alpha:1.0];
-    
+    self.view.backgroundColor = [UIColor colorWithRed:66.0/255.0 green:69.0/255.0 blue:71.0/255.0 alpha:1.0];
+    UIColor *barColor = [UIColor colorWithRed:161.0/255.0 green:164.0/255.0 blue:166.0/255.0 alpha:1.0];
     if([self.navigationController.navigationBar respondsToSelector:@selector(setBarTintColor:)]){
         [self.navigationController.navigationBar setBarTintColor:barColor];
     }
@@ -55,10 +47,7 @@ NSString *const kCellIdentifier_leftDrawer = @"leftDrawerCell";
         
         [tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         
-        UIColor *tableViewBackgroundColor = [UIColor colorWithRed:110.0/255.0
-                                                            green:113.0/255.0
-                                                             blue:115.0/255.0
-                                                            alpha:1.0];
+        UIColor *tableViewBackgroundColor = [UIColor colorWithRed:110.0/255.0 green:113.0/255.0 blue:115.0/255.0 alpha:1.0];
         [tableView setBackgroundColor:tableViewBackgroundColor];
         
         [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kCellIdentifier_leftDrawer];
@@ -98,14 +87,14 @@ NSString *const kCellIdentifier_leftDrawer = @"leftDrawerCell";
     
     [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
     [self.mm_drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
-
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
     [self.mm_drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeNone];
-
+    
 }
 
 - (void)didReceiveMemoryWarning {
