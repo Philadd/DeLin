@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DeviceListCell : UITableViewCell
 
+@property (nonatomic, strong) UIImageView *deviceImage;
 @property (nonatomic, strong) UILabel *deviceListLabel;
 
 @end

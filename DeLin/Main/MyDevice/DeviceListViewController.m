@@ -15,7 +15,7 @@
 
 
 NSString *const CellIdentifier_DeviceList = @"CellID_DeviceList";
-
+static float HEIGHT_CELL = 80.f;
 
 @interface DeviceListViewController () <UITableViewDelegate, UITableViewDataSource, GizWifiSDKDelegate>
 
@@ -95,17 +95,23 @@ NSString *const CellIdentifier_DeviceList = @"CellID_DeviceList";
 - (UITableView *)deviceTable{
     if (!_deviceTable) {
         _deviceTable = ({
-            UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, yAutoFit(110), ScreenWidth, ScreenHeight - getRectNavAndStatusHight - yAutoFit(40) - yAutoFit(60) - yAutoFit(60)) style:UITableViewStylePlain];
+            UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, getRectNavAndStatusHight + yAutoFit(50), ScreenWidth, ScreenHeight - getRectNavAndStatusHight - yAutoFit(40) - yAutoFit(60) - yAutoFit(60)) style:UITableViewStylePlain];
             tableView.backgroundColor = [UIColor clearColor];
             tableView.dataSource = self;
             tableView.delegate = self;
             tableView.separatorColor = [UIColor clearColor];
             [tableView registerClass:[DeviceListCell class] forCellReuseIdentifier:CellIdentifier_DeviceList];
             [self.view addSubview:tableView];
+            
+            [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(yAutoFit(320), ScreenHeight - getRectNavAndStatusHight - yAutoFit(40) - yAutoFit(60) - yAutoFit(60)));
+                make.centerX.mas_equalTo(self.view.mas_centerX);
+                make.top.equalTo(self.view.mas_top).offset(getRectNavAndStatusHight + yAutoFit(50));
+            }];
+            
             tableView.estimatedRowHeight = 0;
             tableView.estimatedSectionHeaderHeight = 0;
             tableView.estimatedSectionFooterHeight = 0;
-            
             
             tableView.tableFooterView = [[UIView alloc] init];
             
@@ -153,7 +159,7 @@ NSString *const CellIdentifier_DeviceList = @"CellID_DeviceList";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50;
+    return HEIGHT_CELL;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -162,6 +168,7 @@ NSString *const CellIdentifier_DeviceList = @"CellID_DeviceList";
         cell = [[DeviceListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier_DeviceList];
     }
     GizWifiDevice *device = _deviceArray[indexPath.row];
+    cell.deviceImage.image = [UIImage imageNamed:@"robot_icon_imag"];
     cell.deviceListLabel.text = device.productName;
 
     return cell;

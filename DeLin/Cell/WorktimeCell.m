@@ -42,7 +42,6 @@
             _worksMinutesTF.font = [UIFont systemFontOfSize:15.0];
             [_worksMinutesTF addTarget:self action:@selector(pushTag) forControlEvents:UIControlEventTouchUpInside];
             _worksMinutesTF.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-            _worksHoursTF.enabled = NO;
             [self.contentView addSubview:self.worksMinutesTF];
         }
         

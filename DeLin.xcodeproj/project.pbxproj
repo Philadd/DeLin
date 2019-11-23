@@ -78,6 +78,9 @@
 		36BF86C72383CCC8009EA9AB /* add_Btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BF86C42383CCC8009EA9AB /* add_Btn.png */; };
 		36BF86C82383CCC8009EA9AB /* add_Btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BF86C52383CCC8009EA9AB /* add_Btn@2x.png */; };
 		36BF86C92383CCC8009EA9AB /* add_Btn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BF86C62383CCC8009EA9AB /* add_Btn@3x.png */; };
+		36F1ECF32388D45000E1C7A8 /* robot_icon_imag@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36F1ECF02388D45000E1C7A8 /* robot_icon_imag@3x.png */; };
+		36F1ECF42388D45000E1C7A8 /* robot_icon_imag.png in Resources */ = {isa = PBXBuildFile; fileRef = 36F1ECF12388D45000E1C7A8 /* robot_icon_imag.png */; };
+		36F1ECF52388D45000E1C7A8 /* robot_icon_imag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36F1ECF22388D45000E1C7A8 /* robot_icon_imag@2x.png */; };
 		896FD80E889048BD4E4DCA1D /* libPods-DeLin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 884F754EB758212CC878A786 /* libPods-DeLin.a */; };
 /* End PBXBuildFile section */
 
@@ -215,6 +218,9 @@
 		36BF86C42383CCC8009EA9AB /* add_Btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_Btn.png; sourceTree = "<group>"; };
 		36BF86C52383CCC8009EA9AB /* add_Btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_Btn@2x.png"; sourceTree = "<group>"; };
 		36BF86C62383CCC8009EA9AB /* add_Btn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_Btn@3x.png"; sourceTree = "<group>"; };
+		36F1ECF02388D45000E1C7A8 /* robot_icon_imag@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "robot_icon_imag@3x.png"; sourceTree = "<group>"; };
+		36F1ECF12388D45000E1C7A8 /* robot_icon_imag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = robot_icon_imag.png; sourceTree = "<group>"; };
+		36F1ECF22388D45000E1C7A8 /* robot_icon_imag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "robot_icon_imag@2x.png"; sourceTree = "<group>"; };
 		817BB96CDCA8A246ED304146 /* Pods-DeLin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeLin.release.xcconfig"; path = "Target Support Files/Pods-DeLin/Pods-DeLin.release.xcconfig"; sourceTree = "<group>"; };
 		884F754EB758212CC878A786 /* libPods-DeLin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DeLin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3FDF79274E40EC050E0E6A7 /* Pods-DeLin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeLin.debug.xcconfig"; path = "Target Support Files/Pods-DeLin/Pods-DeLin.debug.xcconfig"; sourceTree = "<group>"; };
@@ -306,9 +312,13 @@
 				3618FC60237D7F0700255426 /* NavigationBarHandle */,
 				368AB302235F0623002B6D37 /* UIButton */,
 				368AB305235F0623002B6D37 /* Util */,
+				368AB322235F0623002B6D37 /* UIButton+Common.h */,
 				368AB30E235F0623002B6D37 /* UIButton+Common.m */,
 				368AB30F235F0623002B6D37 /* UILabel+YBAttributeTextTapAction.h */,
+				368AB31E235F0623002B6D37 /* UILabel+YBAttributeTextTapAction.m */,
+				368AB324235F0623002B6D37 /* NSObject+Common.h */,
 				368AB310235F0623002B6D37 /* NSObject+Common.m */,
+				368AB323235F0623002B6D37 /* UIViewController+Common.h */,
 				368AB311235F0623002B6D37 /* UIViewController+Common.m */,
 				368AB301235F0623002B6D37 /* NSString+Common.h */,
 				368AB312235F0623002B6D37 /* NSString+Common.m */,
@@ -319,11 +329,7 @@
 				368AB2FF235F0623002B6D37 /* UIColor+ColorChange.m */,
 				368AB316235F0623002B6D37 /* TableView+Touch */,
 				368AB319235F0623002B6D37 /* View */,
-				368AB31E235F0623002B6D37 /* UILabel+YBAttributeTextTapAction.m */,
 				368AB31F235F0623002B6D37 /* ProgressCircleView */,
-				368AB322235F0623002B6D37 /* UIButton+Common.h */,
-				368AB323235F0623002B6D37 /* UIViewController+Common.h */,
-				368AB324235F0623002B6D37 /* NSObject+Common.h */,
 			);
 			path = OC_Category;
 			sourceTree = "<group>";
@@ -519,6 +525,9 @@
 		36BF86C32383CC63009EA9AB /* image_icon */ = {
 			isa = PBXGroup;
 			children = (
+				36F1ECF12388D45000E1C7A8 /* robot_icon_imag.png */,
+				36F1ECF22388D45000E1C7A8 /* robot_icon_imag@2x.png */,
+				36F1ECF02388D45000E1C7A8 /* robot_icon_imag@3x.png */,
 				36866E312384F10F0022F265 /* area_img.png */,
 				36866E302384F10F0022F265 /* area_img@2x.png */,
 				36866E362384F10F0022F265 /* area_img@3x.png */,
@@ -690,11 +699,14 @@
 				36866E472384F10F0022F265 /* setWorkTime_img@2x.png in Resources */,
 				36BF86C72383CCC8009EA9AB /* add_Btn.png in Resources */,
 				36866E442384F10F0022F265 /* workTime_img@2x.png in Resources */,
+				36F1ECF42388D45000E1C7A8 /* robot_icon_imag.png in Resources */,
 				36866E432384F10F0022F265 /* userInfo_Btn@3x.png in Resources */,
 				36866E412384F10F0022F265 /* setWorkTime_img.png in Resources */,
+				36F1ECF32388D45000E1C7A8 /* robot_icon_imag@3x.png in Resources */,
 				369C6600235EE431008D6230 /* Assets.xcassets in Resources */,
 				36866E402384F10F0022F265 /* setWorkTime_img@3x.png in Resources */,
 				36866E462384F10F0022F265 /* userInfo_Btn@2x.png in Resources */,
+				36F1ECF52388D45000E1C7A8 /* robot_icon_imag@2x.png in Resources */,
 				369309E3237BE679003DAFBD /* img_logo.png in Resources */,
 				36866E3C2384F10F0022F265 /* area_img@2x.png in Resources */,
 				369309E4237BE679003DAFBD /* img_logo@3x.png in Resources */,
