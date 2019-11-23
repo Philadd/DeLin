@@ -8,12 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSUInteger, MMDrawerSection) {
-    UserName,
-    Information,
-    Setting,
-};
-
 @interface LeftDrawerViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) NSString *userId;
 

@@ -52,6 +52,8 @@ static float HEIGHT_CELL = 80.f;
     GizManager *manager = [GizManager shareInstance];
     [GizWifiSDK sharedInstance].delegate = self;
     [[GizWifiSDK sharedInstance] getBoundDevices:manager.uid token:manager.token];
+    //退出设备 需要取消所有 设备订阅
+    [manager.device setSubscribe:GizAppproductSecret subscribed:NO]; //解除订阅
   
 }
 

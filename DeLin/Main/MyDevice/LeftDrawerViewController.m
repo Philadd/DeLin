@@ -9,9 +9,12 @@
 #import "LeftDrawerViewController.h"
 #import "MMSideDrawerSectionHeaderView.h"
 #import "UIViewController+MMDrawerController.h"
+#import "LeftDrawerCell.h"
 
+NSString *const CellIdentifier_leftDrawer_icon = @"leftDrawerCell_icon";
+NSString *const CellIdentifier_leftDrawer = @"leftDrawerCell";
 
-NSString *const kCellIdentifier_leftDrawer = @"leftDrawerCell";
+static float HEIGHT_CELL = 50.f;
 
 @interface LeftDrawerViewController ()
 @property (nonatomic, strong) UITableView *myTableView;
@@ -19,15 +22,13 @@ NSString *const kCellIdentifier_leftDrawer = @"leftDrawerCell";
 
 @implementation LeftDrawerViewController
 {
-    NSString *userName;
-    NSString *company;
     NSString *email;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = LocalString(@"用户信息");
-    self.view.backgroundColor = [UIColor colorWithRed:66.0/255.0 green:69.0/255.0 blue:71.0/255.0 alpha:1.0];
+    self.view.backgroundColor = [UIColor colorWithRed:40.0/255.0 green:40.0/255.0 blue:40.0/255.0 alpha:1.0];
     UIColor *barColor = [UIColor colorWithRed:161.0/255.0 green:164.0/255.0 blue:166.0/255.0 alpha:1.0];
     if([self.navigationController.navigationBar respondsToSelector:@selector(setBarTintColor:)]){
         [self.navigationController.navigationBar setBarTintColor:barColor];
@@ -50,7 +51,7 @@ NSString *const kCellIdentifier_leftDrawer = @"leftDrawerCell";
         UIColor *tableViewBackgroundColor = [UIColor colorWithRed:110.0/255.0 green:113.0/255.0 blue:115.0/255.0 alpha:1.0];
         [tableView setBackgroundColor:tableViewBackgroundColor];
         
-        [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kCellIdentifier_leftDrawer];
+        [tableView registerClass:[LeftDrawerCell class] forCellReuseIdentifier:CellIdentifier_leftDrawer];
         [self.view addSubview:tableView];
         tableView.estimatedRowHeight = 0;
         tableView.estimatedSectionHeaderHeight = 0;
@@ -65,6 +66,15 @@ NSString *const kCellIdentifier_leftDrawer = @"leftDrawerCell";
         tableView;
     });
     
+//    UIImageView *iconImg = [[UIImageView alloc] init];
+//    [iconImg setImage:[UIImage imageNamed:@"img_mine_bg"]];
+//    [self.view addSubview:iconImg];
+//    [iconImg mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.size.mas_equalTo(CGSizeMake(yAutoFit(85),yAutoFit(40)));
+//        make.centerX.equalTo(self.view.mas_centerX);
+//        make.top.equalTo(self.view.mas_top).offset(yAutoFit(getRectNavAndStatusHight + yAutoFit(50)));
+//    }];
+    
     UIButton *logoutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [logoutBtn.layer setMasksToBounds:YES];
     [logoutBtn.layer setBorderWidth:1.0];
@@ -75,7 +85,7 @@ NSString *const kCellIdentifier_leftDrawer = @"leftDrawerCell";
     [logoutBtn addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:logoutBtn];
     [logoutBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(200, 40));
+        make.size.mas_equalTo(CGSizeMake(yAutoFit(120),yAutoFit(40)));
         make.centerX.equalTo(self.view.mas_centerX);
         make.bottom.equalTo(self.view.mas_bottom).offset(-30);
     }];
@@ -109,25 +119,17 @@ NSString *const kCellIdentifier_leftDrawer = @"leftDrawerCell";
 
 #pragma mark - Tableview data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     switch (section) {
-        case UserName:
+        case 0:
             return 1;
             break;
             
-        case Information:
-            if (company != nil && email != nil) {
-                return 2;
-            }else{
-                return 1;
-            }
-            break;
-            
-        case Setting:
-            return 1;
+        case 1:
+            return 5;
             break;
             
         default:
@@ -137,88 +139,139 @@ NSString *const kCellIdentifier_leftDrawer = @"leftDrawerCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier_leftDrawer];
-    cell.backgroundColor = [UIColor clearColor];
-    //cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    switch (indexPath.section) {
-        case UserName:
-            if (indexPath.row == 0) {
-                cell.textLabel.text = userName;
+    if (indexPath.section == 0) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier_leftDrawer_icon];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier_leftDrawer_icon];
+        }
+        cell.backgroundColor = [UIColor clearColor];
+        cell.imageView.image = [UIImage imageNamed:@"robot_icon_imag"];
+        
+        return cell;
+    }else{
+        
+        LeftDrawerCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier_leftDrawer];
+        if (cell == nil) {
+            cell = [[LeftDrawerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier_leftDrawer];
+        }
+        cell.backgroundColor = [UIColor clearColor];
+        
+        switch (indexPath.row) {
+            case 0:
+            {
+                cell.listImage.image = [UIImage imageNamed:@"userName_icon_imag"];
+                cell.listLabel.text = LocalString(@"UserName");
             }
-            break;
-            
-        case Information:
-            if (indexPath.row == 0) {
-                if (company != nil) {
-                    cell.textLabel.text = company;
-                }else{
-                    cell.textLabel.text = LocalString(@"信息");
-                }
-            }else if (indexPath.row == 1){
-                if (email != nil) {
-                    cell.textLabel.text = email;
-                }
+                break;
+                
+            case 1:
+            {
+                cell.listImage.image = [UIImage imageNamed:@"setting_icon_imag"];
+                cell.listLabel.text = LocalString(@"Setting");
             }
-            break;
-            
-        case Setting:
-            if (indexPath.row == 0) {
-                cell.textLabel.text = LocalString(@"修改密码");
+                break;
+                
+            case 2:
+            {
+                cell.listImage.image = [UIImage imageNamed:@"manual_icon_imag"];
+                cell.listLabel.text = LocalString(@"Manual instruction");
             }
-            break;
-            
-        default:
-            break;
+                break;
+                
+            case 3:
+            {
+                cell.listImage.image = [UIImage imageNamed:@"pinCode_icon_imag"];
+                cell.listLabel.text = LocalString(@"Pin code");
+            }
+                break;
+                
+            case 4:
+            {
+                cell.listImage.image = [UIImage imageNamed:@"language_icon_imag"];
+                cell.listLabel.text = LocalString(@"Choose language");
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
+        return cell;
+        
     }
-    return cell;
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    switch (indexPath.section) {
-        case Setting:
-            if (indexPath.row == 0) {
-                
+    
+    if (indexPath.section == 1) {
+        switch (indexPath.row) {
+            case 0:
+            {
+                NSLog(@"UserName");
             }
-            break;
-            
-        default:
-            break;
+                break;
+                
+            case 1:
+            {
+                NSLog(@"Setting");
+            }
+                break;
+                
+            case 2:
+            {
+                NSLog(@"ManualInstruction");
+            }
+                break;
+                
+            case 3:
+            {
+                NSLog(@"PinCode");
+            }
+                break;
+                
+            case 4:
+            {
+                NSLog(@"ChooseLanguage");
+            }
+                break;
+                
+            default:
+                break;
+        }
     }
 }
 
--(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    switch (section) {
-        case UserName:
-            return LocalString(@"UserName");
-        case Information:
-            return LocalString(@"Information");
-        case Setting:
-            return LocalString(@"Setting");
-        default:
-            return nil;
-    }
+//-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    MMSideDrawerSectionHeaderView * headerView;
+//    headerView =  [[MMSideDrawerSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 56.0)];
+//    [headerView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
+//    [headerView setTitle:[tableView.dataSource tableView:tableView titleForHeaderInSection:section]];
+//    return headerView;
+//}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return HEIGHT_CELL;
 }
 
--(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    MMSideDrawerSectionHeaderView * headerView;
-    headerView =  [[MMSideDrawerSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 56.0)];
-    [headerView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
-    [headerView setTitle:[tableView.dataSource tableView:tableView titleForHeaderInSection:section]];
-    return headerView;
-}
+//section头部间距
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 56.0;
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 0;//section头部高度
 }
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 40.0;
+//section头部视图
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 0)];
+    view.backgroundColor = [UIColor clearColor];
+    return view ;
 }
-
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.0;
+//section底部间距
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 15;
 }
 
 #pragma mark - action

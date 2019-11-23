@@ -198,7 +198,7 @@
     //[drawerController setRestorationIdentifier:@"MMDrawer"];
     [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
     [drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
-    [drawerController setMaximumLeftDrawerWidth:250.0];
+    [drawerController setMaximumLeftDrawerWidth:320.0];
     
     [self presentViewController:drawerController animated:NO completion:nil];
     
