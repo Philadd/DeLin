@@ -29,7 +29,7 @@
             _listLabel = [[UILabel alloc] init];
             _listLabel.font = [UIFont systemFontOfSize:16.f];
             _listLabel.backgroundColor = [UIColor clearColor];
-            _listLabel.textColor = [UIColor blackColor];
+            _listLabel.textColor = [UIColor whiteColor];
             _listLabel.adjustsFontSizeToFitWidth = YES;
             _listLabel.textAlignment = NSTextAlignmentLeft;
             [self.contentView addSubview:_listLabel];

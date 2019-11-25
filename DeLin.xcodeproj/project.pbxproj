@@ -67,6 +67,8 @@
 		36930A0F237C0914003DAFBD /* UIViewController+BarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 36930A0D237C0914003DAFBD /* UIViewController+BarButton.m */; };
 		36930A15237C09D6003DAFBD /* WorktimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36930A13237C09D6003DAFBD /* WorktimeCell.m */; };
 		36930A16237C09D6003DAFBD /* DeviceListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36930A14237C09D6003DAFBD /* DeviceListCell.m */; };
+		36965D21238B689900D0435A /* SetPinCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36965D20238B689900D0435A /* SetPinCodeViewController.m */; };
+		36965D24238B733200D0435A /* SetLanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36965D23238B733200D0435A /* SetLanguageViewController.m */; };
 		369C65F8235EE42F008D6230 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C65F7235EE42F008D6230 /* AppDelegate.m */; };
 		369C65FB235EE42F008D6230 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C65FA235EE42F008D6230 /* ViewController.m */; };
 		369C65FE235EE42F008D6230 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 369C65FC235EE42F008D6230 /* Main.storyboard */; };
@@ -218,6 +220,10 @@
 		36930A12237C09D6003DAFBD /* DeviceListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceListCell.h; sourceTree = "<group>"; };
 		36930A13237C09D6003DAFBD /* WorktimeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorktimeCell.m; sourceTree = "<group>"; };
 		36930A14237C09D6003DAFBD /* DeviceListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceListCell.m; sourceTree = "<group>"; };
+		36965D1F238B689900D0435A /* SetPinCodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetPinCodeViewController.h; sourceTree = "<group>"; };
+		36965D20238B689900D0435A /* SetPinCodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetPinCodeViewController.m; sourceTree = "<group>"; };
+		36965D22238B733200D0435A /* SetLanguageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetLanguageViewController.h; sourceTree = "<group>"; };
+		36965D23238B733200D0435A /* SetLanguageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetLanguageViewController.m; sourceTree = "<group>"; };
 		369C65F3235EE42F008D6230 /* DeLin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeLin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		369C65F6235EE42F008D6230 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		369C65F7235EE42F008D6230 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -472,6 +478,7 @@
 		36930A00237C0618003DAFBD /* MyDevice */ = {
 			isa = PBXGroup;
 			children = (
+				36965D1E238B67CD00D0435A /* SettingLeftDrawer */,
 				360858832386866C0094501B /* Setting */,
 				36BF86C32383CC63009EA9AB /* image_icon */,
 				36930A08237C064D003DAFBD /* DeviceListViewController.h */,
@@ -499,6 +506,17 @@
 				36F1ECF72388E51000E1C7A8 /* LeftDrawerCell.m */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		36965D1E238B67CD00D0435A /* SettingLeftDrawer */ = {
+			isa = PBXGroup;
+			children = (
+				36965D1F238B689900D0435A /* SetPinCodeViewController.h */,
+				36965D20238B689900D0435A /* SetPinCodeViewController.m */,
+				36965D22238B733200D0435A /* SetLanguageViewController.h */,
+				36965D23238B733200D0435A /* SetLanguageViewController.m */,
+			);
+			path = SettingLeftDrawer;
 			sourceTree = "<group>";
 		};
 		369C65EA235EE42F008D6230 = {
@@ -879,6 +897,7 @@
 				36085889238686E50094501B /* WorkAreaViewController.m in Sources */,
 				368AB339235F0623002B6D37 /* NSString+Common.m in Sources */,
 				36588D4D2370189C008ADEAC /* ForgetpasswordViewController.m in Sources */,
+				36965D21238B689900D0435A /* SetPinCodeViewController.m in Sources */,
 				36930A09237C064D003DAFBD /* DeviceNetworkViewController.m in Sources */,
 				368AB330235F0623002B6D37 /* UIColor+ColorChange.m in Sources */,
 				369309F6237C033B003DAFBD /* BaseViewController.m in Sources */,
@@ -889,6 +908,7 @@
 				36F1ECF82388E51000E1C7A8 /* LeftDrawerCell.m in Sources */,
 				368AB33C235F0623002B6D37 /* TouchTableView.m in Sources */,
 				36930A15237C09D6003DAFBD /* WorktimeCell.m in Sources */,
+				36965D24238B733200D0435A /* SetLanguageViewController.m in Sources */,
 				369C65F8235EE42F008D6230 /* AppDelegate.m in Sources */,
 				368AB332235F0623002B6D37 /* GosAlertView.m in Sources */,
 				36085886238686B50094501B /* WorkTimeViewController.m in Sources */,
