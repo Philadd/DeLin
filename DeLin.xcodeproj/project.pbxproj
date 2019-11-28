@@ -55,6 +55,10 @@
 		368AB33E235F0623002B6D37 /* YAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368AB31C235F0623002B6D37 /* YAlertViewController.m */; };
 		368AB33F235F0623002B6D37 /* UILabel+YBAttributeTextTapAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 368AB31E235F0623002B6D37 /* UILabel+YBAttributeTextTapAction.m */; };
 		368AB340235F0623002B6D37 /* AAProgressCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 368AB321235F0623002B6D37 /* AAProgressCircleView.m */; };
+		368E5077238E1D0300AFE3B3 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368E5076238E1D0300AFE3B3 /* WelcomeViewController.m */; };
+		368E507A238E297200AFE3B3 /* NewUserIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368E5079238E297200AFE3B3 /* NewUserIDViewController.m */; };
+		368E5098238FA00700AFE3B3 /* UIView+AniamtionMange.m in Sources */ = {isa = PBXBuildFile; fileRef = 368E5097238FA00700AFE3B3 /* UIView+AniamtionMange.m */; };
+		368E509B238FF84C00AFE3B3 /* NewUserIDCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 368E509A238FF84C00AFE3B3 /* NewUserIDCell.m */; };
 		369309DD237BE632003DAFBD /* GizManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 369309DC237BE632003DAFBD /* GizManager.m */; };
 		369309E2237BE679003DAFBD /* img_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 369309DF237BE679003DAFBD /* img_logo@2x.png */; };
 		369309E3237BE679003DAFBD /* img_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 369309E0237BE679003DAFBD /* img_logo.png */; };
@@ -199,6 +203,14 @@
 		368AB323235F0623002B6D37 /* UIViewController+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Common.h"; sourceTree = "<group>"; };
 		368AB324235F0623002B6D37 /* NSObject+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Common.h"; sourceTree = "<group>"; };
 		368AB34B235F0769002B6D37 /* DeLin-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DeLin-Prefix.pch"; sourceTree = "<group>"; };
+		368E5075238E1D0300AFE3B3 /* WelcomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
+		368E5076238E1D0300AFE3B3 /* WelcomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
+		368E5078238E297200AFE3B3 /* NewUserIDViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewUserIDViewController.h; sourceTree = "<group>"; };
+		368E5079238E297200AFE3B3 /* NewUserIDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewUserIDViewController.m; sourceTree = "<group>"; };
+		368E5096238FA00700AFE3B3 /* UIView+AniamtionManger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+AniamtionManger.h"; sourceTree = "<group>"; };
+		368E5097238FA00700AFE3B3 /* UIView+AniamtionMange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+AniamtionMange.m"; sourceTree = "<group>"; };
+		368E5099238FF84C00AFE3B3 /* NewUserIDCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewUserIDCell.h; sourceTree = "<group>"; };
+		368E509A238FF84C00AFE3B3 /* NewUserIDCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewUserIDCell.m; sourceTree = "<group>"; };
 		369309DB237BE632003DAFBD /* GizManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GizManager.h; sourceTree = "<group>"; };
 		369309DC237BE632003DAFBD /* GizManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GizManager.m; sourceTree = "<group>"; };
 		369309DF237BE679003DAFBD /* img_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_logo@2x.png"; sourceTree = "<group>"; };
@@ -341,6 +353,10 @@
 			isa = PBXGroup;
 			children = (
 				369309DE237BE645003DAFBD /* image_icon */,
+				368E5075238E1D0300AFE3B3 /* WelcomeViewController.h */,
+				368E5076238E1D0300AFE3B3 /* WelcomeViewController.m */,
+				368E5078238E297200AFE3B3 /* NewUserIDViewController.h */,
+				368E5079238E297200AFE3B3 /* NewUserIDViewController.m */,
 				368AB2F1235F0450002B6D37 /* LoginViewController.h */,
 				368AB2F2235F0450002B6D37 /* LoginViewController.m */,
 				36588D4B2370189B008ADEAC /* RegisterViewController.h */,
@@ -354,6 +370,7 @@
 		368AB2FE235F0623002B6D37 /* OC_Category */ = {
 			isa = PBXGroup;
 			children = (
+				368E5095238F9F8F00AFE3B3 /* AniamtionManger */,
 				3618FC60237D7F0700255426 /* NavigationBarHandle */,
 				368AB302235F0623002B6D37 /* UIButton */,
 				368AB305235F0623002B6D37 /* Util */,
@@ -456,6 +473,15 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		368E5095238F9F8F00AFE3B3 /* AniamtionManger */ = {
+			isa = PBXGroup;
+			children = (
+				368E5096238FA00700AFE3B3 /* UIView+AniamtionManger.h */,
+				368E5097238FA00700AFE3B3 /* UIView+AniamtionMange.m */,
+			);
+			path = AniamtionManger;
+			sourceTree = "<group>";
+		};
 		369309DA237BE5E7003DAFBD /* GizManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -504,6 +530,8 @@
 				36930A13237C09D6003DAFBD /* WorktimeCell.m */,
 				36F1ECF62388E51000E1C7A8 /* LeftDrawerCell.h */,
 				36F1ECF72388E51000E1C7A8 /* LeftDrawerCell.m */,
+				368E5099238FF84C00AFE3B3 /* NewUserIDCell.h */,
+				368E509A238FF84C00AFE3B3 /* NewUserIDCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -885,6 +913,7 @@
 				369C6606235EE431008D6230 /* main.m in Sources */,
 				368AB337235F0623002B6D37 /* NSObject+Common.m in Sources */,
 				368AB340235F0623002B6D37 /* AAProgressCircleView.m in Sources */,
+				368E5098238FA00700AFE3B3 /* UIView+AniamtionMange.m in Sources */,
 				368AB33B235F0623002B6D37 /* NullSafe.m in Sources */,
 				368AB338235F0623002B6D37 /* UIViewController+Common.m in Sources */,
 				3618FC63237D7F3A00255426 /* UINavigationBar+handle.m in Sources */,
@@ -913,11 +942,14 @@
 				368AB332235F0623002B6D37 /* GosAlertView.m in Sources */,
 				36085886238686B50094501B /* WorkTimeViewController.m in Sources */,
 				3618FC5C237D27B100255426 /* MMSideDrawerSectionHeaderView.m in Sources */,
+				368E5077238E1D0300AFE3B3 /* WelcomeViewController.m in Sources */,
 				36930A0F237C0914003DAFBD /* UIViewController+BarButton.m in Sources */,
 				368AB336235F0623002B6D37 /* UIButton+Common.m in Sources */,
 				368AB333235F0623002B6D37 /* GosTipView.m in Sources */,
 				36930A0A237C064D003DAFBD /* DeviceListViewController.m in Sources */,
+				368E507A238E297200AFE3B3 /* NewUserIDViewController.m in Sources */,
 				368AB331235F0623002B6D37 /* NodeButton.m in Sources */,
+				368E509B238FF84C00AFE3B3 /* NewUserIDCell.m in Sources */,
 				368AB33E235F0623002B6D37 /* YAlertViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

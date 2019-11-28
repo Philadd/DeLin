@@ -10,6 +10,7 @@
 #import <Bugly/Bugly.h>
 #import <GizWifiSDK/GizWifiSDK.h>
 #import "LoginViewController.h"
+#import "WelcomeViewController.h"
 #import "IQKeyboardManager.h"
 @interface AppDelegate ()
 
@@ -30,10 +31,13 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     
-    LoginViewController *loginVC = [[LoginViewController alloc] init];
-    //loginVC.isAutoLogin = YES;
-    _navController = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    WelcomeViewController *welcomeVC = [[WelcomeViewController alloc] init];
+    _navController = [[UINavigationController alloc] initWithRootViewController:welcomeVC];
     self.window.rootViewController = _navController;
+//    LoginViewController *loginVC = [[LoginViewController alloc] init];
+//    //loginVC.isAutoLogin = YES;
+//    _navController = [[UINavigationController alloc] initWithRootViewController:loginVC];
+//    self.window.rootViewController = _navController;
     
     [self.window makeKeyAndVisible];
     
