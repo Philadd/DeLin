@@ -59,6 +59,8 @@
 		368E507A238E297200AFE3B3 /* NewUserIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368E5079238E297200AFE3B3 /* NewUserIDViewController.m */; };
 		368E5098238FA00700AFE3B3 /* UIView+AniamtionMange.m in Sources */ = {isa = PBXBuildFile; fileRef = 368E5097238FA00700AFE3B3 /* UIView+AniamtionMange.m */; };
 		368E509B238FF84C00AFE3B3 /* NewUserIDCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 368E509A238FF84C00AFE3B3 /* NewUserIDCell.m */; };
+		368E509E2390BB3E00AFE3B3 /* RegionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368E509D2390BB3E00AFE3B3 /* RegionViewController.m */; };
+		368E50A12390CB4D00AFE3B3 /* RegionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 368E50A02390CB4D00AFE3B3 /* RegionCell.m */; };
 		369309DD237BE632003DAFBD /* GizManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 369309DC237BE632003DAFBD /* GizManager.m */; };
 		369309E2237BE679003DAFBD /* img_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 369309DF237BE679003DAFBD /* img_logo@2x.png */; };
 		369309E3237BE679003DAFBD /* img_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 369309E0237BE679003DAFBD /* img_logo.png */; };
@@ -211,6 +213,10 @@
 		368E5097238FA00700AFE3B3 /* UIView+AniamtionMange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+AniamtionMange.m"; sourceTree = "<group>"; };
 		368E5099238FF84C00AFE3B3 /* NewUserIDCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewUserIDCell.h; sourceTree = "<group>"; };
 		368E509A238FF84C00AFE3B3 /* NewUserIDCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewUserIDCell.m; sourceTree = "<group>"; };
+		368E509C2390BB3E00AFE3B3 /* RegionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegionViewController.h; sourceTree = "<group>"; };
+		368E509D2390BB3E00AFE3B3 /* RegionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegionViewController.m; sourceTree = "<group>"; };
+		368E509F2390CB4D00AFE3B3 /* RegionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegionCell.h; sourceTree = "<group>"; };
+		368E50A02390CB4D00AFE3B3 /* RegionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegionCell.m; sourceTree = "<group>"; };
 		369309DB237BE632003DAFBD /* GizManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GizManager.h; sourceTree = "<group>"; };
 		369309DC237BE632003DAFBD /* GizManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GizManager.m; sourceTree = "<group>"; };
 		369309DF237BE679003DAFBD /* img_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_logo@2x.png"; sourceTree = "<group>"; };
@@ -357,6 +363,8 @@
 				368E5076238E1D0300AFE3B3 /* WelcomeViewController.m */,
 				368E5078238E297200AFE3B3 /* NewUserIDViewController.h */,
 				368E5079238E297200AFE3B3 /* NewUserIDViewController.m */,
+				368E509C2390BB3E00AFE3B3 /* RegionViewController.h */,
+				368E509D2390BB3E00AFE3B3 /* RegionViewController.m */,
 				368AB2F1235F0450002B6D37 /* LoginViewController.h */,
 				368AB2F2235F0450002B6D37 /* LoginViewController.m */,
 				36588D4B2370189B008ADEAC /* RegisterViewController.h */,
@@ -532,6 +540,8 @@
 				36F1ECF72388E51000E1C7A8 /* LeftDrawerCell.m */,
 				368E5099238FF84C00AFE3B3 /* NewUserIDCell.h */,
 				368E509A238FF84C00AFE3B3 /* NewUserIDCell.m */,
+				368E509F2390CB4D00AFE3B3 /* RegionCell.h */,
+				368E50A02390CB4D00AFE3B3 /* RegionCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -914,6 +924,7 @@
 				368AB337235F0623002B6D37 /* NSObject+Common.m in Sources */,
 				368AB340235F0623002B6D37 /* AAProgressCircleView.m in Sources */,
 				368E5098238FA00700AFE3B3 /* UIView+AniamtionMange.m in Sources */,
+				368E509E2390BB3E00AFE3B3 /* RegionViewController.m in Sources */,
 				368AB33B235F0623002B6D37 /* NullSafe.m in Sources */,
 				368AB338235F0623002B6D37 /* UIViewController+Common.m in Sources */,
 				3618FC63237D7F3A00255426 /* UINavigationBar+handle.m in Sources */,
@@ -931,6 +942,7 @@
 				368AB330235F0623002B6D37 /* UIColor+ColorChange.m in Sources */,
 				369309F6237C033B003DAFBD /* BaseViewController.m in Sources */,
 				368AB33D235F0623002B6D37 /* YTFAlertController.m in Sources */,
+				368E50A12390CB4D00AFE3B3 /* RegionCell.m in Sources */,
 				368AB33A235F0623002B6D37 /* NSDate+Common.m in Sources */,
 				36930A0C237C064D003DAFBD /* ConnectNetworkViewController.m in Sources */,
 				3618FC59237D26CF00255426 /* MainViewController.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "NewUserIDViewController.h"
 #import "NewUserIDCell.h"
+#import "RegionViewController.h"
 
 NSString *const CellIdentifier_NewUserIDCell = @"NewUserIDCell";
 static float HEIGHT_CELL = 50.f;
@@ -21,6 +22,9 @@ static float HEIGHT_CELL = 50.f;
 @end
 
 @implementation NewUserIDViewController
+{
+    NSString *regionStr;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,6 +33,15 @@ static float HEIGHT_CELL = 50.f;
     _labelBgView = [self labelBgView];
     _addressTable = [self addressTable];
     _continueBtn = [self continueBtn];
+    if (!self->regionStr) {
+        self->regionStr = [NSString stringWithFormat:LocalString(@"中国大陆")];
+    }
+    //读取上次的 地区
+    NSUserDefaults *regionDefaults = [NSUserDefaults standardUserDefaults];
+    if ([regionDefaults objectForKey:@"region"]){
+        self->regionStr = [regionDefaults objectForKey:@"region"];
+    }
+    
     [self setNavItem];
 }
 
@@ -141,15 +154,26 @@ static float HEIGHT_CELL = 50.f;
         cell = [[NewUserIDCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier_NewUserIDCell];
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
     cell.leftLabel.text = LocalString(@"地区");
-    cell.rightLabel.text = LocalString(@"中国大陆");
-            
+    cell.rightLabel.text = self->regionStr;
+    
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    RegionViewController *regionVC = [[RegionViewController alloc] init];
+    regionVC.myblcok = ^(NSString *str) {
+        self->regionStr = str;
+        [self.addressTable reloadData];
+        //保存地区
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:self->regionStr forKey:@"region"];
+        [userDefaults synchronize];
+    };
+    regionVC.addressStr = self->regionStr;
+    [self.navigationController pushViewController:regionVC animated:YES];
     
 }
 
