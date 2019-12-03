@@ -29,7 +29,7 @@
             _regionLabel = [[UILabel alloc] init];
             _regionLabel.font = [UIFont systemFontOfSize:16.f];
             _regionLabel.backgroundColor = [UIColor clearColor];
-            _regionLabel.textColor = [UIColor blackColor];
+            _regionLabel.textColor = [UIColor whiteColor];
             _regionLabel.adjustsFontSizeToFitWidth = YES;
             _regionLabel.textAlignment = NSTextAlignmentLeft;
             [self.contentView addSubview:_regionLabel];

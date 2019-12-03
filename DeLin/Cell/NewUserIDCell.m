@@ -17,7 +17,7 @@
         self.backgroundColor = [UIColor clearColor];
         if (!_leftLabel) {
             _leftLabel = [[UILabel alloc] init];
-            _leftLabel.textColor = [UIColor colorWithHexString:@"333333"];
+            _leftLabel.textColor = [UIColor colorWithHexString:@"FFFFFF"];
             _leftLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
             _leftLabel.textAlignment = NSTextAlignmentLeft;
             _leftLabel.adjustsFontSizeToFitWidth = YES;

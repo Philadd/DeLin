@@ -28,7 +28,7 @@ NSString *const CellIdentifier_RegionCell = @"RegionCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.layer.backgroundColor = [UIColor colorWithRed:242/255.0 green:242/255.0 blue:242/255.0 alpha:1.0].CGColor;
+    self.view.layer.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0].CGColor;
     
     _regionTable = [self regionTable];
     _continueBtn = [self continueBtn];
@@ -47,7 +47,7 @@ NSString *const CellIdentifier_RegionCell = @"RegionCell";
 - (UITableView *)regionTable{
     if (!_regionTable) {
         _regionTable = ({
-            TouchTableView *tableView = [[TouchTableView alloc] initWithFrame:CGRectMake(0.f, getRectNavAndStatusHight + yAutoFit(20), ScreenWidth, ScreenHeight - yAutoFit(45)) style:UITableViewStylePlain];
+            TouchTableView *tableView = [[TouchTableView alloc] initWithFrame:CGRectMake(30.f, getRectNavAndStatusHight + yAutoFit(20), ScreenWidth - yAutoFit(30.f) *2 , ScreenHeight) style:UITableViewStylePlain];
             tableView.backgroundColor = [UIColor clearColor];
             tableView.dataSource = self;
             tableView.delegate = self;

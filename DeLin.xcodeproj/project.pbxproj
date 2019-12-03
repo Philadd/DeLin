@@ -83,6 +83,13 @@
 		369C6606235EE431008D6230 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C6605235EE431008D6230 /* main.m */; };
 		369C6610235EE431008D6230 /* DeLinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C660F235EE431008D6230 /* DeLinTests.m */; };
 		369C661B235EE431008D6230 /* DeLinUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C661A235EE431008D6230 /* DeLinUITests.m */; };
+		36A9AEE82394E01A00EC8749 /* NewUserEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A9AEE72394E01A00EC8749 /* NewUserEmailViewController.m */; };
+		36A9AEEF2395FA7C00EC8749 /* UIView+Border.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A9AEEE2395FA7C00EC8749 /* UIView+Border.m */; };
+		36A9AEF32395FB9900EC8749 /* AATextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A9AEF22395FB9900EC8749 /* AATextField.m */; };
+		36A9AEF52395FC4900EC8749 /* dl_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 36A9AEF42395FC4900EC8749 /* dl_user.png */; };
+		36A9AEF82396589200EC8749 /* PersonalMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A9AEF72396589200EC8749 /* PersonalMsgViewController.m */; };
+		36A9AEFB23965F2900EC8749 /* SetPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A9AEFA23965F2900EC8749 /* SetPasswordController.m */; };
+		36A9AEFE2396600A00EC8749 /* NewUserSuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A9AEFD2396600A00EC8749 /* NewUserSuccessController.m */; };
 		36BF86C72383CCC8009EA9AB /* add_Btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BF86C42383CCC8009EA9AB /* add_Btn.png */; };
 		36BF86C82383CCC8009EA9AB /* add_Btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BF86C52383CCC8009EA9AB /* add_Btn@2x.png */; };
 		36BF86C92383CCC8009EA9AB /* add_Btn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BF86C62383CCC8009EA9AB /* add_Btn@3x.png */; };
@@ -258,6 +265,19 @@
 		369C6616235EE431008D6230 /* DeLinUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeLinUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		369C661A235EE431008D6230 /* DeLinUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeLinUITests.m; sourceTree = "<group>"; };
 		369C661C235EE431008D6230 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		36A9AEE62394E01A00EC8749 /* NewUserEmailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewUserEmailViewController.h; sourceTree = "<group>"; };
+		36A9AEE72394E01A00EC8749 /* NewUserEmailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewUserEmailViewController.m; sourceTree = "<group>"; };
+		36A9AEED2395FA7C00EC8749 /* UIView+Border.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Border.h"; sourceTree = "<group>"; };
+		36A9AEEE2395FA7C00EC8749 /* UIView+Border.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Border.m"; sourceTree = "<group>"; };
+		36A9AEF12395FB9900EC8749 /* AATextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AATextField.h; sourceTree = "<group>"; };
+		36A9AEF22395FB9900EC8749 /* AATextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AATextField.m; sourceTree = "<group>"; };
+		36A9AEF42395FC4900EC8749 /* dl_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dl_user.png; sourceTree = "<group>"; };
+		36A9AEF62396589200EC8749 /* PersonalMsgViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalMsgViewController.h; sourceTree = "<group>"; };
+		36A9AEF72396589200EC8749 /* PersonalMsgViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalMsgViewController.m; sourceTree = "<group>"; };
+		36A9AEF923965F2900EC8749 /* SetPasswordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetPasswordController.h; sourceTree = "<group>"; };
+		36A9AEFA23965F2900EC8749 /* SetPasswordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetPasswordController.m; sourceTree = "<group>"; };
+		36A9AEFC2396600A00EC8749 /* NewUserSuccessController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewUserSuccessController.h; sourceTree = "<group>"; };
+		36A9AEFD2396600A00EC8749 /* NewUserSuccessController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewUserSuccessController.m; sourceTree = "<group>"; };
 		36BF86C42383CCC8009EA9AB /* add_Btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_Btn.png; sourceTree = "<group>"; };
 		36BF86C52383CCC8009EA9AB /* add_Btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_Btn@2x.png"; sourceTree = "<group>"; };
 		36BF86C62383CCC8009EA9AB /* add_Btn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_Btn@3x.png"; sourceTree = "<group>"; };
@@ -363,8 +383,16 @@
 				368E5076238E1D0300AFE3B3 /* WelcomeViewController.m */,
 				368E5078238E297200AFE3B3 /* NewUserIDViewController.h */,
 				368E5079238E297200AFE3B3 /* NewUserIDViewController.m */,
+				36A9AEE62394E01A00EC8749 /* NewUserEmailViewController.h */,
+				36A9AEE72394E01A00EC8749 /* NewUserEmailViewController.m */,
 				368E509C2390BB3E00AFE3B3 /* RegionViewController.h */,
 				368E509D2390BB3E00AFE3B3 /* RegionViewController.m */,
+				36A9AEF62396589200EC8749 /* PersonalMsgViewController.h */,
+				36A9AEF72396589200EC8749 /* PersonalMsgViewController.m */,
+				36A9AEF923965F2900EC8749 /* SetPasswordController.h */,
+				36A9AEFA23965F2900EC8749 /* SetPasswordController.m */,
+				36A9AEFC2396600A00EC8749 /* NewUserSuccessController.h */,
+				36A9AEFD2396600A00EC8749 /* NewUserSuccessController.m */,
 				368AB2F1235F0450002B6D37 /* LoginViewController.h */,
 				368AB2F2235F0450002B6D37 /* LoginViewController.m */,
 				36588D4B2370189B008ADEAC /* RegisterViewController.h */,
@@ -378,6 +406,8 @@
 		368AB2FE235F0623002B6D37 /* OC_Category */ = {
 			isa = PBXGroup;
 			children = (
+				36A9AEF02395FB6300EC8749 /* UIView+TextField */,
+				36A9AEE92395F9B900EC8749 /* UIView+Border */,
 				368E5095238F9F8F00AFE3B3 /* AniamtionManger */,
 				3618FC60237D7F0700255426 /* NavigationBarHandle */,
 				368AB302235F0623002B6D37 /* UIButton */,
@@ -619,6 +649,25 @@
 			path = DeLinUITests;
 			sourceTree = "<group>";
 		};
+		36A9AEE92395F9B900EC8749 /* UIView+Border */ = {
+			isa = PBXGroup;
+			children = (
+				36A9AEED2395FA7C00EC8749 /* UIView+Border.h */,
+				36A9AEEE2395FA7C00EC8749 /* UIView+Border.m */,
+			);
+			path = "UIView+Border";
+			sourceTree = "<group>";
+		};
+		36A9AEF02395FB6300EC8749 /* UIView+TextField */ = {
+			isa = PBXGroup;
+			children = (
+				36A9AEF42395FC4900EC8749 /* dl_user.png */,
+				36A9AEF12395FB9900EC8749 /* AATextField.h */,
+				36A9AEF22395FB9900EC8749 /* AATextField.m */,
+			);
+			path = "UIView+TextField";
+			sourceTree = "<group>";
+		};
 		36BF86C32383CC63009EA9AB /* image_icon */ = {
 			isa = PBXGroup;
 			children = (
@@ -843,6 +892,7 @@
 				36F1ED1023891FD300E1C7A8 /* logout_icon_imag.png in Resources */,
 				36F1ED1523891FD300E1C7A8 /* language_icon_imag.png in Resources */,
 				36866E3D2384F10F0022F265 /* area_img.png in Resources */,
+				36A9AEF52395FC4900EC8749 /* dl_user.png in Resources */,
 				369C65FE235EE42F008D6230 /* Main.storyboard in Resources */,
 				36866E3E2384F10F0022F265 /* workTime_img.png in Resources */,
 				36F1ED0E23891FD300E1C7A8 /* setting_icon_imag@2x.png in Resources */,
@@ -926,8 +976,11 @@
 				368E5098238FA00700AFE3B3 /* UIView+AniamtionMange.m in Sources */,
 				368E509E2390BB3E00AFE3B3 /* RegionViewController.m in Sources */,
 				368AB33B235F0623002B6D37 /* NullSafe.m in Sources */,
+				36A9AEF32395FB9900EC8749 /* AATextField.m in Sources */,
 				368AB338235F0623002B6D37 /* UIViewController+Common.m in Sources */,
+				36A9AEFE2396600A00EC8749 /* NewUserSuccessController.m in Sources */,
 				3618FC63237D7F3A00255426 /* UINavigationBar+handle.m in Sources */,
+				36A9AEE82394E01A00EC8749 /* NewUserEmailViewController.m in Sources */,
 				368AB334235F0623002B6D37 /* NSString+Rounding.m in Sources */,
 				369309DD237BE632003DAFBD /* GizManager.m in Sources */,
 				36930A0B237C064D003DAFBD /* FinishNetworkViewController.m in Sources */,
@@ -937,6 +990,7 @@
 				36085889238686E50094501B /* WorkAreaViewController.m in Sources */,
 				368AB339235F0623002B6D37 /* NSString+Common.m in Sources */,
 				36588D4D2370189C008ADEAC /* ForgetpasswordViewController.m in Sources */,
+				36A9AEF82396589200EC8749 /* PersonalMsgViewController.m in Sources */,
 				36965D21238B689900D0435A /* SetPinCodeViewController.m in Sources */,
 				36930A09237C064D003DAFBD /* DeviceNetworkViewController.m in Sources */,
 				368AB330235F0623002B6D37 /* UIColor+ColorChange.m in Sources */,
@@ -947,6 +1001,7 @@
 				36930A0C237C064D003DAFBD /* ConnectNetworkViewController.m in Sources */,
 				3618FC59237D26CF00255426 /* MainViewController.m in Sources */,
 				36F1ECF82388E51000E1C7A8 /* LeftDrawerCell.m in Sources */,
+				36A9AEFB23965F2900EC8749 /* SetPasswordController.m in Sources */,
 				368AB33C235F0623002B6D37 /* TouchTableView.m in Sources */,
 				36930A15237C09D6003DAFBD /* WorktimeCell.m in Sources */,
 				36965D24238B733200D0435A /* SetLanguageViewController.m in Sources */,
@@ -960,6 +1015,7 @@
 				368AB333235F0623002B6D37 /* GosTipView.m in Sources */,
 				36930A0A237C064D003DAFBD /* DeviceListViewController.m in Sources */,
 				368E507A238E297200AFE3B3 /* NewUserIDViewController.m in Sources */,
+				36A9AEEF2395FA7C00EC8749 /* UIView+Border.m in Sources */,
 				368AB331235F0623002B6D37 /* NodeButton.m in Sources */,
 				368E509B238FF84C00AFE3B3 /* NewUserIDCell.m in Sources */,
 				368AB33E235F0623002B6D37 /* YAlertViewController.m in Sources */,

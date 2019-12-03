@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.layer.backgroundColor = [UIColor colorWithRed:242/255.0 green:242/255.0 blue:242/255.0 alpha:1.0].CGColor;
+    self.view.layer.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0].CGColor;
     _msgCenterView = [self msgCenterView];
     _signInBtn = [self signInBtn];
     _signUpBtn = [self signUpBtn];
@@ -53,7 +53,7 @@
         UILabel *welcomelabel = [[UILabel alloc] init];
         welcomelabel.text = LocalString(@"Welcome!");
         welcomelabel.font = [UIFont systemFontOfSize:25.f];
-        welcomelabel.textColor = [UIColor blackColor];
+        welcomelabel.textColor = [UIColor whiteColor];
         welcomelabel.textAlignment = NSTextAlignmentCenter;
         welcomelabel.adjustsFontSizeToFitWidth = YES;
         [labelBgView addSubview:welcomelabel];
@@ -66,7 +66,7 @@
         UILabel *tiplabel = [[UILabel alloc] init];
         tiplabel.text = LocalString(@"From the beginning, applications can help you make the most of your connected devices.");
         tiplabel.font = [UIFont systemFontOfSize:16.f];
-        tiplabel.textColor = [UIColor colorWithRed:33/255.0 green:36/255.0 blue:55/255.0 alpha:1];
+        tiplabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.7];
         tiplabel.numberOfLines = 0;
         tiplabel.textAlignment = NSTextAlignmentCenter;
         tiplabel.adjustsFontSizeToFitWidth = YES;

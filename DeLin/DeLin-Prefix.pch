@@ -30,6 +30,7 @@
 #import "GizManager.h"
 #import "NSString+HexToBytes.h"
 #import "GosTipView.h"
+#import "UIView+Border.h"
 
 #endif
 // Include any system framework and library headers here that should be included in all compilation units.

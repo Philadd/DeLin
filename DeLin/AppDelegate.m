@@ -52,16 +52,21 @@
 - (void)customizeInterface {
     _navigationBarAppearance = [UINavigationBar appearance];
     //navigationBarAppearance.barTintColor = [UIColor clearColor];
-    [_navigationBarAppearance setTintColor:[UIColor blackColor]];//返回按钮的箭头颜色
+    [_navigationBarAppearance setTintColor:[UIColor whiteColor]];//返回按钮的箭头颜色
     //设置导航栏背景图片为一个空的image，这样就透明了
     [_navigationBarAppearance setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
     //去掉返回按钮上的文字 //将title 文字的颜色改为透明
     [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor clearColor]}forState:UIControlStateNormal];
+    NSDictionary *textAttributes = @{
+                                     NSFontAttributeName: [UIFont systemFontOfSize:17.f],
+                                     NSForegroundColorAttributeName: [UIColor whiteColor],
+                                     };
+    [_navigationBarAppearance setTitleTextAttributes:textAttributes];
     
     //去掉透明后导航栏下边的黑边
     [_navigationBarAppearance setShadowImage:[[UIImage alloc] init]];
     [_navigationBarAppearance clearsContextBeforeDrawing];
-    
+     
 }
 
 - (void)keyBoardManager{
