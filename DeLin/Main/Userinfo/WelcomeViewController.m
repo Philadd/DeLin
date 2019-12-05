@@ -9,6 +9,7 @@
 #import "WelcomeViewController.h"
 #import "NewUserIDViewController.h"
 #import "UIView+AniamtionManger.h"
+#import "LoginViewController.h"
 
 @interface WelcomeViewController ()
 
@@ -41,18 +42,18 @@
         [areaImg setImage:[UIImage imageNamed:@"img_logo"]];
         [_msgCenterView addSubview:areaImg];
         [areaImg mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(335), yAutoFit(255)));
-            make.top.equalTo(self.msgCenterView.mas_top).offset(yAutoFit(70));
+            make.size.mas_equalTo(CGSizeMake(ScreenWidth, yAutoFit(312)));
+            make.top.equalTo(self.msgCenterView.mas_top);
             make.centerX.equalTo(self.msgCenterView.mas_centerX);
         }];
         
-        UIView *labelBgView = [[UIView alloc] initWithFrame:CGRectMake( 0 , yAutoFit(70)+ yAutoFit(255) + 10 , ScreenWidth,yAutoFit(180) )];
+        UIView *labelBgView = [[UIView alloc] initWithFrame:CGRectMake( 0 , yAutoFit(312)+ yAutoFit(30), ScreenWidth,yAutoFit(180) )];
         labelBgView.backgroundColor = [UIColor clearColor];
         [_msgCenterView addSubview:labelBgView];
         
         UILabel *welcomelabel = [[UILabel alloc] init];
         welcomelabel.text = LocalString(@"Welcome!");
-        welcomelabel.font = [UIFont systemFontOfSize:25.f];
+        welcomelabel.font = [UIFont systemFontOfSize:36.f];
         welcomelabel.textColor = [UIColor whiteColor];
         welcomelabel.textAlignment = NSTextAlignmentCenter;
         welcomelabel.adjustsFontSizeToFitWidth = YES;
@@ -143,7 +144,8 @@
 }
 
 - (void)goSignIn{
-    
+    LoginViewController *loginVC = [[LoginViewController alloc] init];
+    [self.navigationController pushViewController:loginVC animated:YES];
 }
 
 @end

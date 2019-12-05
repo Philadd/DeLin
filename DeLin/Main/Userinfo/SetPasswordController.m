@@ -7,7 +7,7 @@
 //
 
 #import "SetPasswordController.h"
-#import "AATextField.h"
+#import "AAPasswordTF.h"
 #import "NewUserSuccessController.h"
 
 @interface SetPasswordController () <UITextFieldDelegate>
@@ -15,7 +15,7 @@
 @property (nonatomic, strong) UIView *labelBgView;
 @property (nonatomic, strong) UIButton *continueBtn;
 
-@property (nonatomic,strong) AATextField *accountModel;
+@property (nonatomic,strong) AAPasswordTF *passwordModelTF;
 
 @end
 
@@ -107,14 +107,14 @@
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     if (textField.text.length <= 0) {
-        [self.accountModel textBeginEditing];
+        [self.passwordModelTF passwordTFBeginEditing];
     }
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     if (textField.text.length <= 0) {
-        [self.accountModel textEndEditing];
+        [self.passwordModelTF passwordTFEndEditing];
     }
 }
 
@@ -124,23 +124,23 @@
     
     CGRect accountF = CGRectMake(yAutoFit(15), getRectNavAndStatusHight + yAutoFit(170), yAutoFit(320), yAutoFit(60));
     
-    self.accountModel = [[AATextField alloc]initWithFrame:accountF withPlaceholderText:LocalString(@"Password")];
-    self.accountModel.inputText.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    self.accountModel.inputText.autocorrectionType = UITextAutocorrectionTypeNo;
-    self.accountModel.inputText.keyboardType = UIKeyboardTypeASCIICapable;
-    self.accountModel.frame = accountF;
-    self.accountModel.inputText.delegate = self;
-    [self.view addSubview:self.accountModel];
+    self.passwordModelTF = [[AAPasswordTF alloc]initWithFrame:accountF withPlaceholderText:LocalString(@"Password")];
+    self.passwordModelTF.inputText.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    self.passwordModelTF.inputText.autocorrectionType = UITextAutocorrectionTypeNo;
+    self.passwordModelTF.inputText.keyboardType = UIKeyboardTypeASCIICapable;
+    self.passwordModelTF.frame = accountF;
+    self.passwordModelTF.inputText.delegate = self;
+    [self.view addSubview:self.passwordModelTF];
     
     UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
     tapGr.cancelsTouchesInView = NO;
     
-    [self.accountModel.labelView addGestureRecognizer:tapGr];
+    [self.passwordModelTF.labelView addGestureRecognizer:tapGr];
 }
 
 -(void)viewTapped:(UITapGestureRecognizer*)tapGr
 {
-    [self.accountModel.inputText resignFirstResponder];
+    [self.passwordModelTF.inputText resignFirstResponder];
 }
 
 - (void)goContinue{

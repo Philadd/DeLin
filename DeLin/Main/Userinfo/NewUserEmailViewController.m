@@ -7,7 +7,7 @@
 //
 
 #import "NewUserEmailViewController.h"
-#import "AATextField.h"
+#import "AAEmailTextField.h"
 #import "PersonalMsgViewController.h"
 
 @interface NewUserEmailViewController () <UITextFieldDelegate>
@@ -15,7 +15,7 @@
 @property (nonatomic, strong) UIView *labelBgView;
 @property (nonatomic, strong) UIButton *continueBtn;
 
-@property (nonatomic,strong) AATextField *accountModel;
+@property (nonatomic,strong) AAEmailTextField *accountModel;
 
 @end
 
@@ -107,14 +107,14 @@
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     if (textField.text.length <= 0) {
-        [self.accountModel textBeginEditing];
+        [self.accountModel emailTFBeginEditing];
     }
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     if (textField.text.length <= 0) {
-        [self.accountModel textEndEditing];
+        [self.accountModel emailTFEndEditing];
     }
 }
 
@@ -124,10 +124,10 @@
 
     CGRect accountF = CGRectMake(yAutoFit(15), getRectNavAndStatusHight + yAutoFit(170), yAutoFit(320), yAutoFit(60));
     
-    self.accountModel = [[AATextField alloc]initWithFrame:accountF withPlaceholderText:LocalString(@"Address e-mail")];
+    self.accountModel = [[AAEmailTextField alloc]initWithFrame:accountF withPlaceholderText:LocalString(@"Address e-mail")];
     self.accountModel.inputText.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.accountModel.inputText.autocorrectionType = UITextAutocorrectionTypeNo;
-    self.accountModel.inputText.keyboardType = UIKeyboardTypeASCIICapable;
+    self.accountModel.inputText.keyboardType = UIKeyboardTypeEmailAddress;
     self.accountModel.frame = accountF;
     self.accountModel.inputText.delegate = self;
     [self.view addSubview:self.accountModel];

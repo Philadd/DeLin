@@ -7,7 +7,8 @@
 //
 
 #import "PersonalMsgViewController.h"
-#import "AATextField.h"
+#import "AAPersonalFirstNameTF.h"
+#import "AAPersonalLastNameTF.h"
 #import "SetPasswordController.h"
 
 @interface PersonalMsgViewController () <UITextFieldDelegate>
@@ -15,7 +16,8 @@
 @property (nonatomic, strong) UIView *labelBgView;
 @property (nonatomic, strong) UIButton *continueBtn;
 
-@property (nonatomic,strong) AATextField *accountModel;
+@property (nonatomic,strong) AAPersonalFirstNameTF *firstNameTFModel;
+@property (nonatomic,strong) AAPersonalLastNameTF *lastNameTFModel;
 
 @end
 
@@ -106,15 +108,21 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if (textField.text.length <= 0) {
-        [self.accountModel textBeginEditing];
+    if (textField == self.firstNameTFModel.inputFirstNameTF && textField.text.length <= 0) {
+        [self.firstNameTFModel firstNameTFBeginEditing];
+    }
+    if (textField == self.lastNameTFModel.inputLastNameTF && textField.text.length <= 0) {
+        [self.lastNameTFModel lastNameTFBeginEditing];
     }
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    if (textField.text.length <= 0) {
-        [self.accountModel textEndEditing];
+    if (textField == self.firstNameTFModel.inputFirstNameTF && textField.text.length <= 0) {
+        [self.firstNameTFModel firstNameTFEndEditing];
+    }
+    if (textField == self.lastNameTFModel.inputLastNameTF && textField.text.length <= 0) {
+        [self.lastNameTFModel lastNameTFEndEditing];
     }
 }
 
@@ -122,26 +130,57 @@
 
 - (void)setUItextField{
     
-    CGRect accountF = CGRectMake(yAutoFit(15), getRectNavAndStatusHight + yAutoFit(170), yAutoFit(320), yAutoFit(60));
+    CGRect firstNameF = CGRectMake(yAutoFit(15), getRectNavAndStatusHight + yAutoFit(200), yAutoFit(160), yAutoFit(60));
     
-    self.accountModel = [[AATextField alloc]initWithFrame:accountF withPlaceholderText:LocalString(@"User Name")];
-    self.accountModel.inputText.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    self.accountModel.inputText.autocorrectionType = UITextAutocorrectionTypeNo;
-    self.accountModel.inputText.keyboardType = UIKeyboardTypeASCIICapable;
-    self.accountModel.frame = accountF;
-    self.accountModel.inputText.delegate = self;
-    [self.view addSubview:self.accountModel];
+    self.firstNameTFModel = [[AAPersonalFirstNameTF alloc]initWithFrame:firstNameF withPlaceholderText:LocalString(@"FirstName")];
+    self.firstNameTFModel.inputFirstNameTF.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    self.firstNameTFModel.inputFirstNameTF.autocorrectionType = UITextAutocorrectionTypeNo;
+    self.firstNameTFModel.inputFirstNameTF.keyboardType = UIKeyboardTypeDefault;
+    self.firstNameTFModel.frame = firstNameF;
+    self.firstNameTFModel.inputFirstNameTF.delegate = self;
+    [self.view addSubview:self.firstNameTFModel];
     
-    UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
-    tapGr.cancelsTouchesInView = NO;
+    [self.firstNameTFModel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(yAutoFit(160), yAutoFit(60)));
+        make.left.equalTo(self.view.mas_left).offset(yAutoFit(15.f));
+        make.top.equalTo(self.labelBgView.mas_bottom);
+    }];
     
-    [self.accountModel.labelView addGestureRecognizer:tapGr];
+    CGRect lastNameF = CGRectMake(firstNameF.origin.x, getRectNavAndStatusHight + yAutoFit(200), yAutoFit(160), yAutoFit(60));
+    
+    self.lastNameTFModel = [[AAPersonalLastNameTF alloc]initWithFrame:lastNameF withPlaceholderText:LocalString(@"LastName")];
+    self.lastNameTFModel.inputLastNameTF.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    self.lastNameTFModel.inputLastNameTF.autocorrectionType = UITextAutocorrectionTypeNo;
+    self.lastNameTFModel.inputLastNameTF.keyboardType = UIKeyboardTypeDefault;
+    self.lastNameTFModel.frame = lastNameF;
+    self.lastNameTFModel.inputLastNameTF.delegate = self;
+    [self.view addSubview:self.lastNameTFModel];
+    [self.lastNameTFModel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(yAutoFit(160), yAutoFit(60)));
+        make.left.equalTo(self.firstNameTFModel.mas_right);
+        make.top.equalTo(self.labelBgView.mas_bottom);
+    }];
+    
+    UITapGestureRecognizer *tapGrFirstName = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTappedFirstName:)];
+    tapGrFirstName.cancelsTouchesInView = NO;
+    
+    UITapGestureRecognizer *tapGrLastName = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTappedLastName:)];
+    tapGrLastName.cancelsTouchesInView = NO;
+    
+    [self.firstNameTFModel.labelView addGestureRecognizer:tapGrFirstName];
+    [self.lastNameTFModel.labelView addGestureRecognizer:tapGrLastName];
 }
 
--(void)viewTapped:(UITapGestureRecognizer*)tapGr
+-(void)viewTappedFirstName:(UITapGestureRecognizer*)tapGr
 {
-    [self.accountModel.inputText resignFirstResponder];
+    [self.firstNameTFModel.inputFirstNameTF resignFirstResponder];
 }
+
+-(void)viewTappedLastName:(UITapGestureRecognizer*)tapGr
+{
+    [self.lastNameTFModel.inputLastNameTF resignFirstResponder];
+}
+
 
 - (void)goContinue{
     SetPasswordController *passwordVC = [[SetPasswordController alloc] init];

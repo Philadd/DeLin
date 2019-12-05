@@ -10,24 +10,26 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AATextField : UIView <UITextFieldDelegate>
+@interface AAPasswordTF : UIView <UITextFieldDelegate>
 
 @property (nonatomic,strong) NSString *PlaceholderText;
 
 @property (nonatomic,strong) UILabel *textLabel;
 @property (nonatomic,strong) UIView *labelView;
 
-@property (nonatomic,assign) CGRect textFieldFrame;
+@property (nonatomic,assign) CGRect passwordTFFrame;
 
 @property (nonatomic,strong) UITextField *inputText;
 
--(instancetype)initWithFrame:(CGRect)frame withIcon:(NSString *)iconName withPlaceholderText:(NSString *)placeText;
+@property (nonatomic, strong) UIButton *eyespasswordBtn;
+
+-(instancetype)initWithFrame:(CGRect)frame withPlaceholderText:(NSString *)placeText withPassword:(NSString *)imgName;
 
 -(instancetype)initWithFrame:(CGRect)frame withPlaceholderText:(NSString *)placeText;
 
--(void)textBeginEditing;
+-(void)passwordTFBeginEditing;
 
--(void)textEndEditing;
+-(void)passwordTFEndEditing;
 
 @end
 

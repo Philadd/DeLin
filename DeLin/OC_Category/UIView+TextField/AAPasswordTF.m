@@ -6,58 +6,12 @@
 //  Copyright © 2019 com.thingcom. All rights reserved.
 //
 
-#import "AATextField.h"
+#import "AAPasswordTF.h"
 #import "UIView+Border.h"
 
 #define DURATION_TIME 0.3
 
-@implementation AATextField
-
--(instancetype)initWithFrame:(CGRect)frame withIcon:(NSString *)iconName withPlaceholderText:(NSString *)placeText{
-    self = [super init];
-    if (self) {
-        
-        self.PlaceholderText = placeText;
-        
-        CGFloat margin = 10;
-        CGFloat iconW = 20;
-        CGFloat iconH = 20;
-        
-        UIImageView *icon = [[UIImageView alloc]init];
-        icon.image = [UIImage imageNamed:iconName];
-        icon.frame = CGRectMake(margin, margin, iconW, iconH);
-        [self addSubview:icon];
-        
-        UIImageView *line = [[UIImageView alloc]init];
-        line.image = [UIImage imageNamed:@"dl_short_line"];
-        line.frame = CGRectMake(CGRectGetMaxX(icon.frame) + margin, margin, 2, iconH);
-        [self addSubview:line];
-        
-        UITextField *inputText = [[UITextField alloc]init];
-        inputText.textColor = [UIColor whiteColor];
-        [inputText setValue:[UIColor grayColor] forKeyPath:@"_placeholderLabel.textColor"];
-        inputText.font = [UIFont systemFontOfSize:18]; //SYS_FONT(18);
-        self.textFieldFrame = CGRectMake(CGRectGetMaxX(line.frame) + margin, margin, frame.size.width - CGRectGetMaxX(line.frame) - (2 * margin), iconH);
-        inputText.frame = self.textFieldFrame;
-        inputText.delegate = self;
-        self.inputText = inputText;
-        [self.inputText setReturnKeyType:UIReturnKeyNext];
-        [self addSubview:inputText];
-        
-        UIImageView *downLine = [[UIImageView alloc]init];
-        downLine.frame = CGRectMake(0, CGRectGetMaxY(icon.frame) + margin, frame.size.width, 2);
-        downLine.backgroundColor = [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:0.5];
-        [self addSubview:downLine];
-        
-        //上移动 label的Frame
-        CGRect frameLabel = CGRectMake(frame.origin.x - 5 , frame.origin.y - 5, 100 , 20);
-        
-        self.textLabel = [self makeWithFrame:frameLabel];
-        [self addSubview:self.textLabel];
-        [self bringSubviewToFront:self.inputText];
-    }
-    return self;
-}
+@implementation AAPasswordTF
 
 -(instancetype)initWithFrame:(CGRect)frame withPlaceholderText:(NSString *)placeText{
     self = [super init];
@@ -70,28 +24,51 @@
         inputText.tintColor = [UIColor whiteColor];
         [inputText setValue:[UIColor grayColor] forKeyPath:@"_placeholderLabel.textColor"];
         inputText.font = [UIFont systemFontOfSize:18]; //SYS_FONT(18);
-        self.textFieldFrame = CGRectMake(CGRectGetMinX(frame), 0 , frame.size.width, frame.size.height);
-        inputText.frame = self.textFieldFrame;
+        self.passwordTFFrame = CGRectMake(CGRectGetMinX(frame), 0 , frame.size.width, frame.size.height);
+        inputText.frame = self.passwordTFFrame;
         
         inputText.delegate = self;
         self.inputText = inputText;
         [self.inputText setReturnKeyType:UIReturnKeyNext];
         [self addSubview:inputText];
+        
+        _eyespasswordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_eyespasswordBtn addTarget:self action:@selector(eyespassword) forControlEvents:UIControlEventTouchUpInside];
+        [_eyespasswordBtn setImage:[UIImage imageNamed:@"ic_eyesclosed"] forState:UIControlStateNormal];
+        [self.inputText addSubview:_eyespasswordBtn];
+        [_eyespasswordBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(40.f), yAutoFit(40.f)));
+            make.right.equalTo(self.inputText.mas_right).offset(yAutoFit(- 20.f));
+            make.centerY.equalTo(self.inputText.mas_centerY);
+        }];
 
         //自定义boder的样式
         [inputText setBorderWithTop:YES Left:YES Bottom:YES Right:YES BorderColor:[UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0] BorderWidth:1];
         //上移动 label的Frame
-        self.labelView = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.textFieldFrame) + 20 , CGRectGetMinY(self.textFieldFrame) + yAutoFit(20), yAutoFit(120) , yAutoFit(18))];
+        self.labelView = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.passwordTFFrame) + 20 , CGRectGetMinY(self.passwordTFFrame) + yAutoFit(20), yAutoFit(100) , yAutoFit(18))];
         self.labelView.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0];
         [inputText addSubview:self.labelView];
         
         CGRect frameLabel = CGRectMake(CGRectGetMinX(self.labelView.bounds) + 5 , CGRectGetMinY(self.labelView.bounds) + 5 , self.labelView.bounds.size.width , self.labelView.bounds.size.height - 5);
         self.textLabel = [self makeWithFrame:frameLabel];
+        self.textLabel.textAlignment = NSTextAlignmentCenter;
+        self.textLabel.adjustsFontSizeToFitWidth = YES;
         [self.labelView addSubview:self.textLabel];
         [self bringSubviewToFront:self.inputText];
         
     }
     return self;
+}
+
+- (void)eyespassword{
+    if (self.inputText.secureTextEntry == YES) {
+        [_eyespasswordBtn setImage:[UIImage imageNamed:@"ic_eyespassword"] forState:UIControlStateNormal];
+        self.inputText.secureTextEntry = NO;
+    }else{
+        self.inputText.secureTextEntry = YES;
+        [_eyespasswordBtn setImage:[UIImage imageNamed:@"ic_eyesclosed"] forState:UIControlStateNormal];
+    }
+    
 }
 
 -(UILabel *)makeWithFrame:(CGRect)frame
@@ -133,7 +110,7 @@
     });
 }
 
--(void)textBeginEditing
+-(void)passwordTFBeginEditing
 {
     [self addBeginAnimationWithLabel:self.labelView];
     
@@ -169,7 +146,7 @@
     });
 }
 
--(void)textEndEditing
+-(void)passwordTFEndEditing
 {
     [self addEndAnimationWithLabel:self.labelView];
     
