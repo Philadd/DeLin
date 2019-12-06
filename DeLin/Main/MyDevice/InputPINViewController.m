@@ -149,7 +149,7 @@
         [_checkBtn addTarget:self action:@selector(check) forControlEvents:UIControlEventTouchUpInside];
         [_checkBtn.widthAnchor constraintEqualToConstant:25].active = YES;
         [_checkBtn.heightAnchor constraintEqualToConstant:25].active = YES;
-        _checkBtn.tag = yUnselect;
+        _checkBtn.tag = aUnselect;
         [self.view addSubview:_checkBtn];
         [_checkBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(yAutoFit(25), yAutoFit(25)));
@@ -210,11 +210,11 @@
 }
 
 -(void)check{
-    if (_checkBtn.tag == yUnselect) {
-        _checkBtn.tag = ySelect;
+    if (_checkBtn.tag == aUnselect) {
+        _checkBtn.tag = aSelect;
         [_checkBtn setImage:[UIImage imageNamed:@"rememberpassword"] forState:UIControlStateNormal];
-    }else if (_checkBtn.tag == ySelect) {
-        _checkBtn.tag = yUnselect;
+    }else if (_checkBtn.tag == aSelect) {
+        _checkBtn.tag = aUnselect;
         [_checkBtn setImage:[UIImage imageNamed:@"not password"] forState:UIControlStateNormal];
     }
     

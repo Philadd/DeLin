@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) UIView *labelBgView;
 @property (nonatomic, strong) UIButton *continueBtn;
+@property (nonatomic, strong) UIButton *agreementBtn;
 
 @property (nonatomic,strong) AAPasswordTF *passwordModelTF;
 
@@ -26,6 +27,7 @@
     // Do any additional setup after loading the view.
     self.view.layer.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0].CGColor;
     _labelBgView = [self labelBgView];
+    _agreementBtn = [self agreementBtn];
     _continueBtn = [self continueBtn];
     
     [self setNavItem];
@@ -75,13 +77,47 @@
     return _labelBgView;
 }
 
+- (UIButton *)agreementBtn{
+    if (!_agreementBtn) {
+        _agreementBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _agreementBtn.tag = aUnselect;
+        [_agreementBtn setImage:[UIImage imageNamed:@"img_unselect"] forState:UIControlStateNormal];
+        [_agreementBtn setBackgroundColor:[UIColor clearColor]];
+        [_agreementBtn.widthAnchor constraintEqualToConstant:25].active = YES;
+        [_agreementBtn.heightAnchor constraintEqualToConstant:25].active = YES;
+        _agreementBtn.tag = aUnselect;
+        [_agreementBtn addTarget:self action:@selector(checkAgreement) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_agreementBtn];
+        [_agreementBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(20.f), yAutoFit(20.f)));
+            make.left.equalTo(self.view.mas_left).offset(yAutoFit(40.f));
+            make.top.equalTo(self.view.mas_top).offset(getRectNavAndStatusHight + yAutoFit(250));
+        }];
+        
+        UILabel *agreementLabel = [[UILabel alloc] init];
+        agreementLabel.text = LocalString(@"Agree with delyn's global privacy policy");
+        agreementLabel.font = [UIFont systemFontOfSize:14.f];
+        agreementLabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.7];
+        agreementLabel.numberOfLines = 0;
+        agreementLabel.textAlignment = NSTextAlignmentLeft;
+        agreementLabel.adjustsFontSizeToFitWidth = YES;
+        [self.view addSubview:agreementLabel];
+        [agreementLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(300), yAutoFit(100)));
+            make.centerY.equalTo(self.agreementBtn.mas_centerY);
+            make.left.equalTo(self.agreementBtn.mas_right).offset(yAutoFit(5.f));
+        }];
+    }
+    return _agreementBtn;
+}
+
 - (UIButton *)continueBtn{
     if (!_continueBtn) {
         _continueBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_continueBtn setTitle:LocalString(@"Submit") forState:UIControlStateNormal];
         [_continueBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_continueBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_continueBtn setBackgroundColor:[UIColor colorWithRed:220/255.0 green:168/255.0 blue:11/255.0 alpha:1.f]];
+        [_continueBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:1.f]];
         [_continueBtn addTarget:self action:@selector(goContinue) forControlEvents:UIControlEventTouchUpInside];
         _continueBtn.enabled = YES;
         [self.view addSubview:_continueBtn];
@@ -146,6 +182,17 @@
 - (void)goContinue{
     NewUserSuccessController *successVC = [[NewUserSuccessController alloc] init];
     [self.navigationController pushViewController:successVC animated:YES];
+    
+}
+
+-(void)checkAgreement{
+    if (_agreementBtn.tag == aUnselect) {
+        _agreementBtn.tag = aSelect;
+        [_agreementBtn setImage:[UIImage imageNamed:@"img_unselect"] forState:UIControlStateNormal];
+    }else if (_agreementBtn.tag == aSelect) {
+        _agreementBtn.tag = aUnselect;
+        [_agreementBtn setImage:[UIImage imageNamed:@"img_select"] forState:UIControlStateNormal];
+    }
     
 }
 

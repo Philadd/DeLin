@@ -69,10 +69,10 @@
 #define GizAppproductSecret @"38c36a9c9a034e8480df7f11e6a5b6e0"
 
 typedef enum : NSUInteger {
-    yUnselect = 1000,
-    ySelect,
-    yUp,
-    yDown,
+    aUnselect = 1000,
+    aSelect,
+    aUp,
+    aDown,
 } selectionStatus;
 
 #endif /* DeLin_Prefix_pch */

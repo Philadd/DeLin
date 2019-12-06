@@ -35,6 +35,7 @@
         _eyespasswordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_eyespasswordBtn addTarget:self action:@selector(eyespassword) forControlEvents:UIControlEventTouchUpInside];
         [_eyespasswordBtn setImage:[UIImage imageNamed:@"ic_eyesclosed"] forState:UIControlStateNormal];
+        _eyespasswordBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
         [self.inputText addSubview:_eyespasswordBtn];
         [_eyespasswordBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(yAutoFit(40.f), yAutoFit(40.f)));
@@ -49,9 +50,10 @@
         self.labelView.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0];
         [inputText addSubview:self.labelView];
         
-        CGRect frameLabel = CGRectMake(CGRectGetMinX(self.labelView.bounds) + 5 , CGRectGetMinY(self.labelView.bounds) + 5 , self.labelView.bounds.size.width , self.labelView.bounds.size.height - 5);
+        CGRect frameLabel = CGRectMake(CGRectGetMinX(self.labelView.bounds) + 5 , CGRectGetMinY(self.labelView.bounds) + 5 , self.labelView.bounds.size.width , self.labelView.bounds.size.height);
         self.textLabel = [self makeWithFrame:frameLabel];
         self.textLabel.textAlignment = NSTextAlignmentCenter;
+        self.textLabel.font = [UIFont systemFontOfSize:15.f];
         self.textLabel.adjustsFontSizeToFitWidth = YES;
         [self.labelView addSubview:self.textLabel];
         [self bringSubviewToFront:self.inputText];
@@ -62,7 +64,7 @@
 
 - (void)eyespassword{
     if (self.inputText.secureTextEntry == YES) {
-        [_eyespasswordBtn setImage:[UIImage imageNamed:@"ic_eyespassword"] forState:UIControlStateNormal];
+        [_eyespasswordBtn setImage:[UIImage imageNamed:@"ic_eyesopened"] forState:UIControlStateNormal];
         self.inputText.secureTextEntry = NO;
     }else{
         self.inputText.secureTextEntry = YES;

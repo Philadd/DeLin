@@ -188,7 +188,7 @@
     CABasicAnimation *anima = [CABasicAnimation animationWithKeyPath:@"position"];
     anima.fromValue = [NSValue valueWithCGPoint:CGPointMake(ScreenWidth/2, ScreenHeight/2-75)];
     anima.toValue = [NSValue valueWithCGPoint:CGPointMake(ScreenWidth/2, ScreenHeight/2)];
-    anima.duration = 1.5f;
+    anima.duration = 1.0f;
     //如果fillMode=kCAFillModeForwards和removedOnComletion=NO，那么在动画执行完毕后，图层会保持显示动画执行后的状态。但在实质上，图层的属性值还是动画执行前的初始值，并没有真正被改变。
     anima.fillMode = kCAFillModeForwards;
     anima.removedOnCompletion = NO;
