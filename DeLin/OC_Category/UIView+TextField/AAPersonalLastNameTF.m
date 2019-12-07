@@ -36,7 +36,8 @@
         //上移动 label的Frame
         self.labelView = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.lastNameTFFrame) + 20 , CGRectGetMinY(self.lastNameTFFrame) + yAutoFit(20), yAutoFit(100) , yAutoFit(18))];
         self.labelView.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0];
-        [inputLastNameTF addSubview:self.labelView];
+        //建立图层 防止点击labelView背景不响应事件
+        [self insertSubview:self.labelView atIndex:0];
         
         CGRect frameLabel = CGRectMake(CGRectGetMinX(self.labelView.bounds) + 5 , CGRectGetMinY(self.labelView.bounds) + 5 , self.labelView.bounds.size.width , self.labelView.bounds.size.height);
         self.textLabel = [self makeWithFrame:frameLabel];
@@ -91,6 +92,8 @@
 
 -(void)lastNameTFBeginEditing
 {
+    //改变图层显示效果
+    [self insertSubview:self.labelView atIndex:2];
     [self addBeginAnimationWithLabel:self.labelView];
 }
 
@@ -121,6 +124,9 @@
         anis.removedOnCompletion = NO;
         anis.fillMode = kCAFillModeForwards;
         [label.layer addAnimation:anis forKey:nil];
+        
+        //恢复图层效果
+        [self insertSubview:self.labelView atIndex:0];
     });
 }
 

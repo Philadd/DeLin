@@ -257,8 +257,7 @@
     return _okBtn;
 }
 
-#pragma mark - resign keyboard control
-
+#pragma mark - Giz回调
 
 // 实现回调
 - (void)wifiSDK:(GizWifiSDK *)wifiSDK didChangeUserPassword:(NSError *)result {
@@ -272,6 +271,7 @@
         _msgSuccessView.hidden = NO;
     } else {
         //重置密码邮件发送失败，弹出错误信息
+        [SVProgressHUD dismiss];
         [NSObject showHudTipStr:LocalString(@"Reset password mail failed to send")];
     }
 }
@@ -280,6 +280,7 @@
     if ([self.emailResetStr isEqualToString:@""]) {
         [NSObject showHudTipStr:LocalString(@"Please enter your e-mail address")];
     }else{
+        [SVProgressHUD show];
         [[GizWifiSDK sharedInstance] resetPassword:self.emailResetStr verifyCode:nil newPassword:nil accountType:GizUserEmail];
     }
     
@@ -289,7 +290,6 @@
     if ([self.emailResetStr isEqualToString:@""]) {
         [NSObject showHudTipStr:LocalString(@"Please enter your e-mail address")];
     }else{
-        NSLog(@"fgggg%@",self.emailResetStr);
         [SVProgressHUD show];
         [[GizWifiSDK sharedInstance] resetPassword:self.emailResetStr verifyCode:nil newPassword:nil accountType:GizUserEmail];
     }

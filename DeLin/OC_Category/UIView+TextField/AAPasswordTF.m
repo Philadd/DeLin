@@ -48,7 +48,8 @@
         //上移动 label的Frame
         self.labelView = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.passwordTFFrame) + 20 , CGRectGetMinY(self.passwordTFFrame) + yAutoFit(20), yAutoFit(100) , yAutoFit(18))];
         self.labelView.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0];
-        [inputText addSubview:self.labelView];
+        //建立图层 防止点击labelView背景不响应事件
+        [self insertSubview:self.labelView atIndex:0];
         
         CGRect frameLabel = CGRectMake(CGRectGetMinX(self.labelView.bounds) + 5 , CGRectGetMinY(self.labelView.bounds) + 5 , self.labelView.bounds.size.width , self.labelView.bounds.size.height);
         self.textLabel = [self makeWithFrame:frameLabel];
@@ -97,7 +98,7 @@
         
         CABasicAnimation *aniPosition = [CABasicAnimation animationWithKeyPath:@"position"];
         aniPosition.fromValue = [NSValue valueWithCGPoint:CGPointMake(CGRectGetMinX(frame), label.frame.origin.y)];
-        aniPosition.toValue = [NSValue valueWithCGPoint:CGPointMake(CGRectGetMinX(frame), label.frame.origin.y - 13)];
+        aniPosition.toValue = [NSValue valueWithCGPoint:CGPointMake(CGRectGetMinX(frame), label.frame.origin.y - 15)];
         
         CABasicAnimation *aniAnchorPoint = [CABasicAnimation animationWithKeyPath:@"anchorPoint"];
         aniAnchorPoint.fromValue = [NSValue valueWithCGPoint:CGPointMake(0, 1)];
@@ -114,6 +115,8 @@
 
 -(void)passwordTFBeginEditing
 {
+    //改变图层显示效果
+    [self insertSubview:self.labelView atIndex:2];
     [self addBeginAnimationWithLabel:self.labelView];
     
 }
@@ -133,7 +136,7 @@
         
         CABasicAnimation *aniPosition = [CABasicAnimation animationWithKeyPath:@"position"];
         aniPosition.toValue = [NSValue valueWithCGPoint:CGPointMake(CGRectGetMinX(frame), label.frame.origin.y)];
-        aniPosition.fromValue = [NSValue valueWithCGPoint:CGPointMake(CGRectGetMinX(frame), label.frame.origin.y -13)];
+        aniPosition.fromValue = [NSValue valueWithCGPoint:CGPointMake(CGRectGetMinX(frame), label.frame.origin.y -15)];
         
         CABasicAnimation *aniScale = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
         aniScale.fromValue = [NSNumber numberWithFloat:0.6];
@@ -145,6 +148,9 @@
         anis.removedOnCompletion = NO;
         anis.fillMode = kCAFillModeForwards;
         [label.layer addAnimation:anis forKey:nil];
+        
+        //恢复图层效果
+        [self insertSubview:self.labelView atIndex:0];
     });
 }
 
