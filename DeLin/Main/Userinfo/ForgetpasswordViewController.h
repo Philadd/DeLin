@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ForgetpasswordViewController : UIViewController
 
+@property (strong, nonatomic) NSString *emailResetStr;
+
 @end
 
 NS_ASSUME_NONNULL_END

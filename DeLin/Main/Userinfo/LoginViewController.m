@@ -126,7 +126,7 @@
         [self.view addSubview:_forgetPWBtn];
         [_forgetPWBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(yAutoFit(150), yAutoFit(20)));
-            make.top.equalTo(self.loginBtn.mas_bottom).offset(yAutoFit(400));
+            make.top.equalTo(self.labelBgView.mas_bottom).offset(yAutoFit(200));
             make.centerX.equalTo(self.view.mas_centerX);
         }];
     }
@@ -237,7 +237,8 @@
 
 - (void)forgetPW{
     ForgetpasswordViewController *ForgetVC = [[ForgetpasswordViewController alloc] init];
-    [self.navigationController pushViewController:ForgetVC animated:YES];
+    ForgetVC.emailResetStr = self.emailModelTF.inputText.text;
+    [self presentViewController:ForgetVC animated:YES completion:nil];
     
 }
 
