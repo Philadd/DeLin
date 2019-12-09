@@ -1,8 +1,8 @@
 //
-//  AATextField.h
+//  AAWiFiPasswordTF.h
 //  DeLin
 //
-//  Created by 安建伟 on 2019/12/3.
+//  Created by 安建伟 on 2019/12/9.
 //  Copyright © 2019 com.thingcom. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AAPasswordTF : UIView <UITextFieldDelegate>
+@interface AAWiFiPasswordTF : UIView <UITextFieldDelegate>
 
 @property (nonatomic,strong) NSString *PlaceholderText;
 

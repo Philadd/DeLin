@@ -9,6 +9,7 @@
 #import "DeviceInfoViewController.h"
 #import "LogoutViewController.h"
 #import "PersonSettingViewController.h"
+#import "DeviceNetworkViewController.h"
 
 @interface DeviceInfoViewController ()
 
@@ -28,7 +29,7 @@
     _AddEquipmentBtn = [self AddEquipmentBtn];
     
     [self setNavItem];
-    
+    //开启自动登录
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"isAutoLogin"] == NO) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isAutoLogin"];
         [[NSUserDefaults standardUserDefaults] synchronize];
@@ -80,7 +81,7 @@
         [areaImg mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(350)));
             make.top.equalTo(self.msgCenterView.mas_top).offset(yAutoFit(40));
-            make.right.equalTo(self.msgCenterView.mas_right);
+            make.right.equalTo(self.msgCenterView.mas_right).offset(yAutoFit(-5.f));
         }];
         
         UIView *labelBgView = [[UIView alloc] initWithFrame:CGRectMake( 0 , yAutoFit(40) + yAutoFit(370), ScreenWidth,yAutoFit(200) )];
@@ -168,6 +169,8 @@
 }
 
 -(void)addEquipment{
+    DeviceNetworkViewController *VC = [[DeviceNetworkViewController alloc] init];
+    [self.navigationController pushViewController:VC animated:YES];
     
 }
 

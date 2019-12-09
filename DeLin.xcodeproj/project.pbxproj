@@ -28,6 +28,7 @@
 		36796545239DDE7600DD7B4A /* PersonSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36796544239DDE7600DD7B4A /* PersonSettingViewController.m */; };
 		36796548239DDF3C00DD7B4A /* PersonSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36796547239DDF3C00DD7B4A /* PersonSettingCell.m */; };
 		3679654A239E1A5600DD7B4A /* img_cancel_balck_Btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 36796549239E1A5600DD7B4A /* img_cancel_balck_Btn.png */; };
+		3679654D239E6F6300DD7B4A /* AAWiFiPasswordTF.m in Sources */ = {isa = PBXBuildFile; fileRef = 3679654C239E6F6300DD7B4A /* AAWiFiPasswordTF.m */; };
 		36866E2F2384D0F20022F265 /* InputPINViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36866E2E2384D0F20022F265 /* InputPINViewController.m */; };
 		36866E3C2384F10F0022F265 /* area_img@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36866E302384F10F0022F265 /* area_img@2x.png */; };
 		36866E3D2384F10F0022F265 /* area_img.png in Resources */ = {isa = PBXBuildFile; fileRef = 36866E312384F10F0022F265 /* area_img.png */; };
@@ -204,6 +205,8 @@
 		36796546239DDF3C00DD7B4A /* PersonSettingCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonSettingCell.h; sourceTree = "<group>"; };
 		36796547239DDF3C00DD7B4A /* PersonSettingCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonSettingCell.m; sourceTree = "<group>"; };
 		36796549239E1A5600DD7B4A /* img_cancel_balck_Btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_cancel_balck_Btn.png; sourceTree = "<group>"; };
+		3679654B239E6F6300DD7B4A /* AAWiFiPasswordTF.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAWiFiPasswordTF.h; sourceTree = "<group>"; };
+		3679654C239E6F6300DD7B4A /* AAWiFiPasswordTF.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAWiFiPasswordTF.m; sourceTree = "<group>"; };
 		36866E2D2384D0F20022F265 /* InputPINViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputPINViewController.h; sourceTree = "<group>"; };
 		36866E2E2384D0F20022F265 /* InputPINViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputPINViewController.m; sourceTree = "<group>"; };
 		36866E302384F10F0022F265 /* area_img@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "area_img@2x.png"; sourceTree = "<group>"; };
@@ -773,6 +776,8 @@
 				36E594142397BBE000DE4F04 /* AAPersonalFirstNameTF.m */,
 				36E594152397BBE000DE4F04 /* AAPersonalLastNameTF.h */,
 				36E594162397BBE000DE4F04 /* AAPersonalLastNameTF.m */,
+				3679654B239E6F6300DD7B4A /* AAWiFiPasswordTF.h */,
+				3679654C239E6F6300DD7B4A /* AAWiFiPasswordTF.m */,
 			);
 			path = "UIView+TextField";
 			sourceTree = "<group>";
@@ -1161,6 +1166,7 @@
 				368AB332235F0623002B6D37 /* GosAlertView.m in Sources */,
 				36085886238686B50094501B /* WorkTimeViewController.m in Sources */,
 				3618FC5C237D27B100255426 /* MMSideDrawerSectionHeaderView.m in Sources */,
+				3679654D239E6F6300DD7B4A /* AAWiFiPasswordTF.m in Sources */,
 				368E5077238E1D0300AFE3B3 /* WelcomeViewController.m in Sources */,
 				36930A0F237C0914003DAFBD /* UIViewController+BarButton.m in Sources */,
 				36E59451239B7F8900DE4F04 /* DeviceInfoViewController.m in Sources */,

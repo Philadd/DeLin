@@ -10,18 +10,18 @@
 #import "FinishNetworkViewController.h"
 #import "ConnectNetworkViewController.h"
 #import <SystemConfiguration/CaptiveNetwork.h>
+#import "UIView+Border.h"
+#import "AAWiFiPasswordTF.h"
 
 @interface DeviceNetworkViewController () <UITextFieldDelegate>
 
-@property (nonatomic, strong) UILabel *Label_1;
-@property (nonatomic, strong) UILabel *Label_2;
-
 @property (nonatomic, strong) UITextField *wifiNameTF;
-@property (nonatomic, strong) UITextField *passwordTF;
-@property (nonatomic, strong) UIButton *nextBtn;
-@property (nonatomic, strong) UIButton *eyespasswordBtn;
 
-@property (strong, nonatomic)  UIImageView *deviceImage;
+@property (nonatomic, strong) UIView *labelBgView;
+@property (nonatomic, strong) UIButton *continueBtn;
+@property (nonatomic, strong) UIButton *agreementBtn;
+
+@property (nonatomic,strong) AAWiFiPasswordTF *passwordModelTF;
 
 
 @end
@@ -33,101 +33,70 @@
     // Do any additional setup after loading the view.
     [self setNavItem];
     
-    _Label_1 = [self Label_1];
-    _Label_2 = [self Label_2];
+    _labelBgView = [self labelBgView];
     _wifiNameTF = [self wifiNameTF];
-    _passwordTF = [self passwordTF];
-    _nextBtn = [self nextBtn];
-    _deviceImage = [self deviceImage];
-    _eyespasswordBtn = [self eyespasswordBtn];
-    [_eyespasswordBtn setImage:[UIImage imageNamed:@"ic_eyesclosed"] forState:UIControlStateNormal];
+    _agreementBtn = [self agreementBtn];
+    _continueBtn = [self continueBtn];
+    [self setUItextField];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 - (void)setNavItem{
     self.navigationItem.title = LocalString(@"Add Robot");
 }
 
-- (UIImageView *)deviceImage{
-    if (!_deviceImage) {
-        _deviceImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"device"]];
-        [self.view addSubview:_deviceImage];
+- (UIView *)labelBgView{
+    if (!_labelBgView) {
+        _labelBgView = [[UIView alloc] initWithFrame:CGRectMake( 0 , getRectNavAndStatusHight + yAutoFit(20), ScreenWidth,yAutoFit(150))];
+        _labelBgView.backgroundColor = [UIColor clearColor];
+        [self.view addSubview:_labelBgView];
         
-        [_deviceImage mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(ScreenWidth * 0.9, ScreenHeight * 0.3));
-            make.top.equalTo(self.view.mas_top).offset(yAutoFit(80));
-            make.centerX.equalTo(self.view.mas_centerX);
+        UILabel *welcomelabel = [[UILabel alloc] init];
+        welcomelabel.text = LocalString(@"Select your home wireless network and enter your password");
+        welcomelabel.font = [UIFont systemFontOfSize:18.f];
+        welcomelabel.numberOfLines = 0;
+        welcomelabel.textColor = [UIColor whiteColor];
+        welcomelabel.textAlignment = NSTextAlignmentCenter;
+        welcomelabel.adjustsFontSizeToFitWidth = YES;
+        [self.labelBgView addSubview:welcomelabel];
+        [welcomelabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(320.f) , yAutoFit(100.f)));
+            make.centerX.equalTo(self.labelBgView.mas_centerX);
+            make.top.equalTo(self.labelBgView.mas_top).offset(yAutoFit(20.f));
         }];
+        
     }
-    return _deviceImage;
-}
-
-- (UILabel *)Label_1{
-    if (!_Label_1) {
-        _Label_1 = [[UILabel alloc] init];
-        _Label_1.font = [UIFont systemFontOfSize:14.f];
-        _Label_1.backgroundColor = [UIColor clearColor];
-        _Label_1.textColor = [UIColor blackColor];
-        _Label_1.text = LocalString(@"Verify connection to your Wi-Fi network,then enter the network name and password.");
-        //自动折行设置
-        [_Label_1 setLineBreakMode:NSLineBreakByWordWrapping];
-        _Label_1.numberOfLines = 0;
-        _Label_1.textAlignment = NSTextAlignmentLeft;
-        _Label_1.adjustsFontSizeToFitWidth = YES;
-        [self.view addSubview:_Label_1];
-        [_Label_1 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(320),yAutoFit(60)));
-            make.top.equalTo(self.view.mas_top).offset(yAutoFit(300));
-            make.centerX.mas_equalTo(self.view.mas_centerX);
-        }];
-
-    }
-    return _Label_1;
-}
-
-- (UILabel *)Label_2{
-    if (!_Label_2) {
-        _Label_2 = [[UILabel alloc] init];
-        _Label_2.font = [UIFont systemFontOfSize:14.f];
-        _Label_2.backgroundColor = [UIColor clearColor];
-        _Label_2.textColor = [UIColor blackColor];
-        _Label_2.textAlignment = NSTextAlignmentLeft;
-        _Label_2.text = LocalString(@"Make sure to use 2.4GHz Wi-Fi network.");
-        //自动折行设置
-        [_Label_2 setLineBreakMode:NSLineBreakByWordWrapping];
-        _Label_2.numberOfLines = 0;
-        _Label_2.textAlignment = NSTextAlignmentLeft;
-        [self.view addSubview:_Label_2];
-        [_Label_2 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(40)));
-            make.centerX.mas_equalTo(self.view.mas_centerX);
-            make.top.equalTo(self.Label_1.mas_bottom).offset(yAutoFit(20));
-        }];
-    }
-    return _Label_2;
+    return _labelBgView;
 }
 
 - (UITextField *)wifiNameTF{
     if (!_wifiNameTF) {
-        _wifiNameTF = [[UITextField alloc] init];
-        _wifiNameTF.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+        _wifiNameTF = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, yAutoFit(320), yAutoFit(60))];
+        _wifiNameTF.backgroundColor = [UIColor clearColor];
         _wifiNameTF.font = [UIFont systemFontOfSize:15.f];
-        _wifiNameTF.tintColor = [UIColor colorWithHexString:@"333333"];
+        _wifiNameTF.textColor = [UIColor whiteColor];
         _wifiNameTF.clearButtonMode = UITextFieldViewModeWhileEditing;
         _wifiNameTF.autocorrectionType = UITextAutocorrectionTypeNo;
         _wifiNameTF.delegate = self;
         _wifiNameTF.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-        _wifiNameTF.borderStyle = UITextBorderStyleRoundedRect;
         [_wifiNameTF addTarget:self action:@selector(textFieldTextChange) forControlEvents:UIControlEventEditingChanged];
         [self.view addSubview:_wifiNameTF];
         [_wifiNameTF mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(40)));
-            make.top.equalTo(self.Label_2.mas_bottom).offset(yAutoFit(30));
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(60)));
+            make.top.equalTo(self.labelBgView.mas_bottom).offset(yAutoFit(20));
             make.centerX.mas_equalTo(self.view.mas_centerX);
         }];
-        _wifiNameTF.layer.borderWidth = 0.5;
-        _wifiNameTF.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
-        _wifiNameTF.layer.cornerRadius = 2.5f;
+        //自定义boder的样式
+        [_wifiNameTF setBorderWithTop:YES Left:YES Bottom:YES Right:YES BorderColor:[UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0] BorderWidth:1.f];
         //获取当前连接的Wi-FiSSID
         _wifiNameTF.text = [self getDeviceSSID];  
         
@@ -135,77 +104,109 @@
     return _wifiNameTF;
 }
 
-- (UIButton *)eyespasswordBtn{
-    if (!_eyespasswordBtn) {
-        _eyespasswordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_eyespasswordBtn addTarget:self action:@selector(eyespassword) forControlEvents:UIControlEventTouchUpInside];
-        [_eyespasswordBtn.widthAnchor constraintEqualToConstant:30].active = YES;
-        [_eyespasswordBtn.heightAnchor constraintEqualToConstant:30].active = YES;
-        [self.view addSubview:_eyespasswordBtn];
-        [_eyespasswordBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(30),yAutoFit(30)));
-            make.right.equalTo(self.view.mas_right).offset(-50);
-            make.centerY.equalTo(self.passwordTF.mas_centerY);
-        }];
-    }
-    return _eyespasswordBtn;
+#pragma mark - Actions
+
+- (void)setUItextField{
+    
+    CGRect passwordF = CGRectMake(0, 0, yAutoFit(320), yAutoFit(60));
+    
+    self.passwordModelTF = [[AAWiFiPasswordTF alloc]initWithFrame:passwordF withPlaceholderText:LocalString(@"Wi-Fi Password")];
+    self.passwordModelTF.inputText.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    self.passwordModelTF.inputText.autocorrectionType = UITextAutocorrectionTypeNo;
+    self.passwordModelTF.inputText.keyboardType = UIKeyboardTypeASCIICapable;
+    self.passwordModelTF.frame = passwordF;
+    self.passwordModelTF.inputText.delegate = self;
+    [self.view addSubview:self.passwordModelTF];
+    
+    [self.passwordModelTF mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(40)));
+        make.top.equalTo(self.wifiNameTF.mas_bottom).offset(yAutoFit(30));
+        make.centerX.mas_equalTo(self.view.mas_centerX);
+    }];
+    
+    UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
+    tapGr.cancelsTouchesInView = NO;
+    
+    [self.passwordModelTF.labelView addGestureRecognizer:tapGr];
 }
 
-- (UITextField *)passwordTF{
-    if (!_passwordTF) {
-        _passwordTF = [[UITextField alloc] init];
-        _passwordTF.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
-        _passwordTF.font = [UIFont systemFontOfSize:15.f];
-        _passwordTF.tintColor = [UIColor colorWithHexString:@"333333"];
-        _passwordTF.clearButtonMode = UITextFieldViewModeWhileEditing;
-        _passwordTF.autocorrectionType = UITextAutocorrectionTypeNo;
-        _passwordTF.delegate = self;
-        _passwordTF.secureTextEntry = YES;
-        _passwordTF.autocorrectionType = UITextAutocorrectionTypeNo;
-        _passwordTF.autocapitalizationType = UITextAutocapitalizationTypeNone;
-        _passwordTF.borderStyle = UITextBorderStyleRoundedRect;
+- (UIButton *)agreementBtn{
+    if (!_agreementBtn) {
+        _agreementBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _agreementBtn.tag = aUnselect;
+        [_agreementBtn setImage:[UIImage imageNamed:@"img_unselect"] forState:UIControlStateNormal];
+        [_agreementBtn setBackgroundColor:[UIColor clearColor]];
+        [_agreementBtn.widthAnchor constraintEqualToConstant:25].active = YES;
+        [_agreementBtn.heightAnchor constraintEqualToConstant:25].active = YES;
+        _agreementBtn.tag = aUnselect;
+        [_agreementBtn addTarget:self action:@selector(checkAgreement) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_agreementBtn];
+        [_agreementBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(20.f), yAutoFit(20.f)));
+            make.left.equalTo(self.view.mas_left).offset(yAutoFit(40.f));
+            make.top.equalTo(self.wifiNameTF.mas_bottom).offset(yAutoFit(100));
+        }];
         
-        [_passwordTF addTarget:self action:@selector(textFieldTextChange) forControlEvents:UIControlEventEditingChanged];
-        [self.view addSubview:_passwordTF];
-        [_passwordTF mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(40)));
-            make.top.equalTo(self.wifiNameTF.mas_bottom).offset(yAutoFit(30));
-            make.centerX.mas_equalTo(self.view.mas_centerX);
+        UILabel *agreementLabel = [[UILabel alloc] init];
+        agreementLabel.text = LocalString(@"No password");
+        agreementLabel.font = [UIFont systemFontOfSize:14.f];
+        agreementLabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.7];
+        agreementLabel.numberOfLines = 0;
+        agreementLabel.textAlignment = NSTextAlignmentLeft;
+        agreementLabel.adjustsFontSizeToFitWidth = YES;
+        [self.view addSubview:agreementLabel];
+        [agreementLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(300), yAutoFit(80)));
+            make.centerY.equalTo(self.agreementBtn.mas_centerY);
+            make.left.equalTo(self.agreementBtn.mas_right).offset(yAutoFit(5.f));
         }];
-        _passwordTF.layer.borderWidth = 0.5;
-        _passwordTF.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
-        _passwordTF.layer.cornerRadius = 2.5f;
-        _passwordTF.placeholder = LocalString(@"Wi-Fi Password");
     }
-    return _passwordTF;
+    return _agreementBtn;
 }
 
-- (UIButton *)nextBtn{
-    if (!_nextBtn) {
-        _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_nextBtn setTitle:LocalString(@"Next") forState:UIControlStateNormal];
-        [_nextBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
-        [_nextBtn setTitleColor:[UIColor colorWithHexString:@"333333"] forState:UIControlStateNormal];
-        [_nextBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0f]];
-        [_nextBtn addTarget:self action:@selector(next) forControlEvents:UIControlEventTouchUpInside];
-        _nextBtn.enabled = YES;
-        [self.view addSubview:_nextBtn];
-        [_nextBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(50)));
-            make.top.equalTo(self.passwordTF.mas_bottom).offset(yAutoFit(30));
-            make.centerX.mas_equalTo(self.view.mas_centerX);
+- (UIButton *)continueBtn{
+    if (!_continueBtn) {
+        _continueBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_continueBtn setTitle:LocalString(@"Submit") forState:UIControlStateNormal];
+        [_continueBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
+        [_continueBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_continueBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:1.f]];
+        [_continueBtn addTarget:self action:@selector(goContinue) forControlEvents:UIControlEventTouchUpInside];
+        _continueBtn.enabled = YES;
+        [self.view addSubview:_continueBtn];
+        [_continueBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(ScreenWidth, yAutoFit(45)));
+            make.centerX.equalTo(self.view.mas_centerX);
+            make.bottom.equalTo(self.view.mas_bottom);
         }];
-      
-        _nextBtn.layer.borderWidth = 0.5;
-        _nextBtn.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
-        _nextBtn.layer.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.16].CGColor;
-        _nextBtn.layer.shadowOffset = CGSizeMake(0,2.5);
-        _nextBtn.layer.shadowRadius = 3;
-        _nextBtn.layer.shadowOpacity = 1;
-        _nextBtn.layer.cornerRadius = 2.5;
+        
+        _continueBtn.layer.borderWidth = 0.5;
+        _continueBtn.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
+        _continueBtn.layer.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.16].CGColor;
+        _continueBtn.layer.shadowOffset = CGSizeMake(0,2.5);
+        _continueBtn.layer.shadowRadius = 3;
+        _continueBtn.layer.shadowOpacity = 1;
+        _continueBtn.layer.cornerRadius = 2.5;
     }
-    return _nextBtn;
+    return _continueBtn;
 }
+
+#pragma mark - UITextField Delegate
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField.text.length <= 0) {
+        [self.passwordModelTF passwordTFBeginEditing];
+    }
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField.text.length <= 0) {
+        [self.passwordModelTF passwordTFEndEditing];
+    }
+}
+
 
 #pragma 获取设备当前连接的WIFI的SSID
 - (NSString *) getDeviceSSID
@@ -226,56 +227,34 @@
     
 }
 
-#pragma mark - UITextFieldDelegate
-- (void)textFieldDidBeginEditing:(UITextField *)textField{
-    
-}
+#pragma mark - Actions
 
-#pragma mark - UIUITextField action
-
--(void)textFieldTextChange{
-    
-}
-
-#pragma mark - resign keyboard control
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    [self.wifiNameTF resignFirstResponder];
-    [self.passwordTF resignFirstResponder];
-    
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField
+-(void)viewTapped:(UITapGestureRecognizer*)tapGr
 {
-    [self.wifiNameTF resignFirstResponder];
-    [self.passwordTF resignFirstResponder];
+    [self.passwordModelTF.inputText resignFirstResponder];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
-    return YES;
-}
-
-- (void)eyespassword{
-    if (_passwordTF.secureTextEntry == YES) {
-        [_eyespasswordBtn setImage:[UIImage imageNamed:@"ic_eyespassword"] forState:UIControlStateNormal];
-        _passwordTF.secureTextEntry = NO;
-    }else{
-        _passwordTF.secureTextEntry = YES;
-        [_eyespasswordBtn setImage:[UIImage imageNamed:@"ic_eyesclosed"] forState:UIControlStateNormal];
-    }
+-(void)goContinue{
     
-}
-
--(void)next{
     GizManager *manager = [GizManager shareInstance];
     manager.ssid = _wifiNameTF.text;
-    manager.key = _passwordTF.text;
+    manager.key = self.passwordModelTF.inputText.text;
     
-    if (_passwordTF.text.length > 0) {
+    if (self.passwordModelTF.inputText.text.length > 0) {
         ConnectNetworkViewController *VC = [[ConnectNetworkViewController alloc] init];
         [self.navigationController pushViewController:VC animated:YES];
     }
+}
+
+-(void)checkAgreement{
+    if (_agreementBtn.tag == aUnselect) {
+        _agreementBtn.tag = aSelect;
+        [_agreementBtn setImage:[UIImage imageNamed:@"img_unselect"] forState:UIControlStateNormal];
+    }else if (_agreementBtn.tag == aSelect) {
+        _agreementBtn.tag = aUnselect;
+        [_agreementBtn setImage:[UIImage imageNamed:@"img_select"] forState:UIControlStateNormal];
+    }
+    
 }
 
 @end
