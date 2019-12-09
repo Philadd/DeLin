@@ -9,9 +9,9 @@
 #import "AppDelegate.h"
 #import <Bugly/Bugly.h>
 #import <GizWifiSDK/GizWifiSDK.h>
-#import "LoginViewController.h"
 #import "WelcomeViewController.h"
 #import "IQKeyboardManager.h"
+#import "DeviceInfoViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -32,13 +32,18 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
     WelcomeViewController *welcomeVC = [[WelcomeViewController alloc] init];
-    _navController = [[UINavigationController alloc] initWithRootViewController:welcomeVC];
+    DeviceInfoViewController *deviceInfoVC = [[DeviceInfoViewController alloc] init];
+    //判断是否是第一次启动
+    //好像如果读取bool值没有该key的时候默认为NO，没有nil的情况了
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"isAutoLogin"] == NO) {
+        NSLog(@"第一次启动");
+        _navController = [[UINavigationController alloc] initWithRootViewController:welcomeVC];
+    }else if([[NSUserDefaults standardUserDefaults] boolForKey:@"isAutoLogin"] == YES){
+        NSLog(@"非第一次启动");
+
+        _navController = [[UINavigationController alloc] initWithRootViewController:deviceInfoVC];
+    }
     self.window.rootViewController = _navController;
-//    LoginViewController *loginVC = [[LoginViewController alloc] init];
-//    //loginVC.isAutoLogin = YES;
-//    _navController = [[UINavigationController alloc] initWithRootViewController:loginVC];
-//    self.window.rootViewController = _navController;
-    
     [self.window makeKeyAndVisible];
     
     return YES;

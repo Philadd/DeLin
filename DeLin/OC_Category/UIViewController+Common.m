@@ -10,7 +10,7 @@
 
 @implementation UIViewController (Common)
 
-#pragma mark - VC的操作
+#pragma mark - 获取window根视图
 
 //获取当前屏幕显示的viewcontroller
 + (UIViewController *)getCurrentVC

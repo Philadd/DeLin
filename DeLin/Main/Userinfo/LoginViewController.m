@@ -7,11 +7,13 @@
 //
 
 #import "LoginViewController.h"
+#import "AppDelegate.h"
 #import "RegisterViewController.h"
 #import "ForgetpasswordViewController.h"
 #import "DeviceListViewController.h"
 #import "AAEmailTextField.h"
 #import "AAPasswordTF.h"
+#import "DeviceInfoViewController.h"
 
 @interface LoginViewController ()<UITextFieldDelegate,GizWifiSDKDelegate>
 
@@ -24,6 +26,9 @@
 @end
 
 @implementation LoginViewController
+{
+    NSString *emailStr;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -208,21 +213,21 @@
         
         [GizManager shareInstance].uid = uid;
         [GizManager shareInstance].token = token;
+        self->emailStr = self.emailModelTF.inputText.text;
         
-        //保存Wi-Fi名称
-        NSUserDefaults *wifinameDefaults = [NSUserDefaults standardUserDefaults];
-        [wifinameDefaults setObject: [GizManager getCurrentWifi] forKey:@"wifiname"];
-        NSLog(@"Wi-Fi名称%@",[GizManager getCurrentWifi]);
-
-        DeviceListViewController *WelcomeVC = [[DeviceListViewController alloc] init];
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:WelcomeVC];
+        //保存邮箱
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:self.emailModelTF.inputText.text forKey:@"userEmail"];
+        [userDefaults synchronize];
+        
+        DeviceInfoViewController *InfoVC = [[DeviceInfoViewController alloc] init];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:InfoVC];
         [self presentViewController:nav animated:YES completion:nil];
         
     } else {
         // 登录失败
         NSLog(@"登录失败,%@", result);
         [NSObject showHudTipStr:LocalString(@"Login failed")];
-        //[NSObject showHudTipStr3:[NSString stringWithFormat:@"%@",result]];
         
     }
     
