@@ -29,6 +29,16 @@
 		36796548239DDF3C00DD7B4A /* PersonSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36796547239DDF3C00DD7B4A /* PersonSettingCell.m */; };
 		3679654A239E1A5600DD7B4A /* img_cancel_balck_Btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 36796549239E1A5600DD7B4A /* img_cancel_balck_Btn.png */; };
 		3679654D239E6F6300DD7B4A /* AAWiFiPasswordTF.m in Sources */ = {isa = PBXBuildFile; fileRef = 3679654C239E6F6300DD7B4A /* AAWiFiPasswordTF.m */; };
+		36796550239F7CD300DD7B4A /* SelectDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3679654F239F7CD300DD7B4A /* SelectDeviceViewController.m */; };
+		36796553239F7E1A00DD7B4A /* SelectDeviceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36796552239F7E1A00DD7B4A /* SelectDeviceCell.m */; };
+		36796558239F826100DD7B4A /* img_selectDevice_Cell.png in Resources */ = {isa = PBXBuildFile; fileRef = 36796555239F826100DD7B4A /* img_selectDevice_Cell.png */; };
+		36796559239F826100DD7B4A /* img_selectDevice_Cell@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36796556239F826100DD7B4A /* img_selectDevice_Cell@3x.png */; };
+		3679655A239F826100DD7B4A /* img_selectDevice_Cell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36796557239F826100DD7B4A /* img_selectDevice_Cell@2x.png */; };
+		3679655D239F8E9800DD7B4A /* NetWorkHomeTipController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3679655C239F8E9800DD7B4A /* NetWorkHomeTipController.m */; };
+		36796567239F917A00DD7B4A /* img_netWork_hometip@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36796564239F917A00DD7B4A /* img_netWork_hometip@3x.png */; };
+		36796568239F917A00DD7B4A /* img_netWork_hometip.png in Resources */ = {isa = PBXBuildFile; fileRef = 36796565239F917A00DD7B4A /* img_netWork_hometip.png */; };
+		36796569239F917A00DD7B4A /* img_netWork_hometip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36796566239F917A00DD7B4A /* img_netWork_hometip@2x.png */; };
+		3679656F239F927C00DD7B4A /* NetWorkDeviceTipController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3679656E239F927C00DD7B4A /* NetWorkDeviceTipController.m */; };
 		36866E2F2384D0F20022F265 /* InputPINViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36866E2E2384D0F20022F265 /* InputPINViewController.m */; };
 		36866E3C2384F10F0022F265 /* area_img@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36866E302384F10F0022F265 /* area_img@2x.png */; };
 		36866E3D2384F10F0022F265 /* area_img.png in Resources */ = {isa = PBXBuildFile; fileRef = 36866E312384F10F0022F265 /* area_img.png */; };
@@ -207,6 +217,20 @@
 		36796549239E1A5600DD7B4A /* img_cancel_balck_Btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_cancel_balck_Btn.png; sourceTree = "<group>"; };
 		3679654B239E6F6300DD7B4A /* AAWiFiPasswordTF.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAWiFiPasswordTF.h; sourceTree = "<group>"; };
 		3679654C239E6F6300DD7B4A /* AAWiFiPasswordTF.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAWiFiPasswordTF.m; sourceTree = "<group>"; };
+		3679654E239F7CD300DD7B4A /* SelectDeviceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectDeviceViewController.h; sourceTree = "<group>"; };
+		3679654F239F7CD300DD7B4A /* SelectDeviceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectDeviceViewController.m; sourceTree = "<group>"; };
+		36796551239F7E1A00DD7B4A /* SelectDeviceCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectDeviceCell.h; sourceTree = "<group>"; };
+		36796552239F7E1A00DD7B4A /* SelectDeviceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectDeviceCell.m; sourceTree = "<group>"; };
+		36796555239F826100DD7B4A /* img_selectDevice_Cell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_selectDevice_Cell.png; sourceTree = "<group>"; };
+		36796556239F826100DD7B4A /* img_selectDevice_Cell@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_selectDevice_Cell@3x.png"; sourceTree = "<group>"; };
+		36796557239F826100DD7B4A /* img_selectDevice_Cell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_selectDevice_Cell@2x.png"; sourceTree = "<group>"; };
+		3679655B239F8E9800DD7B4A /* NetWorkHomeTipController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetWorkHomeTipController.h; sourceTree = "<group>"; };
+		3679655C239F8E9800DD7B4A /* NetWorkHomeTipController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetWorkHomeTipController.m; sourceTree = "<group>"; };
+		36796564239F917A00DD7B4A /* img_netWork_hometip@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_netWork_hometip@3x.png"; sourceTree = "<group>"; };
+		36796565239F917A00DD7B4A /* img_netWork_hometip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_netWork_hometip.png; sourceTree = "<group>"; };
+		36796566239F917A00DD7B4A /* img_netWork_hometip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_netWork_hometip@2x.png"; sourceTree = "<group>"; };
+		3679656D239F927C00DD7B4A /* NetWorkDeviceTipController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetWorkDeviceTipController.h; sourceTree = "<group>"; };
+		3679656E239F927C00DD7B4A /* NetWorkDeviceTipController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetWorkDeviceTipController.m; sourceTree = "<group>"; };
 		36866E2D2384D0F20022F265 /* InputPINViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputPINViewController.h; sourceTree = "<group>"; };
 		36866E2E2384D0F20022F265 /* InputPINViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputPINViewController.m; sourceTree = "<group>"; };
 		36866E302384F10F0022F265 /* area_img@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "area_img@2x.png"; sourceTree = "<group>"; };
@@ -444,6 +468,19 @@
 			path = NavigationBarHandle;
 			sourceTree = "<group>";
 		};
+		36796554239F81E400DD7B4A /* image_icon_ESP */ = {
+			isa = PBXGroup;
+			children = (
+				36796565239F917A00DD7B4A /* img_netWork_hometip.png */,
+				36796566239F917A00DD7B4A /* img_netWork_hometip@2x.png */,
+				36796564239F917A00DD7B4A /* img_netWork_hometip@3x.png */,
+				36796555239F826100DD7B4A /* img_selectDevice_Cell.png */,
+				36796557239F826100DD7B4A /* img_selectDevice_Cell@2x.png */,
+				36796556239F826100DD7B4A /* img_selectDevice_Cell@3x.png */,
+			);
+			path = image_icon_ESP;
+			sourceTree = "<group>";
+		};
 		368AB2EF235F03CA002B6D37 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -572,12 +609,19 @@
 		368AB325235F0623002B6D37 /* ESP */ = {
 			isa = PBXGroup;
 			children = (
+				3679654E239F7CD300DD7B4A /* SelectDeviceViewController.h */,
+				3679654F239F7CD300DD7B4A /* SelectDeviceViewController.m */,
+				3679655B239F8E9800DD7B4A /* NetWorkHomeTipController.h */,
+				3679655C239F8E9800DD7B4A /* NetWorkHomeTipController.m */,
+				3679656D239F927C00DD7B4A /* NetWorkDeviceTipController.h */,
+				3679656E239F927C00DD7B4A /* NetWorkDeviceTipController.m */,
 				36930A04237C064D003DAFBD /* DeviceNetworkViewController.h */,
 				36930A01237C064D003DAFBD /* DeviceNetworkViewController.m */,
 				36930A03237C064D003DAFBD /* ConnectNetworkViewController.h */,
 				36930A06237C064D003DAFBD /* ConnectNetworkViewController.m */,
 				36930A07237C064D003DAFBD /* FinishNetworkViewController.h */,
 				36930A05237C064D003DAFBD /* FinishNetworkViewController.m */,
+				36796554239F81E400DD7B4A /* image_icon_ESP */,
 			);
 			path = ESP;
 			sourceTree = "<group>";
@@ -673,6 +717,8 @@
 				368E50A02390CB4D00AFE3B3 /* RegionCell.m */,
 				36796546239DDF3C00DD7B4A /* PersonSettingCell.h */,
 				36796547239DDF3C00DD7B4A /* PersonSettingCell.m */,
+				36796551239F7E1A00DD7B4A /* SelectDeviceCell.h */,
+				36796552239F7E1A00DD7B4A /* SelectDeviceCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -987,10 +1033,12 @@
 				36F1ED1123891FD300E1C7A8 /* manual_icon_imag.png in Resources */,
 				36E59475239BA77300DE4F04 /* img_setting_Btn@3x.png in Resources */,
 				36F1ED0C23891FD300E1C7A8 /* manual_icon_imag@2x.png in Resources */,
+				36796558239F826100DD7B4A /* img_selectDevice_Cell.png in Resources */,
 				36F1ED1A238920B600E1C7A8 /* userName_icon_imag@3x.png in Resources */,
 				36E5944D239A3C7B00DE4F04 /* img_sendEmail.png in Resources */,
 				36F1ED1223891FD300E1C7A8 /* logout_icon_imag@3x.png in Resources */,
 				36E594342398EB9A00DE4F04 /* img_choose.png in Resources */,
+				3679655A239F826100DD7B4A /* img_selectDevice_Cell@2x.png in Resources */,
 				36866E452384F10F0022F265 /* userInfo_Btn.png in Resources */,
 				36E59473239BA77300DE4F04 /* img_person_Btn.png in Resources */,
 				36866E422384F10F0022F265 /* area_img@3x.png in Resources */,
@@ -1003,12 +1051,15 @@
 				36866E442384F10F0022F265 /* workTime_img@2x.png in Resources */,
 				36F1ECF42388D45000E1C7A8 /* robot_icon_imag.png in Resources */,
 				36866E432384F10F0022F265 /* userInfo_Btn@3x.png in Resources */,
+				36796568239F917A00DD7B4A /* img_netWork_hometip.png in Resources */,
 				36F1ED0823891FD300E1C7A8 /* language_icon_imag@2x.png in Resources */,
+				36796559239F826100DD7B4A /* img_selectDevice_Cell@3x.png in Resources */,
 				36E59442239A25AC00DE4F04 /* img_logo.png in Resources */,
 				36E594372398F5B600DE4F04 /* img_unselect.png in Resources */,
 				36866E412384F10F0022F265 /* setWorkTime_img.png in Resources */,
 				36F1ED1B238920B600E1C7A8 /* userName_icon_imag@2x.png in Resources */,
 				36F1ED1623891FD300E1C7A8 /* setting_icon_imag@3x.png in Resources */,
+				36796569239F917A00DD7B4A /* img_netWork_hometip@2x.png in Resources */,
 				36E59448239A2AA400DE4F04 /* img_resetEmail@2x.png in Resources */,
 				36F1ED1C238920B600E1C7A8 /* userName_icon_imag.png in Resources */,
 				36F1ED0923891FD300E1C7A8 /* pinCode_icon_imag.png in Resources */,
@@ -1022,6 +1073,7 @@
 				36E594022397896700DE4F04 /* img_logo@3x.png in Resources */,
 				369C6600235EE431008D6230 /* Assets.xcassets in Resources */,
 				36866E402384F10F0022F265 /* setWorkTime_img@3x.png in Resources */,
+				36796567239F917A00DD7B4A /* img_netWork_hometip@3x.png in Resources */,
 				36866E462384F10F0022F265 /* userInfo_Btn@2x.png in Resources */,
 				36E594382398F5B600DE4F04 /* img_select.png in Resources */,
 				36F1ECF52388D45000E1C7A8 /* robot_icon_imag@2x.png in Resources */,
@@ -1129,6 +1181,7 @@
 				368E509E2390BB3E00AFE3B3 /* RegionViewController.m in Sources */,
 				368AB33B235F0623002B6D37 /* NullSafe.m in Sources */,
 				36A9AEF32395FB9900EC8749 /* AAEmailTextField.m in Sources */,
+				36796550239F7CD300DD7B4A /* SelectDeviceViewController.m in Sources */,
 				368AB338235F0623002B6D37 /* UIViewController+Common.m in Sources */,
 				36A9AEFE2396600A00EC8749 /* NewUserSuccessController.m in Sources */,
 				3618FC63237D7F3A00255426 /* UINavigationBar+handle.m in Sources */,
@@ -1145,11 +1198,13 @@
 				36085889238686E50094501B /* WorkAreaViewController.m in Sources */,
 				368AB339235F0623002B6D37 /* NSString+Common.m in Sources */,
 				36588D4D2370189C008ADEAC /* ForgetpasswordViewController.m in Sources */,
+				36796553239F7E1A00DD7B4A /* SelectDeviceCell.m in Sources */,
 				36A9AEF82396589200EC8749 /* PersonalMsgViewController.m in Sources */,
 				36965D21238B689900D0435A /* SetPinCodeViewController.m in Sources */,
 				36930A09237C064D003DAFBD /* DeviceNetworkViewController.m in Sources */,
 				36796548239DDF3C00DD7B4A /* PersonSettingCell.m in Sources */,
 				368AB330235F0623002B6D37 /* UIColor+ColorChange.m in Sources */,
+				3679655D239F8E9800DD7B4A /* NetWorkHomeTipController.m in Sources */,
 				369309F6237C033B003DAFBD /* BaseViewController.m in Sources */,
 				368AB33D235F0623002B6D37 /* YTFAlertController.m in Sources */,
 				368E50A12390CB4D00AFE3B3 /* RegionCell.m in Sources */,
@@ -1170,6 +1225,7 @@
 				368E5077238E1D0300AFE3B3 /* WelcomeViewController.m in Sources */,
 				36930A0F237C0914003DAFBD /* UIViewController+BarButton.m in Sources */,
 				36E59451239B7F8900DE4F04 /* DeviceInfoViewController.m in Sources */,
+				3679656F239F927C00DD7B4A /* NetWorkDeviceTipController.m in Sources */,
 				368AB336235F0623002B6D37 /* UIButton+Common.m in Sources */,
 				368AB333235F0623002B6D37 /* GosTipView.m in Sources */,
 				36930A0A237C064D003DAFBD /* DeviceListViewController.m in Sources */,

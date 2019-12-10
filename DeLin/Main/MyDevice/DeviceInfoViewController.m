@@ -9,7 +9,7 @@
 #import "DeviceInfoViewController.h"
 #import "LogoutViewController.h"
 #import "PersonSettingViewController.h"
-#import "DeviceNetworkViewController.h"
+#import "SelectDeviceViewController.h"
 
 @interface DeviceInfoViewController ()
 
@@ -169,9 +169,8 @@
 }
 
 -(void)addEquipment{
-    DeviceNetworkViewController *VC = [[DeviceNetworkViewController alloc] init];
+    SelectDeviceViewController *VC = [[SelectDeviceViewController alloc] init];
     [self.navigationController pushViewController:VC animated:YES];
-    
 }
 
 @end

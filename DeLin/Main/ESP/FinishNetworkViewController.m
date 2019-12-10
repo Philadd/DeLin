@@ -11,8 +11,7 @@
 
 @interface FinishNetworkViewController () <GizWifiSDKDelegate>
 
-@property (nonatomic, strong) UILabel *connectingLabel;
-@property (nonatomic, strong) UIButton *finishBtn;
+@property (nonatomic, strong) UIView *labelBgView;
 @property (nonatomic, strong) AAProgressCircleView *networkProgressView;
 
 @end
@@ -27,8 +26,7 @@
     [self addLeftBarButtonWithImage:image action:@selector(finishBackAction)];
     
     [self setNavItem];
-    _connectingLabel = [self connectingLabel];
-    _finishBtn = [self finishBtn];
+    self.labelBgView = [self labelBgView];
     self.networkProgressView = [self networkProgressView];
 }
 
@@ -51,42 +49,8 @@
 
 #pragma mark - Lazy load
 - (void)setNavItem{
-    self.navigationItem.title = LocalString(@"Add Robot");
+    self.navigationItem.title = LocalString(@"Device to connect");
 
-}
-
-- (UILabel *)connectingLabel{
-    if (!_connectingLabel) {
-        _connectingLabel = [[UILabel alloc] init];
-        _connectingLabel.font = [UIFont systemFontOfSize:24.f];
-        _connectingLabel.backgroundColor = [UIColor clearColor];
-        _connectingLabel.textColor = [UIColor blackColor];
-        _connectingLabel.textAlignment = NSTextAlignmentLeft;
-        _connectingLabel.text = LocalString(@"Connecting...");
-        [self.view addSubview:_connectingLabel];
-        [_connectingLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(50)));
-            make.left.equalTo(self.view.mas_left).offset(yAutoFit(40));
-            make.top.equalTo(self.view.mas_top).offset(yAutoFit(80));
-        }];
-        
-        UILabel *tipLabel = [[UILabel alloc] init];
-        tipLabel.text = LocalString(@"Place your router,mobile phone,and device as close as possible.");
-        tipLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:18];
-        tipLabel.textColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
-        [tipLabel setLineBreakMode:NSLineBreakByWordWrapping];
-        tipLabel.numberOfLines = 0;
-        tipLabel.textAlignment = NSTextAlignmentCenter;
-        [self.view addSubview:tipLabel];
-        
-        [tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(320.f), 80.f));
-            make.left.equalTo(self.view.mas_left).offset(yAutoFit(40.f));
-            make.top.equalTo(self.connectingLabel.mas_bottom).offset(yAutoFit(20.f));
-        }];
-        
-    }
-    return _connectingLabel;
 }
 
 - (AAProgressCircleView *)networkProgressView{
@@ -99,40 +63,49 @@
         [_networkProgressView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(yAutoFit(217.f), yAutoFit(300)));
             make.centerX.equalTo(self.view.mas_centerX);
-            make.top.equalTo(self.connectingLabel.mas_bottom).offset(yAutoFit(100.f));
+            make.top.equalTo(self.view.mas_top).offset(getRectNavAndStatusHight + yAutoFit(100.f));
         }];
         
     }
     return _networkProgressView;
 }
 
-//- (UIButton *)finishBtn{
-//    if (!_finishBtn) {
-//        _finishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [_finishBtn setTitle:LocalString(@"Finish") forState:UIControlStateNormal];
-//        [_finishBtn.titleconnectingLabel setFont:[UIFont systemFontOfSize:18.f]];
-//        [_finishBtn setTitleColor:[UIColor colorWithHexString:@"333333"] forState:UIControlStateNormal];
-//        [_finishBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0f]];
-//        [_finishBtn addTarget:self action:@selector(finish) forControlEvents:UIControlEventTouchUpInside];
-//        _finishBtn.enabled = YES;
-//        [self.view addSubview:_finishBtn];
-//        [_finishBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(50)));
-//            make.top.equalTo(self.deviceImage.mas_bottom).offset(yAutoFit(130));
-//            make.centerX.mas_equalTo(self.view.mas_centerX);
-//        }];
-//
-//        _finishBtn.layer.borderWidth = 0.5;
-//        _finishBtn.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
-//        _finishBtn.layer.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.16].CGColor;
-//        _finishBtn.layer.shadowOffset = CGSizeMake(0,2.5);
-//        _finishBtn.layer.shadowRadius = 3;
-//        _finishBtn.layer.shadowOpacity = 1;
-//        _finishBtn.layer.cornerRadius = 2.5;
-//
-//    }
-//    return _finishBtn;
-//}
+- (UIView *)labelBgView{
+    if (!_labelBgView) {
+        _labelBgView = [[UIView alloc] initWithFrame:CGRectMake( 0 , getRectNavAndStatusHight + yAutoFit(400), ScreenWidth,yAutoFit(180))];
+        _labelBgView.backgroundColor = [UIColor clearColor];
+        [self.view addSubview:_labelBgView];
+        
+        UILabel *connectingLabel = [[UILabel alloc] init];
+        connectingLabel.text = LocalString(@"Device connection");
+        connectingLabel.font = [UIFont systemFontOfSize:25.f];
+        connectingLabel.textColor = [UIColor whiteColor];
+        connectingLabel.textAlignment = NSTextAlignmentCenter;
+        connectingLabel.adjustsFontSizeToFitWidth = YES;
+        [self.labelBgView addSubview:connectingLabel];
+        [connectingLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(ScreenWidth , yAutoFit(30)));
+            make.centerX.equalTo(self.labelBgView.mas_centerX);
+            make.top.equalTo(self.labelBgView.mas_top);
+        }];
+        
+        UILabel *tiplabel = [[UILabel alloc] init];
+        tiplabel.text = LocalString(@"Keep your router, phone, and mower as close to each other as possible.");
+        tiplabel.font = [UIFont systemFontOfSize:16.f];
+        tiplabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.7];;
+        tiplabel.numberOfLines = 0;
+        tiplabel.textAlignment = NSTextAlignmentCenter;
+        tiplabel.adjustsFontSizeToFitWidth = YES;
+        [self.labelBgView addSubview:tiplabel];
+        [tiplabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(100)));
+            make.centerX.equalTo(self.labelBgView.mas_centerX);
+            make.top.equalTo(connectingLabel.mas_bottom).offset(yAutoFit(10.f));
+        }];
+        
+    }
+    return _labelBgView;
+}
 
 #pragma mark - Actions
 
