@@ -17,8 +17,8 @@ NSString *const CellIdentifier_RegionCell = @"RegionCell";
 @property (strong, nonatomic) UITableView *regionTable;
 @property (nonatomic, strong) UIButton *continueBtn;
 @property (nonatomic, strong) NSMutableArray  *regionChooseArray;
-@property (nonatomic, assign)BOOL ifSelected;//是否选中
-@property (nonatomic, strong)NSIndexPath * lastSelected;//上一次选中的索引
+@property (nonatomic, assign) BOOL ifSelected;//是否选中
+@property (nonatomic, assign) NSIndexPath * lastSelected;//上一次选中的索引
 
 
 @end

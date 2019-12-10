@@ -21,7 +21,7 @@
 @property (nonatomic, strong) UIButton *continueBtn;
 @property (nonatomic, strong) UIButton *agreementBtn;
 
-@property (nonatomic,strong) AAWiFiPasswordTF *passwordModelTF;
+@property (nonatomic, strong) AAWiFiPasswordTF *passwordModelTF;
 
 
 @end

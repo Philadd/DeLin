@@ -16,8 +16,8 @@
 @property (nonatomic, strong) UIView *labelBgView;
 @property (nonatomic, strong) UIButton *continueBtn;
 
-@property (nonatomic,strong) AAPersonalFirstNameTF *firstNameTFModel;
-@property (nonatomic,strong) AAPersonalLastNameTF *lastNameTFModel;
+@property (nonatomic, strong) AAPersonalFirstNameTF *firstNameTFModel;
+@property (nonatomic, strong) AAPersonalLastNameTF *lastNameTFModel;
 
 @end
 

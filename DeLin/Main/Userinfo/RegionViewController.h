@@ -9,12 +9,11 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-typedef void(^myblcok)(NSString *);
 
 @interface RegionViewController : UIViewController
 
-@property (nonatomic) myblcok myblcok;
-@property (strong, nonatomic) NSString *addressStr;
+@property (copy, nonatomic) void(^myblcok)(NSString *);
+@property (copy, nonatomic) NSString *addressStr;
 
 @end
 
