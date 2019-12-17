@@ -10,10 +10,13 @@
 #import "FinishNetworkViewController.h"
 #import "ConnectNetworkViewController.h"
 #import <SystemConfiguration/CaptiveNetwork.h>
+#import <CoreLocation/CoreLocation.h>
 #import "UIView+Border.h"
 #import "AAWiFiPasswordTF.h"
 
-@interface DeviceNetworkViewController () <UITextFieldDelegate>
+@interface DeviceNetworkViewController () <UITextFieldDelegate,CLLocationManagerDelegate>
+
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @property (nonatomic, strong) UITextField *wifiNameTF;
 
@@ -38,6 +41,9 @@
     _agreementBtn = [self agreementBtn];
     _continueBtn = [self continueBtn];
     [self setUItextField];
+    if(@available(iOS 13.0, *)){
+        [self getUserLocation];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -189,6 +195,28 @@
         _continueBtn.layer.cornerRadius = 2.5;
     }
     return _continueBtn;
+}
+
+#pragma mark - 定位授权代理方法
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    if (status == kCLAuthorizationStatusAuthorizedWhenInUse ||
+        status == kCLAuthorizationStatusAuthorizedAlways) {
+        //再重新获取ssid
+        [self getDeviceSSID];
+    }
+}
+
+- (void)getUserLocation{
+    if (!self.locationManager) {
+        self.locationManager = [[CLLocationManager alloc] init];
+    }
+    //如果用户第一次拒绝了，触发代理重新选择，要用户打开位置权限
+    [self.locationManager requestAlwaysAuthorization];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.distanceFilter = 1.0f;
+    [self.locationManager startUpdatingLocation];
+    
 }
 
 #pragma mark - UITextField Delegate

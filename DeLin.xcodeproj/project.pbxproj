@@ -13,6 +13,7 @@
 		3618FC5C237D27B100255426 /* MMSideDrawerSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3618FC5B237D27B100255426 /* MMSideDrawerSectionHeaderView.m */; };
 		3618FC5F237D27CB00255426 /* LeftDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3618FC5E237D27CB00255426 /* LeftDrawerViewController.m */; };
 		3618FC63237D7F3A00255426 /* UINavigationBar+handle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3618FC62237D7F3A00255426 /* UINavigationBar+handle.m */; };
+		363FD21323A8839B000FBCAF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 363FD21223A8839B000FBCAF /* CoreLocation.framework */; };
 		36588D4D2370189C008ADEAC /* ForgetpasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36588D492370189B008ADEAC /* ForgetpasswordViewController.m */; };
 		36588D4E2370189C008ADEAC /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36588D4C2370189C008ADEAC /* RegisterViewController.m */; };
 		3663F290235EF9E800B06F88 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3663F28F235EF9E800B06F88 /* NetworkExtension.framework */; };
@@ -194,6 +195,7 @@
 		3618FC5E237D27CB00255426 /* LeftDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftDrawerViewController.m; sourceTree = "<group>"; };
 		3618FC61237D7F3A00255426 /* UINavigationBar+handle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+handle.h"; sourceTree = "<group>"; };
 		3618FC62237D7F3A00255426 /* UINavigationBar+handle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+handle.m"; sourceTree = "<group>"; };
+		363FD21223A8839B000FBCAF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		36588D492370189B008ADEAC /* ForgetpasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetpasswordViewController.m; sourceTree = "<group>"; };
 		36588D4A2370189B008ADEAC /* ForgetpasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetpasswordViewController.h; sourceTree = "<group>"; };
 		36588D4B2370189B008ADEAC /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -418,6 +420,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				363FD21323A8839B000FBCAF /* CoreLocation.framework in Frameworks */,
 				3663F29A235EFA7C00B06F88 /* libLTLink.a in Frameworks */,
 				3663F29B235EFA7C00B06F88 /* libEasyLink.a in Frameworks */,
 				3663F29C235EFA7C00B06F88 /* libcrypto.a in Frameworks */,
@@ -893,6 +896,7 @@
 		AE2F5E7F8EC8AF70C415193D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				363FD21223A8839B000FBCAF /* CoreLocation.framework */,
 				3663F296235EFA7C00B06F88 /* GizWifiSDK.framework */,
 				3663F295235EFA7C00B06F88 /* libcrypto.a */,
 				3663F294235EFA7C00B06F88 /* libEasyLink.a */,
