@@ -109,21 +109,20 @@ NSString *const CellIdentifier_RegionCell = @"RegionCell";
     if (cell == nil) {
         cell = [[RegionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier_RegionCell];
     }
+    cell.accessoryType = UITableViewCellAccessoryNone;
     cell.regionLabel.text = self.regionChooseArray[indexPath.row];
     cell.chooseImage.image = [UIImage imageNamed:@"img_choose"];
     //如果是之前选择的地区被标记
     if ([self.addressStr isEqualToString:[NSString stringWithFormat:@"%@", self.regionChooseArray[indexPath.row]]]) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
         cell.chooseImage.hidden = NO;
     }
     
     if (self.ifSelected) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+
         cell.chooseImage.hidden = NO;
         [_continueBtn setBackgroundColor:[UIColor colorWithRed:220/255.0 green:168/255.0 blue:11/255.0 alpha:1.f]];
         _continueBtn.enabled = YES;
     }else{
-        cell.accessoryType = UITableViewCellAccessoryNone;
         cell.chooseImage.hidden = YES;
         [_continueBtn setBackgroundColor:[UIColor colorWithRed:135/255.0 green:135/255.0 blue:135/255.0 alpha:1.f]];
         _continueBtn.enabled = NO;

@@ -68,7 +68,8 @@
         UITextField *inputText = [[UITextField alloc]init];
         inputText.textColor = [UIColor whiteColor];
         inputText.tintColor = [UIColor whiteColor];
-        [inputText setValue:[UIColor grayColor] forKeyPath:@"_placeholderLabel.textColor"];
+        //ios13适配KVC
+        self.inputText.attributedPlaceholder = [self placeholder:placeText];
         inputText.font = [UIFont systemFontOfSize:18]; //SYS_FONT(18);
         self.emailTFFrame = CGRectMake(CGRectGetMinX(frame), 0 , frame.size.width, frame.size.height);
         inputText.frame = self.emailTFFrame;
@@ -96,6 +97,14 @@
         
     }
     return self;
+}
+
+- (NSMutableAttributedString *)placeholder:(NSString *)text{
+    if (text.length == 0) {
+        return nil;
+    }
+    NSMutableAttributedString *att = [[NSMutableAttributedString alloc]initWithString:text attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor grayColor]}];
+    return att;
 }
 
 -(UILabel *)makeWithFrame:(CGRect)frame

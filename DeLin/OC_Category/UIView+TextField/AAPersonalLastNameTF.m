@@ -21,7 +21,8 @@
         UITextField *inputLastNameTF = [[UITextField alloc]init];
         inputLastNameTF.textColor = [UIColor whiteColor];
         inputLastNameTF.tintColor = [UIColor whiteColor];
-        [inputLastNameTF setValue:[UIColor grayColor] forKeyPath:@"_placeholderLabel.textColor"];
+        //ios13适配KVC
+        self.inputLastNameTF.attributedPlaceholder = [self placeholder:lastName];
         inputLastNameTF.font = [UIFont systemFontOfSize:18]; //SYS_FONT(18);
         self.lastNameTFFrame = CGRectMake(CGRectGetMinX(frame), 0 , frame.size.width, frame.size.height);
         inputLastNameTF.frame = self.lastNameTFFrame;
@@ -49,6 +50,14 @@
         
     }
     return self;
+}
+
+- (NSMutableAttributedString *)placeholder:(NSString *)text{
+    if (text.length == 0) {
+        return nil;
+    }
+    NSMutableAttributedString *att = [[NSMutableAttributedString alloc]initWithString:text attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor grayColor]}];
+    return att;
 }
 
 -(UILabel *)makeWithFrame:(CGRect)frame

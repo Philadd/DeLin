@@ -80,7 +80,6 @@
 		369309DD237BE632003DAFBD /* GizManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 369309DC237BE632003DAFBD /* GizManager.m */; };
 		369309F6237C033B003DAFBD /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 369309F4237C033B003DAFBD /* BaseViewController.m */; };
 		36930A09237C064D003DAFBD /* DeviceNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36930A01237C064D003DAFBD /* DeviceNetworkViewController.m */; };
-		36930A0A237C064D003DAFBD /* DeviceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36930A02237C064D003DAFBD /* DeviceListViewController.m */; };
 		36930A0B237C064D003DAFBD /* FinishNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36930A05237C064D003DAFBD /* FinishNetworkViewController.m */; };
 		36930A0C237C064D003DAFBD /* ConnectNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36930A06237C064D003DAFBD /* ConnectNetworkViewController.m */; };
 		36930A0F237C0914003DAFBD /* UIViewController+BarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 36930A0D237C0914003DAFBD /* UIViewController+BarButton.m */; };
@@ -88,6 +87,7 @@
 		36930A16237C09D6003DAFBD /* DeviceListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36930A14237C09D6003DAFBD /* DeviceListCell.m */; };
 		36965D21238B689900D0435A /* SetPinCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36965D20238B689900D0435A /* SetPinCodeViewController.m */; };
 		36965D24238B733200D0435A /* SetLanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36965D23238B733200D0435A /* SetLanguageViewController.m */; };
+		3699FEEA23A913AA00BC13C4 /* AAPInPasswordTF.m in Sources */ = {isa = PBXBuildFile; fileRef = 3699FEE923A913AA00BC13C4 /* AAPInPasswordTF.m */; };
 		369C65F8235EE42F008D6230 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C65F7235EE42F008D6230 /* AppDelegate.m */; };
 		369C65FB235EE42F008D6230 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C65FA235EE42F008D6230 /* ViewController.m */; };
 		369C65FE235EE42F008D6230 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 369C65FC235EE42F008D6230 /* Main.storyboard */; };
@@ -300,13 +300,11 @@
 		369309F4237C033B003DAFBD /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		369309F5237C033B003DAFBD /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		36930A01237C064D003DAFBD /* DeviceNetworkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceNetworkViewController.m; sourceTree = "<group>"; };
-		36930A02237C064D003DAFBD /* DeviceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceListViewController.m; sourceTree = "<group>"; };
 		36930A03237C064D003DAFBD /* ConnectNetworkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectNetworkViewController.h; sourceTree = "<group>"; };
 		36930A04237C064D003DAFBD /* DeviceNetworkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceNetworkViewController.h; sourceTree = "<group>"; };
 		36930A05237C064D003DAFBD /* FinishNetworkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinishNetworkViewController.m; sourceTree = "<group>"; };
 		36930A06237C064D003DAFBD /* ConnectNetworkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectNetworkViewController.m; sourceTree = "<group>"; };
 		36930A07237C064D003DAFBD /* FinishNetworkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinishNetworkViewController.h; sourceTree = "<group>"; };
-		36930A08237C064D003DAFBD /* DeviceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceListViewController.h; sourceTree = "<group>"; };
 		36930A0D237C0914003DAFBD /* UIViewController+BarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BarButton.m"; sourceTree = "<group>"; };
 		36930A0E237C0914003DAFBD /* UIViewController+BarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BarButton.h"; sourceTree = "<group>"; };
 		36930A11237C09D6003DAFBD /* WorktimeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorktimeCell.h; sourceTree = "<group>"; };
@@ -317,6 +315,8 @@
 		36965D20238B689900D0435A /* SetPinCodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetPinCodeViewController.m; sourceTree = "<group>"; };
 		36965D22238B733200D0435A /* SetLanguageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetLanguageViewController.h; sourceTree = "<group>"; };
 		36965D23238B733200D0435A /* SetLanguageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetLanguageViewController.m; sourceTree = "<group>"; };
+		3699FEE823A913AA00BC13C4 /* AAPInPasswordTF.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAPInPasswordTF.h; sourceTree = "<group>"; };
+		3699FEE923A913AA00BC13C4 /* AAPInPasswordTF.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAPInPasswordTF.m; sourceTree = "<group>"; };
 		369C65F3235EE42F008D6230 /* DeLin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeLin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		369C65F6235EE42F008D6230 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		369C65F7235EE42F008D6230 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -684,8 +684,6 @@
 			children = (
 				36E5944F239B7F8900DE4F04 /* DeviceInfoViewController.h */,
 				36E59450239B7F8900DE4F04 /* DeviceInfoViewController.m */,
-				36930A08237C064D003DAFBD /* DeviceListViewController.h */,
-				36930A02237C064D003DAFBD /* DeviceListViewController.m */,
 				36796543239DDE7600DD7B4A /* PersonSettingViewController.h */,
 				36796544239DDE7600DD7B4A /* PersonSettingViewController.m */,
 				36796540239DDE1D00DD7B4A /* LogoutViewController.h */,
@@ -827,6 +825,8 @@
 				36E594162397BBE000DE4F04 /* AAPersonalLastNameTF.m */,
 				3679654B239E6F6300DD7B4A /* AAWiFiPasswordTF.h */,
 				3679654C239E6F6300DD7B4A /* AAWiFiPasswordTF.m */,
+				3699FEE823A913AA00BC13C4 /* AAPInPasswordTF.h */,
+				3699FEE923A913AA00BC13C4 /* AAPInPasswordTF.m */,
 			);
 			path = "UIView+TextField";
 			sourceTree = "<group>";
@@ -1189,6 +1189,7 @@
 				368AB338235F0623002B6D37 /* UIViewController+Common.m in Sources */,
 				36A9AEFE2396600A00EC8749 /* NewUserSuccessController.m in Sources */,
 				3618FC63237D7F3A00255426 /* UINavigationBar+handle.m in Sources */,
+				3699FEEA23A913AA00BC13C4 /* AAPInPasswordTF.m in Sources */,
 				36A9AEE82394E01A00EC8749 /* NewUserEmailViewController.m in Sources */,
 				368AB334235F0623002B6D37 /* NSString+Rounding.m in Sources */,
 				36E594172397BBE000DE4F04 /* AAPersonalFirstNameTF.m in Sources */,
@@ -1232,7 +1233,6 @@
 				3679656F239F927C00DD7B4A /* NetWorkDeviceTipController.m in Sources */,
 				368AB336235F0623002B6D37 /* UIButton+Common.m in Sources */,
 				368AB333235F0623002B6D37 /* GosTipView.m in Sources */,
-				36930A0A237C064D003DAFBD /* DeviceListViewController.m in Sources */,
 				368E507A238E297200AFE3B3 /* NewUserIDViewController.m in Sources */,
 				36A9AEEF2395FA7C00EC8749 /* UIView+Border.m in Sources */,
 				368AB331235F0623002B6D37 /* NodeButton.m in Sources */,

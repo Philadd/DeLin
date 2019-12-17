@@ -10,11 +10,9 @@
 #import "LoginViewController.h"
 #import "DeviceNetworkViewController.h"
 #import "ConnectNetworkViewController.h"
-#import "DeviceListCell.h"
+
 #import "InputPINViewController.h"
 
-
-NSString *const CellIdentifier_DeviceList = @"CellID_DeviceList";
 static float HEIGHT_CELL = 80.f;
 
 @interface DeviceListViewController () <UITableViewDelegate, UITableViewDataSource, GizWifiSDKDelegate>
