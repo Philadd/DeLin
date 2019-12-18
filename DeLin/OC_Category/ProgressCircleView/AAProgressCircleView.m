@@ -218,7 +218,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 - (UILabel *)progressLab{
     if (_progressLab == nil) {
         _progressLab = [[UILabel alloc]init];
-        _progressLab.textColor = kRGBColor(0x333333);
+        _progressLab.textColor = kRGBColor(0xFF9700);
         _progressLab.textAlignment = NSTextAlignmentCenter;
         _progressLab.adjustsFontSizeToFitWidth = YES;
         _progressLab.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:50];

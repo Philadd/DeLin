@@ -22,9 +22,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    UIImage *image = [UIImage imageNamed:@"返回1"];
-    [self addLeftBarButtonWithImage:image action:@selector(finishBackAction)];
-    
     [self setNavItem];
     self.labelBgView = [self labelBgView];
     self.networkProgressView = [self networkProgressView];
@@ -50,6 +47,15 @@
 #pragma mark - Lazy load
 - (void)setNavItem{
     self.navigationItem.title = LocalString(@"Device to connect");
+    
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    rightButton.frame = CGRectMake(0, 0, 30, 30);
+    [rightButton.widthAnchor constraintEqualToConstant:30].active = YES;
+    [rightButton.heightAnchor constraintEqualToConstant:30].active = YES;
+    [rightButton setImage:[UIImage imageNamed:@"img_cancel_Btn"] forState:UIControlStateNormal];
+    [rightButton addTarget:self action:@selector(finishBackAction) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = rightBarButton;
 
 }
 
@@ -115,10 +121,10 @@
 
 // 实现回调  远程设备绑定
 - (void)wifiSDK:(GizWifiSDK *)wifiSDK didBindDevice:(NSError *)result did:(NSString *)did {
+    NSLog(@"远程设备绑定结果%@",result);
     if(result.code == GIZ_SDK_SUCCESS) {
         // 绑定成功
         NSLog(@"绑定成功");
-        NSLog(@"远程设备绑定结果%@",result);
     } else {
         // 绑定失败
         NSLog(@"绑定失败");
@@ -126,8 +132,12 @@
     
 }
 
-// 实现回调  配网终止
+// 实现配网回调
 - (void)wifiSDK:(GizWifiSDK *)wifiSDK didSetDeviceOnboarding:(NSError *)result device:(GizWifiDevice *)device {
+    if(result.code == GIZ_SDK_SUCCESS){
+        // 配置成功
+        NSLog(@"配网成功");
+    }
     if(result.code == GIZ_SDK_ONBOARDING_STOPPED) {
         // 配网终止
         NSLog(@"配网终止");
@@ -138,12 +148,17 @@
 #pragma mark - Giz delegate
 -(void)wifiSDK:(GizWifiSDK *)wifiSDK didSetDeviceOnboarding:(NSError * _Nonnull)result mac:(NSString * _Nullable)mac did:(NSString * _Nullable)did productKey:(NSString * _Nullable)productKey{
     
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *userUid = [userDefaults valueForKey:@"uid"];
+    NSString *userToken = [userDefaults valueForKey:@"token"];
     if (result.code == GIZ_SDK_SUCCESS) {
         self.networkProgressView.percent = 1;
         [self.networkProgressView deleteTimer];
         [self.networkProgressView configSecondAnimate];
         //设备信息
         [GizManager shareInstance].did = did;
+        [[GizWifiSDK sharedInstance] bindRemoteDevice:userUid token:userToken mac:mac productKey:GizAppproductKey productSecret:GizAppproductSecret beOwner:NO];
+        
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:LocalString(@"Configue Result") message:LocalString(@"SUCCESSFUL!") preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:LocalString(@"I know") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
             NSLog(@"action = %@",action);
@@ -151,7 +166,6 @@
         }];
         [alert addAction:cancelAction];
         [self presentViewController:alert animated:YES completion:nil];
-        [[GizWifiSDK sharedInstance] bindRemoteDevice:[GizManager shareInstance].uid token:[GizManager shareInstance].token mac:mac productKey:productKey productSecret:GizAppproductSecret beOwner:NO];
         
     }else{
         

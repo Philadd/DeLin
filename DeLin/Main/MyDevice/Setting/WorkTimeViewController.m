@@ -15,10 +15,9 @@ NSString *const CellIdentifier_WorkTime = @"CellID_WorkTime";
 
 ///@brife 帧数据控制单例
 
-@property (strong, nonatomic) UIView *headerView;
 @property (strong, nonatomic) UITableView *workTimeTable;
 @property (strong, nonatomic) UIPickerView *workDatePickview;
-@property (strong, nonatomic) UIButton *OKButton;
+@property (strong, nonatomic) UIButton *oKButton;
 
 ///@brife 工作时间设置
 @property (nonatomic, strong) NSMutableArray  *dayArray;
@@ -44,11 +43,10 @@ static CGFloat cellHeight = 45.0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.headerView = [self headerView];
+    [self setNavItem];
     self.workTimeTable = [self workTimeTable];
     self.workDatePickview = [self workDatePickview];
-    self.OKButton = [self OKButton];
+    self.oKButton = [self oKButton];
     [self initDataArray];
     
     _flag = 0;//默认不发送数据
@@ -72,6 +70,11 @@ static CGFloat cellHeight = 45.0;
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     //[self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:NO];
+}
+
+#pragma mark - Lazy load
+- (void)setNavItem{
+    self.navigationItem.title = LocalString(@"Set the time");
 }
 
 - (NSTimer *)timer{
@@ -104,46 +107,10 @@ static CGFloat cellHeight = 45.0;
     
 }
 
-- (UIView *)headerView{
-    if (!_headerView) {
-        _headerView = [[UIView alloc] init];
-        _headerView.backgroundColor = [UIColor clearColor];
-        [self.view addSubview:_headerView];
-        [_headerView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(60)));
-            make.top.equalTo(self.view.mas_top).offset(getRectNavAndStatusHight + yAutoFit(50));
-            make.centerX.equalTo(self.view.mas_centerX);
-        }];
-        
-        UIImageView *areaImg = [[UIImageView alloc] init];
-        [areaImg setImage:[UIImage imageNamed:@"setWorkTime_img"]];
-        [_headerView addSubview:areaImg];
-        [areaImg mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(30), yAutoFit(30)));
-            make.left.equalTo(self.headerView.mas_left).offset(yAutoFit(40));
-            make.centerY.equalTo(self.headerView.mas_centerY);
-        }];
-        UILabel *arealabel = [[UILabel alloc] init];
-        arealabel.text = LocalString(@"Working Time Setting");
-        arealabel.font = [UIFont systemFontOfSize:16.f];
-        arealabel.textColor = [UIColor colorWithRed:33/255.0 green:36/255.0 blue:55/255.0 alpha:1];
-        arealabel.textAlignment = NSTextAlignmentCenter;
-        arealabel.adjustsFontSizeToFitWidth = YES;
-        [_headerView addSubview:arealabel];
-        [arealabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(180), yAutoFit(60)));
-            make.centerY.equalTo(self.headerView.mas_centerY);
-            make.left.equalTo(areaImg.mas_right).offset(20);
-        }];
-        
-    }
-    return _headerView;
-}
-
 - (UITableView *)workTimeTable{
     if (!_workTimeTable) {
         _workTimeTable = ({
-            UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, getRectNavAndStatusHight + yAutoFit(120), ScreenWidth, cellHeight * 7) style:UITableViewStylePlain];
+            UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, getRectNavAndStatusHight + yAutoFit(80), ScreenWidth, cellHeight * 7) style:UITableViewStylePlain];
             tableView.backgroundColor = [UIColor clearColor];
             tableView.dataSource = self;
             tableView.delegate = self;
@@ -190,32 +157,33 @@ static CGFloat cellHeight = 45.0;
     return pickerLabel;
 }
 
-- (UIButton *)OKButton{
-    if (!_OKButton) {
-        _OKButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_OKButton setTitle:LocalString(@"SET DONE") forState:UIControlStateNormal];
-        [_OKButton.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
-        [_OKButton setTitleColor:[UIColor colorWithHexString:@"333333"] forState:UIControlStateNormal];
-        [_OKButton setBackgroundColor:[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.f]];
-        [_OKButton addTarget:self action:@selector(goMowerTime) forControlEvents:UIControlEventTouchUpInside];
-        _OKButton.enabled = YES;
-        [self.view addSubview:_OKButton];
-        [_OKButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(50)));
-            make.top.equalTo(self.workTimeTable.mas_bottom).offset(yAutoFit(50));
-            make.centerX.mas_equalTo(self.view.mas_centerX);
+- (UIButton *)oKButton{
+    if (!_oKButton) {
+        _oKButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_oKButton setTitle:LocalString(@"SET DONE") forState:UIControlStateNormal];
+        [_oKButton.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
+        [_oKButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_oKButton setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:1.f]];
+        [_oKButton addTarget:self action:@selector(goMowerTime) forControlEvents:UIControlEventTouchUpInside];
+        _oKButton.enabled = YES;
+        [self.view addSubview:_oKButton];
+        [_oKButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(ScreenWidth, yAutoFit(45)));
+            make.centerX.equalTo(self.view.mas_centerX);
+            make.bottom.equalTo(self.view.mas_bottom);
         }];
         
-        _OKButton.layer.borderWidth = 0.5;
-        _OKButton.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
-        _OKButton.layer.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.16].CGColor;
-        _OKButton.layer.shadowOffset = CGSizeMake(0,2.5);
-        _OKButton.layer.shadowRadius = 3;
-        _OKButton.layer.shadowOpacity = 1;
-        _OKButton.layer.cornerRadius = 2.5;
+        _oKButton.layer.borderWidth = 0.5;
+        _oKButton.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
+        _oKButton.layer.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.16].CGColor;
+        _oKButton.layer.shadowOffset = CGSizeMake(0,2.5);
+        _oKButton.layer.shadowRadius = 3;
+        _oKButton.layer.shadowOpacity = 1;
+        _oKButton.layer.cornerRadius = 2.5;
     }
-    return _OKButton;
+    return _oKButton;
 }
+
 
 #pragma tableView delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -340,8 +308,8 @@ static CGFloat cellHeight = 45.0;
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     
-    selectHoursTF.textColor = [UIColor blackColor];
-    selectMinutesTF.textColor = [UIColor blackColor];
+    selectHoursTF.textColor = [UIColor whiteColor];
+    selectMinutesTF.textColor = [UIColor whiteColor];
     [selectHoursTF resignFirstResponder];
     [selectMinutesTF resignFirstResponder];
 }

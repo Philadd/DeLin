@@ -182,7 +182,7 @@
     
     MainViewController *mainVC = [[MainViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:mainVC];
-    [self.navigationController pushViewController:nav animated:YES];
+    [self presentViewController:nav animated:YES completion:nil];
     
 }
 

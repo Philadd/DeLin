@@ -331,7 +331,10 @@ static float HEIGHT_CELL = 80.f;
         if (device.isBind) {
             NSLog(@"绑定设备%@",device.productName);
         }
-        if (device.netStatus == GizDeviceOnline && device.isBind) {
+//        if (device.netStatus == GizDeviceOnline && device.isBind) {
+//            [deviceArray addObject:device];
+//        }
+        if (device.netStatus == GizDeviceOnline) {
             [deviceArray addObject:device];
         }
     }

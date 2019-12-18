@@ -10,7 +10,6 @@
 #import "AppDelegate.h"
 #import "RegisterViewController.h"
 #import "ForgetpasswordViewController.h"
-#import "DeviceListViewController.h"
 #import "AAEmailTextField.h"
 #import "AAPasswordTF.h"
 #import "DeviceInfoViewController.h"
@@ -215,8 +214,10 @@
         [GizManager shareInstance].token = token;
         self->emailStr = self.emailModelTF.inputText.text;
         
-        //保存邮箱
+        //保存用户信息
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:uid forKey:@"uid"];
+        [userDefaults setObject:token forKey:@"token"];
         [userDefaults setObject:self.emailModelTF.inputText.text forKey:@"userEmail"];
         [userDefaults synchronize];
         

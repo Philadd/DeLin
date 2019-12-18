@@ -7,14 +7,14 @@
 //
 
 #import "MainViewController.h"
-#import "MMDrawerController.h"
-#import "UIViewController+MMDrawerController.h"
+//#import "MMDrawerController.h"
+//#import "UIViewController+MMDrawerController.h"
 #import "WorkAreaViewController.h"
 #import "WorkTimeViewController.h"
 
 @interface MainViewController ()<GizWifiSDKDelegate>
 
-@property(nonatomic,strong) MMDrawerController * drawerController;
+//@property(nonatomic,strong) MMDrawerController * drawerController;
 
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UIView *msgCenterView;
@@ -26,7 +26,8 @@
 @property (nonatomic, strong) UIButton *homeBtn;//回家充电
 @property (nonatomic, strong) UIButton *stopedBtn;//停止工作
 
-@property (nonatomic, strong) UIView *bgSetWorkView;
+@property (nonatomic, strong) UIButton *areaSetBtn;
+@property (nonatomic, strong) UIButton *timerSetBtn;
 
 @end
 
@@ -41,11 +42,12 @@
     _warningLabel = [self warningLabel];
     _homeBtn = [self homeBtn];
     _stopedBtn = [self stopedBtn];
-    _bgSetWorkView = [self bgSetWorkView];
+    _areaSetBtn = [self areaSetBtn];
+    _timerSetBtn = [self timerSetBtn];
     
     //设置打开/关闭抽屉的手势
-    self.drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
-    self.drawerController.closeDrawerGestureModeMask =MMCloseDrawerGestureModeAll;
+//    self.drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
+//    self.drawerController.closeDrawerGestureModeMask =MMCloseDrawerGestureModeAll;
     
 }
 
@@ -60,6 +62,8 @@
 #pragma mark - Lazy load
 - (void)setNavItem{
     
+    self.navigationItem.title = LocalString(@"Device control");
+    
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     leftButton.frame = CGRectMake(0, 0, 30, 30);
     [leftButton setImage:[UIImage imageNamed:@"userInfo_Btn"] forState:UIControlStateNormal];
@@ -72,12 +76,16 @@
 - (UIView *)headerView{
     if (!_headerView) {
         _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth,350.f)];
-        _headerView.backgroundColor = [UIColor greenColor];
+        _headerView.backgroundColor = [UIColor clearColor];
         [self.view addSubview:_headerView];
         UIImageView *bgImg = [[UIImageView alloc] initWithFrame:_headerView.bounds];
         [bgImg setImage:[UIImage imageNamed:@"img_mine_headerBG"]];
         [_headerView addSubview:bgImg];
-        [_headerView sendSubviewToBack:bgImg];
+        [bgImg mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(208), yAutoFit(197)));
+            make.centerX.equalTo(self.headerView.mas_centerX);
+            make.centerY.equalTo(self.headerView.mas_centerY);
+        }];
         
 //        _areaDatalabel = [[UILabel alloc] init];
 //        _areaDatalabel.text = @"5555";
@@ -112,7 +120,7 @@
         UILabel *arealabel = [[UILabel alloc] init];
         arealabel.text = LocalString(@"Mowing area");
         arealabel.font = [UIFont systemFontOfSize:14.f];
-        arealabel.textColor = [UIColor colorWithRed:33/255.0 green:36/255.0 blue:55/255.0 alpha:1];
+        arealabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.7];
         arealabel.textAlignment = NSTextAlignmentCenter;
         arealabel.adjustsFontSizeToFitWidth = YES;
         [_msgCenterView addSubview:arealabel];
@@ -124,7 +132,7 @@
         _areaDatalabel = [[UILabel alloc] init];
         _areaDatalabel.text = @"9:30";
         _areaDatalabel.font = [UIFont systemFontOfSize:14.f];
-        _areaDatalabel.textColor = [UIColor colorWithRed:33/255.0 green:36/255.0 blue:55/255.0 alpha:1];
+        _areaDatalabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1];
         _areaDatalabel.textAlignment = NSTextAlignmentCenter;
         _areaDatalabel.adjustsFontSizeToFitWidth = YES;
         [_msgCenterView addSubview:_areaDatalabel];
@@ -146,7 +154,7 @@
         UILabel *timelabel = [[UILabel alloc] init];
         timelabel.text = LocalString(@"Next Working");
         timelabel.font = [UIFont systemFontOfSize:14.f];
-        timelabel.textColor = [UIColor colorWithRed:33/255.0 green:36/255.0 blue:55/255.0 alpha:1];
+        timelabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.7];
         timelabel.textAlignment = NSTextAlignmentCenter;
         timelabel.adjustsFontSizeToFitWidth = YES;
         [_msgCenterView addSubview:timelabel];
@@ -158,7 +166,7 @@
         _timeDatalabel = [[UILabel alloc] init];
         _timeDatalabel.text = @"9:30";
         _timeDatalabel.font = [UIFont systemFontOfSize:14.f];
-        _timeDatalabel.textColor = [UIColor colorWithRed:33/255.0 green:36/255.0 blue:55/255.0 alpha:1];
+        _timeDatalabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1];
         _timeDatalabel.textAlignment = NSTextAlignmentCenter;
         _timeDatalabel.adjustsFontSizeToFitWidth = YES;
         [_msgCenterView addSubview:_timeDatalabel];
@@ -255,80 +263,65 @@
     return _homeBtn;
 }
 
-- (UIView *)bgSetWorkView{
-    if (!_bgSetWorkView) {
-        _bgSetWorkView = [[UIView alloc] init];
-        _bgSetWorkView.backgroundColor = [UIColor clearColor];
-        [self.view addSubview:_bgSetWorkView];
-        [_bgSetWorkView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(60)));
-            make.centerX.equalTo(self.view.mas_centerX);
-            make.top.equalTo(self.stopedBtn.mas_bottom).offset(yAutoFit(30));
+- (UIButton *)timerSetBtn{
+    if (!_timerSetBtn) {
+        _timerSetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_timerSetBtn setTitle:LocalString(@"Timer") forState:UIControlStateNormal];
+        [_timerSetBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
+        [_timerSetBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_timerSetBtn setBackgroundColor:[UIColor colorWithRed:253/255.0 green:134/255.0 blue:8/255.0 alpha:1.f]];
+        [_timerSetBtn addTarget:self action:@selector(setWorkTime) forControlEvents:UIControlEventTouchUpInside];
+        _timerSetBtn.enabled = YES;
+        [self.view addSubview:_timerSetBtn];
+        [_timerSetBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(ScreenWidth/2, yAutoFit(45)));
+            make.left.equalTo(self.view.mas_left);
+            make.bottom.equalTo(self.view.mas_bottom);
         }];
         
-        UIImageView *timeImg = [[UIImageView alloc] init];
-        [timeImg setImage:[UIImage imageNamed:@"setWorkTime_img"]];
-        [_bgSetWorkView addSubview:timeImg];
-        [timeImg mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(30, 30));
-            make.left.equalTo(self.msgCenterView.mas_left).offset(yAutoFit(30));
-            make.centerY.equalTo(self.bgSetWorkView.mas_centerY);
-        }];
-        
-        UIButton *timeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [timeButton setTitle:LocalString(@"Timer") forState:UIControlStateNormal];
-        [timeButton.titleLabel setFont:[UIFont systemFontOfSize:14.f]];
-        [timeButton setTitleColor:[UIColor colorWithHexString:@"333333"] forState:UIControlStateNormal];
-        timeButton.backgroundColor = [UIColor clearColor];
-        [timeButton addTarget:self action:@selector(setWorkTime) forControlEvents:UIControlEventTouchUpInside];
-        [self.bgSetWorkView addSubview:timeButton];
-        [timeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(50, 50));
-            make.centerY.equalTo(self.bgSetWorkView.mas_centerY);
-            make.left.equalTo(timeImg.mas_right).offset(10);
-        }];
-        
-        UIView *lineView = [[UIView alloc] init];
-        lineView.backgroundColor = [UIColor blackColor];
-        [self.bgSetWorkView addSubview:lineView];
-        [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(1, yAutoFit(30)));
-            make.centerX.equalTo(self.bgSetWorkView.mas_centerX);
-            make.centerY.equalTo(self.bgSetWorkView.mas_centerY);
-        }];
-        
-        
-        UIImageView *areaImg = [[UIImageView alloc] init];
-        [areaImg setImage:[UIImage imageNamed:@"area_img"]];
-        [_bgSetWorkView addSubview:areaImg];
-        [areaImg mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(30, 30));
-            make.right.equalTo(self.msgCenterView.mas_right).offset(yAutoFit(-120));
-            make.centerY.equalTo(self.bgSetWorkView.mas_centerY);
-        }];
-        
-        UIButton *areaButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [areaButton setTitle:LocalString(@"Area set") forState:UIControlStateNormal];
-        [areaButton.titleLabel setFont:[UIFont systemFontOfSize:14.f]];
-        [areaButton setTitleColor:[UIColor colorWithHexString:@"333333"] forState:UIControlStateNormal];
-        areaButton.backgroundColor = [UIColor clearColor];
-        [areaButton addTarget:self action:@selector(setArea) forControlEvents:UIControlEventTouchUpInside];
-        [_bgSetWorkView addSubview:areaButton];
-        [areaButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(80, 50));
-            make.centerY.equalTo(self.bgSetWorkView.mas_centerY);
-            make.left.equalTo(areaImg.mas_right).offset(10);
-        }];
-        
-        
+        _timerSetBtn.layer.borderWidth = 0.5;
+        _timerSetBtn.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
+        _timerSetBtn.layer.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.16].CGColor;
+        _timerSetBtn.layer.shadowOffset = CGSizeMake(0,2.5);
+        _timerSetBtn.layer.shadowRadius = 3;
+        _timerSetBtn.layer.shadowOpacity = 1;
+        _timerSetBtn.layer.cornerRadius = 2.5;
     }
-    return _bgSetWorkView;
+    return _timerSetBtn;
 }
+
+- (UIButton *)areaSetBtn{
+    if (!_areaSetBtn) {
+        _areaSetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_areaSetBtn setTitle:LocalString(@"Area set") forState:UIControlStateNormal];
+        [_areaSetBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
+        [_areaSetBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_areaSetBtn setBackgroundColor:[UIColor colorWithRed:220/255.0 green:168/255.0 blue:11/255.0 alpha:1.f]];
+        [_areaSetBtn addTarget:self action:@selector(setArea) forControlEvents:UIControlEventTouchUpInside];
+        _areaSetBtn.enabled = YES;
+        [self.view addSubview:_areaSetBtn];
+        [_areaSetBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(ScreenWidth/2, yAutoFit(45)));
+            make.right.equalTo(self.view.mas_right);
+            make.bottom.equalTo(self.view.mas_bottom);
+        }];
+        
+        _areaSetBtn.layer.borderWidth = 0.5;
+        _areaSetBtn.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
+        _areaSetBtn.layer.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.16].CGColor;
+        _areaSetBtn.layer.shadowOffset = CGSizeMake(0,2.5);
+        _areaSetBtn.layer.shadowRadius = 3;
+        _areaSetBtn.layer.shadowOpacity = 1;
+        _areaSetBtn.layer.cornerRadius = 2.5;
+    }
+    return _areaSetBtn;
+}
+
 
 #pragma mark - 左侧抽屉
 - (void)leftDrawer{
     
-    [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+    //[self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
 #pragma mark - Actions
