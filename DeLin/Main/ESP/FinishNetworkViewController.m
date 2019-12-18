@@ -8,6 +8,7 @@
 
 #import "FinishNetworkViewController.h"
 #import "AAProgressCircleView.h"
+#import "FinishNetWorkSuccessController.h"
 
 @interface FinishNetworkViewController () <GizWifiSDKDelegate>
 
@@ -159,13 +160,10 @@
         [GizManager shareInstance].did = did;
         [[GizWifiSDK sharedInstance] bindRemoteDevice:userUid token:userToken mac:mac productKey:GizAppproductKey productSecret:GizAppproductSecret beOwner:NO];
         
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:LocalString(@"Configue Result") message:LocalString(@"SUCCESSFUL!") preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:LocalString(@"I know") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            NSLog(@"action = %@",action);
-            [self.navigationController popToRootViewControllerAnimated:YES];
-        }];
-        [alert addAction:cancelAction];
-        [self presentViewController:alert animated:YES completion:nil];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            FinishNetWorkSuccessController *successVC = [[FinishNetWorkSuccessController alloc] init];
+            [self.navigationController pushViewController:successVC animated:YES];
+        });
         
     }else{
         

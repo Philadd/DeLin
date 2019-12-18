@@ -8,6 +8,8 @@
 
 #import "PersonSettingViewController.h"
 #import "PersonSettingCell.h"
+#import "SetPinCodeViewController.h"
+#import "SetLanguageViewController.h"
 
 NSString *const CellIdentifier_PersonSetting = @"CellID_PersonSetting";
 static CGFloat const Cell_Height = 50.f;
@@ -108,7 +110,7 @@ static CGFloat const Cell_Height = 50.f;
     if (cell == nil) {
         cell = [[PersonSettingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier_PersonSetting];
     }
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleDefault;
     switch (indexPath.row) {
         case 0:
             cell.leftLabel.text = LocalString(@"Help and support");
@@ -138,9 +140,18 @@ static CGFloat const Cell_Height = 50.f;
             
             break;
         case 1:
-            
+        {
+            SetPinCodeViewController *pinCodeVC = [[SetPinCodeViewController alloc] init];
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:pinCodeVC];
+            [self presentViewController:nav animated:YES completion:nil];
+        }
             break;
         case 2:
+        {
+            SetLanguageViewController *languageVC = [[SetLanguageViewController alloc] init];
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:languageVC];
+            [self presentViewController:nav animated:YES completion:nil];
+        }
             
             break;
         case 3:
@@ -148,7 +159,7 @@ static CGFloat const Cell_Height = 50.f;
             break;
             
         default:
-            [self dismissVC];
+            
             break;
     }
     

@@ -10,6 +10,7 @@
 		36085886238686B50094501B /* WorkTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36085885238686B50094501B /* WorkTimeViewController.m */; };
 		36085889238686E50094501B /* WorkAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36085888238686E50094501B /* WorkAreaViewController.m */; };
 		36126D1423A9D606007B39DB /* img_mine_headerBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36126D1323A9D606007B39DB /* img_mine_headerBG@2x.png */; };
+		36126D1723AA1166007B39DB /* FinishNetWorkSuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36126D1623AA1166007B39DB /* FinishNetWorkSuccessController.m */; };
 		3618FC59237D26CF00255426 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3618FC58237D26CF00255426 /* MainViewController.m */; };
 		3618FC5C237D27B100255426 /* MMSideDrawerSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3618FC5B237D27B100255426 /* MMSideDrawerSectionHeaderView.m */; };
 		3618FC5F237D27CB00255426 /* LeftDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3618FC5E237D27CB00255426 /* LeftDrawerViewController.m */; };
@@ -189,6 +190,8 @@
 		36085887238686E50094501B /* WorkAreaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkAreaViewController.h; sourceTree = "<group>"; };
 		36085888238686E50094501B /* WorkAreaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkAreaViewController.m; sourceTree = "<group>"; };
 		36126D1323A9D606007B39DB /* img_mine_headerBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_mine_headerBG@2x.png"; sourceTree = "<group>"; };
+		36126D1523AA1166007B39DB /* FinishNetWorkSuccessController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinishNetWorkSuccessController.h; sourceTree = "<group>"; };
+		36126D1623AA1166007B39DB /* FinishNetWorkSuccessController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinishNetWorkSuccessController.m; sourceTree = "<group>"; };
 		3618FC57237D26CF00255426 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		3618FC58237D26CF00255426 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		3618FC5A237D27B100255426 /* MMSideDrawerSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSideDrawerSectionHeaderView.h; sourceTree = "<group>"; };
@@ -626,6 +629,8 @@
 				36930A06237C064D003DAFBD /* ConnectNetworkViewController.m */,
 				36930A07237C064D003DAFBD /* FinishNetworkViewController.h */,
 				36930A05237C064D003DAFBD /* FinishNetworkViewController.m */,
+				36126D1523AA1166007B39DB /* FinishNetWorkSuccessController.h */,
+				36126D1623AA1166007B39DB /* FinishNetWorkSuccessController.m */,
 				36796554239F81E400DD7B4A /* image_icon_ESP */,
 			);
 			path = ESP;
@@ -1226,6 +1231,7 @@
 				368AB33C235F0623002B6D37 /* TouchTableView.m in Sources */,
 				36930A15237C09D6003DAFBD /* WorktimeCell.m in Sources */,
 				36965D24238B733200D0435A /* SetLanguageViewController.m in Sources */,
+				36126D1723AA1166007B39DB /* FinishNetWorkSuccessController.m in Sources */,
 				369C65F8235EE42F008D6230 /* AppDelegate.m in Sources */,
 				368AB332235F0623002B6D37 /* GosAlertView.m in Sources */,
 				36085886238686B50094501B /* WorkTimeViewController.m in Sources */,

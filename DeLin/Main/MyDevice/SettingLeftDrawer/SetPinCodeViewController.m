@@ -22,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self setNavItem];
     _bgTipView = [self bgTipView];
     _oldPinCodeTF = [self oldPinCodeTF];
     _pinCodeTF = [self pinCodeTF];
@@ -37,6 +37,11 @@
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+}
+
+#pragma mark - Lazy load
+- (void)setNavItem{
+    self.navigationItem.title = LocalString(@"PIN Code Setting");
 }
 
 - (UIView *)bgTipView{
@@ -73,7 +78,7 @@
         _oldPinCodeTF = [[UITextField alloc] init];
         _oldPinCodeTF.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
         _oldPinCodeTF.font = [UIFont systemFontOfSize:16.f];
-        _oldPinCodeTF.tintColor = [UIColor colorWithHexString:@"333333"];
+        _oldPinCodeTF.tintColor = [UIColor whiteColor];
         _oldPinCodeTF.clearButtonMode = UITextFieldViewModeWhileEditing;
         _oldPinCodeTF.autocorrectionType = UITextAutocorrectionTypeNo;
         _oldPinCodeTF.delegate = self;
@@ -100,7 +105,7 @@
         _pinCodeTF = [[UITextField alloc] init];
         _pinCodeTF.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
         _pinCodeTF.font = [UIFont systemFontOfSize:16.f];
-        _pinCodeTF.tintColor = [UIColor colorWithHexString:@"333333"];
+        _pinCodeTF.tintColor = [UIColor whiteColor];
         _pinCodeTF.clearButtonMode = UITextFieldViewModeWhileEditing;
         _pinCodeTF.autocorrectionType = UITextAutocorrectionTypeNo;
         _pinCodeTF.delegate = self;
@@ -128,7 +133,7 @@
         _repeatpinCodeTF = [[UITextField alloc] init];
         _repeatpinCodeTF.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
         _repeatpinCodeTF.font = [UIFont systemFontOfSize:16.f];
-        _repeatpinCodeTF.tintColor = [UIColor colorWithHexString:@"333333"];
+        _repeatpinCodeTF.tintColor = [UIColor whiteColor];
         _repeatpinCodeTF.clearButtonMode = UITextFieldViewModeWhileEditing;
         _repeatpinCodeTF.autocorrectionType = UITextAutocorrectionTypeNo;
         _repeatpinCodeTF.delegate = self;
@@ -155,16 +160,17 @@
         _sureBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_sureBtn setTitle:LocalString(@"Sure") forState:UIControlStateNormal];
         [_sureBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
-        [_sureBtn setTitleColor:[UIColor colorWithHexString:@"333333"] forState:UIControlStateNormal];
-        [_sureBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.6f]];
+        [_sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_sureBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:1.f]];
         [_sureBtn addTarget:self action:@selector(sure) forControlEvents:UIControlEventTouchUpInside];
         _sureBtn.enabled = YES;
         [self.view addSubview:_sureBtn];
         [_sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(50)));
-            make.top.equalTo(self.repeatpinCodeTF.mas_bottom).offset(yAutoFit(45));
-            make.centerX.mas_equalTo(self.view.mas_centerX);
+            make.size.mas_equalTo(CGSizeMake(ScreenWidth, yAutoFit(45)));
+            make.centerX.equalTo(self.view.mas_centerX);
+            make.bottom.equalTo(self.view.mas_bottom);
         }];
+        
         _sureBtn.layer.borderWidth = 0.5;
         _sureBtn.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
         _sureBtn.layer.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.16].CGColor;

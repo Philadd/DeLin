@@ -89,7 +89,7 @@
         pickerLabel = [[UILabel alloc] initWithFrame:CGRectMake(12.0f, 0.0f, [pickerView rowSizeForComponent:component].width-12, [pickerView rowSizeForComponent:component].height)];
         [pickerLabel setTextAlignment:NSTextAlignmentCenter];
         [pickerLabel setBackgroundColor:[UIColor clearColor]];
-        [pickerLabel setFont:[UIFont boldSystemFontOfSize:28]];
+        [pickerLabel setFont:[UIFont boldSystemFontOfSize:25]];
         pickerLabel.textColor = [UIColor whiteColor];
     }
     // Fill the label text here
