@@ -7,6 +7,7 @@
 //
 
 #import "NewUserSuccessController.h"
+#import "DeviceInfoViewController.h"
 
 @interface NewUserSuccessController ()
 
@@ -120,7 +121,9 @@
 
 - (void)goContinue{
     
-    
+    DeviceInfoViewController *InfoVC = [[DeviceInfoViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:InfoVC];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 - (void)AddLater{

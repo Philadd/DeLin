@@ -9,8 +9,9 @@
 #import "SetPasswordController.h"
 #import "AAPasswordTF.h"
 #import "NewUserSuccessController.h"
+#import <GizWifiSDK/GizWifiSDK.h>
 
-@interface SetPasswordController () <UITextFieldDelegate>
+@interface SetPasswordController () <UITextFieldDelegate,GizWifiSDKDelegate>
 
 @property (nonatomic, strong) UIView *labelBgView;
 @property (nonatomic, strong) UIButton *continueBtn;
@@ -32,6 +33,7 @@
     
     [self setNavItem];
     [self setUItextField];
+    [GizWifiSDK sharedInstance].delegate = self;
 }
 
 #pragma mark - setters and getters
@@ -154,6 +156,34 @@
     }
 }
 
+#pragma mark - GiZ回调
+// 实现回调
+- (void)wifiSDK:(GizWifiSDK *)wifiSDK didRegisterUser:(NSError *)result uid:(NSString *)uid token:(NSString *)token {
+    if(result.code == GIZ_SDK_SUCCESS) {
+        // 注册成功
+        [GizManager shareInstance].uid = uid;
+        [GizManager shareInstance].token = token;
+        
+        //保存用户信息
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:uid forKey:@"uid"];
+        [userDefaults setObject:token forKey:@"token"];
+        [userDefaults setObject:self.userEmail forKey:@"userEmail"];
+        [userDefaults synchronize];
+        
+        NewUserSuccessController *successVC = [[NewUserSuccessController alloc] init];
+        [self.navigationController pushViewController:successVC animated:YES];
+    } else {
+        // 注册失败
+        NSLog(@"注册失败");
+        [NSObject showHudTipStr:LocalString(@"Registration failed")];
+        NSLog(@"注册失败%@",result);
+        //[NSObject showHudTipStr3:[NSString stringWithFormat:@"%@",result]];
+        
+    }
+    
+}
+
 #pragma mark - Actions
 
 - (void)setUItextField{
@@ -180,9 +210,10 @@
 }
 
 - (void)goContinue{
-    NewUserSuccessController *successVC = [[NewUserSuccessController alloc] init];
-    [self.navigationController pushViewController:successVC animated:YES];
-    
+
+    if (self.passwordModelTF.inputText.text.length > 0) {
+       [[GizWifiSDK sharedInstance] registerUser:self.userEmail password:self.passwordModelTF.inputText.text verifyCode:nil accountType:GizUserEmail];
+    }
 }
 
 -(void)checkAgreement{

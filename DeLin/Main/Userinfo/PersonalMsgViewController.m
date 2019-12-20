@@ -184,6 +184,7 @@
 
 - (void)goContinue{
     SetPasswordController *passwordVC = [[SetPasswordController alloc] init];
+    passwordVC.userEmail = self.userEmail;
     [self.navigationController pushViewController:passwordVC animated:YES];
     
 }

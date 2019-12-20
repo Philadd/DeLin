@@ -220,6 +220,8 @@
         [userDefaults setObject:token forKey:@"token"];
         [userDefaults setObject:self.emailModelTF.inputText.text forKey:@"userEmail"];
         [userDefaults synchronize];
+        //获取用户信息
+        [[GizWifiSDK sharedInstance] getUserInfo:token];
         
         DeviceInfoViewController *InfoVC = [[DeviceInfoViewController alloc] init];
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:InfoVC];
@@ -230,6 +232,14 @@
         NSLog(@"登录失败,%@", result);
         [NSObject showHudTipStr:LocalString(@"Login failed")];
         
+    }
+    
+}
+
+- (void)wifiSDK:(GizWifiSDK *)wifiSDK didGetUserInfo:(NSError *)result userInfo:(GizUserInfo *)userInfo{
+    NSLog(@"didGetUserInfo:%@",result);
+    if(result.code == GIZ_SDK_SUCCESS) {
+        NSLog(@"dasdsdasd%@",userInfo);
     }
     
 }

@@ -17,9 +17,10 @@ NSString *const CellIdentifier_RegionCell = @"RegionCell";
 @property (strong, nonatomic) UITableView *regionTable;
 @property (nonatomic, strong) UIButton *continueBtn;
 @property (nonatomic, strong) NSMutableArray  *regionChooseArray;
-@property (nonatomic, assign) BOOL ifSelected;//是否选中
+
 @property (nonatomic, assign) NSIndexPath * lastSelected;//上一次选中的索引
 
+@property (copy, nonatomic) void(^block)(NSString *);
 
 @end
 
@@ -33,9 +34,16 @@ NSString *const CellIdentifier_RegionCell = @"RegionCell";
     _regionTable = [self regionTable];
     _continueBtn = [self continueBtn];
     [self setNavItem];
-    self.ifSelected = NO;//是否被选中 默认为NO
     
     self.regionChooseArray = [NSMutableArray arrayWithArray:@[LocalString(@"United Kingdom"),LocalString(@"Denmark"),LocalString(@"Netherlands"),LocalString(@"Finland"),LocalString(@"France"),LocalString(@"Germany"),LocalString(@"Italy"),LocalString(@"Norway"),LocalString(@"Russia"),LocalString(@"Portugal"),LocalString(@"Spain")]];
+    
+    //默认选择之前选中的地区
+    if (![self.addressStr isEqualToString:@""]) {
+        NSUInteger arrIndex = [self.regionChooseArray indexOfObject:self.addressStr];
+        self.lastSelected = [NSIndexPath indexPathForRow:arrIndex inSection:0];
+        [self.regionTable selectRowAtIndexPath:self.lastSelected animated:YES scrollPosition:UITableViewScrollPositionTop];
+        
+    }
 }
 
 #pragma mark - setters and getters
@@ -72,7 +80,8 @@ NSString *const CellIdentifier_RegionCell = @"RegionCell";
         [_continueBtn setTitle:LocalString(@"Submit") forState:UIControlStateNormal];
         [_continueBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_continueBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_continueBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:1.f]];
+        //[_continueBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:1.f]];
+        [_continueBtn setBackgroundColor:[UIColor colorWithRed:135/255.0 green:135/255.0 blue:135/255.0 alpha:1.f]];
         [_continueBtn addTarget:self action:@selector(goToSubmit) forControlEvents:UIControlEventTouchUpInside];
         _continueBtn.enabled = NO;
         [self.view addSubview:_continueBtn];
@@ -113,36 +122,39 @@ NSString *const CellIdentifier_RegionCell = @"RegionCell";
     cell.regionLabel.text = self.regionChooseArray[indexPath.row];
     cell.chooseImage.image = [UIImage imageNamed:@"img_choose"];
     //如果是之前选择的地区被标记
-    if ([self.addressStr isEqualToString:[NSString stringWithFormat:@"%@", self.regionChooseArray[indexPath.row]]]) {
-        cell.chooseImage.hidden = NO;
-    }
+    NSUInteger row = indexPath.row;
+    NSUInteger oldRow = self.lastSelected.row;
     
-    if (self.ifSelected) {
-
+    if (row == oldRow && self.lastSelected!= nil) {
+        
         cell.chooseImage.hidden = NO;
-        [_continueBtn setBackgroundColor:[UIColor colorWithRed:220/255.0 green:168/255.0 blue:11/255.0 alpha:1.f]];
-        _continueBtn.enabled = YES;
     }else{
         cell.chooseImage.hidden = YES;
-        [_continueBtn setBackgroundColor:[UIColor colorWithRed:135/255.0 green:135/255.0 blue:135/255.0 alpha:1.f]];
-        _continueBtn.enabled = NO;
+        
     }
-    
+
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    NSIndexPath * temp = self.lastSelected;//暂存上一次选中的行
-    if (temp && temp != indexPath)//如果上一次的选中的行存在,并且不是当前选中的这一行,则让上一行不选中
-    {
-        self.ifSelected = NO;//修改之前选中的cell的数据为不选中
-        [tableView reloadRowsAtIndexPaths:@[temp] withRowAnimation:UITableViewRowAnimationAutomatic];//刷新该行
+    NSInteger newRow = indexPath.row;
+    NSInteger oldRow = (self.lastSelected !=nil) ? [self.lastSelected row]:-1;
+    //判断当前选择的和上一次选中的是否为同一行
+    if (newRow != oldRow) {
+        //执行新行显示 旧行取消选择
+        RegionCell *newCell = [tableView cellForRowAtIndexPath:indexPath];
+        newCell.chooseImage.hidden = NO;
+        
+        RegionCell *oldCell = [tableView cellForRowAtIndexPath:self.lastSelected];
+        oldCell.chooseImage.hidden = YES;
+        self.lastSelected = indexPath;
+        
+        [_continueBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:1.f]];
+        _continueBtn.enabled = YES;
+        
     }
-    self.lastSelected = indexPath;//选中的修改为当前行
-    self.ifSelected = YES;//修改这个被选中的一行
-    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];//重新刷新
     
 }
 

@@ -46,6 +46,14 @@ static float HEIGHT_CELL = 50.f;
     [self setNavItem];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+}
+
 #pragma mark - setters and getters
 
 - (void)setNavItem{

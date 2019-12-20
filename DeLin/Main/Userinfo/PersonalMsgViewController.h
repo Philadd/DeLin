@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PersonalMsgViewController : UIViewController
 
+@property (nonatomic, copy) NSString *userEmail;
+
 @end
 
 NS_ASSUME_NONNULL_END

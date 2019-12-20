@@ -145,6 +145,7 @@
 
 - (void)goContinue{
     PersonalMsgViewController *msgVC = [[PersonalMsgViewController alloc] init];
+    msgVC.userEmail = self.accountModel.inputText.text;
     [self.navigationController pushViewController:msgVC animated:YES];
     
 }
