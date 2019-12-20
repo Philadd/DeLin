@@ -201,8 +201,8 @@
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     if (status == kCLAuthorizationStatusAuthorizedWhenInUse ||
         status == kCLAuthorizationStatusAuthorizedAlways) {
-        //再重新获取ssid
-        [self getDeviceSSID];
+        //获取当前连接的Wi-FiSSID
+        _wifiNameTF.text = [self getDeviceSSID];
     }
 }
 

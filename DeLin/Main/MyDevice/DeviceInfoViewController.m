@@ -268,8 +268,11 @@ static float HEIGHT_CELL = 80.f;
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:LocalString(@"Are you sure to delete ?")preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:LocalString(@"OK") style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
             NSLog(@"action = %@",action);
-            GizManager *manager = [GizManager shareInstance];
-            [[GizWifiSDK sharedInstance] unbindDevice:manager.uid token:manager.token did:device.did];
+            
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            NSString *userUid = [userDefaults valueForKey:@"uid"];
+            NSString *userToken = [userDefaults valueForKey:@"token"];
+            [[GizWifiSDK sharedInstance] unbindDevice:userUid token:userToken did:device.did];
             
         }];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:LocalString(@"Cancel") style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {

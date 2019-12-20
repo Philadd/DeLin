@@ -41,7 +41,7 @@ NSString *const CellIdentifier_RegionCell = @"RegionCell";
     if (![self.addressStr isEqualToString:@""]) {
         NSUInteger arrIndex = [self.regionChooseArray indexOfObject:self.addressStr];
         self.lastSelected = [NSIndexPath indexPathForRow:arrIndex inSection:0];
-        [self.regionTable selectRowAtIndexPath:self.lastSelected animated:YES scrollPosition:UITableViewScrollPositionTop];
+        [self.regionTable selectRowAtIndexPath:self.lastSelected animated:NO scrollPosition:UITableViewScrollPositionNone];
         
     }
 }
@@ -55,7 +55,7 @@ NSString *const CellIdentifier_RegionCell = @"RegionCell";
 - (UITableView *)regionTable{
     if (!_regionTable) {
         _regionTable = ({
-            TouchTableView *tableView = [[TouchTableView alloc] initWithFrame:CGRectMake(30.f, getRectNavAndStatusHight + yAutoFit(20), ScreenWidth - yAutoFit(30.f) *2 , ScreenHeight) style:UITableViewStylePlain];
+            TouchTableView *tableView = [[TouchTableView alloc] initWithFrame:CGRectMake(30.f, getRectNavAndStatusHight + yAutoFit(5), ScreenWidth - yAutoFit(30.f) *2 , ScreenHeight - getRectNavAndStatusHight - yAutoFit(45)) style:UITableViewStylePlain];
             tableView.backgroundColor = [UIColor clearColor];
             tableView.dataSource = self;
             tableView.delegate = self;
