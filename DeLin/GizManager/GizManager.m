@@ -245,19 +245,10 @@ static GizManager *_gizManager = nil;
         NSLog(@"设备透传返回信息: %@",attrStatus);
         NSLog(@"设备透传返回sn: %@",sn);
         NSDictionary *dataPoints = [attrStatus valueForKey:@"data"];
-        NSData *data = [attrStatus objectForKey:@"binary"];
         
-        NSMutableArray *dataArray = [NSMutableArray new];
-        NSData *recvBuffer = [NSData dataWithData:data];
-        NSUInteger recvLen = [recvBuffer length];
-        UInt8 *recv = (UInt8 *)[recvBuffer bytes];
-        //把接收到的数据存放在recvData数组中
-        NSUInteger j = 0;
-        while (j < recvLen) {
-            [dataArray addObject:[NSNumber numberWithUnsignedChar:recv[j]]];
-            j++;
-        }
-        //[[BluetoothDataManage shareInstance] handleData:dataArray];
+        //接收透传数据 进行解析
+        NSData *data = [attrStatus objectForKey:@"binary"];
+        [[NetWorkManager shareNetWorkManager]checkOutFrame:data];
         
         NSLog(@"查询上报的信息。。。数据点:%@ 透传:%@",dataPoints,data);
         if(dataPoints != nil && [dataPoints count] != 0)

@@ -54,9 +54,14 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [GizWifiSDK sharedInstance].delegate = self;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goHomeSuccess) name:@"getHome" object:nil];
+    
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"getHome" object:nil];
 }
 
 #pragma mark - Lazy load
@@ -324,15 +329,28 @@
     //[self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
+#pragma mark - notification
+
+- (void)goHomeSuccess{
+    
+    NSLog(@"设置home成功");
+}
+
 #pragma mark - Actions
 
 - (void)stoped{
     
+    UInt8 controlCode = 0x01;
+    NSArray *data = @[@0x00,@0x01,@0x02,@0x01];
+    [[NetWorkManager shareNetWorkManager] sendData69With:controlCode data:data failuer:nil];
     
 }
 
 - (void)goHome{
     
+    UInt8 controlCode = 0x01;
+    NSArray *data = @[@0x00,@0x01,@0x01,@0x01];
+    [[NetWorkManager shareNetWorkManager] sendData69With:controlCode data:data failuer:nil];
     
 }
 
