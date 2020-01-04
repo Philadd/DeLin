@@ -84,19 +84,10 @@ static int noUserInteractionHeartbeat = 0;
 #pragma mark - Actions
 
 - (void)getMainDeviceMsg{
-    NSMutableArray *dataMainDeviceMsg = [[NSMutableArray alloc ] init];
-    [dataMainDeviceMsg addObject:[NSNumber numberWithUnsignedChar:0x68]];
-    [dataMainDeviceMsg addObject:[NSNumber numberWithUnsignedChar:0x01]];
-    [dataMainDeviceMsg addObject:[NSNumber numberWithUnsignedChar:_frameCount]];
-    [dataMainDeviceMsg addObject:[NSNumber numberWithUnsignedChar:0x00]];
-    [dataMainDeviceMsg addObject:[NSNumber numberWithUnsignedChar:0x01]];
-    [dataMainDeviceMsg addObject:[NSNumber numberWithUnsignedChar:0x00]];
-    [dataMainDeviceMsg addObject:[NSNumber numberWithUnsignedChar:[NSObject getCS:dataMainDeviceMsg]]];
-    [dataMainDeviceMsg addObject:[NSNumber numberWithUnsignedChar:0x16]];
-
-    dispatch_sync(_queue, ^{
-        
-    });
+    UInt8 controlCode = 0x01;
+    NSArray *data = @[@0x00,@0x01,@0x00,@0x00];
+    [self sendData68With:controlCode data:data failuer:nil];
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [self performSelector:@selector(getMainDeviceMsg) withObject:nil afterDelay:3.f];
     });
@@ -107,25 +98,39 @@ static int noUserInteractionHeartbeat = 0;
 //帧的发送
 - (void)send:(NSMutableArray *)msg withTag:(NSUInteger)tag
 {
-    if ([GizManager shareInstance].device.netStatus == GizDeviceControlled)
+//    if ([GizManager shareInstance].device.netStatus == GizDeviceControlled)
+//    {
+//        NSUInteger len = msg.count;
+//        UInt8 sendBuffer[len];
+//        for (int i = 0; i < len; i++)
+//        {
+//            sendBuffer[i] = [[msg objectAtIndex:i] unsignedCharValue];
+//        }
+//
+//        NSData *sendData = [NSData dataWithBytes:sendBuffer length:len];
+//        NSLog(@"发送一条帧： %@",sendData);
+//        _frameCount++;
+//        //透传至机智云
+//        NSDictionary *transparentData = @{@"binary":sendData};
+//        [[GizManager shareInstance] sendTransparentDataByGizWifiSDK:transparentData];
+//    }
+//    else
+//    {
+//        NSLog(@"wifi未连接");
+//    }
+    NSUInteger len = msg.count;
+    UInt8 sendBuffer[len];
+    for (int i = 0; i < len; i++)
     {
-        NSUInteger len = msg.count;
-        UInt8 sendBuffer[len];
-        for (int i = 0; i < len; i++)
-        {
-            sendBuffer[i] = [[msg objectAtIndex:i] unsignedCharValue];
-        }
-        
-        NSData *sendData = [NSData dataWithBytes:sendBuffer length:len];
-        NSLog(@"发送一条帧： %@",sendData);
-        //透传至机智云
-        NSDictionary *transparentData = @{@"binary":sendData};
-        [[GizManager shareInstance] sendTransparentDataByGizWifiSDK:transparentData];
+        sendBuffer[i] = [[msg objectAtIndex:i] unsignedCharValue];
     }
-    else
-    {
-        NSLog(@"wifi未连接");
-    }
+    
+    NSData *sendData = [NSData dataWithBytes:sendBuffer length:len];
+    NSLog(@"发送一条帧： %@",sendData);
+    _frameCount++;
+    //透传至机智云
+    NSDictionary *transparentData = @{@"binary":sendData};
+    [[GizManager shareInstance] sendTransparentDataByGizWifiSDK:transparentData];
 }
 
 /*
@@ -136,28 +141,24 @@ static int noUserInteractionHeartbeat = 0;
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         dispatch_sync(self->_queue, ^{
             
-            //线程锁需要放在最前面，放在后面锁不住
-            dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC);
-            dispatch_semaphore_wait(self.sendSignal, time);
-            
             noUserInteractionHeartbeat = 0;//心跳清零
             
-            NSMutableArray *data69 = [[NSMutableArray alloc] init];
-            [data69 addObject:[NSNumber numberWithUnsignedInteger:0x68]];
-            [data69 addObject:[NSNumber numberWithUnsignedInteger:controlCode]];
+            NSMutableArray *data68 = [[NSMutableArray alloc] init];
+            [data68 addObject:[NSNumber numberWithUnsignedInteger:0x68]];
+            [data68 addObject:[NSNumber numberWithUnsignedInteger:controlCode]];
             
-            [data69 addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-            [data69 addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-            [data69 addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-            [data69 addObject:[NSNumber numberWithUnsignedInteger:0x00]];
+            [data68 addObject:[NSNumber numberWithUnsignedInteger:0x00]];
+            [data68 addObject:[NSNumber numberWithUnsignedInteger:0x00]];
+            [data68 addObject:[NSNumber numberWithUnsignedInteger:0x00]];
+            [data68 addObject:[NSNumber numberWithUnsignedInteger:0x00]];
             
-            [data69 addObject:[NSNumber numberWithInt:self->_frameCount]];
-            [data69 addObject:[NSNumber numberWithInteger:data.count]];
-            [data69 addObjectsFromArray:data];
-            [data69 addObject:[NSNumber numberWithUnsignedChar:[NSObject getCS:data69]]];
-            [data69 addObject:[NSNumber numberWithUnsignedChar:0x16]];
+            [data68 addObject:[NSNumber numberWithInt:self->_frameCount]];
+            [data68 addObject:[NSNumber numberWithInteger:data.count]];
+            [data68 addObjectsFromArray:data];
+            [data68 addObject:[NSNumber numberWithUnsignedChar:[NSObject getCS:data68]]];
+            [data68 addObject:[NSNumber numberWithUnsignedChar:0x16]];
             
-            [self send:data69 withTag:100];//机智云发送
+            [self send:data68 withTag:100];//机智云发送
             
         });
     });

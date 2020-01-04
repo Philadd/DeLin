@@ -73,7 +73,7 @@ static NSInteger tempCountVer = 1000;
 + (void)destroyInstance;
 
 ///@brief Frame68帧发送方法
-- (void)sendData69With:(UInt8)controlCode data:(NSArray *)data failuer:(nullable void(^)(void))failure;
+- (void)sendData68With:(UInt8)controlCode data:(NSArray *)data failuer:(nullable void(^)(void))failure;
 @end
 
 NS_ASSUME_NONNULL_END

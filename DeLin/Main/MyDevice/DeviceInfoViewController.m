@@ -389,6 +389,13 @@ static float HEIGHT_CELL = 80.f;
     LogoutVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentViewController:LogoutVC animated:YES completion:nil];
     
+    //虚拟设备绑定 测试用
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *userUid = [userDefaults valueForKey:@"uid"];
+    NSString *userToken = [userDefaults valueForKey:@"token"];
+    
+    [[GizWifiSDK sharedInstance] bindDeviceWithUid:userUid token:userToken did:@"vMxhGciH5EZxqPLka6D3kC" passCode:@"123456" remark:nil];
+    
 }
 
 -(void)addEquipment{

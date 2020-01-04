@@ -342,7 +342,7 @@
     
     UInt8 controlCode = 0x01;
     NSArray *data = @[@0x00,@0x01,@0x02,@0x01];
-    [[NetWorkManager shareNetWorkManager] sendData69With:controlCode data:data failuer:nil];
+    [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
     
 }
 
@@ -350,7 +350,7 @@
     
     UInt8 controlCode = 0x01;
     NSArray *data = @[@0x00,@0x01,@0x01,@0x01];
-    [[NetWorkManager shareNetWorkManager] sendData69With:controlCode data:data failuer:nil];
+    [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
     
 }
 
