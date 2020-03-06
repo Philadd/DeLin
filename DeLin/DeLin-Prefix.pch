@@ -66,8 +66,8 @@
 
 #define GizAppId @"8f5f965e477f41e68571730909ec2186"
 #define GizAppSecret @"95880a4f36e941a78c4d5161f3e5b66e"
-#define GizAppproductKey @"d2dde6285c1242a4a394d34a64a2eb6b"
-#define GizAppproductSecret @"38c36a9c9a034e8480df7f11e6a5b6e0"
+#define GizAppproductKey @"4fa35c2d2fbf4259a668eb9e994d1b78"
+#define GizAppproductSecret @"55afef25964e42d2b9f17a5d2935536f"
 
 typedef enum : NSUInteger {
     aUnselect = 1000,
