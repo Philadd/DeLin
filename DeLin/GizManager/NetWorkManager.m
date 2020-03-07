@@ -308,13 +308,13 @@ static int noUserInteractionHeartbeat = 0;
                     
                 }else if (self.msg68Type == getWorkArea){
                     
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"getWorkTime" object:nil userInfo:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"getWorkArea" object:nil userInfo:nil];
                     
                 }else if (self.msg68Type == getLanguage){
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [NSObject cancelPreviousPerformRequestsWithTarget:self];
                     });
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"apSendSucc" object:nil userInfo:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"getLanguage" object:nil userInfo:nil];
                 }
                 
             }

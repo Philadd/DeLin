@@ -394,7 +394,7 @@ static float HEIGHT_CELL = 80.f;
     NSString *userUid = [userDefaults valueForKey:@"uid"];
     NSString *userToken = [userDefaults valueForKey:@"token"];
     
-    [[GizWifiSDK sharedInstance] bindDeviceWithUid:userUid token:userToken did:@"vMxhGciH5EZxqPLka6D3kC" passCode:@"123456" remark:nil];
+    [[GizWifiSDK sharedInstance] bindDeviceWithUid:userUid token:userToken did:@"KxJu4xkPugQAoyoghZm7Yn" passCode:@"123456" remark:nil];
     
 }
 
