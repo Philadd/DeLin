@@ -1429,6 +1429,7 @@
 				CODE_SIGN_ENTITLEMENTS = DeLin/DeLin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5FAMV3D32N;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/StaticLibrary",
@@ -1458,6 +1459,7 @@
 				CODE_SIGN_ENTITLEMENTS = DeLin/DeLin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5FAMV3D32N;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/StaticLibrary",
