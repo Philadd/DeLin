@@ -69,12 +69,12 @@
     
     self.navigationItem.title = LocalString(@"Device control");
     
-    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    leftButton.frame = CGRectMake(0, 0, 30, 30);
-    [leftButton setImage:[UIImage imageNamed:@"userInfo_Btn"] forState:UIControlStateNormal];
-    [leftButton addTarget:self action:@selector(leftDrawer) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
-    self.navigationItem.leftBarButtonItem = leftBarButton;
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    rightButton.frame = CGRectMake(0, 0, 30, 30);
+    [rightButton setImage:[UIImage imageNamed:@"userInfo_Btn"] forState:UIControlStateNormal];
+    [rightButton addTarget:self action:@selector(rightDrawer) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = rightBarButton;
     
 }
 

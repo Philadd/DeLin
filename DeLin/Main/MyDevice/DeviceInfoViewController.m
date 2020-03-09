@@ -186,7 +186,7 @@ static float HEIGHT_CELL = 80.f;
         }];
         
         UILabel *tiplabel = [[UILabel alloc] init];
-        tiplabel.text = LocalString(@"Don't see my device");
+        tiplabel.text = LocalString(@"I don't see my device");
         tiplabel.font = [UIFont systemFontOfSize:13.f];
         tiplabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.7];
         tiplabel.numberOfLines = 0;
