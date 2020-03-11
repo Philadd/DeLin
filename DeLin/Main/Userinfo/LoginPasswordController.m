@@ -1,31 +1,25 @@
 //
-//  LoginViewController.m
+//  LoginPasswordController.m
 //  DeLin
 //
-//  Created by 安建伟 on 2019/10/22.
-//  Copyright © 2019 com.thingcom. All rights reserved.
+//  Created by 杭州轨物科技有限公司 on 2020/3/11.
+//  Copyright © 2020年 com.thingcom. All rights reserved.
 //
 
-#import "LoginViewController.h"
-#import "AppDelegate.h"
-#import "RegisterViewController.h"
-#import "ForgetpasswordViewController.h"
-#import "AAEmailTextField.h"
 #import "LoginPasswordController.h"
+#import "AAPasswordTF.h"
+#import "DeviceInfoViewController.h"
 
-@interface LoginViewController ()<UITextFieldDelegate,GizWifiSDKDelegate>
+@interface LoginPasswordController ()<UITextFieldDelegate,GizWifiSDKDelegate>
 
 @property (nonatomic, strong) UIView *labelBgView;
-@property (nonatomic, strong) AAEmailTextField *emailModelTF;
+@property (nonatomic, strong) AAPasswordTF *passwordModelTF;
 @property (nonatomic, strong) UIButton *loginBtn;
-@property (nonatomic, strong) UIButton *forgetPWBtn;
+
 
 @end
 
-@implementation LoginViewController
-{
-    NSString *emailStr;
-}
+@implementation LoginPasswordController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,7 +29,6 @@
     [self setNavItem];
     [self setUItextField];
     _loginBtn = [self loginBtn];
-    _forgetPWBtn = [self forgetPWBtn];
     
 }
 
@@ -73,7 +66,7 @@
         }];
         
         UILabel *tiplabel = [[UILabel alloc] init];
-        tiplabel.text = LocalString(@"Please enter your email address");
+        tiplabel.text = LocalString(@"Please enter your email password");
         tiplabel.font = [UIFont systemFontOfSize:16.f];
         tiplabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.7];;
         tiplabel.numberOfLines = 0;
@@ -96,9 +89,9 @@
         [_loginBtn setTitle:LocalString(@"Submit") forState:UIControlStateNormal];
         [_loginBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_loginBtn setBackgroundColor:[UIColor colorWithRed:153/255.0 green:153/255.0 blue:153/255.0 alpha:1.f]];
+        [_loginBtn setBackgroundColor:[UIColor colorWithRed:220/255.0 green:168/255.0 blue:11/255.0 alpha:1.f]];
         [_loginBtn addTarget:self action:@selector(goLogin) forControlEvents:UIControlEventTouchUpInside];
-        _loginBtn.enabled = NO;
+        _loginBtn.enabled = YES;
         [self.view addSubview:_loginBtn];
         [_loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(ScreenWidth, yAutoFit(45)));
@@ -117,43 +110,19 @@
     return _loginBtn;
 }
 
-- (UIButton *)forgetPWBtn{
-    if (!_forgetPWBtn) {
-        _forgetPWBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_forgetPWBtn setTitle:LocalString(@"Forgot password？") forState:UIControlStateNormal];
-        [_forgetPWBtn setTitleColor:[UIColor colorWithHexString:@"FDA31A"] forState:UIControlStateNormal];
-        [_forgetPWBtn.titleLabel setFont:[UIFont systemFontOfSize:16.f]];
-        [_forgetPWBtn addTarget:self action:@selector(forgetPW) forControlEvents:UIControlEventTouchUpInside];
-        //_forgetPWBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
-        [self.view addSubview:_forgetPWBtn];
-        [_forgetPWBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(150), yAutoFit(20)));
-            make.top.equalTo(self.labelBgView.mas_bottom).offset(yAutoFit(200));
-            make.centerX.equalTo(self.view.mas_centerX);
-        }];
-    }
-    return _forgetPWBtn;
-}
-
 #pragma mark - UITextField Delegate
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if (textField == self.emailModelTF.inputText && textField.text.length <= 0) {
-        [self.emailModelTF emailTFBeginEditing];
+    if (textField == self.passwordModelTF.inputText && textField.text.length <= 0) {
+        [self.passwordModelTF passwordTFBeginEditing];
     }
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    if (textField == self.emailModelTF.inputText && textField.text.length <= 0) {
-        [self.emailModelTF emailTFEndEditing];
-        
-        [_loginBtn setBackgroundColor:[UIColor colorWithRed:153/255.0 green:153/255.0 blue:153/255.0 alpha:1.f]];
-        _loginBtn.enabled = NO;
-    }else{
-        [_loginBtn setBackgroundColor:[UIColor colorWithRed:220/255.0 green:168/255.0 blue:11/255.0 alpha:1.f]];
-        _loginBtn.enabled = YES;
+    if (textField == self.passwordModelTF.inputText && textField.text.length <= 0) {
+        [self.passwordModelTF passwordTFEndEditing];
     }
 }
 
@@ -163,46 +132,70 @@
     
     CGRect emailF = CGRectMake(yAutoFit(15), getRectNavAndStatusHight + yAutoFit(200), yAutoFit(320), yAutoFit(60));
     
-    self.emailModelTF = [[AAEmailTextField alloc]initWithFrame:emailF withPlaceholderText:LocalString(@"Address e-mail")];
-    self.emailModelTF.inputText.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    self.emailModelTF.inputText.autocorrectionType = UITextAutocorrectionTypeNo;
-    self.emailModelTF.inputText.keyboardType = UIKeyboardTypeEmailAddress;
-    self.emailModelTF.frame = emailF;
-    self.emailModelTF.inputText.delegate = self;
-    [self.view addSubview:self.emailModelTF];
+    self.passwordModelTF = [[AAPasswordTF alloc]initWithFrame:emailF withPlaceholderText:LocalString(@"Password")];
+    self.passwordModelTF.inputText.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    self.passwordModelTF.inputText.autocorrectionType = UITextAutocorrectionTypeNo;
+    self.passwordModelTF.inputText.keyboardType = UIKeyboardTypeEmailAddress;
+    self.passwordModelTF.frame = emailF;
+    self.passwordModelTF.inputText.delegate = self;
+    [self.view addSubview:self.passwordModelTF];
     
-    UITapGestureRecognizer *tapGrEmail = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTappedEmail:)];
-    tapGrEmail.cancelsTouchesInView = NO;
+    UITapGestureRecognizer *tapGrPassword = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTappedPassword:)];
+    tapGrPassword.cancelsTouchesInView = NO;
     
-    [self.emailModelTF.labelView addGestureRecognizer:tapGrEmail];
+    [self.passwordModelTF.labelView addGestureRecognizer:tapGrPassword];
 }
 
--(void)viewTappedEmail:(UITapGestureRecognizer*)tapGr
+-(void)viewTappedPassword:(UITapGestureRecognizer*)tapGr
 {
-    [self.emailModelTF.inputText resignFirstResponder];
+    [self.passwordModelTF.inputText resignFirstResponder];
+}
+
+#pragma mark - GizWifiSDK delegate
+// 实现回调
+- (void)wifiSDK:(GizWifiSDK *)wifiSDK didUserLogin:(NSError *)result uid:(NSString *)uid token:(NSString *)token {
+    if(result.code == GIZ_SDK_SUCCESS) {
+        //登录成功
+        NSLog(@"登录成功,%@", result);
+        
+        [GizManager shareInstance].uid = uid;
+        [GizManager shareInstance].token = token;
+        
+        //保存用户信息
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:uid forKey:@"uid"];
+        [userDefaults setObject:token forKey:@"token"];
+        [userDefaults setObject:self.emailStr forKey:@"userEmail"];
+        [userDefaults synchronize];
+        //获取用户信息
+        [[GizWifiSDK sharedInstance] getUserInfo:token];
+        
+        DeviceInfoViewController *InfoVC = [[DeviceInfoViewController alloc] init];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:InfoVC];
+        [self presentViewController:nav animated:YES completion:nil];
+        
+    } else {
+        // 登录失败
+        NSLog(@"登录失败,%@", result);
+        [NSObject showHudTipStr:LocalString(@"Login failed")];
+        
+    }
+    
+}
+
+- (void)wifiSDK:(GizWifiSDK *)wifiSDK didGetUserInfo:(NSError *)result userInfo:(GizUserInfo *)userInfo{
+    NSLog(@"didGetUserInfo:%@",result);
+    if(result.code == GIZ_SDK_SUCCESS) {
+        NSLog(@"dasdsdasd%@",userInfo);
+    }
+    
 }
 
 #pragma mark - Actions
 - (void)goLogin{
     
-    if (self.emailModelTF.inputText.text.length > 0) {
-        LoginPasswordController *loginVC = [[LoginPasswordController alloc] init];
-        loginVC.emailStr = self.emailModelTF.inputText.text;
-        [self.navigationController pushViewController:loginVC animated:YES];
-    }else{
-        [NSObject showHudTipStr:LocalString(@"Please enter your email address")];
-    }
+    [[GizWifiSDK sharedInstance] userLogin:self.emailStr password:self.passwordModelTF.inputText.text];
     
-}
-
-- (void)forgetPW{
-    if (self.emailModelTF.inputText.text.length > 0) {
-        ForgetpasswordViewController *ForgetVC = [[ForgetpasswordViewController alloc] init];
-        ForgetVC.emailResetStr = self.emailModelTF.inputText.text;
-        [self presentViewController:ForgetVC animated:YES completion:nil];
-    }else{
-        [NSObject showHudTipStr:LocalString(@"Please enter your email address")];
-    }
 }
 
 @end

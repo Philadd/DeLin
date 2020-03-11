@@ -166,6 +166,7 @@
 		36F1ED1B238920B600E1C7A8 /* userName_icon_imag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36F1ED18238920B500E1C7A8 /* userName_icon_imag@2x.png */; };
 		36F1ED1C238920B600E1C7A8 /* userName_icon_imag.png in Resources */ = {isa = PBXBuildFile; fileRef = 36F1ED19238920B600E1C7A8 /* userName_icon_imag.png */; };
 		896FD80E889048BD4E4DCA1D /* libPods-DeLin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 884F754EB758212CC878A786 /* libPods-DeLin.a */; };
+		BBA89C762418B20B00007945 /* LoginPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA89C752418B20B00007945 /* LoginPasswordController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -421,6 +422,8 @@
 		817BB96CDCA8A246ED304146 /* Pods-DeLin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeLin.release.xcconfig"; path = "Target Support Files/Pods-DeLin/Pods-DeLin.release.xcconfig"; sourceTree = "<group>"; };
 		884F754EB758212CC878A786 /* libPods-DeLin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DeLin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3FDF79274E40EC050E0E6A7 /* Pods-DeLin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeLin.debug.xcconfig"; path = "Target Support Files/Pods-DeLin/Pods-DeLin.debug.xcconfig"; sourceTree = "<group>"; };
+		BBA89C742418B20B00007945 /* LoginPasswordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginPasswordController.h; sourceTree = "<group>"; };
+		BBA89C752418B20B00007945 /* LoginPasswordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginPasswordController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -523,6 +526,8 @@
 				36A9AEFD2396600A00EC8749 /* NewUserSuccessController.m */,
 				368AB2F1235F0450002B6D37 /* LoginViewController.h */,
 				368AB2F2235F0450002B6D37 /* LoginViewController.m */,
+				BBA89C742418B20B00007945 /* LoginPasswordController.h */,
+				BBA89C752418B20B00007945 /* LoginPasswordController.m */,
 				36588D4B2370189B008ADEAC /* RegisterViewController.h */,
 				36588D4C2370189C008ADEAC /* RegisterViewController.m */,
 				36588D4A2370189B008ADEAC /* ForgetpasswordViewController.h */,
@@ -1233,6 +1238,7 @@
 				3618FC59237D26CF00255426 /* MainViewController.m in Sources */,
 				36F1ECF82388E51000E1C7A8 /* LeftDrawerCell.m in Sources */,
 				36A9AEFB23965F2900EC8749 /* SetPasswordController.m in Sources */,
+				BBA89C762418B20B00007945 /* LoginPasswordController.m in Sources */,
 				368AB33C235F0623002B6D37 /* TouchTableView.m in Sources */,
 				36930A15237C09D6003DAFBD /* WorktimeCell.m in Sources */,
 				36965D24238B733200D0435A /* SetLanguageViewController.m in Sources */,

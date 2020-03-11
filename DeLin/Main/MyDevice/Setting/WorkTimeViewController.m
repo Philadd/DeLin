@@ -43,11 +43,12 @@ static CGFloat cellHeight = 45.0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //初始化数组 要提前
+    [self initDataArray];
     [self setNavItem];
     self.workTimeTable = [self workTimeTable];
     self.workDatePickview = [self workDatePickview];
     self.oKButton = [self oKButton];
-    [self initDataArray];
     
     _flag = 0;//默认不发送数据
     //_timer = [self timer];

@@ -11,7 +11,7 @@
 #import "PersonSettingViewController.h"
 #import "SelectDeviceViewController.h"
 #import "DeviceListCell.h"
-#import "InputPINViewController.h"
+#import "MainViewController.h"
 
 NSString *const CellIdentifier_DeviceList = @"CellID_DeviceList";
 static float HEIGHT_CELL = 80.f;
@@ -299,8 +299,8 @@ static float HEIGHT_CELL = 80.f;
     GizWifiDevice *device = _deviceArray[indexPath.row];
     [[GizManager shareInstance] setGizDevice:device];
     
-    InputPINViewController *inputVC = [[InputPINViewController alloc] init];
-    [self.navigationController pushViewController:inputVC animated:YES];
+    MainViewController *mainVC = [[MainViewController alloc] init];
+    [self.navigationController pushViewController:mainVC animated:YES];
     
 }
 
