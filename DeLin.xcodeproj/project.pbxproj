@@ -1453,7 +1453,7 @@
 					"$(PROJECT_DIR)/StaticLibrary",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "/Users/guiwukeji/Desktop/Philadd/DeLin/DeLin/DeLin-Prefix.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/DeLin/DeLin-Prefix.pch";
 				INFOPLIST_FILE = DeLin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1483,7 +1483,7 @@
 					"$(PROJECT_DIR)/StaticLibrary",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "/Users/guiwukeji/Desktop/Philadd/DeLin/DeLin/DeLin-Prefix.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/DeLin/DeLin-Prefix.pch";
 				INFOPLIST_FILE = DeLin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
