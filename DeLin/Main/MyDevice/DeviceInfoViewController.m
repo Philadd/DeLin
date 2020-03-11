@@ -377,9 +377,7 @@ static float HEIGHT_CELL = 80.f;
 -(void)goSetting{
     
     PersonSettingViewController *PersonSettingVC = [[PersonSettingViewController alloc] init];
-    PersonSettingVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-    PersonSettingVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentViewController:PersonSettingVC animated:YES completion:nil];
+    [self.navigationController pushViewController:PersonSettingVC animated:YES];
 }
 
 - (void)goPerson{

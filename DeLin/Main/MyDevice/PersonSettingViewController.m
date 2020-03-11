@@ -10,6 +10,7 @@
 #import "PersonSettingCell.h"
 #import "SetPinCodeViewController.h"
 #import "SetLanguageViewController.h"
+#import "LogoutViewController.h"
 
 NSString *const CellIdentifier_PersonSetting = @"CellID_PersonSetting";
 static CGFloat const Cell_Height = 50.f;
@@ -17,7 +18,7 @@ static CGFloat const Cell_Height = 50.f;
 @interface PersonSettingViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView *houseTable;
-@property (strong, nonatomic) UIButton *cancelBtn;
+//@property (strong, nonatomic) UIButton *cancelBtn;
 
 @end
 
@@ -35,40 +36,52 @@ static CGFloat const Cell_Height = 50.f;
     [self.view setBackgroundColor:[UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0]];
     
     self.houseTable = [self houseTable];
-    self.cancelBtn = [self cancelBtn];
+    //self.cancelBtn = [self cancelBtn];
+    
+    [self setNavItem];
     
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
     
 }
 
 #pragma mark - Lazy Load
 
-- (UIButton *)cancelBtn{
-    if (!_cancelBtn) {
-        _cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_cancelBtn setImage:[UIImage imageNamed:@"img_cancel_Btn"] forState:UIControlStateNormal];
-        [_cancelBtn setBackgroundColor:[UIColor clearColor]];
-        [_cancelBtn addTarget:self action:@selector(dismissVC) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:_cancelBtn];
-        [_cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(30.f), yAutoFit(30.f)));
-            make.left.equalTo(self.view.mas_left).offset(yAutoFit(40.f));
-            make.top.equalTo(self.view.mas_top).offset(yAutoFit(30.f));
-        }];
-    }
-    return _cancelBtn;
+- (void)setNavItem{
+    
+    self.navigationItem.title = LocalString(@"");
+    
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    rightButton.frame = CGRectMake(0, 0, 30, 30);
+    [rightButton setImage:[UIImage imageNamed:@"img_person_Btn"] forState:UIControlStateNormal];
+    [rightButton addTarget:self action:@selector(goPerson) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = rightBarButton;
+    
 }
+
+//- (UIButton *)cancelBtn{
+//    if (!_cancelBtn) {
+//        _cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [_cancelBtn setImage:[UIImage imageNamed:@"img_cancel_Btn"] forState:UIControlStateNormal];
+//        [_cancelBtn setBackgroundColor:[UIColor clearColor]];
+//        [_cancelBtn addTarget:self action:@selector(dismissVC) forControlEvents:UIControlEventTouchUpInside];
+//        [self.view addSubview:_cancelBtn];
+//        [_cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.size.mas_equalTo(CGSizeMake(yAutoFit(30.f), yAutoFit(30.f)));
+//            make.left.equalTo(self.view.mas_left).offset(yAutoFit(40.f));
+//            make.top.equalTo(self.view.mas_top).offset(yAutoFit(30.f));
+//        }];
+//    }
+//    return _cancelBtn;
+//}
 
 -(UITableView *)houseTable{
     if (!_houseTable) {
@@ -142,15 +155,13 @@ static CGFloat const Cell_Height = 50.f;
         case 1:
         {
             SetPinCodeViewController *pinCodeVC = [[SetPinCodeViewController alloc] init];
-            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:pinCodeVC];
-            [self presentViewController:nav animated:YES completion:nil];
+            [self.navigationController pushViewController:pinCodeVC animated:YES];
         }
             break;
         case 2:
         {
             SetLanguageViewController *languageVC = [[SetLanguageViewController alloc] init];
-            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:languageVC];
-            [self presentViewController:nav animated:YES completion:nil];
+            [self.navigationController pushViewController:languageVC animated:YES];
         }
             
             break;
@@ -179,6 +190,15 @@ static CGFloat const Cell_Height = 50.f;
 - (void)dismissVC{
     
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)goPerson{
+    
+    LogoutViewController *LogoutVC = [[LogoutViewController alloc] init];
+    LogoutVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    LogoutVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:LogoutVC animated:YES completion:nil];
+    
 }
 
 @end

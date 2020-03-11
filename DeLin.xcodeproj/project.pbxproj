@@ -167,6 +167,9 @@
 		36F1ED1C238920B600E1C7A8 /* userName_icon_imag.png in Resources */ = {isa = PBXBuildFile; fileRef = 36F1ED19238920B600E1C7A8 /* userName_icon_imag.png */; };
 		896FD80E889048BD4E4DCA1D /* libPods-DeLin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 884F754EB758212CC878A786 /* libPods-DeLin.a */; };
 		BBA89C762418B20B00007945 /* LoginPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA89C752418B20B00007945 /* LoginPasswordController.m */; };
+		BBA89C782418DCFF00007945 /* img_main_pin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BBA89C772418DCFF00007945 /* img_main_pin@2x.png */; };
+		BBA89C7B2418DD0B00007945 /* img_main_pin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BBA89C792418DD0A00007945 /* img_main_pin@3x.png */; };
+		BBA89C7C2418DD0B00007945 /* img_main_pin.png in Resources */ = {isa = PBXBuildFile; fileRef = BBA89C7A2418DD0A00007945 /* img_main_pin.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -424,6 +427,9 @@
 		B3FDF79274E40EC050E0E6A7 /* Pods-DeLin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeLin.debug.xcconfig"; path = "Target Support Files/Pods-DeLin/Pods-DeLin.debug.xcconfig"; sourceTree = "<group>"; };
 		BBA89C742418B20B00007945 /* LoginPasswordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginPasswordController.h; sourceTree = "<group>"; };
 		BBA89C752418B20B00007945 /* LoginPasswordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginPasswordController.m; sourceTree = "<group>"; };
+		BBA89C772418DCFF00007945 /* img_main_pin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_main_pin@2x.png"; sourceTree = "<group>"; };
+		BBA89C792418DD0A00007945 /* img_main_pin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_main_pin@3x.png"; sourceTree = "<group>"; };
+		BBA89C7A2418DD0A00007945 /* img_main_pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_main_pin.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -851,6 +857,9 @@
 		36BF86C32383CC63009EA9AB /* image_icon */ = {
 			isa = PBXGroup;
 			children = (
+				BBA89C7A2418DD0A00007945 /* img_main_pin.png */,
+				BBA89C792418DD0A00007945 /* img_main_pin@3x.png */,
+				BBA89C772418DCFF00007945 /* img_main_pin@2x.png */,
 				36126D1323A9D606007B39DB /* img_mine_headerBG@2x.png */,
 				36796549239E1A5600DD7B4A /* img_cancel_balck_Btn.png */,
 				36E5946D239BA77200DE4F04 /* img_person_Btn.png */,
@@ -1072,6 +1081,7 @@
 				36E59471239BA77300DE4F04 /* img_person_Btn@2x.png in Resources */,
 				36866E442384F10F0022F265 /* workTime_img@2x.png in Resources */,
 				36F1ECF42388D45000E1C7A8 /* robot_icon_imag.png in Resources */,
+				BBA89C7B2418DD0B00007945 /* img_main_pin@3x.png in Resources */,
 				36866E432384F10F0022F265 /* userInfo_Btn@3x.png in Resources */,
 				36796568239F917A00DD7B4A /* img_netWork_hometip.png in Resources */,
 				36F1ED0823891FD300E1C7A8 /* language_icon_imag@2x.png in Resources */,
@@ -1106,6 +1116,7 @@
 				36E59462239B859800DE4F04 /* img_deviceInfo@2x.png in Resources */,
 				3679654A239E1A5600DD7B4A /* img_cancel_balck_Btn.png in Resources */,
 				36E59470239BA77300DE4F04 /* img_setting_Btn.png in Resources */,
+				BBA89C7C2418DD0B00007945 /* img_main_pin.png in Resources */,
 				36E59474239BA77300DE4F04 /* img_setting_Btn@2x.png in Resources */,
 				36E5943E2399F2F900DE4F04 /* img_success@2x.png in Resources */,
 				36866E3C2384F10F0022F265 /* area_img@2x.png in Resources */,
@@ -1119,6 +1130,7 @@
 				36866E3D2384F10F0022F265 /* area_img.png in Resources */,
 				36A9AEF52395FC4900EC8749 /* dl_user.png in Resources */,
 				369C65FE235EE42F008D6230 /* Main.storyboard in Resources */,
+				BBA89C782418DCFF00007945 /* img_main_pin@2x.png in Resources */,
 				36E59447239A2AA400DE4F04 /* img_resetEmail.png in Resources */,
 				36866E3E2384F10F0022F265 /* workTime_img.png in Resources */,
 				36E59461239B859800DE4F04 /* img_deviceInfo@3x.png in Resources */,

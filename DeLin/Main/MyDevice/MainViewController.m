@@ -11,6 +11,7 @@
 //#import "UIViewController+MMDrawerController.h"
 #import "WorkAreaViewController.h"
 #import "WorkTimeViewController.h"
+#import "SetPinCodeViewController.h"
 
 @interface MainViewController ()<GizWifiSDKDelegate>
 
@@ -71,8 +72,8 @@
     
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     rightButton.frame = CGRectMake(0, 0, 30, 30);
-    [rightButton setImage:[UIImage imageNamed:@"userInfo_Btn"] forState:UIControlStateNormal];
-    [rightButton addTarget:self action:@selector(rightDrawer) forControlEvents:UIControlEventTouchUpInside];
+    [rightButton setImage:[UIImage imageNamed:@"img_main_pin"] forState:UIControlStateNormal];
+    [rightButton addTarget:self action:@selector(setPinCode) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightBarButton;
     
@@ -322,13 +323,6 @@
     return _areaSetBtn;
 }
 
-
-#pragma mark - 左侧抽屉
-- (void)leftDrawer{
-    
-    //[self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
-}
-
 #pragma mark - notification
 
 - (void)goHomeSuccess{
@@ -364,6 +358,12 @@
 - (void)setArea{
     WorkAreaViewController *WorkAreaVC = [[WorkAreaViewController alloc] init];
     [self.navigationController pushViewController:WorkAreaVC animated:YES];
+    
+}
+
+- (void)setPinCode{
+    SetPinCodeViewController *SetPinCodeVC = [[SetPinCodeViewController alloc] init];
+    [self.navigationController pushViewController:SetPinCodeVC animated:YES];
     
 }
 
