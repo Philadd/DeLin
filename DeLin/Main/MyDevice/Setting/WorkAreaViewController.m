@@ -26,13 +26,13 @@
     [self setNavItem];
     self.workAeraPicker = [self workAeraPicker];
     self.oKButton = [self oKButton];
-    //[self inquireLanguage];
     
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self inquireworkAera];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recieveWorkAera:) name:@"recieveWorkAera" object:nil];
 }
 
@@ -125,54 +125,33 @@
 }
 
 
-#pragma mark - inquire Mower Language
+#pragma mark - inquire Mower workAera
 
-//- (void)inquireLanguage{
-//
-//    NSMutableArray *dataContent = [[NSMutableArray alloc] init];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//
-//    [self.bluetoothDataManage setDataType:0x13];
-//    [self.bluetoothDataManage setDataContent: dataContent];
-//    [self.bluetoothDataManage sendBluetoothFrame];
-//}
+- (void)inquireworkAera{
+
+    UInt8 controlCode = 0x01;
+    NSArray *data = @[@0x00,@0x01,@0x05,@0x00];
+    [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
+
+}
 
 - (void)recieveWorkAera:(NSNotification *)notification{
     NSDictionary *dict = [notification userInfo];
-    NSNumber *Language = dict[@"workAera"];
+    NSNumber *workAera = dict[@"workAera"];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.workAeraPicker selectRow:[Language intValue] inComponent:0 animated:YES];
+        [self.workAeraPicker selectRow:[workAera intValue] inComponent:0 animated:YES];
     });}
 
 #pragma mark - Action
 - (void)setWorkAera
 {
-//    NSInteger row = [self.workAeraPicker selectedRowInComponent:0];
-//    if (row == 1) {
-//        row = 2;
-//    }
-//
-//    NSMutableArray *dataContent = [[NSMutableArray alloc] init];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:row]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//
-//    [self.bluetoothDataManage setDataType:0x03];
-//    [self.bluetoothDataManage setDataContent: dataContent];
-//    [self.bluetoothDataManage sendBluetoothFrame];
+    NSInteger row = [self.workAeraPicker selectedRowInComponent:0];
     
+    NSNumber *aera = [NSNumber numberWithUnsignedInteger:[self.workAeraArray[row % _workAeraArray.count] integerValue]];
+    
+    UInt8 controlCode = 0x01;
+    NSArray *data = @[@0x00,@0x01,@0x05,@0x01,aera];
+    [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
 
 }
 

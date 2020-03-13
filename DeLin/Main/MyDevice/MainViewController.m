@@ -49,7 +49,8 @@
     //设置打开/关闭抽屉的手势
 //    self.drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
 //    self.drawerController.closeDrawerGestureModeMask =MMCloseDrawerGestureModeAll;
-    
+    //校准时间
+    [self setMowerTime];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -331,6 +332,19 @@
 }
 
 #pragma mark - Actions
+
+//校准机器时间
+- (void)setMowerTime{
+    NSDate *date = [NSDate date];
+    NSCalendar *currentCalendar = [NSCalendar currentCalendar];    //IOS 8 之后
+    NSUInteger integer = NSCalendarUnitYear | NSCalendarUnitMonth |NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute;
+    NSDateComponents *dataCom = [currentCalendar components:integer fromDate:date];
+
+    UInt8 controlCode = 0x01;
+    NSArray *data = @[@0x00,@0x01,@0x03,@0x01,[NSNumber numberWithUnsignedInteger:[dataCom year] / 100],[NSNumber numberWithUnsignedInteger:[dataCom year] % 100],[NSNumber numberWithUnsignedInteger:[dataCom month]],[NSNumber numberWithUnsignedInteger:[dataCom day]],[NSNumber numberWithUnsignedInteger:[dataCom hour]],[NSNumber numberWithUnsignedInteger:[dataCom minute]]];
+    
+    [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
+}
 
 - (void)stoped{
     
