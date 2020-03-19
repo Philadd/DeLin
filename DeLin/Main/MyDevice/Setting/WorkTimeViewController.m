@@ -102,7 +102,7 @@ static CGFloat cellHeight = 45.0;
     }
     
     self.selectrowArray = [NSMutableArray array];
-    for (int i = 0; i < 30; i++) {
+    for (int i = 0; i < 21; i++) {
         [_selectrowArray addObject:[NSNumber numberWithInt:0]];
     }
     
@@ -165,7 +165,7 @@ static CGFloat cellHeight = 45.0;
         [_oKButton.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_oKButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_oKButton setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:1.f]];
-        [_oKButton addTarget:self action:@selector(goMowerTime) forControlEvents:UIControlEventTouchUpInside];
+        [_oKButton addTarget:self action:@selector(setMowerTime) forControlEvents:UIControlEventTouchUpInside];
         _oKButton.enabled = YES;
         [self.view addSubview:_oKButton];
         [_oKButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -205,16 +205,21 @@ static CGFloat cellHeight = 45.0;
     //将键盘替换成pickView
     cell.worksHoursTF.inputView = _workDatePickview;
     cell.worksMinutesTF.inputView = _workDatePickview;
-    if ([_selectrowArray[indexPath.row * 2] intValue] <= 24) {
-        cell.worksHoursTF.text = [_workingHoursArray objectAtIndex:[_selectrowArray[indexPath.row * 2] intValue]];
+    if ([_selectrowArray[indexPath.row] intValue] <= 24) {
+        cell.worksHoursTF.text = [_workingHoursArray objectAtIndex:[_selectrowArray[indexPath.row] intValue]];
     }
-    if ([_selectrowArray[indexPath.row * 2 + 1] intValue] <= 60) {
-        cell.worksMinutesTF.text = [NSString stringWithFormat:@"%@%@",LocalString(@":"),[_workingMinuteArray objectAtIndex:[_selectrowArray[indexPath.row * 2 + 1] intValue]]];
+    if ([_selectrowArray[indexPath.row + 7] intValue] <= 60) {
+        cell.worksMinutesTF.text = [NSString stringWithFormat:@"%@%@",LocalString(@":"),[_workingMinuteArray objectAtIndex:[_selectrowArray[indexPath.row + 7] intValue]]];
     }
-    
-    //cell.workTimeSwitch.on = isWorkTimeOn;
     cell.block = ^(BOOL isOn) {
         
+        if (isOn) {
+            [self.selectrowArray replaceObjectAtIndex:indexPath.row + 14 withObject:[NSNumber numberWithBool:isOn]];
+        }else{
+            [self.selectrowArray replaceObjectAtIndex:indexPath.row + 14 withObject:[NSNumber numberWithBool:isOn]];
+        }
+        
+        [self.workTimeTable reloadData];
     };
   
     return cell;
@@ -259,7 +264,7 @@ static CGFloat cellHeight = 45.0;
             NSUInteger base1 = (max / 2) - (max / 2) % _workingHoursArray.count;
             [self.workDatePickview selectRow:[_workDatePickview selectedRowInComponent:component] % _workingHoursArray.count + base1 inComponent:component animated:NO];
             selectHoursTF.text = _workingHoursArray[row % _workingHoursArray.count];
-            [_selectrowArray replaceObjectAtIndex:selectIndexPath.row * 2 withObject:[NSNumber numberWithLong:row % _workingHoursArray.count]];
+            [_selectrowArray replaceObjectAtIndex:selectIndexPath.row withObject:[NSNumber numberWithLong:row % _workingHoursArray.count]];
         }
             break;
         case 1:
@@ -267,7 +272,7 @@ static CGFloat cellHeight = 45.0;
             NSUInteger base2 = (max / 2) - (max / 2) % _workingMinuteArray.count;
             [self.workDatePickview selectRow:[_workDatePickview selectedRowInComponent:component] % _workingMinuteArray.count + base2 inComponent:component animated:NO];
             selectMinutesTF.text = [NSString stringWithFormat:@"%@%@",LocalString(@":"),_workingMinuteArray[row % _workingMinuteArray.count]];
-            [_selectrowArray replaceObjectAtIndex:selectIndexPath.row * 2 + 1 withObject:[NSNumber numberWithLong:row % _workingMinuteArray.count]];
+            [_selectrowArray replaceObjectAtIndex:selectIndexPath.row + 7 withObject:[NSNumber numberWithLong:row % _workingMinuteArray.count]];
         }
             break;
             
@@ -303,8 +308,8 @@ static CGFloat cellHeight = 45.0;
     selectMinutesTF.textColor = [UIColor colorWithHexString:@"FF9700"];
     selectHoursTF.tintColor = [UIColor colorWithHexString:@"FF9700"];//传达色彩
     selectMinutesTF.tintColor = [UIColor colorWithHexString:@"FF9700"];
-    [_workDatePickview selectRow:[_selectrowArray[selectIndexPath.row * 2] intValue] inComponent:0 animated:YES];
-    [_workDatePickview selectRow:[_selectrowArray[selectIndexPath.row * 2 + 1] intValue] inComponent:1 animated:YES];
+    [_workDatePickview selectRow:[_selectrowArray[selectIndexPath.row] intValue] inComponent:0 animated:YES];
+    [_workDatePickview selectRow:[_selectrowArray[selectIndexPath.row + 7] intValue] inComponent:1 animated:YES];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
@@ -329,36 +334,28 @@ static CGFloat cellHeight = 45.0;
 
 #pragma mark - inquire WorkingtimeSetting
 
-//- (void)inquireWorktimeSetting{
-//    [SVProgressHUD show];
-//    //子线程延时1s
-//    double delayInSeconds = 1.0;
-//    dispatch_queue_t mainQueue = dispatch_get_main_queue();
-//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW,delayInSeconds * NSEC_PER_SEC);
-//    dispatch_after(popTime, mainQueue, ^{
-//        NSLog(@"延时执行的1秒");
-//    });
-//    NSMutableArray *dataContent = [[NSMutableArray alloc] init];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//
-//    [self.bluetoothDataManage setDataType:0x14];
-//    [self.bluetoothDataManage setDataContent: dataContent];
-//    [self.bluetoothDataManage sendBluetoothFrame];
-//}
+- (void)inquireWorktimeSetting{
+    [SVProgressHUD show];
+    //子线程延时1s
+    double delayInSeconds = 1.0;
+    dispatch_queue_t mainQueue = dispatch_get_main_queue();
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW,delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, mainQueue, ^{
+        NSLog(@"延时执行的1秒");
+    });
+    
+    UInt8 controlCode = 0x01;
+    NSArray *data = @[@0x00,@0x01,@0x04,@0x00];
+    [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
+    
+}
 
 //- (void)recieveWorkingTime:(NSNotification *)notification{
 //    _flag = 1;
 //    [SVProgressHUD dismiss];
 //    //停掉重发机制
 //    [_timer setFireDate:[NSDate distantFuture]];
-//    if ([notification.name isEqualToString:@"recieveWorkingTime1"]) {
+//    if ([notification.name isEqualToString:@"recieveWorkingTime"]) {
 //        NSDictionary *dict = [notification userInfo];
 //        NSNumber *monHour = 0;
 //        NSNumber *tueHour = 0;
@@ -510,82 +507,30 @@ static CGFloat cellHeight = 45.0;
 //        [_selectrowArray replaceObjectAtIndex:27 withObject:sunWorkMinute];
 //    }
 //    dispatch_async(dispatch_get_main_queue(), ^{
-//        [self.myTableView reloadData];
+//        [self.workTimeTable reloadData];
 //    });
 //
 //}
 
 #pragma mark - set mower work time
 
-//- (void)sentMowerTime{
-//    /*
-//     第一帧数据位：前七位为周一至周日的时间的小时位;
-//     后七位为周一至周日的时间的分钟位;
-//     第二帧数据位：
-//     数据内容共7个字节：
-//     表示周一至周日的进行工作时间;
-//     注：此帧将时间戳取消
-//     */
-//    NSMutableArray *dataStartTime1 = [[NSMutableArray alloc] init];
-//    NSMutableArray *dataStartTime2 = [[NSMutableArray alloc] init];
-//    NSMutableArray *dataWorkTime1 = [[NSMutableArray alloc] init];
-//    NSMutableArray *dataWorkTime2 = [[NSMutableArray alloc] init];
-//    if (dataStartTime1.count != 8) {
-//        for (int i = 0; i < 28; i= i+4) {
-//            [dataStartTime1 addObject:_selectrowArray[i]];
-//        }
-//    }
-//    if (dataStartTime2.count != 8) {
-//        for (int i = 1; i < 28; i= i+4) {
-//            [dataStartTime2 addObject:_selectrowArray[i]];
-//        }
-//    }
-//    NSArray *dataStartTime = [dataStartTime1 arrayByAddingObjectsFromArray:dataStartTime2];
-//    if (dataWorkTime1.count != 8) {
-//        for (int i = 2; i < 30; i= i+4) {
-//            [dataWorkTime1 addObject:_selectrowArray[i]];
-//        }
-//    }
-//    if (dataWorkTime2.count != 8) {
-//        for (int i = 3; i < 30; i= i+4) {
-//            [dataWorkTime2 addObject:_selectrowArray[i]];
-//        }
-//    }
-//    NSArray *dataWorkTime = [dataWorkTime1 arrayByAddingObjectsFromArray:dataWorkTime2];
-//    
-//    if ([_selectrowArray[0] intValue] *60 + [_selectrowArray[2] intValue] * 60 + [_selectrowArray[1] intValue] + [_selectrowArray[3] intValue] > 1440){
-//        [NSObject showHudTipStr:LocalString(@"Monday's time set wrong")];
-//    }else if ([_selectrowArray[4] intValue] *60 + [_selectrowArray[6] intValue] * 60 + [_selectrowArray[5] intValue] + [_selectrowArray[7] intValue] > 1440){
-//        [NSObject showHudTipStr:LocalString(@"Tuesday's time set wrong")];
-//    }else if ([_selectrowArray[8] intValue] *60 + [_selectrowArray[10] intValue] * 60 + [_selectrowArray[9] intValue] + [_selectrowArray[11] intValue] > 1440){
-//        [NSObject showHudTipStr:LocalString(@"Wednesday's time set wrong")];
-//    }else if ([_selectrowArray[12] intValue] *60 + [_selectrowArray[14] intValue] * 60 + [_selectrowArray[13] intValue] + [_selectrowArray[15] intValue] > 1440){
-//        [NSObject showHudTipStr:LocalString(@"Thursday's time set wrong")];
-//    }else if ([_selectrowArray[16] intValue] *60 + [_selectrowArray[18] intValue] * 60 + [_selectrowArray[17] intValue] + [_selectrowArray[19] intValue] > 1440){
-//        [NSObject showHudTipStr:LocalString(@"Friday's time set wrong")];
-//    }else if ([_selectrowArray[20] intValue] *60 + [_selectrowArray[22] intValue] * 60 + [_selectrowArray[21] intValue] + [_selectrowArray[23] intValue] > 1440){
-//        [NSObject showHudTipStr:LocalString(@"Saturday's time set wrong")];
-//    }else if ([_selectrowArray[24] intValue] *60 + [_selectrowArray[26] intValue] * 60 + [_selectrowArray[25] intValue] + [_selectrowArray[27] intValue] > 1440){
-//        [NSObject showHudTipStr:LocalString(@"Sunday's time set wrong")];
-//    }else{
-//        [NSObject showHudTipStr:LocalString(@"Data sent successfully")];
-//        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-//            [self.bluetoothDataManage setDataType:0x04];
-//            [self.bluetoothDataManage setDataContent: dataStartTime];
-//            [self.bluetoothDataManage sendWorktimeBluetoothFrame];
-//            usleep(1000 * 1000);
-//            [self.bluetoothDataManage setDataType:0x05];
-//            [self.bluetoothDataManage setDataContent: dataWorkTime];
-//            [self.bluetoothDataManage sendWorktimeBluetoothFrame];
-//        });
-//    }
-//}
-//
-//- (void)refresh{
-//    sleep(1.0f);
-//    [self inquireWorktimeSetting];
-//}
-//
+- (void)setMowerTime{
+    /*
+     前七位：周一至周日的时间的 小时位;
+     中七位：周一至周日的时间的 分钟位;
+     后七位：周一至周日的进行工作状态是否开启;
+     */
+    [NSObject showHudTipStr:LocalString(@"Data sent successfully")];
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        
+        UInt8 controlCode = 0x01;
+        NSArray *data = @[@0x00,@0x01,@0x04,@0x01];
+        NSArray *workData = [data arrayByAddingObjectsFromArray:self.selectrowArray];
+        [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:workData failuer:nil];
+        
+    });
+}
+
 //- (void)goMowerTime
 //{
 //    if (_flag == 1) {

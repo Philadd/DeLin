@@ -304,7 +304,7 @@ static int noUserInteractionHeartbeat = 0;
                     
                 }else if (self.msg68Type == getWorkTime){
                     
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"getWorkTime" object:nil userInfo:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"recieveWorkingTime" object:nil userInfo:nil];
                     
                 }else if (self.msg68Type == getWorkArea){
                     
