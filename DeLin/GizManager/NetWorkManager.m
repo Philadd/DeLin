@@ -300,15 +300,76 @@ static int noUserInteractionHeartbeat = 0;
                         [NSObject cancelPreviousPerformRequestsWithTarget:self];
                     });
                     resendCount = 0;
-                     
+                    NSMutableDictionary *dataDic = [[NSMutableDictionary alloc]init];
+                    NSNumber *robotPower = _recivedData68[12];
+                    NSNumber *robotState = _recivedData68[13];
+                    NSNumber *robotError = _recivedData68[14];
+                    NSNumber *nextWorktime = [NSNumber numberWithInt:[_recivedData68[15] intValue] * 256 + [_recivedData68[16] intValue]];
+                    NSNumber *nextWorkarea = [NSNumber numberWithInt:[_recivedData68[17] intValue] * 256 + [_recivedData68[18] intValue]];
+                    
+                    [dataDic setObject:robotPower forKey:@"robotPower"];
+                    [dataDic setObject:robotState forKey:@"robotState"];
+                    [dataDic setObject:robotError forKey:@"robotError"];
+                    [dataDic setObject:nextWorktime forKey:@"nextWorktime"];
+                    [dataDic setObject:nextWorkarea forKey:@"nextWorkarea"];
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"getMainDeviceMsg" object:nil userInfo:dataDic];
                     
                 }else if (self.msg68Type == getWorkTime){
                     
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"recieveWorkingTime" object:nil userInfo:nil];
+                    NSMutableDictionary *dataDic = [[NSMutableDictionary alloc] init];
+                    NSNumber *monHour = _recivedData68[12];
+                    NSNumber *tueHour = _recivedData68[13];
+                    NSNumber *wedHour = _recivedData68[14];
+                    NSNumber *thuHour = _recivedData68[15];
+                    NSNumber *friHour = _recivedData68[16];
+                    NSNumber *satHour = _recivedData68[17];
+                    NSNumber *sunHour = _recivedData68[18];
+                    NSNumber *monMinute = _recivedData68[19];
+                    NSNumber *tueMinute = _recivedData68[20];
+                    NSNumber *wedMinute = _recivedData68[21];
+                    NSNumber *thuMinute = _recivedData68[22];
+                    NSNumber *friMinute = _recivedData68[23];
+                    NSNumber *satMinute = _recivedData68[24];
+                    NSNumber *sunMinute = _recivedData68[25];
+                    NSNumber *monState = _recivedData68[26];
+                    NSNumber *tueState = _recivedData68[27];
+                    NSNumber *wedState = _recivedData68[28];
+                    NSNumber *thuState = _recivedData68[29];
+                    NSNumber *friState = _recivedData68[30];
+                    NSNumber *satState = _recivedData68[31];
+                    NSNumber *sunState = _recivedData68[32];
+                    [dataDic setObject:monHour forKey:@"monHour"];
+                    [dataDic setObject:tueHour forKey:@"tueHour"];
+                    [dataDic setObject:wedHour forKey:@"wedHour"];
+                    [dataDic setObject:thuHour forKey:@"thuHour"];
+                    [dataDic setObject:friHour forKey:@"friHour"];
+                    [dataDic setObject:satHour forKey:@"satHour"];
+                    [dataDic setObject:sunHour forKey:@"sunHour"];
+                    [dataDic setObject:monMinute forKey:@"monMinute"];
+                    [dataDic setObject:tueMinute forKey:@"tueMinute"];
+                    [dataDic setObject:wedMinute forKey:@"wedMinute"];
+                    [dataDic setObject:thuMinute forKey:@"thuMinute"];
+                    [dataDic setObject:friMinute forKey:@"friMinute"];
+                    [dataDic setObject:satMinute forKey:@"satMinute"];
+                    [dataDic setObject:sunMinute forKey:@"sunMinute"];
+                    [dataDic setObject:monState forKey:@"monState"];
+                    [dataDic setObject:tueState forKey:@"tueState"];
+                    [dataDic setObject:wedState forKey:@"wedState"];
+                    [dataDic setObject:thuState forKey:@"thuState"];
+                    [dataDic setObject:friState forKey:@"friState"];
+                    [dataDic setObject:satState forKey:@"satState"];
+                    [dataDic setObject:sunState forKey:@"sunState"];
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"recieveWorkingTime" object:nil userInfo:dataDic];
                     
                 }else if (self.msg68Type == getWorkArea){
                     
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"getWorkArea" object:nil userInfo:nil];
+                    NSNumber *workArea = [NSNumber numberWithInt:[_recivedData68[12] intValue] * 256 + [_recivedData68[13] intValue]];
+                    NSMutableDictionary *dataDic = [[NSMutableDictionary alloc] init];
+                    [dataDic setObject:workArea forKey:@"workArea"];
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"recieveWorkArea" object:nil userInfo:dataDic];
                     
                 }else if (self.msg68Type == getLanguage){
                     dispatch_async(dispatch_get_main_queue(), ^{

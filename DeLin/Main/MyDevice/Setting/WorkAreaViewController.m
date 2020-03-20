@@ -12,10 +12,10 @@
 
 ///@brife 帧数据控制单例
 
-@property (strong, nonatomic) UIPickerView *workAeraPicker;
+@property (strong, nonatomic) UIPickerView *workAreaPicker;
 @property (strong, nonatomic) UIButton *oKButton;
 
-@property (nonatomic, strong) NSMutableArray  *workAeraArray;
+@property (nonatomic, strong) NSMutableArray  *workAreaArray;
 
 @end
 
@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNavItem];
-    self.workAeraPicker = [self workAeraPicker];
+    self.workAreaPicker = [self workAreaPicker];
     self.oKButton = [self oKButton];
     
 }
@@ -33,12 +33,12 @@
 {
     [super viewWillAppear:animated];
     [self inquireworkAera];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recieveWorkAera:) name:@"recieveWorkAera" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recieveWorkArea:) name:@"recieveWorkArea" object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"recieveWorkAera" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"recieveWorkArea" object:nil];
 
 }
 
@@ -57,29 +57,29 @@
     self.navigationItem.title = LocalString(@"Set the area");
 }
 
--(UIPickerView *)workAeraPicker{
-    if (!_workAeraPicker) {
-        _workAeraPicker = [[UIPickerView alloc] init];
-        _workAeraPicker.backgroundColor = [UIColor clearColor];
-        self.workAeraArray = [[NSMutableArray alloc] init];
+-(UIPickerView *)workAreaPicker{
+    if (!_workAreaPicker) {
+        _workAreaPicker = [[UIPickerView alloc] init];
+        _workAreaPicker.backgroundColor = [UIColor clearColor];
+        self.workAreaArray = [[NSMutableArray alloc] init];
         for (int i = 0; i < 550; i = i+50) {
-            [self.workAeraArray addObject:[NSString stringWithFormat:@"%d",i]];
+            [self.workAreaArray addObject:[NSString stringWithFormat:@"%d",i]];
         }
-        self.workAeraPicker.dataSource = self;
-        self.workAeraPicker.delegate = self;
+        self.workAreaPicker.dataSource = self;
+        self.workAreaPicker.delegate = self;
         //在当前选择上显示一个透明窗口
-        self.workAeraPicker.showsSelectionIndicator = YES;
+        self.workAreaPicker.showsSelectionIndicator = YES;
         //初始化，自动转一圈，避免第一次是数组第一个值造成留白
-        [self.workAeraPicker selectRow:[self.workAeraArray count] inComponent:0 animated:YES];
-        [self.view addSubview:_workAeraPicker];
+        [self.workAreaPicker selectRow:[self.workAreaArray count] inComponent:0 animated:YES];
+        [self.view addSubview:_workAreaPicker];
         
-        [_workAeraPicker mas_makeConstraints:^(MASConstraintMaker *make) {
+        [_workAreaPicker mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(ScreenWidth,yAutoFit(400)));
             make.top.equalTo(self.view.mas_top).offset(getRectNavAndStatusHight + yAutoFit(30.f));
             make.centerX.equalTo(self.view.mas_centerX);
         }];
     }
-    return _workAeraPicker;
+    return _workAreaPicker;
 }
 
 //自定义pick view的字体和颜色
@@ -135,19 +135,24 @@
 
 }
 
-- (void)recieveWorkAera:(NSNotification *)notification{
+
+#pragma mark - notification
+
+- (void)recieveWorkArea:(NSNotification *)notification{
     NSDictionary *dict = [notification userInfo];
-    NSNumber *workAera = dict[@"workAera"];
+    NSNumber *workArea = dict[@"workArea"];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.workAeraPicker selectRow:[workAera intValue] inComponent:0 animated:YES];
-    });}
+        [self.workAreaPicker selectRow:[workArea intValue] inComponent:0 animated:YES];
+    });
+    
+}
 
 #pragma mark - Action
 - (void)setWorkAera
 {
-    NSInteger row = [self.workAeraPicker selectedRowInComponent:0];
+    NSInteger row = [self.workAreaPicker selectedRowInComponent:0];
     
-    NSNumber *aera = [NSNumber numberWithUnsignedInteger:[self.workAeraArray[row % _workAeraArray.count] integerValue]];
+    NSNumber *aera = [NSNumber numberWithUnsignedInteger:[self.workAreaArray[row % _workAreaArray.count] integerValue]];
     
     UInt8 controlCode = 0x01;
     NSArray *data = @[@0x00,@0x01,@0x05,@0x01,aera];
@@ -177,15 +182,15 @@
 
 - (nullable NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     
-    return [NSString stringWithFormat:@"%@%@",self.workAeraArray[row % _workAeraArray.count],LocalString(@"m²")];
+    return [NSString stringWithFormat:@"%@%@",self.workAreaArray[row % _workAreaArray.count],LocalString(@"m²")];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
     NSUInteger max = 16384;
     
-    NSUInteger base0 = (max / 2) - (max / 2) % _workAeraArray.count;
-    [self.workAeraPicker selectRow:[_workAeraPicker selectedRowInComponent:component] % _workAeraArray.count + base0 inComponent:component animated:NO];
+    NSUInteger base0 = (max / 2) - (max / 2) % _workAreaArray.count;
+    [self.workAreaPicker selectRow:[_workAreaPicker selectedRowInComponent:component] % _workAreaArray.count + base0 inComponent:component animated:NO];
 
 }
 

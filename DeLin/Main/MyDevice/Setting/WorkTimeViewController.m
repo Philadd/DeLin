@@ -58,6 +58,8 @@ static CGFloat cellHeight = 45.0;
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    [self inquireWorktimeSetting];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -335,182 +337,133 @@ static CGFloat cellHeight = 45.0;
 #pragma mark - inquire WorkingtimeSetting
 
 - (void)inquireWorktimeSetting{
-    [SVProgressHUD show];
-    //子线程延时1s
-    double delayInSeconds = 1.0;
-    dispatch_queue_t mainQueue = dispatch_get_main_queue();
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW,delayInSeconds * NSEC_PER_SEC);
-    dispatch_after(popTime, mainQueue, ^{
-        NSLog(@"延时执行的1秒");
-    });
-    
+
     UInt8 controlCode = 0x01;
     NSArray *data = @[@0x00,@0x01,@0x04,@0x00];
     [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
-    
 }
 
-//- (void)recieveWorkingTime:(NSNotification *)notification{
-//    _flag = 1;
-//    [SVProgressHUD dismiss];
-//    //停掉重发机制
-//    [_timer setFireDate:[NSDate distantFuture]];
-//    if ([notification.name isEqualToString:@"recieveWorkingTime"]) {
-//        NSDictionary *dict = [notification userInfo];
-//        NSNumber *monHour = 0;
-//        NSNumber *tueHour = 0;
-//        NSNumber *wedHour = 0;
-//        NSNumber *thuHour = 0;
-//        NSNumber *friHour = 0;
-//        NSNumber *satHour = 0;
-//        NSNumber *sunHour = 0;
-//        NSNumber *monMinute = 0;
-//        NSNumber *tueMinute = 0;
-//        NSNumber *wedMinute = 0;
-//        NSNumber *thuMinute = 0;
-//        NSNumber *friMinute = 0;
-//        NSNumber *satMinute = 0;
-//        NSNumber *sunMinute = 0;
-//        if (dict[@"monHour"]) {
-//            monHour = dict[@"monHour"];
-//        }
-//        if (dict[@"tueHour"]) {
-//            tueHour = dict[@"tueHour"];
-//        }
-//        if (dict[@"wedHour"]) {
-//            wedHour = dict[@"wedHour"];
-//        }
-//        if (dict[@"thuHour"]) {
-//            thuHour = dict[@"thuHour"];
-//        }
-//        if (dict[@"friHour"]) {
-//            friHour = dict[@"friHour"];
-//        }
-//        if (dict[@"satHour"]) {
-//            satHour = dict[@"satHour"];
-//        }
-//        if (dict[@"sunHour"]) {
-//            sunHour = dict[@"sunHour"];
-//        }
-//        if (dict[@"monMinute"]) {
-//            monMinute = dict[@"monMinute"];
-//        }
-//        if (dict[@"tueMinute"]) {
-//            tueMinute = dict[@"tueMinute"];
-//        }
-//        if (dict[@"wedMinute"]) {
-//            wedMinute = dict[@"wedMinute"];
-//        }
-//        if (dict[@"thuMinute"]) {
-//            thuMinute = dict[@"thuMinute"];
-//        }
-//        if (dict[@"friMinute"]) {
-//            friMinute = dict[@"friMinute"];
-//        }
-//        if (dict[@"satMinute"]) {
-//            satMinute = dict[@"satMinute"];
-//        }
-//        if (dict[@"sunMinute"]) {
-//            sunMinute = dict[@"sunMinute"];
-//        }
-//        [_selectrowArray replaceObjectAtIndex:0 withObject:monHour];
-//        [_selectrowArray replaceObjectAtIndex:4 withObject:tueHour];
-//        [_selectrowArray replaceObjectAtIndex:8 withObject:wedHour];
-//        [_selectrowArray replaceObjectAtIndex:12 withObject:thuHour];
-//        [_selectrowArray replaceObjectAtIndex:16 withObject:friHour];
-//        [_selectrowArray replaceObjectAtIndex:20 withObject:satHour];
-//        [_selectrowArray replaceObjectAtIndex:24 withObject:sunHour];
-//
-//        [_selectrowArray replaceObjectAtIndex:1 withObject:monMinute];
-//        [_selectrowArray replaceObjectAtIndex:5 withObject:tueMinute];
-//        [_selectrowArray replaceObjectAtIndex:9 withObject:wedMinute];
-//        [_selectrowArray replaceObjectAtIndex:13 withObject:thuMinute];
-//        [_selectrowArray replaceObjectAtIndex:17 withObject:friMinute];
-//        [_selectrowArray replaceObjectAtIndex:21 withObject:satMinute];
-//        [_selectrowArray replaceObjectAtIndex:25 withObject:sunMinute];
-//
-//    }else{
-//        NSDictionary *dict = [notification userInfo];
-//        NSNumber *monWorkHour = 0;
-//        NSNumber *tueWorkHour = 0;
-//        NSNumber *wedWorkHour = 0;
-//        NSNumber *thuWorkHour = 0;
-//        NSNumber *friWorkHour = 0;
-//        NSNumber *satWorkHour = 0;
-//        NSNumber *sunWorkHour = 0;
-//        NSNumber *monWorkMinute = 0;
-//        NSNumber *tueWorkMinute = 0;
-//        NSNumber *wedWorkMinute = 0;
-//        NSNumber *thuWorkMinute = 0;
-//        NSNumber *friWorkMinute = 0;
-//        NSNumber *satWorkMinute = 0;
-//        NSNumber *sunWorkMinute = 0;
-//
-//
-//        if (dict[@"monWorkHour"]) {
-//            monWorkHour = dict[@"monWorkHour"];
-//        }
-//        if (dict[@"tueWorkHour"]) {
-//            tueWorkHour = dict[@"tueWorkHour"];
-//        }
-//        if (dict[@"wedWorkHour"]) {
-//            wedWorkHour = dict[@"wedWorkHour"];
-//        }
-//        if (dict[@"thuWorkHour"]) {
-//            thuWorkHour = dict[@"thuWorkHour"];
-//        }
-//        if (dict[@"friWorkHour"]) {
-//            friWorkHour = dict[@"friWorkHour"];
-//        }
-//        if (dict[@"satWorkHour"]) {
-//            satWorkHour = dict[@"satWorkHour"];
-//        }
-//        if (dict[@"sunWorkHour"]) {
-//            sunWorkHour = dict[@"sunWorkHour"];
-//        }
-//
-//        if (dict[@"monWorkMinute"]) {
-//            monWorkMinute = dict[@"monWorkMinute"];
-//        }
-//        if (dict[@"tueWorkMinute"]) {
-//            tueWorkMinute = dict[@"tueWorkMinute"];
-//        }
-//        if (dict[@"wedWorkMinute"]) {
-//            wedWorkMinute = dict[@"wedWorkMinute"];
-//        }
-//        if (dict[@"thuWorkMinute"]) {
-//            thuWorkMinute = dict[@"thuWorkMinute"];
-//        }
-//        if (dict[@"friWorkMinute"]) {
-//            friWorkMinute = dict[@"friWorkMinute"];
-//        }
-//        if (dict[@"satWorkMinute"]) {
-//            satWorkMinute = dict[@"satWorkMinute"];
-//        }
-//        if (dict[@"sunWorkMinute"]) {
-//            sunWorkMinute = dict[@"sunWorkMinute"];
-//        }
-//        [_selectrowArray replaceObjectAtIndex:2 withObject:monWorkHour];
-//        [_selectrowArray replaceObjectAtIndex:6 withObject:tueWorkHour];
-//        [_selectrowArray replaceObjectAtIndex:10 withObject:wedWorkHour];
-//        [_selectrowArray replaceObjectAtIndex:14 withObject:thuWorkHour];
-//        [_selectrowArray replaceObjectAtIndex:18 withObject:friWorkHour];
-//        [_selectrowArray replaceObjectAtIndex:22 withObject:satWorkHour];
-//        [_selectrowArray replaceObjectAtIndex:26 withObject:sunWorkHour];
-//
-//        [_selectrowArray replaceObjectAtIndex:3 withObject:monWorkMinute];
-//        [_selectrowArray replaceObjectAtIndex:7 withObject:tueWorkMinute];
-//        [_selectrowArray replaceObjectAtIndex:11 withObject:wedWorkMinute];
-//        [_selectrowArray replaceObjectAtIndex:15 withObject:thuWorkMinute];
-//        [_selectrowArray replaceObjectAtIndex:19 withObject:friWorkMinute];
-//        [_selectrowArray replaceObjectAtIndex:23 withObject:satWorkMinute];
-//        [_selectrowArray replaceObjectAtIndex:27 withObject:sunWorkMinute];
-//    }
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        [self.workTimeTable reloadData];
-//    });
-//
-//}
+- (void)recieveWorkingTime:(NSNotification *)nsnotification{
+    _flag = 1;
+    
+    //停掉重发机制
+    [_timer setFireDate:[NSDate distantFuture]];
+    
+    NSDictionary *dict = [nsnotification userInfo];
+    NSNumber *monHour = 0;
+    NSNumber *tueHour = 0;
+    NSNumber *wedHour = 0;
+    NSNumber *thuHour = 0;
+    NSNumber *friHour = 0;
+    NSNumber *satHour = 0;
+    NSNumber *sunHour = 0;
+    NSNumber *monMinute = 0;
+    NSNumber *tueMinute = 0;
+    NSNumber *wedMinute = 0;
+    NSNumber *thuMinute = 0;
+    NSNumber *friMinute = 0;
+    NSNumber *satMinute = 0;
+    NSNumber *sunMinute = 0;
+    NSNumber *monState = 0;
+    NSNumber *tueState = 0;
+    NSNumber *wedState = 0;
+    NSNumber *thuState = 0;
+    NSNumber *friState = 0;
+    NSNumber *satState = 0;
+    NSNumber *sunState = 0;
+    if (dict[@"monHour"]) {
+        monHour = dict[@"monHour"];
+    }
+    if (dict[@"tueHour"]) {
+        tueHour = dict[@"tueHour"];
+    }
+    if (dict[@"wedHour"]) {
+        wedHour = dict[@"wedHour"];
+    }
+    if (dict[@"thuHour"]) {
+        thuHour = dict[@"thuHour"];
+    }
+    if (dict[@"friHour"]) {
+        friHour = dict[@"friHour"];
+    }
+    if (dict[@"satHour"]) {
+        satHour = dict[@"satHour"];
+    }
+    if (dict[@"sunHour"]) {
+        sunHour = dict[@"sunHour"];
+    }
+    if (dict[@"monMinute"]) {
+        monMinute = dict[@"monMinute"];
+    }
+    if (dict[@"tueMinute"]) {
+        tueMinute = dict[@"tueMinute"];
+    }
+    if (dict[@"wedMinute"]) {
+        wedMinute = dict[@"wedMinute"];
+    }
+    if (dict[@"thuMinute"]) {
+        thuMinute = dict[@"thuMinute"];
+    }
+    if (dict[@"friMinute"]) {
+        friMinute = dict[@"friMinute"];
+    }
+    if (dict[@"satMinute"]) {
+        satMinute = dict[@"satMinute"];
+    }
+    if (dict[@"sunMinute"]) {
+        sunMinute = dict[@"sunMinute"];
+    }
+    if (dict[@"monState"]) {
+        monState = dict[@"monState"];
+    }
+    if (dict[@"tueState"]) {
+        tueState = dict[@"tueState"];
+    }
+    if (dict[@"wedState"]) {
+        wedState = dict[@"wedState"];
+    }
+    if (dict[@"thuState"]) {
+        thuState = dict[@"thuState"];
+    }
+    if (dict[@"friState"]) {
+        friState = dict[@"friState"];
+    }
+    if (dict[@"satState"]) {
+        satState = dict[@"satState"];
+    }
+    if (dict[@"sunState"]) {
+        sunState = dict[@"sunState"];
+    }
+    
+    [_selectrowArray replaceObjectAtIndex:0 withObject:monHour];
+    [_selectrowArray replaceObjectAtIndex:1 withObject:tueHour];
+    [_selectrowArray replaceObjectAtIndex:2 withObject:wedHour];
+    [_selectrowArray replaceObjectAtIndex:3 withObject:thuHour];
+    [_selectrowArray replaceObjectAtIndex:4 withObject:friHour];
+    [_selectrowArray replaceObjectAtIndex:5 withObject:satHour];
+    [_selectrowArray replaceObjectAtIndex:6 withObject:sunHour];
+    
+    [_selectrowArray replaceObjectAtIndex:7 withObject:monMinute];
+    [_selectrowArray replaceObjectAtIndex:8 withObject:tueMinute];
+    [_selectrowArray replaceObjectAtIndex:9 withObject:wedMinute];
+    [_selectrowArray replaceObjectAtIndex:10 withObject:thuMinute];
+    [_selectrowArray replaceObjectAtIndex:11 withObject:friMinute];
+    [_selectrowArray replaceObjectAtIndex:12 withObject:satMinute];
+    [_selectrowArray replaceObjectAtIndex:13 withObject:sunMinute];
+    
+    [_selectrowArray replaceObjectAtIndex:14 withObject:monState];
+    [_selectrowArray replaceObjectAtIndex:15 withObject:tueState];
+    [_selectrowArray replaceObjectAtIndex:16 withObject:wedState];
+    [_selectrowArray replaceObjectAtIndex:17 withObject:thuState];
+    [_selectrowArray replaceObjectAtIndex:18 withObject:friState];
+    [_selectrowArray replaceObjectAtIndex:19 withObject:satState];
+    [_selectrowArray replaceObjectAtIndex:20 withObject:sunState];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.workTimeTable reloadData];
+    });
+    
+}
 
 #pragma mark - set mower work time
 

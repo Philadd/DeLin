@@ -19,8 +19,8 @@
 
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UIView *msgCenterView;
-@property (nonatomic, strong) UILabel *areaDatalabel;
-@property (nonatomic, strong) UILabel *timeDatalabel;
+@property (nonatomic, strong) UILabel *areaDatalabel;//下一次割草面积
+@property (nonatomic, strong) UILabel *timeDatalabel;//下一次工作时间
 
 @property (nonatomic, strong) UIView *bgTipView;
 @property (nonatomic, strong) UILabel *warningLabel;//故障信息
@@ -57,13 +57,17 @@
     [super viewWillAppear:animated];
     [GizWifiSDK sharedInstance].delegate = self;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMainDeviceMsg:) name:@"getMainDeviceMsg" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goHomeSuccess) name:@"getHome" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goStopSuccess) name:@"getStop" object:nil];
     
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"getMainDeviceMsg" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"getHome" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"getStop" object:nil];
 }
 
 #pragma mark - Lazy load
@@ -137,7 +141,7 @@
             make.left.equalTo(areaImg.mas_right).offset(10);
         }];
         _areaDatalabel = [[UILabel alloc] init];
-        _areaDatalabel.text = @"9:30";
+        _areaDatalabel.text = [NSString stringWithFormat:@"%@%@",@"500",LocalString(@"m²")];
         _areaDatalabel.font = [UIFont systemFontOfSize:14.f];
         _areaDatalabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1];
         _areaDatalabel.textAlignment = NSTextAlignmentCenter;
@@ -326,9 +330,30 @@
 
 #pragma mark - notification
 
+- (void)getMainDeviceMsg:(NSNotification *)notification{
+    NSDictionary *dict = [notification userInfo];
+    NSNumber *robotPower = dict[@"robotPower"];
+    NSNumber *robotState = dict[@"robotState"];
+    NSNumber *robotError = dict[@"robotError"];
+    NSNumber *nextWorktime = dict[@"nextWorktime"];
+    NSNumber *nextWorkarea = dict[@"nextWorkarea"];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.warningLabel.text = [NSString stringWithFormat:@"%d",[robotError intValue]];
+        self.timeDatalabel.text = [NSString stringWithFormat:@"%d",[nextWorktime intValue]];
+        self.areaDatalabel.text = [NSString stringWithFormat:@"%d%@",[nextWorkarea intValue],LocalString(@"m²")];
+    });
+    
+}
+
 - (void)goHomeSuccess{
     
     NSLog(@"设置home成功");
+}
+
+- (void)goStopSuccess{
+    
+    NSLog(@"设置stop成功");
 }
 
 #pragma mark - Actions
