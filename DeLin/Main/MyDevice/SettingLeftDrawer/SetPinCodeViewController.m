@@ -161,9 +161,9 @@
         [_sureBtn setTitle:LocalString(@"Sure") forState:UIControlStateNormal];
         [_sureBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_sureBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:1.f]];
+        [_sureBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:0.4f]];
         [_sureBtn addTarget:self action:@selector(sure) forControlEvents:UIControlEventTouchUpInside];
-        _sureBtn.enabled = YES;
+        _sureBtn.enabled = NO;
         [self.view addSubview:_sureBtn];
         [_sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(ScreenWidth, yAutoFit(45)));
@@ -180,6 +180,30 @@
         _sureBtn.layer.cornerRadius = 2.5;
     }
     return _sureBtn;
+}
+
+- (void)textFieldTextChange:(UITextField *)textField{
+    if ( self.oldPinCodeTF.text.length > 0 && self.pinCodeTF.text.length > 0 && self.repeatpinCodeTF.text.length >0){
+        [_sureBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:1.f]];
+        _sureBtn.enabled = YES;
+    }else{
+        [_sureBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:0.4f]];
+        _sureBtn.enabled = NO;
+    }
+}
+
+- (void)sure{
+    
+    [NSObject showHudTipStr:LocalString(@"Data sent successfully")];
+    
+    NSNumber *oldPIN = [NSNumber numberWithUnsignedInteger:[self.oldPinCodeTF.text integerValue]];
+    NSNumber *newPIN = [NSNumber numberWithUnsignedInteger:[self.repeatpinCodeTF.text integerValue]];
+    
+    UInt8 controlCode = 0x01;
+    NSArray *data = @[@0x00,@0x01,@0x07,@0x01,oldPIN,newPIN];
+    [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
+    
+    
 }
 
 @end

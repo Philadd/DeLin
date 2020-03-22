@@ -74,6 +74,9 @@ static NSInteger tempCountVer = 1000;
 
 ///@brief Frame68帧发送方法
 - (void)sendData68With:(UInt8)controlCode data:(NSArray *)data failuer:(nullable void(^)(void))failure;
+//获取设备主页面状态
+- (void)getMainDeviceMsg;
+
 @end
 
 NS_ASSUME_NONNULL_END
