@@ -52,7 +52,7 @@
     //校准时间
     [self setMowerTime];
     //连上设备立马获取主页面信息
-    //[[NetWorkManager shareNetWorkManager] getMainDeviceMsg];
+    [[NetWorkManager shareNetWorkManager] getMainDeviceMsg];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

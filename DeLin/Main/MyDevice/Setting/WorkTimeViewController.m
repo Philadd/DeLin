@@ -202,6 +202,8 @@ static CGFloat cellHeight = 45.0;
     cell.backgroundColor = [UIColor clearColor];
     cell.contentView.userInteractionEnabled = YES;
     cell.weekLabel.text = _dayArray[indexPath.row];
+    cell.workTimeSwitch.on = [_selectrowArray[indexPath.row + 14] boolValue];
+    
     cell.worksHoursTF.delegate = self;
     cell.worksMinutesTF.delegate = self;
     //将键盘替换成pickView

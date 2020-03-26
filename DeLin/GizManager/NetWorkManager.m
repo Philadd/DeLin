@@ -385,32 +385,56 @@ static int noUserInteractionHeartbeat = 0;
                 if (self.msg68Type == getHome){
                     resendCount = 0;
                     
+                    if ([_recivedData68[12] unsignedIntegerValue] == 1) {
+                        [NSObject showHudTipStr:LocalString(@"Set up successfully")];
+                    }
+                    
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"getHome" object:nil userInfo:nil];
                     
                 }else if (self.msg68Type == getStop){
+                    
+                    if ([_recivedData68[12] unsignedIntegerValue] == 1) {
+                        [NSObject showHudTipStr:LocalString(@"Set up successfully")];
+                    }
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"getStop" object:nil userInfo:nil];
                 }else if (self.msg68Type == setCurrentTime){
                     resendCount = 0;
                     
+                    if ([_recivedData68[12] unsignedIntegerValue] == 1) {
+                        [NSObject showHudTipStr:LocalString(@"Set up successfully")];
+                    }
+                    
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"setCurrentTime" object:nil userInfo:nil];
                     
                 }else if (self.msg68Type == getWorkTime){
                     
+                    if ([_recivedData68[12] unsignedIntegerValue] == 1) {
+                        [NSObject showHudTipStr:LocalString(@"Set up successfully")];
+                    }
+                    
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"getWorkTime" object:nil userInfo:nil];
                     
                 }else if (self.msg68Type == getWorkArea){
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [NSObject cancelPreviousPerformRequestsWithTarget:self];
-                    });
+                    
+                    if ([_recivedData68[12] unsignedIntegerValue] == 1) {
+                        [NSObject showHudTipStr:LocalString(@"Set up successfully")];
+                    }
+                    
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"setWorkArea" object:nil userInfo:nil];
                     
                 }else if (self.msg68Type == inputPINCode){
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [NSObject cancelPreviousPerformRequestsWithTarget:self];
-                    });
+                    
+                    if ([_recivedData68[12] unsignedIntegerValue] == 1) {
+                        [NSObject showHudTipStr:LocalString(@"Set up successfully")];
+                    }
+                    
                     
                 }else if (self.msg68Type == reSetPINCode){
+                    
+                    if ([_recivedData68[12] unsignedIntegerValue] == 1) {
+                        [NSObject showHudTipStr:LocalString(@"Set up successfully")];
+                    }
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetPINCode" object:nil userInfo:nil];
                 }else if (self.msg68Type == getLanguage){
@@ -477,7 +501,7 @@ static int noUserInteractionHeartbeat = 0;
      getLanguage,.... 0x08 读取割草机语言
      otherMsgType.... 0x09 获取主界面基本信息
      */
-    dataType = [data[5] unsignedIntegerValue];
+    dataType = [data[10] unsignedIntegerValue];
     //NSLog(@"%d",dataType);
     
     MsgType68 returnVal = otherMsgType;
