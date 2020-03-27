@@ -12,13 +12,15 @@
 #import "WorkAreaViewController.h"
 #import "WorkTimeViewController.h"
 #import "SetPinCodeViewController.h"
+#import "BatteryIconCircleView.h"
 
 @interface MainViewController ()<GizWifiSDKDelegate>
 
 //@property(nonatomic,strong) MMDrawerController * drawerController;
+@property(nonatomic,strong) BatteryIconCircleView *batteryCircleView;
 
-@property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UIView *msgCenterView;
+@property (nonatomic, strong) UILabel *robotStateLabel;//机器状态
 @property (nonatomic, strong) UILabel *areaDatalabel;//下一次割草面积
 @property (nonatomic, strong) UILabel *timeDatalabel;//下一次工作时间
 
@@ -38,7 +40,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setNavItem];
-    _headerView = [self headerView];
+    
+    _batteryCircleView = [self batteryCircleView];
     _msgCenterView = [self msgCenterView];
     _warningLabel = [self warningLabel];
     _homeBtn = [self homeBtn];
@@ -86,34 +89,39 @@
     
 }
 
-- (UIView *)headerView{
-    if (!_headerView) {
-        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth,350.f)];
-        _headerView.backgroundColor = [UIColor clearColor];
-        [self.view addSubview:_headerView];
-        UIImageView *bgImg = [[UIImageView alloc] initWithFrame:_headerView.bounds];
-        [bgImg setImage:[UIImage imageNamed:@"img_mine_headerBG"]];
-        [_headerView addSubview:bgImg];
-        [bgImg mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(208), yAutoFit(197)));
-            make.centerX.equalTo(self.headerView.mas_centerX);
-            make.centerY.equalTo(self.headerView.mas_centerY);
+- (BatteryIconCircleView *)batteryCircleView{
+    if (!_batteryCircleView) {
+        //圆形进度图
+        _batteryCircleView = [[BatteryIconCircleView alloc]init];
+        _batteryCircleView.progressWidth = 10.0;
+        _batteryCircleView.bottomCircleColor = [UIColor whiteColor];
+        _batteryCircleView.topCircleColor = [UIColor blackColor];
+        
+        [self.view addSubview:_batteryCircleView];
+        
+        [_batteryCircleView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(217.f), yAutoFit(300)));
+            make.centerX.equalTo(self.view.mas_centerX);
+            make.top.equalTo(self.view.mas_top).offset(getRectNavAndStatusHight + yAutoFit(20.f));
         }];
         
-//        _areaDatalabel = [[UILabel alloc] init];
-//        _areaDatalabel.text = @"5555";
-//        _areaDatalabel.font = [UIFont systemFontOfSize:17.f];
-//        _areaDatalabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1];
-//        _areaDatalabel.textAlignment = NSTextAlignmentCenter;
-//        _areaDatalabel.adjustsFontSizeToFitWidth = YES;
-//        [_headerView addSubview:_areaDatalabel];
-//        [_areaDatalabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.size.mas_equalTo(CGSizeMake(300, 24));
-//            make.centerX.equalTo(self.headerView.mas_centerX);
-//            make.top.equalTo(headButton.mas_bottom).offset(12);
-//        }];
+        self.batteryCircleView.progress = 0.75;
+        
+        _robotStateLabel = [[UILabel alloc] init];
+        _robotStateLabel.text = @"charging";
+        _robotStateLabel.font = [UIFont systemFontOfSize:17.f];
+        _robotStateLabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1];
+        _robotStateLabel.textAlignment = NSTextAlignmentCenter;
+        _robotStateLabel.adjustsFontSizeToFitWidth = YES;
+        [self.view addSubview:_robotStateLabel];
+        [_robotStateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(100.f), yAutoFit(20.f)));
+            make.centerX.equalTo(self.batteryCircleView.mas_centerX);
+            make.top.equalTo(self.batteryCircleView.centerLabel.mas_bottom).offset(yAutoFit(20.f));
+        }];
+        
     }
-    return _headerView;
+    return _batteryCircleView;
 }
 
 - (UIView *)msgCenterView{
@@ -343,6 +351,8 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.warningLabel.text = [NSString stringWithFormat:@"%d",[robotError intValue]];
         self.timeDatalabel.text = [NSString stringWithFormat:@"%d",[nextWorktime intValue]];
+        self.batteryCircleView.progress = [robotPower floatValue]*0.01;
+        self.robotStateLabel.text = [NSString stringWithFormat:@"%d",[robotState intValue]];
         self.areaDatalabel.text = [NSString stringWithFormat:@"%d%@",[nextWorkarea intValue],LocalString(@"m²")];
     });
     

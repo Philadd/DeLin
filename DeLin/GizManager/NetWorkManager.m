@@ -296,9 +296,9 @@ static int noUserInteractionHeartbeat = 0;
                  [_recivedData68[17] [_recivedData68[18].... 割草面积
                  */
                 if (self.msg68Type == getMainDeviceMsg) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [NSObject cancelPreviousPerformRequestsWithTarget:self];
-                    });
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        [NSObject cancelPreviousPerformRequestsWithTarget:self];
+//                    });
                     resendCount = 0;
                     NSMutableDictionary *dataDic = [[NSMutableDictionary alloc]init];
                     NSNumber *robotPower = _recivedData68[12];
@@ -441,7 +441,6 @@ static int noUserInteractionHeartbeat = 0;
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"getLanguage" object:nil userInfo:nil];
                 }
-                
                 
             }
                 break;

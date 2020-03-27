@@ -184,6 +184,7 @@
 		BB88DB6C242DACD4000421F7 /* iphone60pt@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB88DB67242DACD3000421F7 /* iphone60pt@3x.png */; };
 		BB88DB6D242DACD4000421F7 /* iphone29pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB88DB68242DACD3000421F7 /* iphone29pt@2x.png */; };
 		BB88DB6E242DACD4000421F7 /* iphone40pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB88DB69242DACD4000421F7 /* iphone40pt@2x.png */; };
+		BB88DB71242DFED9000421F7 /* BatteryIconCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = BB88DB70242DFED9000421F7 /* BatteryIconCircleView.m */; };
 		BBA89C762418B20B00007945 /* LoginPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA89C752418B20B00007945 /* LoginPasswordController.m */; };
 		BBA89C782418DCFF00007945 /* img_main_pin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BBA89C772418DCFF00007945 /* img_main_pin@2x.png */; };
 		BBA89C7B2418DD0B00007945 /* img_main_pin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BBA89C792418DD0A00007945 /* img_main_pin@3x.png */; };
@@ -461,6 +462,8 @@
 		BB88DB67242DACD3000421F7 /* iphone60pt@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iphone60pt@3x.png"; path = "Assets.xcassets/AppIcon.appiconset/iphone60pt@3x.png"; sourceTree = "<group>"; };
 		BB88DB68242DACD3000421F7 /* iphone29pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iphone29pt@2x.png"; path = "Assets.xcassets/AppIcon.appiconset/iphone29pt@2x.png"; sourceTree = "<group>"; };
 		BB88DB69242DACD4000421F7 /* iphone40pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iphone40pt@2x.png"; path = "Assets.xcassets/AppIcon.appiconset/iphone40pt@2x.png"; sourceTree = "<group>"; };
+		BB88DB6F242DFED9000421F7 /* BatteryIconCircleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BatteryIconCircleView.h; sourceTree = "<group>"; };
+		BB88DB70242DFED9000421F7 /* BatteryIconCircleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BatteryIconCircleView.m; sourceTree = "<group>"; };
 		BBA89C742418B20B00007945 /* LoginPasswordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginPasswordController.h; sourceTree = "<group>"; };
 		BBA89C752418B20B00007945 /* LoginPasswordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginPasswordController.m; sourceTree = "<group>"; };
 		BBA89C772418DCFF00007945 /* img_main_pin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_main_pin@2x.png"; sourceTree = "<group>"; };
@@ -660,6 +663,8 @@
 			children = (
 				368AB320235F0623002B6D37 /* AAProgressCircleView.h */,
 				368AB321235F0623002B6D37 /* AAProgressCircleView.m */,
+				BB88DB6F242DFED9000421F7 /* BatteryIconCircleView.h */,
+				BB88DB70242DFED9000421F7 /* BatteryIconCircleView.m */,
 			);
 			path = ProgressCircleView;
 			sourceTree = "<group>";
@@ -1283,6 +1288,7 @@
 				368AB335235F0623002B6D37 /* NSString+HexToBytes.m in Sources */,
 				369C6606235EE431008D6230 /* main.m in Sources */,
 				368AB337235F0623002B6D37 /* NSObject+Common.m in Sources */,
+				BB88DB71242DFED9000421F7 /* BatteryIconCircleView.m in Sources */,
 				368AB340235F0623002B6D37 /* AAProgressCircleView.m in Sources */,
 				368E5098238FA00700AFE3B3 /* UIView+AniamtionMange.m in Sources */,
 				368E509E2390BB3E00AFE3B3 /* RegionViewController.m in Sources */,
