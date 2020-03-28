@@ -81,9 +81,9 @@
         [_continueBtn setTitle:LocalString(@"Submit") forState:UIControlStateNormal];
         [_continueBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_continueBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_continueBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:1.f]];
+        [_continueBtn setBackgroundColor:[UIColor colorWithRed:153/255.0 green:153/255.0 blue:153/255.0 alpha:1.f]];
         [_continueBtn addTarget:self action:@selector(goContinue) forControlEvents:UIControlEventTouchUpInside];
-        _continueBtn.enabled = YES;
+        _continueBtn.enabled = NO;
         [self.view addSubview:_continueBtn];
         [_continueBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(ScreenWidth, yAutoFit(45)));
@@ -113,8 +113,14 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    if (textField.text.length <= 0) {
+    if (textField == self.accountModel.inputText && textField.text.length <= 0) {
         [self.accountModel emailTFEndEditing];
+        
+        [_continueBtn setBackgroundColor:[UIColor colorWithRed:153/255.0 green:153/255.0 blue:153/255.0 alpha:1.f]];
+        _continueBtn.enabled = NO;
+    }else{
+        [_continueBtn setBackgroundColor:[UIColor colorWithRed:220/255.0 green:168/255.0 blue:11/255.0 alpha:1.f]];
+        _continueBtn.enabled = YES;
     }
 }
 

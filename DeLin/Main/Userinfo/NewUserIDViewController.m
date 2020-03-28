@@ -35,7 +35,7 @@ static float HEIGHT_CELL = 50.f;
     _addressTable = [self addressTable];
     _continueBtn = [self continueBtn];
     if (!self->regionStr) {
-        self->regionStr = [NSString stringWithFormat:LocalString(@"中国大陆")];
+        self->regionStr = [NSString stringWithFormat:LocalString(@"China Mainland")];
     }
     //读取上次的 地区
     NSUserDefaults *regionDefaults = [NSUserDefaults standardUserDefaults];
