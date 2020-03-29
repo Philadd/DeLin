@@ -35,7 +35,7 @@ NSString *const CellIdentifier_RegionCell = @"RegionCell";
     _continueBtn = [self continueBtn];
     [self setNavItem];
     
-    self.regionChooseArray = [NSMutableArray arrayWithArray:@[LocalString(@"China Mainland"),LocalString(@"United Kingdom"),LocalString(@"Denmark"),LocalString(@"Netherlands"),LocalString(@"Finland"),LocalString(@"France"),LocalString(@"Germany"),LocalString(@"Italy"),LocalString(@"Norway"),LocalString(@"Russia"),LocalString(@"Portugal"),LocalString(@"Spain")]];
+    self.regionChooseArray = [NSMutableArray arrayWithArray:@[LocalString(@"Mainland China"),LocalString(@"United Kingdom"),LocalString(@"Denmark"),LocalString(@"Netherlands"),LocalString(@"Finland"),LocalString(@"France"),LocalString(@"Germany"),LocalString(@"Italy"),LocalString(@"Norway"),LocalString(@"Russia"),LocalString(@"Portugal"),LocalString(@"Spain")]];
     //默认选择之前选中的地区
     if (![self.addressStr isEqualToString:@""]) {
         NSUInteger arrIndex = [self.regionChooseArray indexOfObject:self.addressStr];
