@@ -475,7 +475,6 @@ static CGFloat cellHeight = 45.0;
      中七位：周一至周日的时间的 分钟位;
      后七位：周一至周日的进行工作状态是否开启;
      */
-    [NSObject showHudTipStr:LocalString(@"Data sent successfully")];
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         
         UInt8 controlCode = 0x01;
