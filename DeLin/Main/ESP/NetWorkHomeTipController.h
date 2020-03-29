@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NetWorkHomeTipController : BaseViewController
 
+@property (copy, nonatomic) NSString *robotCodeStr;//机器型号
+
 @end
 
 NS_ASSUME_NONNULL_END

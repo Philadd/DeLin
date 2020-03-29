@@ -384,6 +384,9 @@ static int noUserInteractionHeartbeat = 0;
             {
                 if (self.msg68Type == getHome){
                     resendCount = 0;
+                    if ([_recivedData68[12] unsignedIntegerValue] == 0) {
+                        [NSObject showHudTipStr:LocalString(@"Set up failed")];
+                    }
                     
                     if ([_recivedData68[12] unsignedIntegerValue] == 1) {
                         [NSObject showHudTipStr:LocalString(@"Set up successfully")];
@@ -392,6 +395,9 @@ static int noUserInteractionHeartbeat = 0;
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"getHome" object:nil userInfo:nil];
                     
                 }else if (self.msg68Type == getStop){
+                    if ([_recivedData68[12] unsignedIntegerValue] == 0) {
+                        [NSObject showHudTipStr:LocalString(@"Set up failed")];
+                    }
                     
                     if ([_recivedData68[12] unsignedIntegerValue] == 1) {
                         [NSObject showHudTipStr:LocalString(@"Set up successfully")];
@@ -401,6 +407,10 @@ static int noUserInteractionHeartbeat = 0;
                 }else if (self.msg68Type == setCurrentTime){
                     resendCount = 0;
                     
+                    if ([_recivedData68[12] unsignedIntegerValue] == 0) {
+                        [NSObject showHudTipStr:LocalString(@"Set up failed")];
+                    }
+                    
                     if ([_recivedData68[12] unsignedIntegerValue] == 1) {
                         [NSObject showHudTipStr:LocalString(@"Set up successfully")];
                     }
@@ -408,6 +418,9 @@ static int noUserInteractionHeartbeat = 0;
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"setCurrentTime" object:nil userInfo:nil];
                     
                 }else if (self.msg68Type == getWorkTime){
+                    if ([_recivedData68[12] unsignedIntegerValue] == 0) {
+                        [NSObject showHudTipStr:LocalString(@"Set up failed")];
+                    }
                     
                     if ([_recivedData68[12] unsignedIntegerValue] == 1) {
                         [NSObject showHudTipStr:LocalString(@"Set up successfully")];
@@ -416,6 +429,9 @@ static int noUserInteractionHeartbeat = 0;
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"getWorkTime" object:nil userInfo:nil];
                     
                 }else if (self.msg68Type == getWorkArea){
+                    if ([_recivedData68[12] unsignedIntegerValue] == 0) {
+                        [NSObject showHudTipStr:LocalString(@"Set up failed")];
+                    }
                     
                     if ([_recivedData68[12] unsignedIntegerValue] == 1) {
                         [NSObject showHudTipStr:LocalString(@"Set up successfully")];
@@ -424,6 +440,9 @@ static int noUserInteractionHeartbeat = 0;
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"setWorkArea" object:nil userInfo:nil];
                     
                 }else if (self.msg68Type == inputPINCode){
+                    if ([_recivedData68[12] unsignedIntegerValue] == 0) {
+                        [NSObject showHudTipStr:LocalString(@"Set up failed")];
+                    }
                     
                     if ([_recivedData68[12] unsignedIntegerValue] == 1) {
                         [NSObject showHudTipStr:LocalString(@"Set up successfully")];
@@ -432,8 +451,15 @@ static int noUserInteractionHeartbeat = 0;
                     
                 }else if (self.msg68Type == reSetPINCode){
                     
+                    if ([_recivedData68[12] unsignedIntegerValue] == 0) {
+                        [NSObject showHudTipStr:LocalString(@"Set up failed")];
+                    }
+                    
                     if ([_recivedData68[12] unsignedIntegerValue] == 1) {
                         [NSObject showHudTipStr:LocalString(@"Set up successfully")];
+                    }
+                    if ([_recivedData68[12] unsignedIntegerValue] == 2) {
+                        [NSObject showHudTipStr:LocalString(@"Successfully executed but the original PIN is incorrect")];
                     }
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetPINCode" object:nil userInfo:nil];

@@ -25,7 +25,7 @@
 @property (nonatomic, strong) UILabel *timeDatalabel;//下一次工作时间
 
 @property (nonatomic, strong) UIView *bgTipView;
-@property (nonatomic, strong) UILabel *warningLabel;//故障信息
+@property (nonatomic, strong) UILabel *robotErrorLabel;//故障信息
 @property (nonatomic, strong) UIButton *homeBtn;//回家充电
 @property (nonatomic, strong) UIButton *stopedBtn;//停止工作
 
@@ -35,6 +35,10 @@
 @end
 
 @implementation MainViewController
+{
+    NSString *robotStateStr;
+    NSString *robotErrorStr;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,7 +47,7 @@
     
     _batteryCircleView = [self batteryCircleView];
     _msgCenterView = [self msgCenterView];
-    _warningLabel = [self warningLabel];
+    _robotErrorLabel = [self robotErrorLabel];
     _homeBtn = [self homeBtn];
     _stopedBtn = [self stopedBtn];
     _areaSetBtn = [self areaSetBtn];
@@ -201,8 +205,8 @@
     return _msgCenterView;
 }
 
-- (UILabel *)warningLabel{
-    if (!_warningLabel) {
+- (UILabel *)robotErrorLabel{
+    if (!_robotErrorLabel) {
         _bgTipView = [[UIView alloc] init];
         _bgTipView.backgroundColor = [UIColor colorWithHexString:@"C9C9C9"];
         [self.view addSubview:_bgTipView];
@@ -212,22 +216,22 @@
             make.top.equalTo(self.msgCenterView.mas_bottom).offset(yAutoFit(30));
         }];
         
-        _warningLabel = [[UILabel alloc] init];
-        _warningLabel.font = [UIFont systemFontOfSize:15.f];
-        _warningLabel.backgroundColor = [UIColor clearColor];
-        _warningLabel.textColor = [UIColor colorWithHexString:@"333333"];
-        _warningLabel.textAlignment = NSTextAlignmentCenter;
-        _warningLabel.text = LocalString(@"Connect your robot mower:");
-        _warningLabel.adjustsFontSizeToFitWidth = YES;
-        [_bgTipView addSubview:_warningLabel];
-        [self.warningLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        _robotErrorLabel = [[UILabel alloc] init];
+        _robotErrorLabel.font = [UIFont systemFontOfSize:15.f];
+        _robotErrorLabel.backgroundColor = [UIColor clearColor];
+        _robotErrorLabel.textColor = [UIColor colorWithHexString:@"333333"];
+        _robotErrorLabel.textAlignment = NSTextAlignmentCenter;
+        _robotErrorLabel.text = LocalString(@"WARNING MASSAGE....");
+        _robotErrorLabel.adjustsFontSizeToFitWidth = YES;
+        [_bgTipView addSubview:_robotErrorLabel];
+        [self.robotErrorLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(40)));
             make.centerX.mas_equalTo(self.bgTipView.mas_centerX);
             make.centerY.mas_equalTo(self.bgTipView.mas_centerY);
         }];
         
     }
-    return _warningLabel;
+    return _robotErrorLabel;
 }
 
 - (UIButton *)stopedBtn{
@@ -341,6 +345,12 @@
 #pragma mark - notification
 
 - (void)getMainDeviceMsg:(NSNotification *)notification{
+    /*
+     robotState机器状态:
+     离线（0x00）、工作（0x01）、充电（0x02）、待机（0x03）
+     robotError机器故障：
+     电量错误（0x00）、信号错误（0x01）、PCB错误（0x02）、割草机倾斜（0x03）、正常（0xFF）。
+     */
     NSDictionary *dict = [notification userInfo];
     NSNumber *robotPower = dict[@"robotPower"];
     NSNumber *robotState = dict[@"robotState"];
@@ -348,11 +358,62 @@
     NSNumber *nextWorktime = dict[@"nextWorktime"];
     NSNumber *nextWorkarea = dict[@"nextWorkarea"];
     
+    switch ([robotState integerValue]) {
+        case 0:
+            
+            self->robotStateStr = [NSString stringWithFormat:@"%@",LocalString(@"离线")];
+            
+            break;
+        case 1:
+            
+            self->robotStateStr = [NSString stringWithFormat:@"%@",LocalString(@"工作")];
+            
+            break;
+        case 2:
+            
+            self->robotStateStr = [NSString stringWithFormat:@"%@",LocalString(@"充电")];
+            
+            break;
+            
+        default:
+            self->robotStateStr = [NSString stringWithFormat:@"%@",LocalString(@"待机")];
+            
+            break;
+    }
+    switch ([robotError integerValue]) {
+        case 0x00:
+            
+            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"电量错误")];
+            
+            break;
+        case 0x01:
+            
+            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"信号错误")];
+            
+            break;
+        case 0x02:
+            
+            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"PCB错误")];
+            
+            break;
+            
+        case 0x03:
+            
+            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"割草机倾斜")];
+            
+            break;
+        
+        default:
+            self->robotStateStr = [NSString stringWithFormat:@"%@",LocalString(@"正常")];
+            
+            break;
+    }
+    
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.warningLabel.text = [NSString stringWithFormat:@"%d",[robotError intValue]];
+        self.robotErrorLabel.text = self->robotErrorStr;
+        self.robotStateLabel.text = self->robotStateStr;
         self.timeDatalabel.text = [NSString stringWithFormat:@"%d",[nextWorktime intValue]];
         self.batteryCircleView.progress = [robotPower floatValue]*0.01;
-        self.robotStateLabel.text = [NSString stringWithFormat:@"%d",[robotState intValue]];
         self.areaDatalabel.text = [NSString stringWithFormat:@"%d%@",[nextWorkarea intValue],LocalString(@"m²")];
     });
     

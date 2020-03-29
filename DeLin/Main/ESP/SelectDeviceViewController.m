@@ -102,7 +102,21 @@ NSString *const CellIdentifier_SelectDeviceCell = @"SelectDeviceCell";
     //重写frame 自定义Cell之间的间距
     [cell setFrame:CGRectMake(0, 0, ScreenWidth, yAutoFit(100))];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.chooseImage.image = [UIImage imageNamed:@"img_selectDevice_Cell"];
+    
+    switch (indexPath.row) {
+        case 0:
+            cell.chooseImage.image = [UIImage imageNamed:@"img_selectDevice_Cell"];
+            break;
+        case 1:
+            cell.chooseImage.image = [UIImage imageNamed:@"img_selectDevice2_Cell"];
+            break;
+        case 2:
+            cell.chooseImage.image = [UIImage imageNamed:@"img_selectDevice3_Cell"];
+            break;
+            
+        default:
+            break;
+    }
     
     return cell;
 }
@@ -110,15 +124,9 @@ NSString *const CellIdentifier_SelectDeviceCell = @"SelectDeviceCell";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.row == 0) {
-        NetWorkHomeTipController *VC = [[NetWorkHomeTipController alloc] init];
-        [self.navigationController pushViewController:VC animated:YES];
-        
-    }else if (indexPath.row == 1){
-        
-    }else if (indexPath.row == 2){
-        
-    }
+    NetWorkHomeTipController *VC = [[NetWorkHomeTipController alloc] init];
+    VC.robotCodeStr = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
+    [self.navigationController pushViewController:VC animated:YES];
 
 }
 
