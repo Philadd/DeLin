@@ -163,8 +163,8 @@
         
         //保存用户信息
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults setObject:uid forKey:@"uid"];
-        [userDefaults setObject:token forKey:@"token"];
+        [userDefaults setObject:[GizManager shareInstance].uid forKey:@"uid"];
+        [userDefaults setObject:[GizManager shareInstance].token forKey:@"token"];
         [userDefaults setObject:self.emailStr forKey:@"userEmail"];
         [userDefaults synchronize];
         //获取用户信息
@@ -184,9 +184,9 @@
 }
 
 - (void)wifiSDK:(GizWifiSDK *)wifiSDK didGetUserInfo:(NSError *)result userInfo:(GizUserInfo *)userInfo{
-    NSLog(@"didGetUserInfo:%@",result);
+    
     if(result.code == GIZ_SDK_SUCCESS) {
-        NSLog(@"dasdsdasd%@",userInfo);
+        NSLog(@"didGetUserInfo%@",userInfo);
     }
     
 }

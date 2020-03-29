@@ -126,9 +126,11 @@
     if(result.code == GIZ_SDK_SUCCESS) {
         // 绑定成功
         NSLog(@"绑定成功");
+        //[NSObject showHudTipStr2:LocalString(@"设备绑定成功")];
     } else {
         // 绑定失败
         NSLog(@"绑定失败");
+        //[NSObject showHudTipStr2:LocalString(@"设备绑定失败")];
     }
     
 }
@@ -158,7 +160,7 @@
         [self.networkProgressView configSecondAnimate];
         //设备信息
         [GizManager shareInstance].did = did;
-        [[GizWifiSDK sharedInstance] bindRemoteDevice:userUid token:userToken mac:mac productKey:GizAppproductKey productSecret:GizAppproductSecret beOwner:NO];
+        [[GizWifiSDK sharedInstance] bindRemoteDevice:userUid token:userToken mac:mac productKey:productKey productSecret:GizAppproductSecret beOwner:NO];
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             FinishNetWorkSuccessController *successVC = [[FinishNetWorkSuccessController alloc] init];
