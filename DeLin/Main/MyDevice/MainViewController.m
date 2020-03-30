@@ -58,13 +58,15 @@
 //    self.drawerController.closeDrawerGestureModeMask =MMCloseDrawerGestureModeAll;
     //校准时间
     [self setMowerTime];
-    //连上设备立马获取主页面信息
-    [[NetWorkManager shareNetWorkManager] getMainDeviceMsg];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [GizWifiSDK sharedInstance].delegate = self;
+    
+    //连上设备立马获取主页面信息
+    [self getMainDeviceMsg];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMainDeviceMsg:) name:@"getMainDeviceMsg" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goHomeSuccess) name:@"getHome" object:nil];
@@ -430,6 +432,21 @@
 }
 
 #pragma mark - Actions
+
+- (void)getMainDeviceMsg{
+    UInt8 controlCode = 0x01;
+    NSArray *data = @[@0x00,@0x01,@0x00,@0x00];
+    [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
+    
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [self performSelector:@selector(getMainDeviceMsg) withObject:nil afterDelay:60.f];
+//    });
+    
+}
+
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        [NSObject cancelPreviousPerformRequestsWithTarget:self];
+//                    });
 
 //校准机器时间
 - (void)setMowerTime{

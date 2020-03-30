@@ -248,7 +248,7 @@ static GizManager *_gizManager = nil;
         
         //接收透传数据 进行解析
         NSData *data = [attrStatus objectForKey:@"binary"];
-        [[NetWorkManager shareNetWorkManager]checkOutFrame:data];
+        [[NetWorkManager shareNetWorkManager] checkOutFrame:data];
         
         NSLog(@"查询上报的信息。。。数据点:%@ 透传:%@",dataPoints,data);
         if(dataPoints != nil && [dataPoints count] != 0)

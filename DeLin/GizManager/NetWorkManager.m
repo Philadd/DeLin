@@ -83,16 +83,7 @@ static int noUserInteractionHeartbeat = 0;
 
 #pragma mark - Actions
 
-- (void)getMainDeviceMsg{
-    UInt8 controlCode = 0x01;
-    NSArray *data = @[@0x00,@0x01,@0x00,@0x00];
-    [self sendData68With:controlCode data:data failuer:nil];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self performSelector:@selector(getMainDeviceMsg) withObject:nil afterDelay:3.f];
-    });
-    
-}
+
 #pragma mark - 帧的发送
 
 //帧的发送
@@ -168,6 +159,7 @@ static int noUserInteractionHeartbeat = 0;
 #pragma mark - Frame68 接收处理
 
 - (void)checkOutFrame:(NSData *)data{
+    
     if (_allMsg && data) {
         [_allMsg removeAllObjects];
         
@@ -194,18 +186,15 @@ static int noUserInteractionHeartbeat = 0;
             NSUInteger recvDataLen = recvData.count;
             
             //数据不够一条完整的帧
-            if (recvDataLen < 10) {
+            if (recvDataLen < 15) {
                 return;
             }
             
             //1 帧头匹配
             if ([[recvData objectAtIndex:i] unsignedCharValue] == 0x68){
-                //22,23位是数据域长度
-                if ((i+7)>=recvLen) {
-                    i++;
-                    break;
-                }
-                int dataLen = [[recvData objectAtIndex:i+7] unsignedCharValue];
+                //数据域长度
+                
+                int dataLen = [[recvData objectAtIndex:7] unsignedCharValue];
                 
                 NSInteger end = i + 7 + dataLen + 2;//帧尾所在位置
                 //2.帧尾匹配
