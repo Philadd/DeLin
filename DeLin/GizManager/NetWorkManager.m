@@ -377,6 +377,18 @@ static int noUserInteractionHeartbeat = 0;
             NSLog(@"帧头帧尾错误");
             return NO;
         }
+        
+        //判断cs位
+//        UInt8 csTemp = 0x00;
+//        for (int i = 0; i < count - 2; i++)
+//        {
+//            csTemp += [data[i] unsignedCharValue];
+//        }
+//        if (csTemp != [data[count-2] unsignedCharValue])
+//        {
+//            NSLog(@"校验错误");
+//            return NO;
+//        }
     }else{
         return NO;
     }
