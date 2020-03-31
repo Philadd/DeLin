@@ -32,6 +32,8 @@
 @property (nonatomic, strong) UIButton *areaSetBtn;
 @property (nonatomic, strong) UIButton *timerSetBtn;
 
+@property (nonatomic, strong) NSTimer *timer;
+
 @end
 
 @implementation MainViewController
@@ -52,6 +54,8 @@
     _stopedBtn = [self stopedBtn];
     _areaSetBtn = [self areaSetBtn];
     _timerSetBtn = [self timerSetBtn];
+    
+    _timer = [self timer];
     
     //设置打开/关闭抽屉的手势
 //    self.drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
@@ -76,6 +80,10 @@
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     
+    [_timer setFireDate:[NSDate distantFuture]];
+    [_timer invalidate];
+    _timer = nil;
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"getMainDeviceMsg" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"getHome" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"getStop" object:nil];
@@ -93,6 +101,14 @@
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightBarButton;
     
+}
+
+- (NSTimer *)timer{
+    if(!_timer){
+        _timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(getMainDeviceMsg) userInfo:nil repeats:YES];
+        [_timer setFireDate:[NSDate date]];
+    }
+    return _timer;
 }
 
 - (BatteryIconCircleView *)batteryCircleView{
@@ -347,17 +363,21 @@
 #pragma mark - notification
 
 - (void)getMainDeviceMsg:(NSNotification *)notification{
+    
+    //停掉重发机制
+    [_timer setFireDate:[NSDate distantFuture]];
     /*
      robotState机器状态:
      离线（0x00）、工作（0x01）、充电（0x02）、待机（0x03）
      robotError机器故障：
-     电量错误（0x00）、信号错误（0x01）、PCB错误（0x02）、割草机倾斜（0x03）、正常（0xFF）。
+     电量错误（0x00）、信号错误（0x01）、PCB错误（0x02）、割草机倾斜（0x03）、正常（0xFE）。
      */
     NSDictionary *dict = [notification userInfo];
     NSNumber *robotPower = dict[@"robotPower"];
     NSNumber *robotState = dict[@"robotState"];
     NSNumber *robotError = dict[@"robotError"];
-    NSNumber *nextWorktime = dict[@"nextWorktime"];
+    NSNumber *nextWorkHour = dict[@"nextWorkHour"];
+    NSNumber *nextWorkMinute = dict[@"nextWorkMinute"];
     NSNumber *nextWorkarea = dict[@"nextWorkarea"];
     
     switch ([robotState integerValue]) {
@@ -372,9 +392,12 @@
             
             break;
         case 2:
-            
+        {
             self->robotStateStr = [NSString stringWithFormat:@"%@",LocalString(@"充电")];
+            //开启查询电量
+            [_timer setFireDate:[NSDate date]];
             
+        }
             break;
             
         default:
@@ -414,8 +437,13 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.robotErrorLabel.text = self->robotErrorStr;
         self.robotStateLabel.text = self->robotStateStr;
-        self.timeDatalabel.text = [NSString stringWithFormat:@"%d",[nextWorktime intValue]];
+        self.timeDatalabel.text = [NSString stringWithFormat:@"%d:%d",[nextWorkHour intValue],[nextWorkMinute intValue]];
         self.batteryCircleView.progress = [robotPower floatValue]*0.01;
+        //电量充满时停止查询
+        if ([robotPower intValue] == 100) {
+            //停掉查询
+            [self.timer setFireDate:[NSDate distantFuture]];
+        }
         self.areaDatalabel.text = [NSString stringWithFormat:@"%d%@",[nextWorkarea intValue],LocalString(@"m²")];
     });
     
@@ -437,17 +465,7 @@
     UInt8 controlCode = 0x01;
     NSArray *data = @[@0x00,@0x01,@0x00,@0x00];
     [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
-    
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        [self performSelector:@selector(getMainDeviceMsg) withObject:nil afterDelay:60.f];
-//    });
-    
 }
-
-//                    dispatch_async(dispatch_get_main_queue(), ^{
-//                        [NSObject cancelPreviousPerformRequestsWithTarget:self];
-//                    });
-
 //校准机器时间
 - (void)setMowerTime{
     NSDate *date = [NSDate date];

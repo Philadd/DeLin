@@ -28,8 +28,6 @@ static int noUserInteractionHeartbeat = 0;
     
     dispatch_semaphore_t _sendSignal;//设备通信锁
     
-    NSMutableArray *_allMsg;//收到的帧处理沾包分帧后放入该数组
-    
     dispatch_source_t _noUserInteractionHeartbeatTimer;//心跳时钟
     
     //测试用代码
@@ -61,8 +59,6 @@ static int noUserInteractionHeartbeat = 0;
             _recivedData68 = [[NSMutableArray alloc] init];
         }
         _frameCount = 0;
-        _myTimer = [self myTimer];
-        
     }
     return self;
 }
@@ -71,18 +67,6 @@ static int noUserInteractionHeartbeat = 0;
     _netWorkManager = nil;
     oneToken = 0l;
 }
-
-#pragma mark - Lazy load
-- (NSTimer *)myTimer{
-    if (!_myTimer) {
-        _myTimer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(getTemp) userInfo:nil repeats:YES];
-        [_myTimer setFireDate:[NSDate distantFuture]];
-    }
-    return _myTimer;
-}
-
-#pragma mark - Actions
-
 
 #pragma mark - 帧的发送
 
@@ -158,97 +142,6 @@ static int noUserInteractionHeartbeat = 0;
 
 #pragma mark - Frame68 接收处理
 
-- (void)checkOutFrame:(NSData *)data{
-    
-    if (_allMsg && data) {
-        [_allMsg removeAllObjects];
-        
-        //把读到的数据复制一份
-        NSData *recvBuffer = [NSData dataWithData:data];
-        NSUInteger recvLen = [recvBuffer length];
-        //NSLog(@"%lu",(unsigned long)recvLen);
-        UInt8 *recv = (UInt8 *)[recvBuffer bytes];
-        if (recvLen > 1000) {
-            return;
-        }
-        //把接收到的数据存放在recvData数组中
-        NSMutableArray *recvData = [[NSMutableArray alloc] init];
-        NSUInteger j = 0;
-        while (j < recvLen) {
-            [recvData addObject:[NSNumber numberWithUnsignedChar:recv[j]]];
-            j++;
-        }
-        //每从recvData中取出正确的一帧就删除recvData中这段数据
-        NSInteger i = 0;
-        while (i < recvData.count) {
-            //验证68帧的准确性
-            //数据缓冲区中数据的长度
-            NSUInteger recvDataLen = recvData.count;
-            
-            //数据不够一条完整的帧
-            if (recvDataLen < 15) {
-                return;
-            }
-            
-            //1 帧头匹配
-            if ([[recvData objectAtIndex:i] unsignedCharValue] == 0x68){
-                //数据域长度
-                
-                int dataLen = [[recvData objectAtIndex:7] unsignedCharValue];
-                
-                NSInteger end = i + 7 + dataLen + 2;//帧尾所在位置
-                //2.帧尾匹配
-                if ([recvData count] > end) {
-                    if ([[recvData objectAtIndex:end] unsignedIntegerValue] == 0x16) {
-                        //计算CS位 8＋数据域长度 ＝ 校验位前数据长度
-                        UInt8 cs = 0x00;
-                        for (int j = 0; j < 8 + dataLen; j++)
-                        {
-                            cs += [[recvData objectAtIndex:i+j] unsignedCharValue];
-                        }
-                        
-                        //3.校验位匹配
-                        if (cs == [[recvData objectAtIndex:end - 1] unsignedCharValue])
-                        {
-                            //存储这个帧命令
-                            NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:8+dataLen+2];
-                            for (int k = 0; k < 8+dataLen+2; k++)
-                            {
-                                //每次删后，后面位自动前移
-                                [array addObject:[recvData objectAtIndex:i]];
-                                //NSLog(@"%@", array);
-                                [recvData removeObjectAtIndex:i];
-                            }
-                            [_allMsg addObject:array];
-                            continue;
-                        }
-                    }else{
-                        NSLog(@"计算的字节长度不对");
-                    }
-                }
-            }
-            i++;
-        }
-        
-    }
-    [self distributeFrame];
-}
-
-- (void)distributeFrame{
-    if (!_allMsg) {
-        return;
-    }
-    //把每条数据分别处理
-    for (int i = 0; i < _allMsg.count; i++) {
-        //取出一帧
-        NSMutableArray *data = [[NSMutableArray alloc] init];
-        [data addObjectsFromArray:_allMsg[i]];
-        //NSLog(@"沾包解出的帧%d：%@",i,data);
-        
-        [self handle68Message:data];
-    }
-}
-
 - (void)handle68Message:(NSArray *)data
 {
     //68帧格式判断
@@ -285,21 +178,22 @@ static int noUserInteractionHeartbeat = 0;
                  [_recivedData68[17] [_recivedData68[18].... 割草面积
                  */
                 if (self.msg68Type == getMainDeviceMsg) {
-//                    dispatch_async(dispatch_get_main_queue(), ^{
-//                        [NSObject cancelPreviousPerformRequestsWithTarget:self];
-//                    });
+                    
                     resendCount = 0;
                     NSMutableDictionary *dataDic = [[NSMutableDictionary alloc]init];
                     NSNumber *robotPower = _recivedData68[12];
                     NSNumber *robotState = _recivedData68[13];
                     NSNumber *robotError = _recivedData68[14];
-                    NSNumber *nextWorktime = [NSNumber numberWithInt:[_recivedData68[15] intValue] * 256 + [_recivedData68[16] intValue]];
+                    NSNumber *nextWorkHour = [NSNumber numberWithInt:[_recivedData68[15] intValue]];
+                    NSNumber *nextWorkMinute = [NSNumber numberWithInt:[_recivedData68[16] intValue]];
+                    
                     NSNumber *nextWorkarea = [NSNumber numberWithInt:[_recivedData68[17] intValue] * 256 + [_recivedData68[18] intValue]];
                     
                     [dataDic setObject:robotPower forKey:@"robotPower"];
                     [dataDic setObject:robotState forKey:@"robotState"];
                     [dataDic setObject:robotError forKey:@"robotError"];
-                    [dataDic setObject:nextWorktime forKey:@"nextWorktime"];
+                    [dataDic setObject:nextWorkHour forKey:@"nextWorkHour"];
+                    [dataDic setObject:nextWorkMinute forKey:@"nextWorkMinute"];
                     [dataDic setObject:nextWorkarea forKey:@"nextWorkarea"];
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"getMainDeviceMsg" object:nil userInfo:dataDic];
@@ -472,27 +366,21 @@ static int noUserInteractionHeartbeat = 0;
 
 -(BOOL)frameIsRight:(NSArray *)data
 {
-    NSUInteger count = data.count;
-    UInt8 front = [data[0] unsignedCharValue];
-    UInt8 end3 = [data[count-1] unsignedCharValue];
+    if (data != nil && ![data isKindOfClass:[NSNull class]] && data.count >= 3) {
+        
+        NSUInteger count = data.count;
+        UInt8 front1 = [data[0] unsignedCharValue];
+        UInt8 front2 = [data[1] unsignedCharValue];
+        UInt8 end3 = [data[count-1] unsignedCharValue];
+        
+        if (front1 != 0x68 || front2 != 0x81 || end3 != 0x16) {
+            NSLog(@"帧头帧尾错误");
+            return NO;
+        }
+    }else{
+        return NO;
+    }
     
-    //判断帧头帧尾
-    if (front != 0x68 || end3 != 0x16)
-    {
-        NSLog(@"帧头帧尾错误");
-        return NO;
-    }
-    //判断cs位
-    UInt8 csTemp = 0x00;
-    for (int i = 0; i < count - 2; i++)
-    {
-        csTemp += [data[i] unsignedCharValue];
-    }
-    if (csTemp != [data[count-2] unsignedCharValue])
-    {
-        NSLog(@"校验错误");
-        return NO;
-    }
     return YES;
 }
 

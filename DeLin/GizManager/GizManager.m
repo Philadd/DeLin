@@ -242,13 +242,12 @@ static GizManager *_gizManager = nil;
 
 - (void)device:(GizWifiDevice *)device didReceiveAttrStatus:(NSError *)result attrStatus:(NSDictionary *)attrStatus adapterAttrStatus:(NSDictionary *)adapterAttrStatus withSN:(NSNumber *)sn{
     if (result.code == GIZ_SDK_SUCCESS) {
-        NSLog(@"设备透传返回信息: %@",attrStatus);
-        NSLog(@"设备透传返回sn: %@",sn);
+        
         NSDictionary *dataPoints = [attrStatus valueForKey:@"data"];
         
         //接收透传数据 进行解析
         NSData *data = [attrStatus objectForKey:@"binary"];
-        [[NetWorkManager shareNetWorkManager] checkOutFrame:data];
+        [self checkOutFrame:data];
         
         NSLog(@"查询上报的信息。。。数据点:%@ 透传:%@",dataPoints,data);
         if(dataPoints != nil && [dataPoints count] != 0)
@@ -261,6 +260,28 @@ static GizManager *_gizManager = nil;
     }else{
         NSLog(@"result---- %@",result);
     }
+}
+
+//将NSdata数据转化为数组再解析
+- (void)checkOutFrame:(NSData *)data{
+    
+    //把读到的数据复制一份
+    NSData *recvBuffer = [NSData dataWithData:data];
+    NSUInteger recvLen = [recvBuffer length];
+    //NSLog(@"%lu",(unsigned long)recvLen);
+    UInt8 *recv = (UInt8 *)[recvBuffer bytes];
+    if (recvLen > 1000) {
+        return;
+    }
+    //把接收到的数据存放在recvData数组中
+    NSMutableArray *recvData = [[NSMutableArray alloc] init];
+    NSUInteger j = 0;
+    while (j < recvLen) {
+        [recvData addObject:[NSNumber numberWithUnsignedChar:recv[j]]];
+        j++;
+    }
+    [[NetWorkManager shareNetWorkManager] handle68Message:recvData];
+    
 }
 
 #pragma 获取设备当前连接的WIFI的SSID

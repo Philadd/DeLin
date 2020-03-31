@@ -51,7 +51,7 @@ static CGFloat cellHeight = 45.0;
     self.oKButton = [self oKButton];
     
     _flag = 0;//默认不发送数据
-    //_timer = [self timer];
+    _timer = [self timer];
 
 }
 
@@ -60,10 +60,14 @@ static CGFloat cellHeight = 45.0;
     
     [self inquireWorktimeSetting];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recieveWorkingTime:) name:@"recieveWorkingTime" object:nil];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"recieveWorkingTime" object:nil];
     
     [_timer setFireDate:[NSDate distantFuture]];
     [_timer invalidate];
@@ -72,7 +76,7 @@ static CGFloat cellHeight = 45.0;
 
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    //[self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:NO];
+    
 }
 
 #pragma mark - Lazy load

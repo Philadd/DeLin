@@ -127,7 +127,7 @@
     if (_progress != progress) {
         _progress = progress;
         
-        if (progress >= 1.0 || progress < 0) {
+        if (progress > 1.0 || progress < 0) {
             return;
         }
         self.centerLabel.text = [NSString stringWithFormat:@"%.f%%",progress*100];

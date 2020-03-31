@@ -54,19 +54,11 @@ static NSInteger tempCountVer = 1000;
 ///@brief 帧类型
 @property (nonatomic, assign) FrameType68 frame68Type;
 
-///@brief 重复读温度延时器
-@property (nonatomic, strong) NSTimer *myTimer;
-
-
-///@brief 用于重发机制判断
-@property (nonatomic) int setFireCount;
-@property (nonatomic) int setPowerCount;
-@property (nonatomic) int setColdAndStirCount;
-
 ///@brief 帧计数器
 @property (nonatomic, assign) UInt8 frameCount;
 
-- (void)checkOutFrame:(NSData *)data;
+- (void)handle68Message:(NSArray *)data;
+
 ///@brief 单例模式
 + (instancetype)shareNetWorkManager;
 ///@brief 销毁单例
