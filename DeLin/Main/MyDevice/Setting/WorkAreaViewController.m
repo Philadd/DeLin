@@ -142,7 +142,8 @@
     NSDictionary *dict = [notification userInfo];
     NSNumber *workArea = dict[@"workArea"];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.workAreaPicker selectRow:[workArea intValue] inComponent:0 animated:YES];
+        //工作区域数组 对应的pickindex 相差50
+        [self.workAreaPicker selectRow:[workArea intValue]/50 inComponent:0 animated:YES];
     });
     
 }
