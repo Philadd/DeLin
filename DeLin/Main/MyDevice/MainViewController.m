@@ -55,13 +55,20 @@
     _areaSetBtn = [self areaSetBtn];
     _timerSetBtn = [self timerSetBtn];
     
-    _timer = [self timer];
+    //_timer = [self timer];
     
     //设置打开/关闭抽屉的手势
 //    self.drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
 //    self.drawerController.closeDrawerGestureModeMask =MMCloseDrawerGestureModeAll;
-    //校准时间
-    [self setMowerTime];
+    
+    //延时1秒
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        //校准时间
+        [self setMowerTime];
+        
+    });
+    
     
 }
 
@@ -485,6 +492,7 @@
     NSArray *data = @[@0x00,@0x01,@0x02,@0x01];
     [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
     
+    [self setMowerTime];
 }
 
 - (void)goHome{

@@ -51,7 +51,7 @@ static CGFloat cellHeight = 45.0;
     self.oKButton = [self oKButton];
     
     _flag = 0;//默认不发送数据
-    _timer = [self timer];
+    //_timer = [self timer];
 
 }
 
