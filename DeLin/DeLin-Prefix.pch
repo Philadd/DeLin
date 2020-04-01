@@ -64,10 +64,10 @@
 
 #define LocalString(x)      NSLocalizedString(x, nil)
 
-#define GizAppId @"8b1dc2f35791410dbbb64301b35454bc"
-#define GizAppSecret @"a1e5f15a6e3d4b5ca2a4d3de9cd2ba09"
-#define GizAppproductKey @"4fa35c2d2fbf4259a668eb9e994d1b78"
-#define GizAppproductSecret @"55afef25964e42d2b9f17a5d2935536f"
+#define GizAppId @"5118311145e3491b9fc9aad7471406b6"
+#define GizAppSecret @" 635509b6bc7e4bd19879a534dfc7e031 "
+#define GizAppproductKey @"3804d69257614f12a3ea2ef8d0fc0730"
+#define GizAppproductSecret @"023332763441450496be513b03ea631e"
 
 typedef enum : NSUInteger {
     aUnselect = 1000,

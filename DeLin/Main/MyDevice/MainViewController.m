@@ -491,8 +491,7 @@
     UInt8 controlCode = 0x01;
     NSArray *data = @[@0x00,@0x01,@0x02,@0x01];
     [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
-    
-    [self setMowerTime];
+
 }
 
 - (void)goHome{
