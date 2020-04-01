@@ -65,7 +65,7 @@
 #define LocalString(x)      NSLocalizedString(x, nil)
 
 #define GizAppId @"5118311145e3491b9fc9aad7471406b6"
-#define GizAppSecret @" 635509b6bc7e4bd19879a534dfc7e031 "
+#define GizAppSecret @"635509b6bc7e4bd19879a534dfc7e031"
 #define GizAppproductKey @"3804d69257614f12a3ea2ef8d0fc0730"
 #define GizAppproductSecret @"023332763441450496be513b03ea631e"
 
