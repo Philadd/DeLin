@@ -368,11 +368,11 @@ static float HEIGHT_CELL = 80.f;
     [self presentViewController:LogoutVC animated:YES completion:nil];
     
     //虚拟设备绑定 测试用
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *userUid = [userDefaults valueForKey:@"uid"];
-    NSString *userToken = [userDefaults valueForKey:@"token"];
-    
-    [[GizWifiSDK sharedInstance] bindDeviceWithUid:userUid token:userToken did:@"KxJu4xkPugQAoyoghZm7Yn" passCode:@"123456" remark:nil];
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    NSString *userUid = [userDefaults valueForKey:@"uid"];
+//    NSString *userToken = [userDefaults valueForKey:@"token"];
+//    
+//    [[GizWifiSDK sharedInstance] bindDeviceWithUid:userUid token:userToken did:@"KxJu4xkPugQAoyoghZm7Yn" passCode:@"123456" remark:nil];
     
 }
 

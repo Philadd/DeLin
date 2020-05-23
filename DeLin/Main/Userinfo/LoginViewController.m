@@ -199,6 +199,7 @@
     if (self.emailModelTF.inputText.text.length > 0) {
         ForgetpasswordViewController *ForgetVC = [[ForgetpasswordViewController alloc] init];
         ForgetVC.emailResetStr = self.emailModelTF.inputText.text;
+        ForgetVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [self presentViewController:ForgetVC animated:YES completion:nil];
     }else{
         [NSObject showHudTipStr:LocalString(@"Please enter your email address")];

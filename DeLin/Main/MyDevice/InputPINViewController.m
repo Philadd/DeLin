@@ -191,10 +191,6 @@
 
 - (void)goContinue{
     
-//    MainViewController *mainVC = [[MainViewController alloc] init];
-//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:mainVC];
-//    [self presentViewController:nav animated:YES completion:nil];
-    
     MainViewController *mainVC = [[MainViewController alloc] init];
     [self.navigationController pushViewController:mainVC animated:YES];
     

@@ -128,13 +128,23 @@
         
         [self.view addSubview:_batteryCircleView];
         
-        [_batteryCircleView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(217.f), yAutoFit(300)));
-            make.centerX.equalTo(self.view.mas_centerX);
-            make.top.equalTo(self.view.mas_top).offset(getRectNavAndStatusHight + yAutoFit(20.f));
-        }];
-        
-        self.batteryCircleView.progress = 0.75;
+        if (yDevice_Is_iPhoneX_iPhone11Pro || yDevice_Is_iPhoneXR_iPhone11 || yDevice_Is_iPhoneXS_MAX_iPhone11ProMax ) {
+            
+            [_batteryCircleView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(yAutoFit(247.f), yAutoFit(350)));
+                make.centerX.equalTo(self.view.mas_centerX);
+                make.top.equalTo(self.view.mas_top).offset(getRectNavAndStatusHight + yAutoFit(50.f));
+            }];
+            
+        }else{
+            [_batteryCircleView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(yAutoFit(217.f), yAutoFit(300)));
+                make.centerX.equalTo(self.view.mas_centerX);
+                make.top.equalTo(self.view.mas_top).offset(getRectNavAndStatusHight + yAutoFit(20.f));
+            }];
+            
+        }
+        self.batteryCircleView.progress = 1;
         
         _robotStateLabel = [[UILabel alloc] init];
         _robotStateLabel.text = @"charging";
@@ -143,30 +153,59 @@
         _robotStateLabel.textAlignment = NSTextAlignmentCenter;
         _robotStateLabel.adjustsFontSizeToFitWidth = YES;
         [self.view addSubview:_robotStateLabel];
-        [_robotStateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(100.f), yAutoFit(20.f)));
-            make.centerX.equalTo(self.batteryCircleView.mas_centerX);
-            make.top.equalTo(self.batteryCircleView.centerLabel.mas_bottom).offset(yAutoFit(20.f));
-        }];
-        
+        if (yDevice_Is_iPhoneX_iPhone11Pro || yDevice_Is_iPhoneXR_iPhone11 || yDevice_Is_iPhoneXS_MAX_iPhone11ProMax ) {
+            
+            [_robotStateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(yAutoFit(150.f), yAutoFit(30.f)));
+                make.centerX.equalTo(self.batteryCircleView.mas_centerX);
+                make.top.equalTo(self.batteryCircleView.centerLabel.mas_bottom).offset(yAutoFit(20.f));
+            }];
+            
+        }else{
+            [_robotStateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(yAutoFit(100.f), yAutoFit(20.f)));
+                make.centerX.equalTo(self.batteryCircleView.mas_centerX);
+                make.top.equalTo(self.batteryCircleView.centerLabel.mas_bottom).offset(yAutoFit(20.f));
+            }];
+            
+        }
     }
     return _batteryCircleView;
 }
 
 - (UIView *)msgCenterView{
     if (!_msgCenterView) {
-        _msgCenterView = [[UIView alloc] initWithFrame:CGRectMake(0,350, ScreenWidth, 60.f)];
+        
+        if (yDevice_Is_iPhoneX_iPhone11Pro || yDevice_Is_iPhoneXR_iPhone11 || yDevice_Is_iPhoneXS_MAX_iPhone11ProMax ) {
+            
+            _msgCenterView = [[UIView alloc] initWithFrame:CGRectMake(0,450, ScreenWidth, 90.f)];
+            
+        }else{
+            _msgCenterView = [[UIView alloc] initWithFrame:CGRectMake(0,350, ScreenWidth, 60.f)];
+        }
+        
         _msgCenterView.backgroundColor = [UIColor clearColor];
         [self.view addSubview:_msgCenterView];
         
         UIImageView *areaImg = [[UIImageView alloc] init];
         [areaImg setImage:[UIImage imageNamed:@"area_img"]];
         [_msgCenterView addSubview:areaImg];
-        [areaImg mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(40, 40));
-            make.left.equalTo(self.msgCenterView.mas_left).offset(yAutoFit(40));
-            make.centerY.equalTo(self.msgCenterView.mas_centerY);
-        }];
+        if (yDevice_Is_iPhoneX_iPhone11Pro || yDevice_Is_iPhoneXR_iPhone11 || yDevice_Is_iPhoneXS_MAX_iPhone11ProMax ) {
+            
+            [areaImg mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(yAutoFit(40), yAutoFit(40)));
+                make.left.equalTo(self.msgCenterView.mas_left).offset(yAutoFit(40));
+                make.centerY.equalTo(self.msgCenterView.mas_centerY);
+            }];
+            
+        }else{
+            [areaImg mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(yAutoFit(40), yAutoFit(40)));
+                make.left.equalTo(self.msgCenterView.mas_left).offset(yAutoFit(40));
+                make.centerY.equalTo(self.msgCenterView.mas_centerY);
+            }];
+        }
+        
         UILabel *arealabel = [[UILabel alloc] init];
         arealabel.text = LocalString(@"Mowing area");
         arealabel.font = [UIFont systemFontOfSize:14.f];
@@ -174,11 +213,22 @@
         arealabel.textAlignment = NSTextAlignmentCenter;
         arealabel.adjustsFontSizeToFitWidth = YES;
         [_msgCenterView addSubview:arealabel];
-        [arealabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(60, 15));
-            make.centerY.equalTo(self.msgCenterView.mas_centerY).offset(-10);
-            make.left.equalTo(areaImg.mas_right).offset(10);
-        }];
+        if (yDevice_Is_iPhoneX_iPhone11Pro || yDevice_Is_iPhoneXR_iPhone11 || yDevice_Is_iPhoneXS_MAX_iPhone11ProMax ) {
+            
+            [arealabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(yAutoFit(60), yAutoFit(15)));
+                make.centerY.equalTo(self.msgCenterView.mas_centerY).offset(-yAutoFit(10));
+                make.left.equalTo(areaImg.mas_right).offset(yAutoFit(10));
+            }];
+            
+        }else{
+            [arealabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(yAutoFit(60), yAutoFit(15)));
+                make.centerY.equalTo(self.msgCenterView.mas_centerY).offset(-yAutoFit(10));
+                make.left.equalTo(areaImg.mas_right).offset(yAutoFit(10));
+            }];
+        }
+        
         _areaDatalabel = [[UILabel alloc] init];
         _areaDatalabel.text = [NSString stringWithFormat:@"%@%@",@"500",LocalString(@"m²")];
         _areaDatalabel.font = [UIFont systemFontOfSize:14.f];
@@ -186,20 +236,42 @@
         _areaDatalabel.textAlignment = NSTextAlignmentCenter;
         _areaDatalabel.adjustsFontSizeToFitWidth = YES;
         [_msgCenterView addSubview:_areaDatalabel];
-        [_areaDatalabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(60, 15));
-            make.centerY.equalTo(self.msgCenterView.mas_centerY).offset(10);
-            make.left.equalTo(areaImg.mas_right).offset(10);
-        }];
+        if (yDevice_Is_iPhoneX_iPhone11Pro || yDevice_Is_iPhoneXR_iPhone11 || yDevice_Is_iPhoneXS_MAX_iPhone11ProMax ) {
+            
+            [_areaDatalabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(yAutoFit(60), yAutoFit(15)));
+                make.centerY.equalTo(self.msgCenterView.mas_centerY).offset(yAutoFit(10));
+                make.left.equalTo(areaImg.mas_right).offset(yAutoFit(10));
+            }];
+            
+        }else{
+            [_areaDatalabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(yAutoFit(60), yAutoFit(15)));
+                make.centerY.equalTo(self.msgCenterView.mas_centerY).offset(yAutoFit(10));
+                make.left.equalTo(areaImg.mas_right).offset(yAutoFit(10));
+            }];
+        }
+        
         
         UIImageView *timeImg = [[UIImageView alloc] init];
         [timeImg setImage:[UIImage imageNamed:@"workTime_img"]];
         [_msgCenterView addSubview:timeImg];
-        [timeImg mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(40, 40));
-            make.right.equalTo(self.msgCenterView.mas_right).offset(yAutoFit(-100));
-            make.centerY.equalTo(self.msgCenterView.mas_centerY);
-        }];
+        if (yDevice_Is_iPhoneX_iPhone11Pro || yDevice_Is_iPhoneXR_iPhone11 || yDevice_Is_iPhoneXS_MAX_iPhone11ProMax ) {
+            
+            [timeImg mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(yAutoFit(40), yAutoFit(40)));
+                make.right.equalTo(self.msgCenterView.mas_right).offset(yAutoFit(-100));
+                make.centerY.equalTo(self.msgCenterView.mas_centerY);
+            }];
+            
+        }else{
+            [timeImg mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(yAutoFit(40), yAutoFit(40)));
+                make.right.equalTo(self.msgCenterView.mas_right).offset(yAutoFit(-100));
+                make.centerY.equalTo(self.msgCenterView.mas_centerY);
+            }];
+        }
+        
         
         UILabel *timelabel = [[UILabel alloc] init];
         timelabel.text = LocalString(@"Next Working");
@@ -208,11 +280,21 @@
         timelabel.textAlignment = NSTextAlignmentCenter;
         timelabel.adjustsFontSizeToFitWidth = YES;
         [_msgCenterView addSubview:timelabel];
-        [timelabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(60, 15));
-            make.centerY.equalTo(self.msgCenterView.mas_centerY).offset(-10);
-            make.left.equalTo(timeImg.mas_right).offset(10);
-        }];
+        if (yDevice_Is_iPhoneX_iPhone11Pro || yDevice_Is_iPhoneXR_iPhone11 || yDevice_Is_iPhoneXS_MAX_iPhone11ProMax ) {
+            
+            [timelabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(yAutoFit(60), yAutoFit(15)));
+                make.centerY.equalTo(self.msgCenterView.mas_centerY).offset(-yAutoFit(10));
+                make.left.equalTo(timeImg.mas_right).offset(yAutoFit(10));
+            }];
+            
+        }else{
+            [timelabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(yAutoFit(60), yAutoFit(15)));
+                make.centerY.equalTo(self.msgCenterView.mas_centerY).offset(-yAutoFit(10));
+                make.left.equalTo(timeImg.mas_right).offset(yAutoFit(10));
+            }];
+        }
         _timeDatalabel = [[UILabel alloc] init];
         _timeDatalabel.text = @"9:30";
         _timeDatalabel.font = [UIFont systemFontOfSize:14.f];
@@ -220,12 +302,22 @@
         _timeDatalabel.textAlignment = NSTextAlignmentCenter;
         _timeDatalabel.adjustsFontSizeToFitWidth = YES;
         [_msgCenterView addSubview:_timeDatalabel];
-        [_timeDatalabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(60, 15));
-            make.centerY.equalTo(self.msgCenterView.mas_centerY).offset(10);
-            make.left.equalTo(timeImg.mas_right).offset(10);
-        }];
-
+        
+        if (yDevice_Is_iPhoneX_iPhone11Pro || yDevice_Is_iPhoneXR_iPhone11 || yDevice_Is_iPhoneXS_MAX_iPhone11ProMax ) {
+            
+            [_timeDatalabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(yAutoFit(60), yAutoFit(15)));
+                make.centerY.equalTo(self.msgCenterView.mas_centerY).offset(yAutoFit(10));
+                make.left.equalTo(timeImg.mas_right).offset(yAutoFit(10));
+            }];
+            
+        }else{
+            [_timeDatalabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(yAutoFit(60), yAutoFit(15)));
+                make.centerY.equalTo(self.msgCenterView.mas_centerY).offset(yAutoFit(10));
+                make.left.equalTo(timeImg.mas_right).offset(yAutoFit(10));
+            }];
+        }
     }
     return _msgCenterView;
 }
