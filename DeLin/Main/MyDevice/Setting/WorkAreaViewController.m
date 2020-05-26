@@ -153,10 +153,10 @@
 {
     NSInteger row = [self.workAreaPicker selectedRowInComponent:0];
     
-    NSNumber *area = [NSNumber numberWithUnsignedInteger:[self.workAreaArray[row % _workAreaArray.count] integerValue]];
-    
+    NSNumber *area1 = [NSNumber numberWithUnsignedInteger:[self.workAreaArray[row % _workAreaArray.count] integerValue]/256];
+    NSNumber *area2 = [NSNumber numberWithUnsignedInteger:[self.workAreaArray[row % _workAreaArray.count] integerValue]%256];
     UInt8 controlCode = 0x01;
-    NSArray *data = @[@0x00,@0x01,@0x05,@0x01,area];
+    NSArray *data = @[@0x00,@0x01,@0x05,@0x01,area1,area2];
     [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
 
 }

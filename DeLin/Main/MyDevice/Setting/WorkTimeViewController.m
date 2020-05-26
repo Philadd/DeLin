@@ -39,7 +39,7 @@ NSString *const CellIdentifier_WorkTime = @"CellID_WorkTime";
     UITextField *selectMinutesTF;
 }
 
-static CGFloat cellHeight = 45.0;
+static CGFloat cellHeight = 60.0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];

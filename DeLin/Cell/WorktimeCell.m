@@ -22,7 +22,7 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         if (!_weekLabel) {
             _weekLabel = [[UILabel alloc] init];
-            _weekLabel.frame = CGRectMake(yAutoFit(50) , 5, ScreenWidth / 3.0, viewHeight - 10);
+            _weekLabel.frame = CGRectMake(yAutoFit(50) , 5, ScreenWidth / 3.0, viewHeight - 5);
             _weekLabel.font = [UIFont systemFontOfSize:18.f];
             _weekLabel.textColor = [UIColor colorWithHexString:@"FF9700"];
             [self.contentView addSubview:self.weekLabel];
@@ -30,8 +30,8 @@
         if (!_worksHoursTF) {
             _worksHoursTF = [[UITextField alloc] init];
             _worksHoursTF.textColor = [UIColor whiteColor];
-            _worksHoursTF.frame = CGRectMake(ScreenWidth / 3.0 + 40 , 5, (ScreenWidth / 3.0)/2, viewHeight - 10);
-            _worksHoursTF.font = [UIFont systemFontOfSize:16.0];
+            _worksHoursTF.frame = CGRectMake(ScreenWidth / 3.0 + 40 , 5, (ScreenWidth / 3.0)/2, viewHeight - 5);
+            _worksHoursTF.font = [UIFont systemFontOfSize:18.0];
             [_worksHoursTF addTarget:self action:@selector(pushTag) forControlEvents:UIControlEventTouchUpInside];
             _worksHoursTF.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
             _worksHoursTF.enabled = NO;
@@ -40,8 +40,8 @@
         if (!_worksMinutesTF) {
             _worksMinutesTF = [[UITextField alloc] init];
             _worksMinutesTF.textColor = [UIColor whiteColor];
-            _worksMinutesTF.frame = CGRectMake(ScreenWidth / 3.0 + 60, 5, (ScreenWidth / 3.0)/2 + 8, viewHeight - 10);
-            _worksMinutesTF.font = [UIFont systemFontOfSize:16.0];
+            _worksMinutesTF.frame = CGRectMake(ScreenWidth / 3.0 + 60, 5, (ScreenWidth / 3.0)/2 + 8, viewHeight - 5);
+            _worksMinutesTF.font = [UIFont systemFontOfSize:18.0];
             [_worksMinutesTF addTarget:self action:@selector(pushTag) forControlEvents:UIControlEventTouchUpInside];
             _worksMinutesTF.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
             [self.contentView addSubview:self.worksMinutesTF];
@@ -55,7 +55,7 @@
             [self.contentView addSubview:_workTimeSwitch];
             [_workTimeSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(self.contentView.mas_right).offset(yAutoFit(-30.f));
-                make.centerY.equalTo(self.contentView.mas_centerY);
+                make.centerY.equalTo(self.contentView.mas_centerY).offset(yAutoFit(-8.f));
             }];
             _workTimeSwitch.tintColor = [UIColor colorWithHexString:@"A8A5A5"];
             _workTimeSwitch.onTintColor = [UIColor colorWithHexString:@"FF9700"];
