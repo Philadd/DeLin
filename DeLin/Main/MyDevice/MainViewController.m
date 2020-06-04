@@ -469,7 +469,7 @@
      robotState机器状态:
      离线（0x00）、工作（0x01）、充电（0x02）、待机（0x03）
      robotError机器故障：
-     电量错误（0x00）、信号错误（0x01）、PCB错误（0x02）、割草机倾斜（0x03）、正常（0xFE）。
+     正常（0x00）、急停传感器触发（0x01）、提升传感器触发（0x02）、出边界线（0x03）、边界线断开（0x04）、磁碰传感器触发（0x05）、左侧驱动电机异常（0x06）、右侧侧驱动电机异常（0x07）、割草电机异常（0x08）、充电异常（0x09）、主控板自测异常（0x0a）、倾角传感器触发（0x0b）、驱动轮长时间打滑（0x0c）、电池温度异常（0x0d）。
      */
     NSDictionary *dict = [notification userInfo];
     NSNumber *robotPower = dict[@"robotPower"];
@@ -507,28 +507,83 @@
     switch ([robotError integerValue]) {
         case 0x00:
             
-            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"电量错误")];
+            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"机器正常")];
             
             break;
         case 0x01:
             
-            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"信号错误")];
+            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E1")];
             
             break;
         case 0x02:
             
-            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"PCB错误")];
+            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E2")];
             
             break;
             
         case 0x03:
             
-            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"割草机倾斜")];
+            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E3")];
             
             break;
-        
+        case 0x04:
+            
+            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E4")];
+            
+            break;
+        case 0x05:
+            
+            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E5")];
+            
+            break;
+        case 0x06:
+            
+            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E6")];
+            
+            break;
+            
+        case 0x07:
+            
+            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E7")];
+            
+            break;
+            
+            
+        case 0x08:
+            
+            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E8")];
+            
+            break;
+        case 0x09:
+            
+            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E9")];
+            
+            break;
+        case 0x0a:
+            
+            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E10")];
+            
+            break;
+            
+        case 0x0b:
+            
+            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E11")];
+            
+            break;
+            
+        case 0x0c:
+            
+            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E12")];
+            
+            break;
+        case 0x0d:
+            
+            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E13")];
+            
+            break;
+            
         default:
-            self->robotStateStr = [NSString stringWithFormat:@"%@",LocalString(@"正常")];
+            self->robotStateStr = [NSString stringWithFormat:@"%@",LocalString(@"机器正常")];
             
             break;
     }
