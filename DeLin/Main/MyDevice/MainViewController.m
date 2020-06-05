@@ -55,7 +55,7 @@
     _areaSetBtn = [self areaSetBtn];
     _timerSetBtn = [self timerSetBtn];
     
-    //_timer = [self timer];
+    _timer = [self timer];
     
     //设置打开/关闭抽屉的手势
     //    self.drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
@@ -112,7 +112,7 @@
 
 - (NSTimer *)timer{
     if(!_timer){
-        _timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(getMainDeviceMsg) userInfo:nil repeats:YES];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(getMainDeviceMsg) userInfo:nil repeats:YES];
         [_timer setFireDate:[NSDate date]];
     }
     return _timer;
@@ -482,17 +482,17 @@
     switch ([robotState integerValue]) {
         case 0:
             
-            self->robotStateStr = [NSString stringWithFormat:@"%@",LocalString(@"离线")];
+            self->robotStateStr = [NSString stringWithFormat:@"%@",LocalString(@"Offline")];
             
             break;
         case 1:
             
-            self->robotStateStr = [NSString stringWithFormat:@"%@",LocalString(@"工作")];
+            self->robotStateStr = [NSString stringWithFormat:@"%@",LocalString(@"Working")];
             
             break;
         case 2:
         {
-            self->robotStateStr = [NSString stringWithFormat:@"%@",LocalString(@"充电")];
+            self->robotStateStr = [NSString stringWithFormat:@"%@",LocalString(@"Charging")];
             //开启查询电量
             [_timer setFireDate:[NSDate date]];
             
@@ -500,14 +500,14 @@
             break;
             
         default:
-            self->robotStateStr = [NSString stringWithFormat:@"%@",LocalString(@"待机")];
+            self->robotStateStr = [NSString stringWithFormat:@"%@",LocalString(@"Standby")];
             
             break;
     }
     switch ([robotError integerValue]) {
         case 0x00:
             
-            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"机器正常")];
+            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"normal")];
             
             break;
         case 0x01:
@@ -548,7 +548,6 @@
             
             break;
             
-            
         case 0x08:
             
             self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E8")];
@@ -583,7 +582,7 @@
             break;
             
         default:
-            self->robotStateStr = [NSString stringWithFormat:@"%@",LocalString(@"机器正常")];
+            self->robotStateStr = [NSString stringWithFormat:@"%@",LocalString(@"normal")];
             
             break;
     }
