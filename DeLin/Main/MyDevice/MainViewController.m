@@ -77,7 +77,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goHomeSuccess) name:@"getHome" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goStopSuccess) name:@"getStop" object:nil];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //主页面状态查询
         [self getMainDeviceMsg];
         
@@ -493,8 +493,6 @@
         case 2:
         {
             self->robotStateStr = [NSString stringWithFormat:@"%@",LocalString(@"Charging")];
-            //开启查询电量
-            [_timer setFireDate:[NSDate date]];
             
         }
             break;
@@ -592,11 +590,6 @@
         self.robotStateLabel.text = self->robotStateStr;
         self.timeDatalabel.text = [NSString stringWithFormat:@"%d:%d",[nextWorkHour intValue],[nextWorkMinute intValue]];
         self.batteryCircleView.progress = [robotPower floatValue]*0.01;
-        //电量充满时停止查询
-        if ([robotPower intValue] == 100) {
-            //停掉查询
-            [self.timer setFireDate:[NSDate distantFuture]];
-        }
         self.areaDatalabel.text = [NSString stringWithFormat:@"%d%@",[nextWorkarea intValue],LocalString(@"m²")];
     });
     

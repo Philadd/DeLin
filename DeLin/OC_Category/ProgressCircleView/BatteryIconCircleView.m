@@ -53,15 +53,13 @@
         _centerLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:35];
         _centerLabel.text = @"0%";
         [self addSubview:self.centerLabel];
-        if (yDevice_Is_iPhoneXR_iPhone11 || yDevice_Is_iPhoneXS_MAX_iPhone11ProMax) {
+        
+        if (yDevice_Is_iPhoneXR_iPhone11 || yDevice_Is_iPhoneXS_MAX_iPhone11ProMax || yDevice_Is_iPhoneX_iPhone11Pro) {
             
-            self.bgView.frame = CGRectMake(0, 0, lineWH + 50, lineWH + 50);
+            self.bgView.frame = CGRectMake(0, 0, yAutoFit(lineWH + 45), yAutoFit(lineWH + 40));
             
         }else{
-            self.bgView.frame = CGRectMake(0, 0, lineWH, lineWH);
-        }
-        if (yDevice_Is_iPhoneX_iPhone11Pro) {
-            self.bgView.frame = CGRectMake(0, 0, lineWH + 45, lineWH + 40);
+            self.bgView.frame = CGRectMake(0, 0, yAutoFit(lineWH), yAutoFit(lineWH));
         }
         [self.centerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(yAutoFit(100.f), yAutoFit(40.f)));
