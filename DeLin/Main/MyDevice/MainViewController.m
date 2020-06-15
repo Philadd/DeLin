@@ -464,7 +464,7 @@
 - (void)getMainDeviceMsg:(NSNotification *)notification{
     
     //停掉重发机制
-    [_timer setFireDate:[NSDate distantFuture]];
+    //[_timer setFireDate:[NSDate distantFuture]];
     /*
      robotState机器状态:
      离线（0x00）、工作（0x01）、充电（0x02）、待机（0x03）
