@@ -23,7 +23,7 @@
         if (!_weekLabel) {
             _weekLabel = [[UILabel alloc] init];
             _weekLabel.frame = CGRectMake(yAutoFit(50) , 5, ScreenWidth / 3.0, viewHeight - 5);
-            _weekLabel.font = [UIFont systemFontOfSize:18.f];
+            _weekLabel.font = [UIFont systemFontOfSize:25.f];
             _weekLabel.textColor = [UIColor colorWithHexString:@"FF9700"];
             [self.contentView addSubview:self.weekLabel];
         }
@@ -31,7 +31,7 @@
             _worksHoursTF = [[UITextField alloc] init];
             _worksHoursTF.textColor = [UIColor whiteColor];
             _worksHoursTF.frame = CGRectMake(ScreenWidth / 3.0 + 40 , 5, (ScreenWidth / 3.0)/2, viewHeight - 5);
-            _worksHoursTF.font = [UIFont systemFontOfSize:18.0];
+            _worksHoursTF.font = [UIFont systemFontOfSize:25.0];
             [_worksHoursTF addTarget:self action:@selector(pushTag) forControlEvents:UIControlEventTouchUpInside];
             _worksHoursTF.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
             _worksHoursTF.enabled = NO;
@@ -40,8 +40,8 @@
         if (!_worksMinutesTF) {
             _worksMinutesTF = [[UITextField alloc] init];
             _worksMinutesTF.textColor = [UIColor whiteColor];
-            _worksMinutesTF.frame = CGRectMake(ScreenWidth / 3.0 + 60, 5, (ScreenWidth / 3.0)/2 + 8, viewHeight - 5);
-            _worksMinutesTF.font = [UIFont systemFontOfSize:18.0];
+            _worksMinutesTF.frame = CGRectMake(ScreenWidth / 3.0 + 70, 5, (ScreenWidth / 3.0)/2 + 8, viewHeight - 5);
+            _worksMinutesTF.font = [UIFont systemFontOfSize:25.0];
             [_worksMinutesTF addTarget:self action:@selector(pushTag) forControlEvents:UIControlEventTouchUpInside];
             _worksMinutesTF.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
             [self.contentView addSubview:self.worksMinutesTF];

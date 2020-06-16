@@ -26,11 +26,13 @@
 
 @property (nonatomic, strong) UIView *bgTipView;
 @property (nonatomic, strong) UILabel *robotErrorLabel;//故障信息
-@property (nonatomic, strong) UIButton *homeBtn;//回家充电
-@property (nonatomic, strong) UIButton *stopedBtn;//停止工作
 
-@property (nonatomic, strong) UIButton *areaSetBtn;
-@property (nonatomic, strong) UIButton *timerSetBtn;
+@property (nonatomic, strong) UIButton *stopSetBtn;//停止工作
+@property (nonatomic, strong) UIButton *homeSetBtn;//回家充电
+@property (nonatomic, strong) UIButton *startSetBtn;//启动设备
+
+@property (nonatomic, strong) UIButton *timerSetBtn;//工作时间设置
+@property (nonatomic, strong) UIButton *areaSetBtn;//工作区域设置
 
 @property (nonatomic, strong) NSTimer *timer;
 
@@ -50,10 +52,11 @@
     _batteryCircleView = [self batteryCircleView];
     _msgCenterView = [self msgCenterView];
     _robotErrorLabel = [self robotErrorLabel];
-    _homeBtn = [self homeBtn];
-    _stopedBtn = [self stopedBtn];
-    _areaSetBtn = [self areaSetBtn];
+    _stopSetBtn = [self stopSetBtn];
+    _homeSetBtn = [self homeSetBtn];
+    _startSetBtn = [self startSetBtn];
     _timerSetBtn = [self timerSetBtn];
+    _areaSetBtn = [self areaSetBtn];
     
     _timer = [self timer];
     
@@ -80,6 +83,8 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //主页面状态查询
         [self getMainDeviceMsg];
+        //查询时钟同步开启
+        [self.timer setFireDate:[NSDate date]];
         
     });
     
@@ -112,7 +117,7 @@
 
 - (NSTimer *)timer{
     if(!_timer){
-        _timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(getMainDeviceMsg) userInfo:nil repeats:YES];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(getMainDeviceMsg) userInfo:nil repeats:YES];
         [_timer setFireDate:[NSDate date]];
     }
     return _timer;
@@ -178,146 +183,94 @@
         
         if (yDevice_Is_iPhoneX_iPhone11Pro || yDevice_Is_iPhoneXR_iPhone11 || yDevice_Is_iPhoneXS_MAX_iPhone11ProMax ) {
             
-            _msgCenterView = [[UIView alloc] initWithFrame:CGRectMake(0,450, ScreenWidth, 90.f)];
-            
+            _areaSetBtn = [[UIButton alloc] initWithFrame:CGRectMake (yAutoFit(20), yAutoFit(450), ScreenWidth/2 - 30, yAutoFit(90))];
+            _timerSetBtn = [[UIButton alloc] initWithFrame:CGRectMake (ScreenWidth/2 + 30 , yAutoFit(450), ScreenWidth/2 - 30, yAutoFit(90))];
         }else{
-            _msgCenterView = [[UIView alloc] initWithFrame:CGRectMake(0,350, ScreenWidth, 60.f)];
+        
+            _areaSetBtn = [[UIButton alloc] initWithFrame:CGRectMake (yAutoFit(20), yAutoFit(350), ScreenWidth/2 -30, yAutoFit(60.f))];
+            _timerSetBtn = [[UIButton alloc] initWithFrame:CGRectMake (ScreenWidth/2 + 30 , yAutoFit(350), ScreenWidth/2 - 30, yAutoFit(60.f))];
         }
+        _areaSetBtn.backgroundColor = [UIColor clearColor];
+        _timerSetBtn.backgroundColor = [UIColor clearColor];
+        [self.view addSubview:_areaSetBtn];
+        [self.view addSubview:_timerSetBtn];
         
-        _msgCenterView.backgroundColor = [UIColor clearColor];
-        [self.view addSubview:_msgCenterView];
-        
+        [_areaSetBtn addTarget:self action:@selector(setArea) forControlEvents:UIControlEventTouchUpInside];
+        _areaSetBtn.enabled = YES;
+        [_timerSetBtn addTarget:self action:@selector(setWorkTime) forControlEvents:UIControlEventTouchUpInside];
+        _timerSetBtn.enabled = YES;
+    
         UIImageView *areaImg = [[UIImageView alloc] init];
         [areaImg setImage:[UIImage imageNamed:@"area_img"]];
-        [_msgCenterView addSubview:areaImg];
-        if (yDevice_Is_iPhoneX_iPhone11Pro || yDevice_Is_iPhoneXR_iPhone11 || yDevice_Is_iPhoneXS_MAX_iPhone11ProMax ) {
-            
-            [areaImg mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.size.mas_equalTo(CGSizeMake(yAutoFit(40), yAutoFit(40)));
-                make.left.equalTo(self.msgCenterView.mas_left).offset(yAutoFit(40));
-                make.centerY.equalTo(self.msgCenterView.mas_centerY);
-            }];
-            
-        }else{
-            [areaImg mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.size.mas_equalTo(CGSizeMake(yAutoFit(40), yAutoFit(40)));
-                make.left.equalTo(self.msgCenterView.mas_left).offset(yAutoFit(40));
-                make.centerY.equalTo(self.msgCenterView.mas_centerY);
-            }];
-        }
+        [_areaSetBtn addSubview:areaImg];
+        
+        [areaImg mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(40), yAutoFit(40)));
+            make.left.equalTo(self.areaSetBtn.mas_left);
+            make.centerY.equalTo(self.areaSetBtn.mas_centerY);
+        }];
         
         UILabel *arealabel = [[UILabel alloc] init];
         arealabel.text = LocalString(@"Mowing area");
-        arealabel.font = [UIFont systemFontOfSize:14.f];
+        arealabel.font = [UIFont systemFontOfSize:15.f];
         arealabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.7];
         arealabel.textAlignment = NSTextAlignmentCenter;
         arealabel.adjustsFontSizeToFitWidth = YES;
-        [_msgCenterView addSubview:arealabel];
-        if (yDevice_Is_iPhoneX_iPhone11Pro || yDevice_Is_iPhoneXR_iPhone11 || yDevice_Is_iPhoneXS_MAX_iPhone11ProMax ) {
-            
-            [arealabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.size.mas_equalTo(CGSizeMake(yAutoFit(60), yAutoFit(15)));
-                make.centerY.equalTo(self.msgCenterView.mas_centerY).offset(-yAutoFit(10));
-                make.left.equalTo(areaImg.mas_right).offset(yAutoFit(10));
-            }];
-            
-        }else{
-            [arealabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.size.mas_equalTo(CGSizeMake(yAutoFit(60), yAutoFit(15)));
-                make.centerY.equalTo(self.msgCenterView.mas_centerY).offset(-yAutoFit(10));
-                make.left.equalTo(areaImg.mas_right).offset(yAutoFit(10));
-            }];
-        }
-        
+        [_areaSetBtn addSubview:arealabel];
+
+        [arealabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(60), yAutoFit(15)));
+            make.centerY.equalTo(self.areaSetBtn.mas_centerY).offset(-yAutoFit(10));
+            make.left.equalTo(areaImg.mas_right).offset(yAutoFit(10));
+        }];
+
         _areaDatalabel = [[UILabel alloc] init];
         _areaDatalabel.text = [NSString stringWithFormat:@"%@%@",@"500",LocalString(@"m²")];
         _areaDatalabel.font = [UIFont systemFontOfSize:14.f];
         _areaDatalabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1];
         _areaDatalabel.textAlignment = NSTextAlignmentCenter;
         _areaDatalabel.adjustsFontSizeToFitWidth = YES;
-        [_msgCenterView addSubview:_areaDatalabel];
-        if (yDevice_Is_iPhoneX_iPhone11Pro || yDevice_Is_iPhoneXR_iPhone11 || yDevice_Is_iPhoneXS_MAX_iPhone11ProMax ) {
-            
-            [_areaDatalabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.size.mas_equalTo(CGSizeMake(yAutoFit(60), yAutoFit(15)));
-                make.centerY.equalTo(self.msgCenterView.mas_centerY).offset(yAutoFit(10));
-                make.left.equalTo(areaImg.mas_right).offset(yAutoFit(10));
-            }];
-            
-        }else{
-            [_areaDatalabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.size.mas_equalTo(CGSizeMake(yAutoFit(60), yAutoFit(15)));
-                make.centerY.equalTo(self.msgCenterView.mas_centerY).offset(yAutoFit(10));
-                make.left.equalTo(areaImg.mas_right).offset(yAutoFit(10));
-            }];
-        }
-        
-        
+        [_areaSetBtn addSubview:_areaDatalabel];
+        [_areaDatalabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(60), yAutoFit(15)));
+            make.centerY.equalTo(self.areaSetBtn.mas_centerY).offset(yAutoFit(10));
+            make.left.equalTo(areaImg.mas_right).offset(yAutoFit(10));
+        }];
+
         UIImageView *timeImg = [[UIImageView alloc] init];
         [timeImg setImage:[UIImage imageNamed:@"workTime_img"]];
-        [_msgCenterView addSubview:timeImg];
-        if (yDevice_Is_iPhoneX_iPhone11Pro || yDevice_Is_iPhoneXR_iPhone11 || yDevice_Is_iPhoneXS_MAX_iPhone11ProMax ) {
-            
-            [timeImg mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.size.mas_equalTo(CGSizeMake(yAutoFit(40), yAutoFit(40)));
-                make.right.equalTo(self.msgCenterView.mas_right).offset(yAutoFit(-100));
-                make.centerY.equalTo(self.msgCenterView.mas_centerY);
-            }];
-            
-        }else{
-            [timeImg mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.size.mas_equalTo(CGSizeMake(yAutoFit(40), yAutoFit(40)));
-                make.right.equalTo(self.msgCenterView.mas_right).offset(yAutoFit(-100));
-                make.centerY.equalTo(self.msgCenterView.mas_centerY);
-            }];
-        }
-        
-        
+        [_timerSetBtn addSubview:timeImg];
+        [timeImg mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(40), yAutoFit(40)));
+            make.left.equalTo(self.timerSetBtn.mas_left);
+            make.centerY.equalTo(self.timerSetBtn.mas_centerY);
+        }];
+
         UILabel *timelabel = [[UILabel alloc] init];
         timelabel.text = LocalString(@"Next Working");
         timelabel.font = [UIFont systemFontOfSize:14.f];
         timelabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.7];
         timelabel.textAlignment = NSTextAlignmentCenter;
         timelabel.adjustsFontSizeToFitWidth = YES;
-        [_msgCenterView addSubview:timelabel];
-        if (yDevice_Is_iPhoneX_iPhone11Pro || yDevice_Is_iPhoneXR_iPhone11 || yDevice_Is_iPhoneXS_MAX_iPhone11ProMax ) {
-            
-            [timelabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.size.mas_equalTo(CGSizeMake(yAutoFit(60), yAutoFit(15)));
-                make.centerY.equalTo(self.msgCenterView.mas_centerY).offset(-yAutoFit(10));
-                make.left.equalTo(timeImg.mas_right).offset(yAutoFit(10));
-            }];
-            
-        }else{
-            [timelabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.size.mas_equalTo(CGSizeMake(yAutoFit(60), yAutoFit(15)));
-                make.centerY.equalTo(self.msgCenterView.mas_centerY).offset(-yAutoFit(10));
-                make.left.equalTo(timeImg.mas_right).offset(yAutoFit(10));
-            }];
-        }
+        [_timerSetBtn addSubview:timelabel];
+        [timelabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(60), yAutoFit(15)));
+            make.centerY.equalTo(self.timerSetBtn.mas_centerY).offset(-yAutoFit(10));
+            make.left.equalTo(timeImg.mas_right).offset(yAutoFit(10));
+        }];
         _timeDatalabel = [[UILabel alloc] init];
         _timeDatalabel.text = @"9:30";
         _timeDatalabel.font = [UIFont systemFontOfSize:14.f];
         _timeDatalabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1];
         _timeDatalabel.textAlignment = NSTextAlignmentCenter;
         _timeDatalabel.adjustsFontSizeToFitWidth = YES;
-        [_msgCenterView addSubview:_timeDatalabel];
-        
-        if (yDevice_Is_iPhoneX_iPhone11Pro || yDevice_Is_iPhoneXR_iPhone11 || yDevice_Is_iPhoneXS_MAX_iPhone11ProMax ) {
-            
-            [_timeDatalabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.size.mas_equalTo(CGSizeMake(yAutoFit(60), yAutoFit(15)));
-                make.centerY.equalTo(self.msgCenterView.mas_centerY).offset(yAutoFit(10));
-                make.left.equalTo(timeImg.mas_right).offset(yAutoFit(10));
-            }];
-            
-        }else{
-            [_timeDatalabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.size.mas_equalTo(CGSizeMake(yAutoFit(60), yAutoFit(15)));
-                make.centerY.equalTo(self.msgCenterView.mas_centerY).offset(yAutoFit(10));
-                make.left.equalTo(timeImg.mas_right).offset(yAutoFit(10));
-            }];
-        }
+        [_timerSetBtn addSubview:_timeDatalabel];
+
+        [_timeDatalabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(60), yAutoFit(15)));
+            make.centerY.equalTo(self.timerSetBtn.mas_centerY).offset(yAutoFit(10));
+            make.left.equalTo(timeImg.mas_right).offset(yAutoFit(10));
+        }];
     }
     return _msgCenterView;
 }
@@ -328,13 +281,13 @@
         _bgTipView.backgroundColor = [UIColor colorWithHexString:@"C9C9C9"];
         [self.view addSubview:_bgTipView];
         [_bgTipView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(40)));
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(60)));
             make.centerX.equalTo(self.view.mas_centerX);
-            make.top.equalTo(self.msgCenterView.mas_bottom).offset(yAutoFit(30));
+            make.bottom.equalTo(self.view.mas_bottom).offset(yAutoFit(-150));
         }];
-        
+
         _robotErrorLabel = [[UILabel alloc] init];
-        _robotErrorLabel.font = [UIFont systemFontOfSize:15.f];
+        _robotErrorLabel.font = [UIFont systemFontOfSize:18.f];
         _robotErrorLabel.backgroundColor = [UIColor clearColor];
         _robotErrorLabel.textColor = [UIColor colorWithHexString:@"333333"];
         _robotErrorLabel.textAlignment = NSTextAlignmentCenter;
@@ -346,117 +299,90 @@
             make.centerX.mas_equalTo(self.bgTipView.mas_centerX);
             make.centerY.mas_equalTo(self.bgTipView.mas_centerY);
         }];
-        
+
     }
     return _robotErrorLabel;
 }
 
-- (UIButton *)stopedBtn{
-    if (!_stopedBtn) {
-        _stopedBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_stopedBtn setTitle:LocalString(@"Stoped") forState:UIControlStateNormal];
-        [_stopedBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
-        [_stopedBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_stopedBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:0/255.0 blue:0/255.0 alpha:1.f]];
-        [_stopedBtn addTarget:self action:@selector(stoped) forControlEvents:UIControlEventTouchUpInside];
-        _stopedBtn.enabled = YES;
-        [self.view addSubview:_stopedBtn];
-        [_stopedBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(160), yAutoFit(45)));
-            make.left.equalTo(self.bgTipView.mas_left);
-            make.top.equalTo(self.bgTipView.mas_bottom).offset(yAutoFit(20));
-        }];
-        
-        _stopedBtn.layer.borderWidth = 0.5;
-        _stopedBtn.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
-        _stopedBtn.layer.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.16].CGColor;
-        _stopedBtn.layer.shadowOffset = CGSizeMake(0,2.5);
-        _stopedBtn.layer.shadowRadius = 3;
-        _stopedBtn.layer.shadowOpacity = 1;
-        _stopedBtn.layer.cornerRadius = 2.5;
-    }
-    return _stopedBtn;
-}
-
-- (UIButton *)homeBtn{
-    if (!_homeBtn) {
-        _homeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_homeBtn setTitle:LocalString(@"Home") forState:UIControlStateNormal];
-        [_homeBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
-        [_homeBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_homeBtn setBackgroundColor:[UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.f]];
-        [_homeBtn addTarget:self action:@selector(goHome) forControlEvents:UIControlEventTouchUpInside];
-        _homeBtn.enabled = YES;
-        [self.view addSubview:_homeBtn];
-        [_homeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(160), yAutoFit(45)));
-            make.right.equalTo(self.bgTipView.mas_right);
-            make.top.equalTo(self.bgTipView.mas_bottom).offset(yAutoFit(20));
-        }];
-        
-        _homeBtn.layer.borderWidth = 0.5;
-        _homeBtn.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
-        _homeBtn.layer.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.16].CGColor;
-        _homeBtn.layer.shadowOffset = CGSizeMake(0,2.5);
-        _homeBtn.layer.shadowRadius = 3;
-        _homeBtn.layer.shadowOpacity = 1;
-        _homeBtn.layer.cornerRadius = 2.5;
-    }
-    return _homeBtn;
-}
-
-- (UIButton *)timerSetBtn{
-    if (!_timerSetBtn) {
-        _timerSetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_timerSetBtn setTitle:LocalString(@"Timer") forState:UIControlStateNormal];
-        [_timerSetBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
-        [_timerSetBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_timerSetBtn setBackgroundColor:[UIColor colorWithRed:253/255.0 green:134/255.0 blue:8/255.0 alpha:1.f]];
-        [_timerSetBtn addTarget:self action:@selector(setWorkTime) forControlEvents:UIControlEventTouchUpInside];
-        _timerSetBtn.enabled = YES;
-        [self.view addSubview:_timerSetBtn];
-        [_timerSetBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(ScreenWidth/2, yAutoFit(45)));
+- (UIButton *)stopSetBtn{
+    if (!_stopSetBtn) {
+        _stopSetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_stopSetBtn setTitle:LocalString(@"STOP") forState:UIControlStateNormal];
+        [_stopSetBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
+        [_stopSetBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_stopSetBtn setBackgroundColor:[UIColor colorWithRed:220/255.0 green:168/255.0 blue:11/255.0 alpha:1.f]];
+        [_stopSetBtn addTarget:self action:@selector(stoped) forControlEvents:UIControlEventTouchUpInside];
+        _stopSetBtn.enabled = YES;
+        [self.view addSubview:_stopSetBtn];
+        [_stopSetBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(ScreenWidth/3, yAutoFit(50)));
             make.left.equalTo(self.view.mas_left);
-            make.bottom.equalTo(self.view.mas_bottom);
+            make.bottom.equalTo(self.view.mas_bottom).offset(yAutoFit(-5));
         }];
         
-        _timerSetBtn.layer.borderWidth = 0.5;
-        _timerSetBtn.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
-        _timerSetBtn.layer.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.16].CGColor;
-        _timerSetBtn.layer.shadowOffset = CGSizeMake(0,2.5);
-        _timerSetBtn.layer.shadowRadius = 3;
-        _timerSetBtn.layer.shadowOpacity = 1;
-        _timerSetBtn.layer.cornerRadius = 2.5;
+        _stopSetBtn.layer.borderWidth = 0.5;
+        _stopSetBtn.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
+        _stopSetBtn.layer.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.16].CGColor;
+        _stopSetBtn.layer.shadowOffset = CGSizeMake(0,2.5);
+        _stopSetBtn.layer.shadowRadius = 3;
+        _stopSetBtn.layer.shadowOpacity = 1;
+        _stopSetBtn.layer.cornerRadius = 2.5;
     }
-    return _timerSetBtn;
+    return _stopSetBtn;
 }
 
-- (UIButton *)areaSetBtn{
-    if (!_areaSetBtn) {
-        _areaSetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_areaSetBtn setTitle:LocalString(@"Area set") forState:UIControlStateNormal];
-        [_areaSetBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
-        [_areaSetBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_areaSetBtn setBackgroundColor:[UIColor colorWithRed:220/255.0 green:168/255.0 blue:11/255.0 alpha:1.f]];
-        [_areaSetBtn addTarget:self action:@selector(setArea) forControlEvents:UIControlEventTouchUpInside];
-        _areaSetBtn.enabled = YES;
-        [self.view addSubview:_areaSetBtn];
-        [_areaSetBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(ScreenWidth/2, yAutoFit(45)));
-            make.right.equalTo(self.view.mas_right);
-            make.bottom.equalTo(self.view.mas_bottom);
+- (UIButton *)homeSetBtn{
+    if (!_homeSetBtn) {
+        _homeSetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_homeSetBtn setTitle:LocalString(@"HOME") forState:UIControlStateNormal];
+        [_homeSetBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
+        [_homeSetBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_homeSetBtn setBackgroundColor:[UIColor colorWithRed:253/255.0 green:134/255.0 blue:8/255.0 alpha:1.f]];
+        [_homeSetBtn addTarget:self action:@selector(goHome) forControlEvents:UIControlEventTouchUpInside];
+        _homeSetBtn.enabled = YES;
+        [self.view addSubview:_homeSetBtn];
+        [_homeSetBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(ScreenWidth/3, yAutoFit(50)));
+            make.centerX.equalTo(self.view.mas_centerX);
+            make.bottom.equalTo(self.view.mas_bottom).offset(yAutoFit(-5));
         }];
         
-        _areaSetBtn.layer.borderWidth = 0.5;
-        _areaSetBtn.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
-        _areaSetBtn.layer.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.16].CGColor;
-        _areaSetBtn.layer.shadowOffset = CGSizeMake(0,2.5);
-        _areaSetBtn.layer.shadowRadius = 3;
-        _areaSetBtn.layer.shadowOpacity = 1;
-        _areaSetBtn.layer.cornerRadius = 2.5;
+        _homeSetBtn.layer.borderWidth = 0.5;
+        _homeSetBtn.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
+        _homeSetBtn.layer.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.16].CGColor;
+        _homeSetBtn.layer.shadowOffset = CGSizeMake(0,2.5);
+        _homeSetBtn.layer.shadowRadius = 3;
+        _homeSetBtn.layer.shadowOpacity = 1;
+        _homeSetBtn.layer.cornerRadius = 2.5;
     }
-    return _areaSetBtn;
+    return _homeSetBtn;
+}
+
+- (UIButton *)startSetBtn{
+    if (!_startSetBtn) {
+        _startSetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_startSetBtn setTitle:LocalString(@"START") forState:UIControlStateNormal];
+        [_startSetBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
+        [_startSetBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_startSetBtn setBackgroundColor:[UIColor colorWithRed:220/255.0 green:168/255.0 blue:11/255.0 alpha:1.f]];
+        [_startSetBtn addTarget:self action:@selector(goStart) forControlEvents:UIControlEventTouchUpInside];
+        _startSetBtn.enabled = YES;
+        [self.view addSubview:_startSetBtn];
+        [_startSetBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(ScreenWidth/3, yAutoFit(50)));
+            make.right.equalTo(self.view.mas_right);
+            make.bottom.equalTo(self.view.mas_bottom).offset(yAutoFit(-5));
+        }];
+        
+        _startSetBtn.layer.borderWidth = 0.5;
+        _startSetBtn.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
+        _startSetBtn.layer.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.16].CGColor;
+        _startSetBtn.layer.shadowOffset = CGSizeMake(0,2.5);
+        _startSetBtn.layer.shadowRadius = 3;
+        _startSetBtn.layer.shadowOpacity = 1;
+        _startSetBtn.layer.cornerRadius = 2.5;
+    }
+    return _startSetBtn;
 }
 
 #pragma mark - notification
@@ -638,6 +564,26 @@
     UInt8 controlCode = 0x01;
     NSArray *data = @[@0x00,@0x01,@0x01,@0x01];
     [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
+    
+}
+
+- (void)goStart{
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:LocalString(@"are you sure?") preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:LocalString(@"OK") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        UInt8 controlCode = 0x01;
+        NSArray *data = @[@0x00,@0x01,@0x09,@0x01];
+        [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
+        
+    }];
+    //[okAction setValue:[UIColor ] forKey:@"titleTextColor"];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:LocalString(@"Cancel") style:UIAlertActionStyleCancel handler:nil];
+    //[cancelAction setValue:[UIColor blackColor] forKey:@"titleTextColor"];
+    [alert addAction:okAction];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
     
 }
 

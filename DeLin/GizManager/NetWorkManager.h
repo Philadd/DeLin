@@ -19,7 +19,7 @@ typedef enum{
     getWorkArea,
     inputPINCode,
     reSetPINCode,
-    getLanguage,
+    getStart,
     otherMsgType
 }MsgType68;
 

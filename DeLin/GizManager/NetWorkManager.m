@@ -165,7 +165,7 @@ static int noUserInteractionHeartbeat = 0;
          getWorkArea,.... 0x05 设置割草机工作面积
          inputPINCode,.... 0x06 APP输入割草机PIN码
          reSetPINCode,.... 0x07 修改割草机PIN码
-         getLanguage,.... 0x08 读取割草机语言
+         getStart,.... 0x08 读取割草机语言
          otherMsgType.... 0x09 获取主界面基本信息
          */
         switch (self.frame68Type) {
@@ -254,11 +254,6 @@ static int noUserInteractionHeartbeat = 0;
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"recieveWorkArea" object:nil userInfo:dataDic];
                     
-                }else if (self.msg68Type == getLanguage){
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [NSObject cancelPreviousPerformRequestsWithTarget:self];
-                    });
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"getLanguage" object:nil userInfo:nil];
                 }
                 
             }
@@ -346,9 +341,15 @@ static int noUserInteractionHeartbeat = 0;
                     }
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetPINCode" object:nil userInfo:nil];
-                }else if (self.msg68Type == getLanguage){
+                }else if (self.msg68Type == getStart){
                     
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"getLanguage" object:nil userInfo:nil];
+                    if ([_recivedData68[12] unsignedIntegerValue] == 0) {
+                        [NSObject showHudTipStr:LocalString(@"Set up failed")];
+                    }
+                    
+                    if ([_recivedData68[12] unsignedIntegerValue] == 1) {
+                        [NSObject showHudTipStr:LocalString(@"Set up successfully")];
+                    }
                 }
                 
             }
@@ -412,7 +413,7 @@ static int noUserInteractionHeartbeat = 0;
      getWorkArea,.... 0x05 设置割草机工作面积
      inputPINCode,.... 0x06 APP输入割草机PIN码
      reSetPINCode,.... 0x07 修改割草机PIN码
-     getLanguage,.... 0x08 读取割草机语言
+     getStart,.... 0x08 启动割草机
      otherMsgType.... 0x09 获取主界面基本信息
      */
     dataType = [data[10] unsignedIntegerValue];
@@ -456,7 +457,7 @@ static int noUserInteractionHeartbeat = 0;
                     break;
                     
                 case 8:
-                    returnVal = getLanguage;
+                    returnVal = getStart;
                     break;
                     
                 default:
