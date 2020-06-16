@@ -588,7 +588,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.robotErrorLabel.text = self->robotErrorStr;
         self.robotStateLabel.text = self->robotStateStr;
-        self.timeDatalabel.text = [NSString stringWithFormat:@"%2d:%2d",[nextWorkHour intValue],[nextWorkMinute intValue]];
+        self.timeDatalabel.text = [NSString stringWithFormat:@"%02d:%02d",[nextWorkHour intValue],[nextWorkMinute intValue]];
         self.batteryCircleView.progress = [robotPower floatValue]*0.01;
         self.areaDatalabel.text = [NSString stringWithFormat:@"%d%@",[nextWorkarea intValue],LocalString(@"m²")];
     });
