@@ -62,9 +62,10 @@
         _workAreaPicker = [[UIPickerView alloc] init];
         _workAreaPicker.backgroundColor = [UIColor clearColor];
         self.workAreaArray = [[NSMutableArray alloc] init];
-        for (int i = 0; i < 550; i = i+50) {
-            [self.workAreaArray addObject:[NSString stringWithFormat:@"%d",i]];
-        }
+//        for (int i = 0; i < 550; i = i+50) {
+//            [self.workAreaArray addObject:[NSString stringWithFormat:@"%d",i]];
+//        }
+        self.workAreaArray = [NSMutableArray arrayWithArray:@[LocalString(@"0m²/0.000acre"),LocalString(@"50m²/0.012acre"),LocalString(@"100m²/0.025acre"),LocalString(@"150m²/0.037acre"),LocalString(@"200m²/0.049acre"),LocalString(@"250m²/0.062acre"),LocalString(@"300m²/0.074acre"),LocalString(@"350m²/0.086acre"),LocalString(@"400m²/0.099acre"),LocalString(@"450m²/0.111acre"),LocalString(@"500m²/0.124acre")]];
         self.workAreaPicker.dataSource = self;
         self.workAreaPicker.delegate = self;
         //在当前选择上显示一个透明窗口
@@ -74,7 +75,7 @@
         [self.view addSubview:_workAreaPicker];
         
         [_workAreaPicker mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(ScreenWidth,yAutoFit(400)));
+            make.size.mas_equalTo(CGSizeMake(ScreenWidth,yAutoFit(500)));
             make.top.equalTo(self.view.mas_top).offset(getRectNavAndStatusHight + yAutoFit(30.f));
             make.centerX.equalTo(self.view.mas_centerX);
         }];
@@ -183,7 +184,7 @@
 
 - (nullable NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     
-    return [NSString stringWithFormat:@"%@%@",self.workAreaArray[row % _workAreaArray.count],LocalString(@"m²")];
+    return [NSString stringWithFormat:@"%@",self.workAreaArray[row % _workAreaArray.count]];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {

@@ -95,6 +95,7 @@
         _wifiNameTF.delegate = self;
         _wifiNameTF.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
         [_wifiNameTF addTarget:self action:@selector(textFieldTextChange) forControlEvents:UIControlEventEditingChanged];
+        _wifiNameTF.enabled = NO;
         [self.view addSubview:_wifiNameTF];
         [_wifiNameTF mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(60)));
@@ -134,6 +135,11 @@
     tapGr.cancelsTouchesInView = NO;
     
     [self.passwordModelTF.labelView addGestureRecognizer:tapGr];
+}
+
+-(void)textFieldTextChange{
+    
+    NSLog(@"wifi");
 }
 
 - (UIButton *)agreementBtn{
