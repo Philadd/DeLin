@@ -12,6 +12,7 @@
 #import "SelectDeviceViewController.h"
 #import "DeviceListCell.h"
 #import "MainViewController.h"
+#import "YTFAlertController.h"
 
 NSString *const CellIdentifier_DeviceList = @"CellID_DeviceList";
 static float HEIGHT_CELL = 80.f;
@@ -257,6 +258,11 @@ static float HEIGHT_CELL = 80.f;
     cell.deviceImage.image = [UIImage imageNamed:@"robot_icon_imag"];
     cell.deviceListLabel.text = device.productName;
     
+    UILongPressGestureRecognizer *longPressGesture =[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(deviceCellLongPress:)];
+
+    longPressGesture.minimumPressDuration=1.f;//设置长按 时间
+    [self.deviceTable addGestureRecognizer:longPressGesture];
+    
     return cell;
 }
 //左滑删除 设备绑定
@@ -280,7 +286,7 @@ static float HEIGHT_CELL = 80.f;
             [[GizWifiSDK sharedInstance] unbindDevice:userUid token:userToken did:device.did];
             
         }];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:LocalString(@"Cancel") style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:LocalString(@"CANCEL") style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
             [self.navigationController popToRootViewControllerAnimated:YES];
             NSLog(@"action = %@",action);
         }];
@@ -352,6 +358,41 @@ static float HEIGHT_CELL = 80.f;
     }
     self.deviceArray = deviceArray;
     [self.deviceTable reloadData];
+}
+
+- (void)deviceCellLongPress:(UILongPressGestureRecognizer *)longRecognizer{
+    if (longRecognizer.state==UIGestureRecognizerStateBegan) {
+        //成为第一响应者，需重写该方法
+        [self becomeFirstResponder];
+        
+        //获取此时长按的Cell位置
+        CGPoint location = [longRecognizer locationInView:self.deviceTable];
+        NSIndexPath *indexPath = [self.deviceTable indexPathForRowAtPoint:location];
+        //NSString *localName = self.localName[indexPath.row];
+        //截取mac地址
+        //NSString *deviceMac = [userDefaults valueForKey:@"deviceMac"];
+        //NSString *deviceMac = [localName substringFromIndex:localName.length-12];
+        
+        YTFAlertController *alert = [[YTFAlertController alloc] init];
+        alert.lBlock = ^{
+        };
+        alert.rBlock = ^(NSString * _Nullable text) {
+//            self.localDeviceName.text = text;
+//            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//            [userDefaults setObject:text forKey:@"resetlocalName"];
+//            [userDefaults setObject:deviceMac forKey:@"deviceMac"];
+//            [userDefaults synchronize];
+            
+        };
+        alert.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+        [self presentViewController:alert animated:NO completion:^{
+            alert.titleLabel.text = LocalString(@"更改设备名称");
+            //alert.textField.text = self.localDeviceName.text;
+            [alert.leftBtn setTitle:LocalString(@"CANCEL") forState:UIControlStateNormal];
+            [alert.rightBtn setTitle:LocalString(@"OK") forState:UIControlStateNormal];
+        }];
+        
+    }
 }
 
 -(void)goSetting{

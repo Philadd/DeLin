@@ -569,7 +569,7 @@
 
 - (void)goStart{
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:LocalString(@"are you sure?") preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:LocalString(@"Tip") message:LocalString(@"are you sure?") preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:LocalString(@"OK") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
         UInt8 controlCode = 0x01;
@@ -579,7 +579,7 @@
     }];
     //[okAction setValue:[UIColor ] forKey:@"titleTextColor"];
     
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:LocalString(@"Cancel") style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:LocalString(@"CANCEL") style:UIAlertActionStyleCancel handler:nil];
     //[cancelAction setValue:[UIColor blackColor] forKey:@"titleTextColor"];
     [alert addAction:okAction];
     [alert addAction:cancelAction];

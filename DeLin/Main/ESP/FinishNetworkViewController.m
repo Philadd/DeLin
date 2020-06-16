@@ -154,6 +154,7 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *userUid = [userDefaults valueForKey:@"uid"];
     NSString *userToken = [userDefaults valueForKey:@"token"];
+    
     if (result.code == GIZ_SDK_SUCCESS) {
         self.networkProgressView.percent = 1;
         [self.networkProgressView deleteTimer];
