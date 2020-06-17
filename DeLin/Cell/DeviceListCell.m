@@ -25,7 +25,7 @@
             [self.contentView addSubview:_deviceImage];
             [_deviceImage mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.size.mas_equalTo(CGSizeMake(yAutoFit(100.f), yAutoFit(50.f)));
-                make.left.equalTo(self.contentView.mas_left).offset(yAutoFit(50.f));
+                make.left.equalTo(self.contentView.mas_left).offset(yAutoFit(30.f));
                 make.centerY.equalTo(self.contentView.mas_centerY);
             }];
         }

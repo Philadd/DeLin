@@ -310,7 +310,7 @@
         [_stopSetBtn setTitle:LocalString(@"STOP") forState:UIControlStateNormal];
         [_stopSetBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_stopSetBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_stopSetBtn setBackgroundColor:[UIColor colorWithRed:220/255.0 green:168/255.0 blue:11/255.0 alpha:1.f]];
+        [_stopSetBtn setBackgroundColor:[UIColor colorWithRed:248/255.0 green:180/255.0 blue:18/255.0 alpha:1.f]];
         [_stopSetBtn addTarget:self action:@selector(stoped) forControlEvents:UIControlEventTouchUpInside];
         _stopSetBtn.enabled = YES;
         [self.view addSubview:_stopSetBtn];
@@ -337,7 +337,7 @@
         [_homeSetBtn setTitle:LocalString(@"HOME") forState:UIControlStateNormal];
         [_homeSetBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_homeSetBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_homeSetBtn setBackgroundColor:[UIColor colorWithRed:253/255.0 green:134/255.0 blue:8/255.0 alpha:1.f]];
+        [_homeSetBtn setBackgroundColor:[UIColor colorWithRed:253/255.0 green:153/255.0 blue:0/255.0 alpha:1.f]];
         [_homeSetBtn addTarget:self action:@selector(goHome) forControlEvents:UIControlEventTouchUpInside];
         _homeSetBtn.enabled = YES;
         [self.view addSubview:_homeSetBtn];
@@ -364,7 +364,7 @@
         [_startSetBtn setTitle:LocalString(@"START") forState:UIControlStateNormal];
         [_startSetBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_startSetBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_startSetBtn setBackgroundColor:[UIColor colorWithRed:220/255.0 green:168/255.0 blue:11/255.0 alpha:1.f]];
+        [_startSetBtn setBackgroundColor:[UIColor colorWithRed:248/255.0 green:180/255.0 blue:18/255.0 alpha:1.f]];
         [_startSetBtn addTarget:self action:@selector(goStart) forControlEvents:UIControlEventTouchUpInside];
         _startSetBtn.enabled = YES;
         [self.view addSubview:_startSetBtn];

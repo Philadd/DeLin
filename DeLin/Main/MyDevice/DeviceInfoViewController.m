@@ -24,6 +24,7 @@ static float HEIGHT_CELL = 80.f;
 @property (nonatomic, strong) UITableView *deviceTable;
 @property (nonatomic, strong) NSArray *deviceArray;
 @property (nonatomic, strong) UIButton *AddEquipmentBtn;
+@property (nonatomic, copy) NSString *aliasDeviceNameStr;
 
 @end
 
@@ -173,13 +174,13 @@ static float HEIGHT_CELL = 80.f;
         _deviceBgView.backgroundColor = [UIColor clearColor];
         [self.view addSubview:_deviceBgView];
         
-        UIView *labelBgView = [[UIView alloc] initWithFrame:CGRectMake(0,yAutoFit(50), ScreenWidth,yAutoFit(120) )];
+        UIView *labelBgView = [[UIView alloc] initWithFrame:CGRectMake(0,yAutoFit(50), ScreenWidth,yAutoFit(60) )];
         labelBgView.backgroundColor = [UIColor clearColor];
         [_deviceBgView addSubview:labelBgView];
         
         UILabel *msglabel = [[UILabel alloc] init];
         msglabel.text = LocalString(@"My equipment");
-        msglabel.font = [UIFont systemFontOfSize:18.f];
+        msglabel.font = [UIFont systemFontOfSize:25.f];
         msglabel.textColor = [UIColor whiteColor];
         msglabel.textAlignment = NSTextAlignmentCenter;
         msglabel.adjustsFontSizeToFitWidth = YES;
@@ -191,23 +192,9 @@ static float HEIGHT_CELL = 80.f;
             make.top.equalTo(labelBgView.mas_top);
         }];
         
-        UILabel *tiplabel = [[UILabel alloc] init];
-        tiplabel.text = LocalString(@"I don't see my device");
-        tiplabel.font = [UIFont systemFontOfSize:13.f];
-        tiplabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.7];
-        tiplabel.numberOfLines = 0;
-        tiplabel.textAlignment = NSTextAlignmentCenter;
-        tiplabel.adjustsFontSizeToFitWidth = YES;
-        [labelBgView addSubview:tiplabel];
-        [tiplabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(300), yAutoFit(50)));
-            make.centerX.equalTo(labelBgView.mas_centerX);
-            make.top.equalTo(msglabel.mas_bottom);
-        }];
-        
         if (!_deviceTable) {
             _deviceTable = ({
-                UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,yAutoFit(70) + yAutoFit(170), ScreenWidth, ScreenHeight) style:UITableViewStylePlain];
+                UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,yAutoFit(70) + yAutoFit(70), ScreenWidth, ScreenHeight) style:UITableViewStylePlain];
                 tableView.backgroundColor = [UIColor clearColor];
                 tableView.dataSource = self;
                 tableView.delegate = self;
@@ -219,7 +206,7 @@ static float HEIGHT_CELL = 80.f;
                 [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.size.mas_equalTo(CGSizeMake(yAutoFit(320),ScreenHeight - yAutoFit(190) - yAutoFit(45)));
                     make.centerX.mas_equalTo(self.view.mas_centerX);
-                    make.top.equalTo(tiplabel.mas_bottom);
+                    make.top.equalTo(labelBgView.mas_bottom);
                 }];
                 
                 tableView.estimatedRowHeight = 0;
@@ -256,7 +243,11 @@ static float HEIGHT_CELL = 80.f;
     }
     GizWifiDevice *device = _deviceArray[indexPath.row];
     cell.deviceImage.image = [UIImage imageNamed:@"robot_icon_imag"];
-    cell.deviceListLabel.text = device.productName;
+    
+    cell.deviceListLabel.text = device.alias;
+    if ([device.alias isEqualToString:@""]) {
+        cell.deviceListLabel.text = device.productName;
+    }
     
     UILongPressGestureRecognizer *longPressGesture =[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(deviceCellLongPress:)];
 
@@ -337,13 +328,25 @@ static float HEIGHT_CELL = 80.f;
     [self refreshTableView:deviceList];
 }
 
+// 实现回调
+- (void)device:(GizWifiDevice *)device didSetCustomInfo:(NSError *)result {
+    if(result.code == GIZ_SDK_SUCCESS) {
+        //修改成功
+        NSLog(@"修改成功");
+    } else {
+        // 修改失败
+        NSLog(@"修改失败");
+    }
+    
+}
+
 #pragma mark - Actions
 - (void)refreshTableView:(NSArray *)listArray{
     NSLog(@"设备数量%lu",(unsigned long)listArray.count);
     NSMutableArray *deviceArray = [[NSMutableArray alloc] init];
     for (GizWifiDevice *device in listArray) {
         if (device.isBind) {
-            NSLog(@"绑定设备%@",device.productName);
+            NSLog(@"绑定设备别名%@",device.alias);
         }
         if (device.netStatus == GizDeviceOnline && device.isBind) {
             [deviceArray addObject:device];
@@ -368,26 +371,21 @@ static float HEIGHT_CELL = 80.f;
         //获取此时长按的Cell位置
         CGPoint location = [longRecognizer locationInView:self.deviceTable];
         NSIndexPath *indexPath = [self.deviceTable indexPathForRowAtPoint:location];
-        //NSString *localName = self.localName[indexPath.row];
-        //截取mac地址
-        //NSString *deviceMac = [userDefaults valueForKey:@"deviceMac"];
-        //NSString *deviceMac = [localName substringFromIndex:localName.length-12];
+        GizWifiDevice *device = _deviceArray[indexPath.row];
         
         YTFAlertController *alert = [[YTFAlertController alloc] init];
         alert.lBlock = ^{
         };
         alert.rBlock = ^(NSString * _Nullable text) {
-//            self.localDeviceName.text = text;
-//            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//            [userDefaults setObject:text forKey:@"resetlocalName"];
-//            [userDefaults setObject:deviceMac forKey:@"deviceMac"];
-//            [userDefaults synchronize];
+            self.aliasDeviceNameStr = text;
+            //修改设备 别名
+            [device setCustomInfo:nil alias:text];
             
         };
         alert.modalPresentationStyle = UIModalPresentationOverCurrentContext;
         [self presentViewController:alert animated:NO completion:^{
-            alert.titleLabel.text = LocalString(@"更改设备名称");
-            //alert.textField.text = self.localDeviceName.text;
+            alert.titleLabel.text = LocalString(@"Change Name");
+            alert.textField.text = self.aliasDeviceNameStr;
             [alert.leftBtn setTitle:LocalString(@"CANCEL") forState:UIControlStateNormal];
             [alert.rightBtn setTitle:LocalString(@"OK") forState:UIControlStateNormal];
         }];

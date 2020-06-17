@@ -89,7 +89,7 @@
         [_signUpBtn setTitle:LocalString(@"NEW ID") forState:UIControlStateNormal];
         [_signUpBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_signUpBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_signUpBtn setBackgroundColor:[UIColor colorWithRed:253/255.0 green:134/255.0 blue:8/255.0 alpha:1.f]];
+        [_signUpBtn setBackgroundColor:[UIColor colorWithRed:253/255.0 green:153/255.0 blue:0/255.0 alpha:1.f]];
         [_signUpBtn addTarget:self action:@selector(goSignUp) forControlEvents:UIControlEventTouchUpInside];
         _signUpBtn.enabled = YES;
         [self.view addSubview:_signUpBtn];
@@ -116,7 +116,7 @@
         [_signInBtn setTitle:LocalString(@"LOGIN") forState:UIControlStateNormal];
         [_signInBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_signInBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_signInBtn setBackgroundColor:[UIColor colorWithRed:220/255.0 green:168/255.0 blue:11/255.0 alpha:1.f]];
+        [_signInBtn setBackgroundColor:[UIColor colorWithRed:248/255.0 green:180/255.0 blue:18/255.0 alpha:1.f]];
         [_signInBtn addTarget:self action:@selector(goSignIn) forControlEvents:UIControlEventTouchUpInside];
         _signInBtn.enabled = YES;
         [self.view addSubview:_signInBtn];
