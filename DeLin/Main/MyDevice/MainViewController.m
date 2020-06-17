@@ -64,7 +64,7 @@
     //    self.drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
     //    self.drawerController.closeDrawerGestureModeMask =MMCloseDrawerGestureModeAll;
     
-    //延时1秒
+    //延时2秒
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         //校准时间
@@ -75,18 +75,20 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    //主页面状态查询
+    [self getMainDeviceMsg];
+    //查询时钟同步开启
+    [self.timer setFireDate:[NSDate date]];
+    
     [GizWifiSDK sharedInstance].delegate = self;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMainDeviceMsg:) name:@"getMainDeviceMsg" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goHomeSuccess) name:@"getHome" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goStopSuccess) name:@"getStop" object:nil];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        //主页面状态查询
-        [self getMainDeviceMsg];
-        //查询时钟同步开启
-        [self.timer setFireDate:[NSDate date]];
-        
-    });
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        
+//        
+//    });
     
 }
 - (void)viewWillDisappear:(BOOL)animated{

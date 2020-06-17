@@ -105,10 +105,12 @@ NSString *const CellIdentifier_SelectDeviceCell = @"SelectDeviceCell";
     
     switch (indexPath.row) {
         case 0:
-            cell.chooseImage.image = [UIImage imageNamed:@"img_selectDevice_Cell"];
+            cell.chooseImage.image = [UIImage imageNamed:@"img_selectDeviceRM18_Cell"];
+            cell.rightNameLab.text = LocalString(@"RM18");
             break;
         case 1:
-            cell.chooseImage.image = [UIImage imageNamed:@"img_selectDevice2_Cell"];
+            cell.chooseImage.image = [UIImage imageNamed:@"img_selectDeviceRM24_Cell"];
+            cell.rightNameLab.text = LocalString(@"RM24");
             break;
         case 2:
             cell.chooseImage.image = [UIImage imageNamed:@"img_selectDevice3_Cell"];

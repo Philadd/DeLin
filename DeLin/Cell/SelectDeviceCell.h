@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SelectDeviceCell : UITableViewCell
 
 @property (nonatomic, strong) UIImageView *chooseImage;
+@property (nonatomic, strong) UILabel *rightNameLab;
 
 - (void)setFrame:(CGRect)frame;
 

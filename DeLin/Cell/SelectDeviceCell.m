@@ -25,6 +25,21 @@
                 make.centerY.equalTo(self.contentView.mas_centerY);
             }];
         }
+        if (!_rightNameLab) {
+            _rightNameLab = [[UILabel alloc] init];
+            _rightNameLab.font = [UIFont systemFontOfSize:30.f];
+            _rightNameLab.backgroundColor = [UIColor clearColor];
+            _rightNameLab.textColor = [UIColor whiteColor];
+            _rightNameLab.adjustsFontSizeToFitWidth = YES;
+            _rightNameLab.textAlignment = NSTextAlignmentLeft;
+            [self.contentView addSubview:_rightNameLab];
+            [_rightNameLab mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(yAutoFit(200), yAutoFit(30)));
+                make.left.equalTo(self.chooseImage.mas_right).offset(yAutoFit(50));
+                make.centerY.equalTo(self.contentView.mas_centerY);
+            }];
+        }
+
     }
     return self;
 }

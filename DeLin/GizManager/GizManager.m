@@ -268,7 +268,7 @@ static GizManager *_gizManager = nil;
     //把读到的数据复制一份
     NSData *recvBuffer = [NSData dataWithData:data];
     NSUInteger recvLen = [recvBuffer length];
-    //NSLog(@"%lu",(unsigned long)recvLen);
+    NSLog(@"收到一条帧： %@",data);
     UInt8 *recv = (UInt8 *)[recvBuffer bytes];
     if (recvLen > 1000) {
         return;
