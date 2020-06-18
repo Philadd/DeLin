@@ -66,7 +66,6 @@
     
     //延时2秒
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
         //校准时间
         [self setMowerTime];
     });
@@ -75,20 +74,18 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    //主页面状态查询
-    [self getMainDeviceMsg];
+    [GizWifiSDK sharedInstance].delegate = self;
     //查询时钟同步开启
     [self.timer setFireDate:[NSDate date]];
     
-    [GizWifiSDK sharedInstance].delegate = self;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMainDeviceMsg:) name:@"getMainDeviceMsg" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestMainDevicesMsg:) name:@"getMainDeviceMsg" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goHomeSuccess) name:@"getHome" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goStopSuccess) name:@"getStop" object:nil];
-    
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        
-//        
-//    });
+    //2s 的网络请求延时
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //主页面状态查询
+        [self getMainDeviceMsg];
+    });
     
 }
 - (void)viewWillDisappear:(BOOL)animated{
@@ -389,7 +386,7 @@
 
 #pragma mark - notification
 
-- (void)getMainDeviceMsg:(NSNotification *)notification{
+- (void)requestMainDevicesMsg:(NSNotification *)notification{
     
     //停掉重发机制
     //[_timer setFireDate:[NSDate distantFuture]];
