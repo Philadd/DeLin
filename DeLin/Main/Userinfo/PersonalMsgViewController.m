@@ -196,6 +196,12 @@
     passwordVC.userEmail = self.userEmail;
     [self.navigationController pushViewController:passwordVC animated:YES];
     
+    //保存用户名称
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *userName = [NSString stringWithFormat:@"%@%@",self.firstNameTFModel.inputFirstNameTF.text,self.lastNameTFModel.inputLastNameTF.text];
+    [userDefaults setObject:userName forKey:@"userName"];
+    [userDefaults synchronize];
+    
 }
 
 

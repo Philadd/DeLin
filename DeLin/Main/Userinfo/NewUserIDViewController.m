@@ -195,6 +195,11 @@ static float HEIGHT_CELL = 50.f;
     NewUserEmailViewController *emailVC = [[NewUserEmailViewController alloc] init];
     [self.navigationController pushViewController:emailVC animated:YES];
     
+    //保存用户地址
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:self->regionStr forKey:@"userAddress"];
+    [userDefaults synchronize];
+    
 }
 
 @end

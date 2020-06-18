@@ -19,6 +19,8 @@
 
 @property (nonatomic, strong) AAPasswordTF *passwordModelTF;
 
+@property (nonatomic, strong) GizUserInfo *userInfo;
+
 @end
 
 @implementation SetPasswordController
@@ -173,12 +175,20 @@
         
         NewUserSuccessController *successVC = [[NewUserSuccessController alloc] init];
         [self.navigationController pushViewController:successVC animated:YES];
+        //保存用户信息
+        NSString *userAddress = [userDefaults valueForKey:@"userAddress"];
+        NSString *userName = [userDefaults valueForKey:@"userName"];
+        _userInfo.address = userAddress;
+        _userInfo.name = userName;
+        NSLog(@"用户个人信息%@",self.userInfo.name);
     } else {
         // 注册失败
-        NSLog(@"注册失败");
-        [NSObject showHudTipStr:LocalString(@"Registration failed")];
         NSLog(@"注册失败%@",result);
-        //[NSObject showHudTipStr3:[NSString stringWithFormat:@"%@",result]];
+        if (result.code == 9022) {
+            [NSObject showHudTipStr:LocalString(@"Failed,email already exists!")];
+        }else{
+            [NSObject showHudTipStr:LocalString(@"Registration failed")];
+        }
         
     }
     

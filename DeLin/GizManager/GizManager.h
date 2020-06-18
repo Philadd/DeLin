@@ -48,6 +48,11 @@ typedef enum
 @property (nonatomic, strong) NSString *token;
 @property (nonatomic, strong) GizWifiDevice *device;
 @property (nonatomic, strong) NSString *did;
+///@brief 用户个人信息
+@property (nonatomic,strong) GizUserInfo *userInfo;
+@property (nonatomic, strong) NSString *userName;//用户名称
+@property (nonatomic, strong) NSString *userAddress;//用户注册地址
+@property (nonatomic, strong) NSString *userRemark;//用户注册免责协议同意
 
 ///@brief 配网wifi ssid key
 @property (nonatomic, strong) NSString *ssid;

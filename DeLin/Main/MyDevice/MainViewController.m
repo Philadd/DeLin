@@ -81,8 +81,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestMainDevicesMsg:) name:@"getMainDeviceMsg" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goHomeSuccess) name:@"getHome" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goStopSuccess) name:@"getStop" object:nil];
-    //2s 的网络请求延时
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    //网络请求延时
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         //主页面状态查询
         [self getMainDeviceMsg];
     });
