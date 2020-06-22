@@ -161,7 +161,7 @@
         [_sureBtn setTitle:LocalString(@"Sure") forState:UIControlStateNormal];
         [_sureBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_sureBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:0.4f]];
+        [_sureBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:1.f]];
         [_sureBtn addTarget:self action:@selector(sure) forControlEvents:UIControlEventTouchUpInside];
         _sureBtn.enabled = NO;
         [self.view addSubview:_sureBtn];
@@ -193,8 +193,6 @@
 }
 
 - (void)sure{
-    
-    [NSObject showHudTipStr:LocalString(@"Data sent successfully")];
     
     NSNumber *oldPIN = [NSNumber numberWithUnsignedInteger:[self.oldPinCodeTF.text integerValue]];
     NSNumber *newPIN = [NSNumber numberWithUnsignedInteger:[self.repeatpinCodeTF.text integerValue]];
