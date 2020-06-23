@@ -20,6 +20,10 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>蓝牙权限访问</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>蓝牙权限访问</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>地理位置权限</string>
 	<key>NSLocationAlwaysUsageDescription</key>
