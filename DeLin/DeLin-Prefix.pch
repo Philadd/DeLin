@@ -22,7 +22,6 @@
 #import "UIViewController+BarButton.h"
 #import "UIViewController+Common.h"
 #import <Masonry/Masonry.h>
-#import <MJRefresh/MJRefresh.h>
 #import "RDVTabBarController.h"
 #import "YAlertViewController.h"
 #import "NSDate+Common.h"

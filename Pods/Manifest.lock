@@ -1,19 +1,4 @@
 PODS:
-  - AFNetworking (3.2.1):
-    - AFNetworking/NSURLSession (= 3.2.1)
-    - AFNetworking/Reachability (= 3.2.1)
-    - AFNetworking/Security (= 3.2.1)
-    - AFNetworking/Serialization (= 3.2.1)
-    - AFNetworking/UIKit (= 3.2.1)
-  - AFNetworking/NSURLSession (3.2.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.2.1)
-  - AFNetworking/Security (3.2.1)
-  - AFNetworking/Serialization (3.2.1)
-  - AFNetworking/UIKit (3.2.1):
-    - AFNetworking/NSURLSession
   - ASProgressPopUpView (0.9)
   - Bugly (2.5.0)
   - CocoaAsyncSocket (7.6.3)
@@ -24,7 +9,6 @@ PODS:
   - IQKeyboardManager (6.5.3)
   - Masonry (1.1.0)
   - MBProgressHUD (1.1.0)
-  - MJRefresh (3.2.2)
   - MMDrawerController (0.6.0):
     - MMDrawerController/Core (= 0.6.0)
     - MMDrawerController/MMDrawerBarButtonItem (= 0.6.0)
@@ -41,7 +25,6 @@ PODS:
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
-  - AFNetworking
   - ASProgressPopUpView
   - Bugly
   - CocoaAsyncSocket
@@ -50,14 +33,12 @@ DEPENDENCIES:
   - IQKeyboardManager
   - Masonry
   - MBProgressHUD
-  - MJRefresh
   - MMDrawerController
   - RDVTabBarController
   - SVProgressHUD
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - AFNetworking
     - ASProgressPopUpView
     - Bugly
     - CocoaAsyncSocket
@@ -66,13 +47,11 @@ SPEC REPOS:
     - IQKeyboardManager
     - Masonry
     - MBProgressHUD
-    - MJRefresh
     - MMDrawerController
     - RDVTabBarController
     - SVProgressHUD
 
 SPEC CHECKSUMS:
-  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   ASProgressPopUpView: dfe44c9a0313ac93a8092bd361b59f52c83a7560
   Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
   CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
@@ -81,11 +60,10 @@ SPEC CHECKSUMS:
   IQKeyboardManager: c2f901164d56807a35788483584d09fa69192e8e
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
-  MJRefresh: 72a46ecaa2a0feaf48fc5198dff95f25f8bb27c6
   MMDrawerController: e3a54a5570388463ad3b36975251575b50c4e1a0
   RDVTabBarController: 28a5c6546b9991cf2712d59947324c6b06603e14
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: bbc6e09e4869f8009ccdbb32ab414fc04b763b03
+PODFILE CHECKSUM: b53f58bf1a6796fcc81d0c95fe9f73c3bd6e1604
 
 COCOAPODS: 1.7.3
