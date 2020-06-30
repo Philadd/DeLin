@@ -7,11 +7,12 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
-            uuid = "B21A99F1-9AE1-4F3A-A7EB-2706BC33B05D"
+            uuid = "65C0723C-6A15-4664-8CA0-CFC5631B113A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            scope = "0"
+            breakpointStackSelectionBehavior = "1"
+            scope = "1"
             stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
