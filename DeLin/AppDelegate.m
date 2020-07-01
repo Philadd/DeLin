@@ -12,11 +12,9 @@
 #import "WelcomeViewController.h"
 #import "IQKeyboardManager.h"
 #import "DeviceInfoViewController.h"
-#import <CoreLocation/CoreLocation.h>
 
-@interface AppDelegate () <CLLocationManagerDelegate>
+@interface AppDelegate ()
 
-@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
 
@@ -56,9 +54,6 @@
 - (void)initGiz{
     NSDictionary *parameters =@{@"appId":GizAppId,@"appSecret": GizAppSecret};
     [GizWifiSDK startWithAppInfo:parameters productInfo:nil cloudServiceInfo: nil autoSetDeviceDomain:YES];
-    if(@available(iOS 13.0, *)){
-        [self getUserLocation];
-    }
 }
 
 - (void)customizeInterface {
@@ -87,19 +82,6 @@
     manager.toolbarDoneBarButtonItemText = LocalString(@"Done");
     manager.shouldResignOnTouchOutside = YES;//键盘弹出时，点击背景，键盘收回
     manager.shouldToolbarUsesTextFieldTintColor = YES;
-    
-}
-//获取用户位置权限
-- (void)getUserLocation{
-    if (!self.locationManager) {
-        self.locationManager = [[CLLocationManager alloc] init];
-    }
-    //如果用户第一次拒绝了，触发代理重新选择，要用户打开位置权限
-    [self.locationManager requestAlwaysAuthorization];
-    self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.distanceFilter = 1.0f;
-    [self.locationManager startUpdatingLocation];
     
 }
 

@@ -180,7 +180,7 @@
     } else {
         // 登录失败
         NSLog(@"登录失败,%@", result);
-        //[NSObject showHudTipStr:LocalString(@"Login failed")];
+        [NSObject showHudTipStr:LocalString(@"Login failed")];
         
     }
     
