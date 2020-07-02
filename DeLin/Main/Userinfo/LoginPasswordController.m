@@ -180,7 +180,11 @@
     } else {
         // 登录失败
         NSLog(@"登录失败,%@", result);
-        [NSObject showHudTipStr:LocalString(@"Login failed")];
+        if (result.code == 9020) {
+            [NSObject showHudTipStr:LocalString(@"Failed,username or password error!")];
+        }else{
+            [NSObject showHudTipStr:LocalString(@"Login failed")];
+        }  
         
     }
     
