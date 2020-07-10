@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 //#import "MMDrawerController.h"
 //#import "UIViewController+MMDrawerController.h"
+#import "AAlertViewController.h"
 #import "WorkAreaViewController.h"
 #import "WorkTimeViewController.h"
 #import "SetPinCodeViewController.h"
@@ -436,72 +437,72 @@
         case 0x01:
             
             self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E1")];
-            
+            [self AletRobotError:self->robotErrorStr];
             break;
         case 0x02:
             
             self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E2")];
-            
+            [self AletRobotError:self->robotErrorStr];
             break;
             
         case 0x03:
             
             self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E3")];
-            
+            [self AletRobotError:self->robotErrorStr];
             break;
         case 0x04:
             
             self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E4")];
-            
+            [self AletRobotError:self->robotErrorStr];
             break;
         case 0x05:
             
             self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E5")];
-            
+            [self AletRobotError:self->robotErrorStr];
             break;
         case 0x06:
             
             self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E6")];
-            
+            [self AletRobotError:self->robotErrorStr];
             break;
             
         case 0x07:
             
             self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E7")];
-            
+            [self AletRobotError:self->robotErrorStr];
             break;
             
         case 0x08:
             
             self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E8")];
-            
+            [self AletRobotError:self->robotErrorStr];
             break;
         case 0x09:
             
             self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E9")];
-            
+            [self AletRobotError:self->robotErrorStr];
             break;
         case 0x0a:
             
             self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E10")];
-            
+            [self AletRobotError:self->robotErrorStr];
             break;
             
         case 0x0b:
             
             self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E11")];
-            
+            [self AletRobotError:self->robotErrorStr];
             break;
             
         case 0x0c:
             
             self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E12")];
-            
+            [self AletRobotError:self->robotErrorStr];
             break;
         case 0x0d:
             
             self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E13")];
-            
+            [self AletRobotError:self->robotErrorStr];
             break;
             
         default:
@@ -518,6 +519,25 @@
         self.areaDatalabel.text = [NSString stringWithFormat:@"%d%@",[nextWorkarea intValue],LocalString(@"m²")];
     });
     
+}
+
+- (void)AletRobotError:(NSString *)text{
+    
+    AAlertViewController *alert = [[AAlertViewController alloc] init];
+    alert.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    alert.Block = ^{
+        
+    };
+    [self presentViewController:alert animated:NO completion:^{
+        
+        alert.WScale_alert = WScale;
+        alert.HScale_alert = HScale;
+        
+        [alert showView];
+        alert.titleLabel.text = LocalString(@"Robot error");
+        alert.messageLabel.text = text;
+        [alert.centeredBtn setTitle:LocalString(@"I know") forState:UIControlStateNormal];
+    }];
 }
 
 - (void)goHomeSuccess{
@@ -568,7 +588,7 @@
 
 - (void)goStart{
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:LocalString(@"Tip") message:LocalString(@"are you sure?") preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:LocalString(@"Please make sure that boundary wire is settled correctly and machine is inside charging base!") preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:LocalString(@"OK") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
         UInt8 controlCode = 0x01;

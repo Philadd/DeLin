@@ -158,7 +158,7 @@
 - (UIButton *)sureBtn{
     if (!_sureBtn) {
         _sureBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_sureBtn setTitle:LocalString(@"Sure") forState:UIControlStateNormal];
+        [_sureBtn setTitle:LocalString(@"Save changes") forState:UIControlStateNormal];
         [_sureBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_sureBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:1.f]];
@@ -194,14 +194,43 @@
 
 - (void)sure{
     
-    NSNumber *oldPIN = [NSNumber numberWithUnsignedInteger:[self.oldPinCodeTF.text integerValue]];
-    NSNumber *newPIN = [NSNumber numberWithUnsignedInteger:[self.repeatpinCodeTF.text integerValue]];
-    
-    UInt8 controlCode = 0x01;
-    NSArray *data = @[@0x00,@0x01,@0x07,@0x01,oldPIN,newPIN];
-    [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
-    
-    
+    if (self.oldPinCodeTF.text.length != 4 || self.pinCodeTF.text.length != 4 || self.repeatpinCodeTF.text.length != 4) {
+        [NSObject showHudTipStr:LocalString(@"PinCode restrictions 4 digits")];
+    }else if (![self.pinCodeTF.text isEqualToString:self.repeatpinCodeTF.text])
+    {
+        [NSObject showHudTipStr:LocalString(@"Two input is inconsistent")];
+    }else{
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            NSMutableArray *dataContent = [[NSMutableArray alloc] init];
+            [dataContent addObject:[NSNumber numberWithUnsignedInteger:[self.oldPinCodeTF.text characterAtIndex:0] - 48]];
+            [dataContent addObject:[NSNumber numberWithUnsignedInteger:[self.oldPinCodeTF.text characterAtIndex:1] - 48]];
+            [dataContent addObject:[NSNumber numberWithUnsignedInteger:[self.oldPinCodeTF.text characterAtIndex:2] - 48]];
+            [dataContent addObject:[NSNumber numberWithUnsignedInteger:[self.oldPinCodeTF.text characterAtIndex:3] - 48]];
+            [dataContent addObject:[NSNumber numberWithUnsignedInteger:[self.repeatpinCodeTF.text characterAtIndex:0] - 48]];
+            [dataContent addObject:[NSNumber numberWithUnsignedInteger:[self.repeatpinCodeTF.text characterAtIndex:1] - 48]];
+            [dataContent addObject:[NSNumber numberWithUnsignedInteger:[self.repeatpinCodeTF.text characterAtIndex:2] - 48]];
+            [dataContent addObject:[NSNumber numberWithUnsignedInteger:[self.repeatpinCodeTF.text characterAtIndex:3] - 48]];
+
+            UInt8 controlCode = 0x01;
+            //可变插入
+            [dataContent insertObject:@0x01 atIndex:0];
+            [dataContent insertObject:@0x07 atIndex:0];
+            [dataContent insertObject:@0x01 atIndex:0];
+            [dataContent insertObject:@0x00 atIndex:0];
+            
+            [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:dataContent failuer:nil];
+            
+        });
+        
+        //延时1秒
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+        
+    }
+
 }
 
 @end

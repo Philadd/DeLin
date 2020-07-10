@@ -24,7 +24,6 @@ static float HEIGHT_CELL = 80.f;
 @property (nonatomic, strong) UITableView *deviceTable;
 @property (nonatomic, strong) NSArray *deviceArray;
 @property (nonatomic, strong) UIButton *AddEquipmentBtn;
-@property (nonatomic, copy) NSString *aliasDeviceNameStr;
 
 @end
 
@@ -377,7 +376,6 @@ static float HEIGHT_CELL = 80.f;
         alert.lBlock = ^{
         };
         alert.rBlock = ^(NSString * _Nullable text) {
-            self.aliasDeviceNameStr = text;
             //修改设备 别名
             [device setCustomInfo:nil alias:text];
             
@@ -385,7 +383,12 @@ static float HEIGHT_CELL = 80.f;
         alert.modalPresentationStyle = UIModalPresentationOverCurrentContext;
         [self presentViewController:alert animated:NO completion:^{
             alert.titleLabel.text = LocalString(@"Change Name");
-            alert.textField.text = self.aliasDeviceNameStr;
+            
+            if ([device.alias isEqualToString:@""]) {
+                alert.textField.text = device.productName;
+            }else{
+                alert.textField.text = device.alias;
+            }
             [alert.leftBtn setTitle:LocalString(@"CANCEL") forState:UIControlStateNormal];
             [alert.rightBtn setTitle:LocalString(@"OK") forState:UIControlStateNormal];
         }];

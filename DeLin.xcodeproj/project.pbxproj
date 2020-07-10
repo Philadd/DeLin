@@ -17,6 +17,7 @@
 		3618FC5F237D27CB00255426 /* LeftDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3618FC5E237D27CB00255426 /* LeftDrawerViewController.m */; };
 		3618FC63237D7F3A00255426 /* UINavigationBar+handle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3618FC62237D7F3A00255426 /* UINavigationBar+handle.m */; };
 		363FD21323A8839B000FBCAF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 363FD21223A8839B000FBCAF /* CoreLocation.framework */; };
+		3657A52E24B86F5700D2DA6D /* AAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3657A52D24B86F5700D2DA6D /* AAlertViewController.m */; };
 		36588D4D2370189C008ADEAC /* ForgetpasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36588D492370189B008ADEAC /* ForgetpasswordViewController.m */; };
 		36588D4E2370189C008ADEAC /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36588D4C2370189C008ADEAC /* RegisterViewController.m */; };
 		3663F290235EF9E800B06F88 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3663F28F235EF9E800B06F88 /* NetworkExtension.framework */; };
@@ -236,6 +237,8 @@
 		3618FC61237D7F3A00255426 /* UINavigationBar+handle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+handle.h"; sourceTree = "<group>"; };
 		3618FC62237D7F3A00255426 /* UINavigationBar+handle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+handle.m"; sourceTree = "<group>"; };
 		363FD21223A8839B000FBCAF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3657A52C24B86F5700D2DA6D /* AAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAlertViewController.h; sourceTree = "<group>"; };
+		3657A52D24B86F5700D2DA6D /* AAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAlertViewController.m; sourceTree = "<group>"; };
 		36588D492370189B008ADEAC /* ForgetpasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetpasswordViewController.m; sourceTree = "<group>"; };
 		36588D4A2370189B008ADEAC /* ForgetpasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetpasswordViewController.h; sourceTree = "<group>"; };
 		36588D4B2370189B008ADEAC /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -677,6 +680,8 @@
 		368AB319235F0623002B6D37 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3657A52C24B86F5700D2DA6D /* AAlertViewController.h */,
+				3657A52D24B86F5700D2DA6D /* AAlertViewController.m */,
 				368AB31A235F0623002B6D37 /* YAlertViewController.h */,
 				368AB31B235F0623002B6D37 /* YTFAlertController.m */,
 				368AB31C235F0623002B6D37 /* YAlertViewController.m */,
@@ -1395,6 +1400,7 @@
 				368E509B238FF84C00AFE3B3 /* NewUserIDCell.m in Sources */,
 				368AB33E235F0623002B6D37 /* YAlertViewController.m in Sources */,
 				36E594182397BBE000DE4F04 /* AAPersonalLastNameTF.m in Sources */,
+				3657A52E24B86F5700D2DA6D /* AAlertViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1568,7 +1574,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = DeLin/DeLin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = A32Z223P9T;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1601,7 +1607,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = DeLin/DeLin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = A32Z223P9T;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

@@ -53,6 +53,9 @@
 #define getRectNavAndStatusHight (self.navigationController.navigationBar.frame.size.height+[[UIApplication sharedApplication] statusBarFrame].size.height)
 #define tabbarHeight 50.f
 
+#define HScale (UI_IS_IPHONE6PLUS || UI_IS_IPHONE5 ? (667.f / ScreenHeight) : 1.f)
+#define WScale (UI_IS_IPHONE6PLUS || UI_IS_IPHONE5 ? (375.f / ScreenWidth) : 1.f)
+
 #define SafeAreaTopHeight (ScreenHeight >= 812.0 ? 88 : 64)
 #define SafeAreaBottomHeight (ScreenHeight >= 812.0 ? 83 : 49)
 
