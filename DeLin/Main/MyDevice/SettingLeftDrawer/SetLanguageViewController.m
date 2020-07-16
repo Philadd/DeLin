@@ -27,6 +27,8 @@
     self.languagePicker = [self languagePicker];
     self.oKButton = [self oKButton];
     
+    [self initLanguageUI];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -41,7 +43,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-//    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:NO];
+
 }
 
 #pragma mark - Lazy load
@@ -114,11 +116,26 @@
 }
 
 #pragma mark - Action
+
+- (void)initLanguageUI{
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *language = [userDefaults valueForKey:@"language"];
+    if (language!=nil) {
+        NSInteger index = [self.languageChooseArray indexOfObject:language];
+        //保持循环显示UI
+        NSUInteger max = 16384;
+        NSUInteger base0 = (max / 2) - (max / 2) % _languageChooseArray.count;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.languagePicker selectRow:index % self.languageChooseArray.count + base0  inComponent:0 animated:YES];
+        });
+    }
+}
+
 - (void)setLanguageChoose
 {
     NSInteger row = [self.languagePicker selectedRowInComponent:0];
-
-    NSLog(@"sdadadad%ld",row % _languageChooseArray.count);
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:self.languageChooseArray[row % _languageChooseArray.count] forKey:@"language"];
@@ -172,7 +189,7 @@
             break;
     }
     //延时1秒
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.navigationController popViewControllerAnimated:YES];
     });
     //解决奇怪的动画bug。
