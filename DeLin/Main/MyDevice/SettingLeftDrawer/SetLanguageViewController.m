@@ -7,6 +7,8 @@
 //
 
 #import "SetLanguageViewController.h"
+#import "YULanguageManager.h"
+#import "DeviceInfoViewController.h"
 
 @interface SetLanguageViewController () <UIPickerViewDataSource,UIPickerViewDelegate>
 
@@ -24,25 +26,22 @@
     [self setNavItem];
     self.languagePicker = [self languagePicker];
     self.oKButton = [self oKButton];
-    //[self inquireLanguage];
     
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recieveLanguage:) name:@"recieveLanguage" object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"recieveLanguage" object:nil];
     
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:NO];
+//    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:NO];
 }
 
 #pragma mark - Lazy load
@@ -114,53 +113,76 @@
     return _oKButton;
 }
 
-#pragma mark - inquire Mower Language
-
-//- (void)inquireLanguage{
-//
-//    NSMutableArray *dataContent = [[NSMutableArray alloc] init];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-//
-//    [self.bluetoothDataManage setDataType:0x13];
-//    [self.bluetoothDataManage setDataContent: dataContent];
-//    [self.bluetoothDataManage sendBluetoothFrame];
-//}
-
-- (void)recieveLanguage:(NSNotification *)notification{
-    NSDictionary *dict = [notification userInfo];
-    NSNumber *Language = dict[@"chooseLanguage"];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.languagePicker selectRow:[Language intValue] inComponent:0 animated:YES];
-    });}
-
 #pragma mark - Action
 - (void)setLanguageChoose
 {
-    //    NSInteger row = [self.languagePicker selectedRowInComponent:0];
-    //    if (row == 1) {
-    //        row = 2;
-    //    }
-    //
-    //    NSMutableArray *dataContent = [[NSMutableArray alloc] init];
-    //    [dataContent addObject:[NSNumber numberWithUnsignedInteger:row]];
-    //    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-    //    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-    //    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-    //    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-    //    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-    //    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-    //    [dataContent addObject:[NSNumber numberWithUnsignedInteger:0x00]];
-    //
-    //    [self.bluetoothDataManage setDataType:0x03];
-    //    [self.bluetoothDataManage setDataContent: dataContent];
-    //    [self.bluetoothDataManage sendBluetoothFrame];
+    NSInteger row = [self.languagePicker selectedRowInComponent:0];
+
+    NSLog(@"sdadadad%ld",row % _languageChooseArray.count);
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:self.languageChooseArray[row % _languageChooseArray.count] forKey:@"language"];
+    [userDefaults synchronize];
+    switch (row % _languageChooseArray.count) {
+        case 0:
+        //English
+            [YULanguageManager setUserLanguage:@"en"];
+            break;
+        case 1:
+        //Danish
+            [YULanguageManager setUserLanguage:@"da"];
+            break;
+        //Dutch
+        case 2:
+            [YULanguageManager setUserLanguage:@"nl"];
+            break;
+        //Finnish
+        case 3:
+            [YULanguageManager setUserLanguage:@"fi"];
+            break;
+        //French
+        case 4:
+            [YULanguageManager setUserLanguage:@"fr"];
+            break;
+        //German
+        case 5:
+            [YULanguageManager setUserLanguage:@"de"];
+            break;
+        //Italian
+        case 6:
+            [YULanguageManager setUserLanguage:@"it"];
+            break;
+        //Norwegian
+        case 7:
+            [YULanguageManager setUserLanguage:@"nb"];
+            break;
+        //Russian
+        case 8:
+            [YULanguageManager setUserLanguage:@"ru"];
+            break;
+        //Portuguese
+        case 9:
+            [YULanguageManager setUserLanguage:@"pt"];
+            break;
+        //Spanish
+        case 10:
+            [YULanguageManager setUserLanguage:@"es"];
+            break;
+        default:
+            break;
+    }
+    //延时1秒
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.navigationController popViewControllerAnimated:YES];
+    });
+    //解决奇怪的动画bug。
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//
+//        DeviceInfoViewController *deviceInfoVC = [[DeviceInfoViewController alloc] init];
+//        [UIApplication sharedApplication].keyWindow.rootViewController = deviceInfoVC;
+//
+//
+//    });
     
     
 }
