@@ -7,6 +7,7 @@
 //
 
 #import "MainViewController.h"
+#import "DeviceInfoViewController.h"
 //#import "MMDrawerController.h"
 //#import "UIViewController+MMDrawerController.h"
 #import "WorkAreaViewController.h"
@@ -19,6 +20,7 @@
 //@property(nonatomic,strong) MMDrawerController * drawerController;
 @property(nonatomic,strong) BatteryIconCircleView *batteryCircleView;
 
+@property (nonatomic, strong) UIImageView *rainImageView;
 @property (nonatomic, strong) UIView *msgCenterView;
 @property (nonatomic, strong) UILabel *robotStateLabel;//机器状态
 @property (nonatomic, strong) UILabel *areaDatalabel;//下一次割草面积
@@ -49,7 +51,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setNavItem];
-    
+    _rainImageView = [self rainImageView];
     _batteryCircleView = [self batteryCircleView];
     _msgCenterView = [self msgCenterView];
     _robotErrorLabel = [self robotErrorLabel];
@@ -70,6 +72,8 @@
         //校准时间
         [self setMowerTime];
     });
+    //默认隐藏
+    _rainImageView.hidden = YES;
     
 }
 
@@ -176,6 +180,23 @@
         }
     }
     return _batteryCircleView;
+}
+
+- (UIImageView *)rainImageView{
+    if (!_rainImageView){
+        _rainImageView = [[UIImageView alloc] init];
+        _rainImageView.backgroundColor = [UIColor clearColor];
+        
+        [_rainImageView setImage:[UIImage imageNamed:@"img_main_rain"]];
+        [self.view addSubview:_rainImageView];
+        [_rainImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(30), yAutoFit(30)));
+            make.right.equalTo(self.batteryCircleView.mas_left);
+            make.top.equalTo(self.batteryCircleView.mas_top);
+        }];
+        
+    }
+    return _rainImageView;
 }
 
 - (UIView *)msgCenterView{
@@ -410,10 +431,13 @@
     
     switch ([deviceType integerValue]) {
         case 0x12://600
+            
             break;
         case 0x13://1000
+            
             break;
         case 0x14://1500
+            
             break;
         default:
             
@@ -444,12 +468,15 @@
     switch ([rainAlert integerValue]) {
         case 0x00:
             
+            _rainImageView.hidden = YES;
             break;
         case 0x55:
+            _rainImageView.hidden = NO;
             
             break;
 
         default:
+            _rainImageView.hidden = YES;
             break;
     }
     
@@ -576,6 +603,13 @@
 }
 
 #pragma mark - Actions
+
+//- (void)didMoveToParentViewController:(UIViewController *)parent{
+//    [super didMoveToParentViewController:parent];
+//    //返回上一级视图
+//    UIViewController *viewCtl =self.navigationController.viewControllers[0];
+//    [self.navigationController popToViewController:viewCtl animated:YES];
+//}
 
 - (void)getMainDeviceMsg{
     UInt8 controlCode = 0x01;

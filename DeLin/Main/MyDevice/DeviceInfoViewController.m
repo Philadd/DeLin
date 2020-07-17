@@ -11,7 +11,7 @@
 #import "PersonSettingViewController.h"
 #import "SelectDeviceViewController.h"
 #import "DeviceListCell.h"
-#import "MainViewController.h"
+#import "InputPINViewController.h"
 #import "YTFAlertController.h"
 
 NSString *const CellIdentifier_DeviceList = @"CellID_DeviceList";
@@ -300,8 +300,8 @@ static float HEIGHT_CELL = 80.f;
     GizWifiDevice *device = _deviceArray[indexPath.row];
     [[GizManager shareInstance] setGizDevice:device];
     
-    MainViewController *mainVC = [[MainViewController alloc] init];
-    [self.navigationController pushViewController:mainVC animated:YES];
+    InputPINViewController *inputPINVC = [[InputPINViewController alloc] init];
+    [self.navigationController pushViewController:inputPINVC animated:YES];
     
 }
 
@@ -385,7 +385,7 @@ static float HEIGHT_CELL = 80.f;
             alert.titleLabel.text = LocalString(@"Change Name");
             
             if ([device.alias isEqualToString:@""]) {
-                alert.textField.text = device.productName;
+                alert.textField.text = LocalString(@"Robot_2_Mow");
             }else{
                 alert.textField.text = device.alias;
             }

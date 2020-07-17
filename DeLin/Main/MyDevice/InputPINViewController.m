@@ -36,11 +36,14 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(inputPINCodeMain) name:@"inputPINCode" object:nil];
     
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"inputPINCode" object:nil];
     
 }
 
@@ -105,7 +108,7 @@
         }];
         
         UILabel *agreementLabel = [[UILabel alloc] init];
-        agreementLabel.text = LocalString(@"Agree with delyn's global privacy policy");
+        agreementLabel.text = LocalString(@"keep me loggged in");
         agreementLabel.font = [UIFont systemFontOfSize:14.f];
         agreementLabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.7];
         agreementLabel.numberOfLines = 0;
@@ -164,6 +167,14 @@
     }
 }
 
+#pragma mark - notification
+
+- (void)inputPINCodeMain{
+    
+    MainViewController *mainVC = [[MainViewController alloc] init];
+    [self.navigationController pushViewController:mainVC animated:YES];
+}
+
 #pragma mark - Actions
 
 - (void)setUItextField{
@@ -191,8 +202,30 @@
 
 - (void)goContinue{
     
-    MainViewController *mainVC = [[MainViewController alloc] init];
-    [self.navigationController pushViewController:mainVC animated:YES];
+    if (self.passwordModelTF.inputText.text.length != 4) {
+        [NSObject showHudTipStr:LocalString(@"PinCode restrictions 4 digits")];
+    }else{
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            NSMutableArray *dataContent = [[NSMutableArray alloc] init];
+            [dataContent addObject:[NSNumber numberWithUnsignedInteger:[self.passwordModelTF.inputText.text characterAtIndex:0] - 48]];
+            [dataContent addObject:[NSNumber numberWithUnsignedInteger:[self.passwordModelTF.inputText.text characterAtIndex:1] - 48]];
+            [dataContent addObject:[NSNumber numberWithUnsignedInteger:[self.passwordModelTF.inputText.text characterAtIndex:2] - 48]];
+            [dataContent addObject:[NSNumber numberWithUnsignedInteger:[self.passwordModelTF.inputText.text characterAtIndex:3] - 48]];
+
+            UInt8 controlCode = 0x00;
+            //可变插入
+            [dataContent insertObject:@0x01 atIndex:0];
+            [dataContent insertObject:@0x06 atIndex:0];
+            [dataContent insertObject:@0x01 atIndex:0];
+            [dataContent insertObject:@0x00 atIndex:0];
+            
+            [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:dataContent failuer:nil];
+            
+        });
+        
+    }
     
 }
 

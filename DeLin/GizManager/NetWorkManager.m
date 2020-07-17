@@ -329,7 +329,8 @@ static int noUserInteractionHeartbeat = 0;
                     }
                     
                     if ([_recivedData68[12] unsignedIntegerValue] == 1) {
-                        [NSObject showHudTipStr:LocalString(@"Set up successfully")];
+                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"inputPINCode" object:nil userInfo:nil];
                     }
                     
                     

@@ -154,8 +154,8 @@ static CGFloat const Cell_Height = 50.f;
             break;
         case 1:
         {
-            SetPinCodeViewController *pinCodeVC = [[SetPinCodeViewController alloc] init];
-            [self.navigationController pushViewController:pinCodeVC animated:YES];
+//            SetPinCodeViewController *pinCodeVC = [[SetPinCodeViewController alloc] init];
+//            [self.navigationController pushViewController:pinCodeVC animated:YES];
         }
             break;
         case 2:
