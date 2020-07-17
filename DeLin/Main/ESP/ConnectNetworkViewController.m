@@ -110,7 +110,7 @@
 #pragma mark - Actions
 
 -(void)ConnectWifi{
-    NSString *wifiName = @"XPG-GAgent";
+    NSString *wifiName = @"Robot_2_Mow";
     if ([[GizManager getCurrentWifi] hasPrefix:wifiName]) {
         FinishNetworkViewController *VC = [[FinishNetworkViewController alloc] init];
         [self.navigationController pushViewController:VC animated:YES];

@@ -10,7 +10,7 @@
 #import <netdb.h>
 
 ///@brife 可判断的数据帧类型数量
-#define LEN 10
+#define LEN 9
 
 static dispatch_once_t oneToken;
 
@@ -188,6 +188,9 @@ static int noUserInteractionHeartbeat = 0;
                     NSNumber *nextWorkMinute = [NSNumber numberWithInt:[_recivedData68[16] intValue]];
                     
                     NSNumber *nextWorkarea = [NSNumber numberWithInt:[_recivedData68[17] intValue] * 256 + [_recivedData68[18] intValue]];
+                    NSNumber *rainAlert = _recivedData68[19];
+                    NSNumber *deviceType = _recivedData68[20];
+                    NSNumber *robotF_Error = _recivedData68[21];
                     
                     [dataDic setObject:robotPower forKey:@"robotPower"];
                     [dataDic setObject:robotState forKey:@"robotState"];
@@ -195,6 +198,9 @@ static int noUserInteractionHeartbeat = 0;
                     [dataDic setObject:nextWorkHour forKey:@"nextWorkHour"];
                     [dataDic setObject:nextWorkMinute forKey:@"nextWorkMinute"];
                     [dataDic setObject:nextWorkarea forKey:@"nextWorkarea"];
+                    [dataDic setObject:rainAlert forKey:@"rainAlert"];
+                    [dataDic setObject:deviceType forKey:@"deviceType"];
+                    [dataDic setObject:robotF_Error forKey:@"robotF_Error"];
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"getMainDeviceMsg" object:nil userInfo:dataDic];
                     
@@ -402,7 +408,7 @@ static int noUserInteractionHeartbeat = 0;
     unsigned char dataType;
     
     unsigned char type[LEN] = {
-        0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09
+        0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x09
     };
     /*
      getMainDeviceMsg.... 0x00 获取主界面基本信息
@@ -413,8 +419,8 @@ static int noUserInteractionHeartbeat = 0;
      getWorkArea,.... 0x05 设置割草机工作面积
      inputPINCode,.... 0x06 APP输入割草机PIN码
      reSetPINCode,.... 0x07 修改割草机PIN码
-     getStart,.... 0x08 启动割草机
-     otherMsgType.... 0x09 获取主界面基本信息
+     getStart,.... 0x09 启动割草机
+     otherMsgType....
      */
     dataType = [data[10] unsignedIntegerValue];
     //NSLog(@"%d",dataType);

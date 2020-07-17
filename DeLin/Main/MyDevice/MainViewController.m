@@ -9,7 +9,6 @@
 #import "MainViewController.h"
 //#import "MMDrawerController.h"
 //#import "UIViewController+MMDrawerController.h"
-#import "AAlertViewController.h"
 #import "WorkAreaViewController.h"
 #import "WorkTimeViewController.h"
 #import "SetPinCodeViewController.h"
@@ -43,6 +42,7 @@
 {
     NSString *robotStateStr;
     NSString *robotErrorStr;
+    NSString *robotF_Error;
 }
 
 - (void)viewDidLoad {
@@ -287,7 +287,7 @@
         }];
 
         _robotErrorLabel = [[UILabel alloc] init];
-        _robotErrorLabel.font = [UIFont systemFontOfSize:18.f];
+        _robotErrorLabel.font = [UIFont systemFontOfSize:20.f];
         _robotErrorLabel.backgroundColor = [UIColor clearColor];
         _robotErrorLabel.textColor = [UIColor colorWithHexString:@"333333"];
         _robotErrorLabel.textAlignment = NSTextAlignmentCenter;
@@ -404,6 +404,54 @@
     NSNumber *nextWorkHour = dict[@"nextWorkHour"];
     NSNumber *nextWorkMinute = dict[@"nextWorkMinute"];
     NSNumber *nextWorkarea = dict[@"nextWorkarea"];
+    NSNumber *rainAlert = dict[@"rainAlert"];
+    NSNumber *deviceType = dict[@"deviceType"];
+    NSNumber *robotF_Error = dict[@"robotF_Error"];
+    
+    switch ([deviceType integerValue]) {
+        case 0x12://600
+            break;
+        case 0x13://1000
+            break;
+        case 0x14://1500
+            break;
+        default:
+            
+            break;
+    }
+    
+    switch ([robotF_Error integerValue]) {
+        case 1:
+            self->robotF_Error = LocalString(@"");
+            break;
+        case 2:
+            self->robotF_Error = LocalString(@"F1");
+            break;
+        case 3:
+            self->robotF_Error = LocalString(@"F2");
+            break;
+        case 4:
+            self->robotF_Error = LocalString(@"F3");
+            break;
+        case 5:
+            self->robotF_Error = LocalString(@"F4");
+            break;
+
+        default:
+            break;
+    }
+    
+    switch ([rainAlert integerValue]) {
+        case 0x00:
+            
+            break;
+        case 0x55:
+            
+            break;
+
+        default:
+            break;
+    }
     
     switch ([robotState integerValue]) {
         case 0:
@@ -431,83 +479,79 @@
     switch ([robotError integerValue]) {
         case 0x00:
             
-            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"normal")];
-            
+            self->robotErrorStr = [NSString stringWithFormat:@"%@%@",self->robotStateStr,self->robotF_Error];;
             break;
         case 0x01:
             
-            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E1")];
-            [self AletRobotError:self->robotErrorStr];
+            self->robotErrorStr = [NSString stringWithFormat:@"%@%@ %@",LocalString(@"Alert:"),LocalString(@"E1"),self->robotF_Error];
+            
             break;
         case 0x02:
             
-            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E2")];
-            [self AletRobotError:self->robotErrorStr];
+            self->robotErrorStr = [NSString stringWithFormat:@"%@%@ %@",LocalString(@"Alert:"),LocalString(@"E2"),self->robotF_Error];
+
             break;
             
         case 0x03:
             
-            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E3")];
-            [self AletRobotError:self->robotErrorStr];
+            self->robotErrorStr = [NSString stringWithFormat:@"%@%@ %@",LocalString(@"Alert:"),LocalString(@"E3"),self->robotF_Error];
             break;
         case 0x04:
             
-            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E4")];
-            [self AletRobotError:self->robotErrorStr];
+            self->robotErrorStr = [NSString stringWithFormat:@"%@%@ %@",LocalString(@"Alert:"),LocalString(@"E4"),self->robotF_Error];
+            
             break;
         case 0x05:
             
-            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E5")];
-            [self AletRobotError:self->robotErrorStr];
+            self->robotErrorStr = [NSString stringWithFormat:@"%@%@ %@",LocalString(@"Alert:"),LocalString(@"E5"),self->robotF_Error];
+            
             break;
         case 0x06:
             
-            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E6")];
-            [self AletRobotError:self->robotErrorStr];
+            self->robotErrorStr = [NSString stringWithFormat:@"%@%@ %@",LocalString(@"Alert:"),LocalString(@"E6"),self->robotF_Error];
+            
             break;
             
         case 0x07:
             
-            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E7")];
-            [self AletRobotError:self->robotErrorStr];
+            self->robotErrorStr = [NSString stringWithFormat:@"%@%@ %@",LocalString(@"Alert:"),LocalString(@"E7"),self->robotF_Error];
+            
             break;
             
         case 0x08:
             
-            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E8")];
-            [self AletRobotError:self->robotErrorStr];
+            self->robotErrorStr = [NSString stringWithFormat:@"%@%@ %@",LocalString(@"Alert:"),LocalString(@"E8"),self->robotF_Error];
+            
             break;
         case 0x09:
             
-            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E9")];
-            [self AletRobotError:self->robotErrorStr];
+            self->robotErrorStr = [NSString stringWithFormat:@"%@%@ %@",LocalString(@"Alert:"),LocalString(@"E9"),self->robotF_Error];
+            
             break;
         case 0x0a:
             
-            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E10")];
-            [self AletRobotError:self->robotErrorStr];
+            self->robotErrorStr = [NSString stringWithFormat:@"%@%@ %@",LocalString(@"Alert:"),LocalString(@"E10"),self->robotF_Error];
+            
             break;
             
         case 0x0b:
             
-            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E11")];
-            [self AletRobotError:self->robotErrorStr];
+            self->robotErrorStr = [NSString stringWithFormat:@"%@%@  %@",LocalString(@"Alert:"),LocalString(@"E11"),self->robotF_Error];
+            
             break;
             
         case 0x0c:
             
-            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E12")];
-            [self AletRobotError:self->robotErrorStr];
+            self->robotErrorStr = [NSString stringWithFormat:@"%@%@ %@",LocalString(@"Alert:"),LocalString(@"E12"),self->robotF_Error];
+            
             break;
         case 0x0d:
             
-            self->robotErrorStr = [NSString stringWithFormat:@"%@",LocalString(@"E13")];
-            [self AletRobotError:self->robotErrorStr];
+            self->robotErrorStr = [NSString stringWithFormat:@"%@%@ %@",LocalString(@"Alert:"),LocalString(@"E13"),self->robotF_Error];
+            
             break;
             
         default:
-            self->robotStateStr = [NSString stringWithFormat:@"%@",LocalString(@"normal")];
-            
             break;
     }
     
@@ -519,25 +563,6 @@
         self.areaDatalabel.text = [NSString stringWithFormat:@"%d%@",[nextWorkarea intValue],LocalString(@"m²")];
     });
     
-}
-
-- (void)AletRobotError:(NSString *)text{
-    
-    AAlertViewController *alert = [[AAlertViewController alloc] init];
-    alert.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-    alert.Block = ^{
-        
-    };
-    [self presentViewController:alert animated:NO completion:^{
-        
-        alert.WScale_alert = WScale;
-        alert.HScale_alert = HScale;
-        
-        [alert showView];
-        alert.titleLabel.text = LocalString(@"Robot error");
-        alert.messageLabel.text = text;
-        [alert.centeredBtn setTitle:LocalString(@"I know") forState:UIControlStateNormal];
-    }];
 }
 
 - (void)goHomeSuccess{

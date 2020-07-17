@@ -245,7 +245,7 @@ static float HEIGHT_CELL = 80.f;
     
     cell.deviceListLabel.text = device.alias;
     if ([device.alias isEqualToString:@""]) {
-        cell.deviceListLabel.text = device.productName;
+        cell.deviceListLabel.text = LocalString(@"Robot_2_Mow");
     }
     
     UILongPressGestureRecognizer *longPressGesture =[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(deviceCellLongPress:)];
