@@ -46,6 +46,7 @@
     NSString *robotErrorStr;
     NSString *robotF_Error;
     int areaMax;
+    NSTimeInterval timeT;
 }
 
 - (void)viewDidLoad {
@@ -63,7 +64,7 @@
     _areaSetBtn = [self areaSetBtn];
     
     _timer = [self timer];
-    
+    timeT = 0.0;
     //设置打开/关闭抽屉的手势
     //    self.drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
     //    self.drawerController.closeDrawerGestureModeMask =MMCloseDrawerGestureModeAll;
@@ -640,19 +641,27 @@
 }
 
 - (void)stoped{
-    
-    UInt8 controlCode = 0x01;
-    NSArray *data = @[@0x00,@0x01,@0x02,@0x01];
-    [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
 
+    NSTimeInterval currentTimeT = [NSDate date].timeIntervalSince1970;
+    if (currentTimeT - timeT > 1 ) {
+        UInt8 controlCode = 0x01;
+        NSArray *data = @[@0x00,@0x01,@0x02,@0x01];
+        [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
+        
+        timeT = currentTimeT;
+    }
 }
 
 - (void)goHome{
     
-    UInt8 controlCode = 0x01;
-    NSArray *data = @[@0x00,@0x01,@0x01,@0x01];
-    [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
-    
+    NSTimeInterval currentTimeT = [NSDate date].timeIntervalSince1970;
+    if (currentTimeT - timeT > 1 ) {
+        UInt8 controlCode = 0x01;
+        NSArray *data = @[@0x00,@0x01,@0x01,@0x01];
+        [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
+        
+        timeT = currentTimeT;
+    }
 }
 
 - (void)goStart{

@@ -20,6 +20,9 @@
 @end
 
 @implementation InputPINViewController
+{
+    NSTimeInterval time;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -222,29 +225,35 @@
 
 - (void)goContinue{
     
-    if (self.passwordModelTF.inputText.text.length != 4) {
-        [NSObject showHudTipStr:LocalString(@"PinCode restrictions 4 digits")];
-    }else{
+    NSTimeInterval currentTime = [NSDate date].timeIntervalSince1970;
+    if (currentTime - time >1) {
         
-        dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.passwordModelTF.inputText.text.length != 4) {
+            [NSObject showHudTipStr:LocalString(@"PinCode restrictions 4 digits")];
+        }else{
             
-            NSMutableArray *dataContent = [[NSMutableArray alloc] init];
-            [dataContent addObject:[NSNumber numberWithUnsignedInteger:[self.passwordModelTF.inputText.text characterAtIndex:0] - 48]];
-            [dataContent addObject:[NSNumber numberWithUnsignedInteger:[self.passwordModelTF.inputText.text characterAtIndex:1] - 48]];
-            [dataContent addObject:[NSNumber numberWithUnsignedInteger:[self.passwordModelTF.inputText.text characterAtIndex:2] - 48]];
-            [dataContent addObject:[NSNumber numberWithUnsignedInteger:[self.passwordModelTF.inputText.text characterAtIndex:3] - 48]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                NSMutableArray *dataContent = [[NSMutableArray alloc] init];
+                [dataContent addObject:[NSNumber numberWithUnsignedInteger:[self.passwordModelTF.inputText.text characterAtIndex:0] - 48]];
+                [dataContent addObject:[NSNumber numberWithUnsignedInteger:[self.passwordModelTF.inputText.text characterAtIndex:1] - 48]];
+                [dataContent addObject:[NSNumber numberWithUnsignedInteger:[self.passwordModelTF.inputText.text characterAtIndex:2] - 48]];
+                [dataContent addObject:[NSNumber numberWithUnsignedInteger:[self.passwordModelTF.inputText.text characterAtIndex:3] - 48]];
 
-            UInt8 controlCode = 0x00;
-            //可变插入
-            [dataContent insertObject:@0x01 atIndex:0];
-            [dataContent insertObject:@0x06 atIndex:0];
-            [dataContent insertObject:@0x01 atIndex:0];
-            [dataContent insertObject:@0x00 atIndex:0];
+                UInt8 controlCode = 0x00;
+                //可变插入
+                [dataContent insertObject:@0x01 atIndex:0];
+                [dataContent insertObject:@0x06 atIndex:0];
+                [dataContent insertObject:@0x01 atIndex:0];
+                [dataContent insertObject:@0x00 atIndex:0];
+                
+                [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:dataContent failuer:nil];
+                
+            });
             
-            [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:dataContent failuer:nil];
-            
-        });
-        
+        }
+        //更新时间
+        time = currentTime;
     }
     
 }
