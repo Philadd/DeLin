@@ -53,7 +53,9 @@
 
 - (void)initGiz{
     NSDictionary *parameters =@{@"appId":GizAppId,@"appSecret": GizAppSecret};
-    [GizWifiSDK startWithAppInfo:parameters productInfo:nil cloudServiceInfo: nil autoSetDeviceDomain:YES];
+    NSDictionary *product = @{@"productKey":GizAppproductKey,@"productSecret":GizAppproductSecret};
+    NSArray *productArray = @[product];
+    [GizWifiSDK startWithAppInfo:parameters productInfo:productArray cloudServiceInfo: nil autoSetDeviceDomain:YES];
 }
 
 - (void)customizeInterface {

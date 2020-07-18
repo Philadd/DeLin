@@ -45,6 +45,7 @@
     NSString *robotStateStr;
     NSString *robotErrorStr;
     NSString *robotF_Error;
+    int areaMax;
 }
 
 - (void)viewDidLoad {
@@ -117,6 +118,8 @@
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightBarButton;
     
+    UIImage *image = [UIImage imageNamed:@"img_main_back"];
+    [self addLeftBarButtonWithImage:image action:@selector(backAction)];
 }
 
 - (NSTimer *)timer{
@@ -428,16 +431,19 @@
     NSNumber *rainAlert = dict[@"rainAlert"];
     NSNumber *deviceType = dict[@"deviceType"];
     NSNumber *robotF_Error = dict[@"robotF_Error"];
-    
+    //区分机型的最大割草面积
     switch ([deviceType integerValue]) {
         case 0x12://600
+            self->areaMax = 600;
             
             break;
         case 0x13://1000
+            self->areaMax = 1000;
             
             break;
         case 0x14://1500
             
+            self->areaMax = 1500;
             break;
         default:
             
@@ -588,6 +594,12 @@
         self.timeDatalabel.text = [NSString stringWithFormat:@"%02d:%02d",[nextWorkHour intValue],[nextWorkMinute intValue]];
         self.batteryCircleView.progress = [robotPower floatValue]*0.01;
         self.areaDatalabel.text = [NSString stringWithFormat:@"%d%@",[nextWorkarea intValue],LocalString(@"m²")];
+        //错误时颜色改变
+        if ([robotError integerValue]!=0 || [robotF_Error integerValue] !=1) {
+            self.bgTipView.backgroundColor = [UIColor redColor];
+        }else{
+            self.bgTipView.backgroundColor = [UIColor colorWithHexString:@"C9C9C9"];
+        }
     });
     
 }
@@ -604,12 +616,10 @@
 
 #pragma mark - Actions
 
-//- (void)didMoveToParentViewController:(UIViewController *)parent{
-//    [super didMoveToParentViewController:parent];
-//    //返回上一级视图
-//    UIViewController *viewCtl =self.navigationController.viewControllers[0];
-//    [self.navigationController popToViewController:viewCtl animated:YES];
-//}
+- (void)backAction{
+
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 - (void)getMainDeviceMsg{
     UInt8 controlCode = 0x01;
@@ -674,6 +684,7 @@
 
 - (void)setArea{
     WorkAreaViewController *WorkAreaVC = [[WorkAreaViewController alloc] init];
+    WorkAreaVC.area = self->areaMax;
     [self.navigationController pushViewController:WorkAreaVC animated:YES];
     
 }

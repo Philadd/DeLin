@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIImageView *deviceImage;
 @property (nonatomic, strong) UILabel *deviceListLabel;
 
+- (void)setFrame:(CGRect)frame;
+
 @end
 
 NS_ASSUME_NONNULL_END

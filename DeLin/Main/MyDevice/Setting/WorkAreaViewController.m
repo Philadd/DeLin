@@ -62,10 +62,12 @@
         _workAreaPicker = [[UIPickerView alloc] init];
         _workAreaPicker.backgroundColor = [UIColor clearColor];
         self.workAreaArray = [[NSMutableArray alloc] init];
-//        for (int i = 0; i < 550; i = i+50) {
-//            [self.workAreaArray addObject:[NSString stringWithFormat:@"%d",i]];
-//        }
-        self.workAreaArray = [NSMutableArray arrayWithArray:@[LocalString(@"0m²/0.000acre"),LocalString(@"50m²/0.012acre"),LocalString(@"100m²/0.025acre"),LocalString(@"150m²/0.037acre"),LocalString(@"200m²/0.049acre"),LocalString(@"250m²/0.062acre"),LocalString(@"300m²/0.074acre"),LocalString(@"350m²/0.086acre"),LocalString(@"400m²/0.099acre"),LocalString(@"450m²/0.111acre"),LocalString(@"500m²/0.124acre")]];
+        
+        //1平方米 = 0.000247英亩 10 000平方米 = 1公顷 = 2.4710538 英亩(acres)
+        for (int i = 0; i < self.area+50 ; i = i+50) {
+            [self.workAreaArray addObject:[NSString stringWithFormat:@"%d%@%.3f%@",i,@"m²/",i*0.000247,@"acre"]];
+        }
+        
         self.workAreaPicker.dataSource = self;
         self.workAreaPicker.delegate = self;
         //在当前选择上显示一个透明窗口

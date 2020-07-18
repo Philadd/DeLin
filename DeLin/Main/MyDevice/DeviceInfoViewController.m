@@ -15,7 +15,7 @@
 #import "YTFAlertController.h"
 
 NSString *const CellIdentifier_DeviceList = @"CellID_DeviceList";
-static float HEIGHT_CELL = 80.f;
+static float HEIGHT_CELL = 120.f;
 
 @interface DeviceInfoViewController () <UITableViewDelegate,UITableViewDataSource, GizWifiSDKDelegate>
 
@@ -193,7 +193,7 @@ static float HEIGHT_CELL = 80.f;
         
         if (!_deviceTable) {
             _deviceTable = ({
-                UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,yAutoFit(70) + yAutoFit(70), ScreenWidth, ScreenHeight) style:UITableViewStylePlain];
+                TouchTableView *tableView = [[TouchTableView alloc] initWithFrame:CGRectMake(0, getRectNavAndStatusHight + yAutoFit(120), ScreenWidth, ScreenHeight) style:UITableViewStylePlain];
                 tableView.backgroundColor = [UIColor clearColor];
                 tableView.dataSource = self;
                 tableView.delegate = self;
@@ -203,7 +203,7 @@ static float HEIGHT_CELL = 80.f;
                 [self.deviceBgView addSubview:tableView];
                 
                 [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.size.mas_equalTo(CGSizeMake(yAutoFit(320),ScreenHeight - yAutoFit(190) - yAutoFit(45)));
+                    make.size.mas_equalTo(CGSizeMake(ScreenWidth,ScreenHeight - yAutoFit(190) - yAutoFit(45)));
                     make.centerX.mas_equalTo(self.view.mas_centerX);
                     make.top.equalTo(labelBgView.mas_bottom);
                 }];
@@ -241,7 +241,8 @@ static float HEIGHT_CELL = 80.f;
         cell = [[DeviceListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier_DeviceList];
     }
     GizWifiDevice *device = _deviceArray[indexPath.row];
-    cell.deviceImage.image = [UIImage imageNamed:@"robot_icon_imag"];
+    cell.deviceImage.image = [UIImage imageNamed:@"img_selectDeviceRM18_Cell"];
+    //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     cell.deviceListLabel.text = device.alias;
     if ([device.alias isEqualToString:@""]) {

@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WorkAreaViewController : BaseViewController
+//接收最大割草面积
+@property (nonatomic,assign) int area;
 
 @end
 

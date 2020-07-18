@@ -93,8 +93,6 @@
 - (UIButton *)agreementBtn{
     if (!_agreementBtn) {
         _agreementBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _agreementBtn.tag = aUnselect;
-        [_agreementBtn setImage:[UIImage imageNamed:@"img_unselect"] forState:UIControlStateNormal];
         [_agreementBtn setBackgroundColor:[UIColor clearColor]];
         [_agreementBtn.widthAnchor constraintEqualToConstant:25].active = YES;
         [_agreementBtn.heightAnchor constraintEqualToConstant:25].active = YES;
@@ -170,7 +168,15 @@
 #pragma mark - notification
 
 - (void)inputPINCodeMain{
-    
+    NSUserDefaults *pinCode = [NSUserDefaults standardUserDefaults];
+    if (_agreementBtn.tag == aSelect) {
+        
+        [pinCode setObject:self.passwordModelTF.inputText.text forKey:@"pinCode"];
+        [pinCode synchronize];
+    }else{
+        [pinCode removeObjectForKey:@"pinCode"];
+        [pinCode synchronize];
+    }
     MainViewController *mainVC = [[MainViewController alloc] init];
     [self.navigationController pushViewController:mainVC animated:YES];
 }
@@ -180,11 +186,25 @@
 - (void)setUItextField{
     
     CGRect accountF = CGRectMake(yAutoFit(15), getRectNavAndStatusHight + yAutoFit(170), yAutoFit(320), yAutoFit(60));
+
+    NSUserDefaults *userPinCode = [NSUserDefaults standardUserDefaults];
+    NSString *pinCodeStr  = [userPinCode valueForKey:@"pinCode"];
+    if (pinCodeStr!=NULL) {
+        self.passwordModelTF = [[AAPInPasswordTF alloc]initWithFrame:accountF withPlaceholderText:LocalString(@"")];
+        self.passwordModelTF.inputText.text = pinCodeStr;
+        
+        [_agreementBtn setImage:[UIImage imageNamed:@"img_select"]forState:UIControlStateNormal];
+        _agreementBtn.tag = aSelect;
+    }else{
+        self.passwordModelTF = [[AAPInPasswordTF alloc]initWithFrame:accountF withPlaceholderText:LocalString(@"Password")];
+        [_agreementBtn setImage:[UIImage imageNamed:@"img_unselect"]forState:UIControlStateNormal];
+        _agreementBtn.tag = aUnselect;
+    }
     
-    self.passwordModelTF = [[AAPInPasswordTF alloc]initWithFrame:accountF withPlaceholderText:LocalString(@"Password")];
     self.passwordModelTF.inputText.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.passwordModelTF.inputText.autocorrectionType = UITextAutocorrectionTypeNo;
-    self.passwordModelTF.inputText.keyboardType = UIKeyboardTypeASCIICapable;
+    self.passwordModelTF.inputText.keyboardType = UIKeyboardTypeNumberPad;
+    self.passwordModelTF.inputText.secureTextEntry = YES;
     self.passwordModelTF.frame = accountF;
     self.passwordModelTF.inputText.delegate = self;
     [self.view addSubview:self.passwordModelTF];
@@ -232,10 +252,10 @@
 -(void)checkAgreement{
     if (_agreementBtn.tag == aUnselect) {
         _agreementBtn.tag = aSelect;
-        [_agreementBtn setImage:[UIImage imageNamed:@"img_unselect"] forState:UIControlStateNormal];
+        [_agreementBtn setImage:[UIImage imageNamed:@"img_select"] forState:UIControlStateNormal];
     }else if (_agreementBtn.tag == aSelect) {
         _agreementBtn.tag = aUnselect;
-        [_agreementBtn setImage:[UIImage imageNamed:@"img_select"] forState:UIControlStateNormal];
+        [_agreementBtn setImage:[UIImage imageNamed:@"img_unselect"] forState:UIControlStateNormal];
     }
     
 }

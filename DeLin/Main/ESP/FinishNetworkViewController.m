@@ -37,7 +37,7 @@
     NSLog(@"key---%@",manager.key);
     //开始配网状态
     //ap配网模式
-    [[GizWifiSDK sharedInstance] setDeviceOnboardingDeploy:manager.ssid key:manager.key configMode:GizWifiSoftAP softAPSSIDPrefix:@"XPG-GAgent-" timeout:60 wifiGAgentType:nil bind:NO];
+    [[GizWifiSDK sharedInstance] setDeviceOnboardingDeploy:manager.ssid key:manager.key configMode:GizWifiSoftAP softAPSSIDPrefix:@"Robot_2_Mow" timeout:60 wifiGAgentType:nil bind:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
