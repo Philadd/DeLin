@@ -101,8 +101,7 @@ NSString *const CellIdentifier_SelectDeviceCell = @"SelectDeviceCell";
     }
     //重写frame 自定义Cell之间的间距
     [cell setFrame:CGRectMake(0, 0, ScreenWidth, yAutoFit(100))];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
+    cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed: @"img_deviceInfo_arrow"]];
     switch (indexPath.row) {
         case 0:
             cell.chooseImage.image = [UIImage imageNamed:@"img_selectDeviceRM18_Cell"];
