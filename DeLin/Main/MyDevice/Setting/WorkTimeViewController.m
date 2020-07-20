@@ -37,6 +37,7 @@ NSString *const CellIdentifier_WorkTime = @"CellID_WorkTime";
     NSIndexPath *selectIndexPath;
     UITextField *selectHoursTF;
     UITextField *selectMinutesTF;
+    NSTimeInterval timeW;
 }
 
 static CGFloat cellHeight = 60.0;
@@ -479,14 +480,21 @@ static CGFloat cellHeight = 60.0;
      中七位：周一至周日的时间的 分钟位;
      后七位：周一至周日的进行工作状态是否开启;
      */
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    NSTimeInterval currentTimeW = [NSDate date].timeIntervalSince1970;
+    if (currentTimeW - timeW > 1 ) {
         
-        UInt8 controlCode = 0x01;
-        NSArray *data = @[@0x00,@0x01,@0x04,@0x01];
-        NSArray *workData = [data arrayByAddingObjectsFromArray:self.selectrowArray];
-        [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:workData failuer:nil];
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            
+            UInt8 controlCode = 0x01;
+            NSArray *data = @[@0x00,@0x01,@0x04,@0x01];
+            NSArray *workData = [data arrayByAddingObjectsFromArray:self.selectrowArray];
+            [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:workData failuer:nil];
+            
+        });
         
-    });
+        timeW = currentTimeW;
+    }
+    
 }
 
 //- (void)goMowerTime
