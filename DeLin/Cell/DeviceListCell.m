@@ -20,21 +20,21 @@
             _deviceImage = [[UIImageView alloc] init];
             [self.contentView addSubview:_deviceImage];
             [_deviceImage mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.size.mas_equalTo(CGSizeMake(yAutoFit(120.f), yAutoFit(80.f)));
+                make.size.mas_equalTo(CGSizeMake(yAutoFit(90.f), yAutoFit(50.f)));
                 make.left.equalTo(self.contentView.mas_left).offset(yAutoFit(40.f));
                 make.centerY.equalTo(self.contentView.mas_centerY);
             }];
         }
         if (!_deviceListLabel) {
             _deviceListLabel = [[UILabel alloc] init];
-            _deviceListLabel.font = [UIFont systemFontOfSize:16.f];
+            _deviceListLabel.font = [UIFont systemFontOfSize:20.f];
             _deviceListLabel.backgroundColor = [UIColor clearColor];
             _deviceListLabel.textColor = [UIColor whiteColor];
             _deviceListLabel.adjustsFontSizeToFitWidth = YES;
             _deviceListLabel.textAlignment = NSTextAlignmentLeft;
             [self.contentView addSubview:_deviceListLabel];
             [_deviceListLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.size.mas_equalTo(CGSizeMake(yAutoFit(145), yAutoFit(30)));
+                make.size.mas_equalTo(CGSizeMake(yAutoFit(150), yAutoFit(30)));
                 make.left.equalTo(self.deviceImage.mas_right).offset(yAutoFit(30));
                 make.centerY.equalTo(self.contentView.mas_centerY);
             }];

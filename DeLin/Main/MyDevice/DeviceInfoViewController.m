@@ -15,7 +15,7 @@
 #import "YTFAlertController.h"
 
 NSString *const CellIdentifier_DeviceList = @"CellID_DeviceList";
-static float HEIGHT_CELL = 120.f;
+static float HEIGHT_CELL = 100.f;
 
 @interface DeviceInfoViewController () <UITableViewDelegate,UITableViewDataSource, GizWifiSDKDelegate>
 
@@ -242,7 +242,7 @@ static float HEIGHT_CELL = 120.f;
     }
     GizWifiDevice *device = _deviceArray[indexPath.row];
     cell.deviceImage.image = [UIImage imageNamed:@"img_selectDeviceRM18_Cell"];
-    //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed: @"img_deviceInfo_arrow"]];
     
     cell.deviceListLabel.text = device.alias;
     if ([device.alias isEqualToString:@""]) {
