@@ -57,7 +57,7 @@ static float HEIGHT_CELL = 50.f;
 #pragma mark - setters and getters
 
 - (void)setNavItem{
-    self.navigationItem.title = LocalString(@"NEW ID");
+    self.navigationItem.title = LocalString(@"A NEW USER");
 }
 
 - (UIView *)labelBgView{
@@ -67,7 +67,7 @@ static float HEIGHT_CELL = 50.f;
         [self.view addSubview:_labelBgView];
         
         UILabel *welcomelabel = [[UILabel alloc] init];
-        welcomelabel.text = LocalString(@"Your details");
+        welcomelabel.text = LocalString(@"Your personal information");
         welcomelabel.font = [UIFont systemFontOfSize:25.f];
         welcomelabel.textColor = [UIColor whiteColor];
         welcomelabel.textAlignment = NSTextAlignmentCenter;
@@ -80,7 +80,7 @@ static float HEIGHT_CELL = 50.f;
         }];
         
         UILabel *tiplabel = [[UILabel alloc] init];
-        tiplabel.text = LocalString(@"We'll need a few details to create your login");
+        tiplabel.text = LocalString(@"To create an account,we need your personal information");
         tiplabel.font = [UIFont systemFontOfSize:16.f];
         tiplabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.7];;
         tiplabel.numberOfLines = 0;
@@ -122,7 +122,7 @@ static float HEIGHT_CELL = 50.f;
 - (UIButton *)continueBtn{
     if (!_continueBtn) {
         _continueBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_continueBtn setTitle:LocalString(@"Submit") forState:UIControlStateNormal];
+        [_continueBtn setTitle:LocalString(@"Continue To") forState:UIControlStateNormal];
         [_continueBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_continueBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_continueBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:1.f]];
@@ -163,7 +163,7 @@ static float HEIGHT_CELL = 50.f;
         cell = [[NewUserIDCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier_NewUserIDCell];
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.leftLabel.text = LocalString(@"地区");
+    cell.leftLabel.text = LocalString(@"Region");
     cell.rightLabel.text = self->regionStr;
     
     return cell;

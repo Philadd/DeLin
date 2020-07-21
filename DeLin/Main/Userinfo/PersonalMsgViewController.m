@@ -60,7 +60,7 @@
         }];
         
         UILabel *tiplabel = [[UILabel alloc] init];
-        tiplabel.text = LocalString(@"To create a login account, we also need some of your personal information");
+        tiplabel.text = LocalString(@"To create an account,we need your personal information");
         tiplabel.font = [UIFont systemFontOfSize:16.f];
         tiplabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.7];
         tiplabel.numberOfLines = 0;
@@ -80,7 +80,7 @@
 - (UIButton *)continueBtn{
     if (!_continueBtn) {
         _continueBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_continueBtn setTitle:LocalString(@"Submit") forState:UIControlStateNormal];
+        [_continueBtn setTitle:LocalString(@"Continue To") forState:UIControlStateNormal];
         [_continueBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_continueBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_continueBtn setBackgroundColor:[UIColor colorWithRed:153/255.0 green:153/255.0 blue:153/255.0 alpha:1.f]];

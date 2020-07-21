@@ -45,7 +45,7 @@
         [self.view addSubview:_labelBgView];
         
         UILabel *welcomelabel = [[UILabel alloc] init];
-        welcomelabel.text = LocalString(@"Your details");
+        welcomelabel.text = LocalString(@"Your personal information");
         welcomelabel.font = [UIFont systemFontOfSize:25.f];
         welcomelabel.textColor = [UIColor whiteColor];
         welcomelabel.textAlignment = NSTextAlignmentCenter;
@@ -78,7 +78,7 @@
 - (UIButton *)continueBtn{
     if (!_continueBtn) {
         _continueBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_continueBtn setTitle:LocalString(@"Submit") forState:UIControlStateNormal];
+        [_continueBtn setTitle:LocalString(@"Continue To") forState:UIControlStateNormal];
         [_continueBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_continueBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_continueBtn setBackgroundColor:[UIColor colorWithRed:153/255.0 green:153/255.0 blue:153/255.0 alpha:1.f]];
@@ -130,7 +130,7 @@
 
     CGRect accountF = CGRectMake(yAutoFit(15), getRectNavAndStatusHight + yAutoFit(170), yAutoFit(320), yAutoFit(60));
     
-    self.accountModel = [[AAEmailTextField alloc]initWithFrame:accountF withPlaceholderText:LocalString(@"Address e-mail")];
+    self.accountModel = [[AAEmailTextField alloc]initWithFrame:accountF withPlaceholderText:LocalString(@"Email address")];
     self.accountModel.inputText.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.accountModel.inputText.autocorrectionType = UITextAutocorrectionTypeNo;
     self.accountModel.inputText.keyboardType = UIKeyboardTypeEmailAddress;

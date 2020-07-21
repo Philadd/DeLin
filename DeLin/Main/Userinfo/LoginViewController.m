@@ -93,7 +93,7 @@
 - (UIButton *)loginBtn{
     if (!_loginBtn) {
         _loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_loginBtn setTitle:LocalString(@"Submit") forState:UIControlStateNormal];
+        [_loginBtn setTitle:LocalString(@"Continue To") forState:UIControlStateNormal];
         [_loginBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_loginBtn setBackgroundColor:[UIColor colorWithRed:153/255.0 green:153/255.0 blue:153/255.0 alpha:1.f]];
@@ -163,7 +163,7 @@
     
     CGRect emailF = CGRectMake(yAutoFit(15), getRectNavAndStatusHight + yAutoFit(200), yAutoFit(320), yAutoFit(60));
     
-    self.emailModelTF = [[AAEmailTextField alloc]initWithFrame:emailF withPlaceholderText:LocalString(@"Address e-mail")];
+    self.emailModelTF = [[AAEmailTextField alloc]initWithFrame:emailF withPlaceholderText:LocalString(@"Email address")];
     self.emailModelTF.inputText.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.emailModelTF.inputText.autocorrectionType = UITextAutocorrectionTypeNo;
     self.emailModelTF.inputText.keyboardType = UIKeyboardTypeEmailAddress;

@@ -86,7 +86,7 @@
 - (UIButton *)loginBtn{
     if (!_loginBtn) {
         _loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_loginBtn setTitle:LocalString(@"Submit") forState:UIControlStateNormal];
+        [_loginBtn setTitle:LocalString(@"Continue To") forState:UIControlStateNormal];
         [_loginBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_loginBtn setBackgroundColor:[UIColor colorWithRed:220/255.0 green:168/255.0 blue:11/255.0 alpha:1.f]];
