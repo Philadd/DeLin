@@ -272,7 +272,7 @@
         }];
 
         UILabel *timelabel = [[UILabel alloc] init];
-        timelabel.text = LocalString(@"Next Working");
+        timelabel.text = LocalString(@"Next working");
         timelabel.font = [UIFont systemFontOfSize:14.f];
         timelabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.7];
         timelabel.textAlignment = NSTextAlignmentCenter;
@@ -667,7 +667,7 @@
 - (void)goStart{
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:LocalString(@"Please make sure that boundary wire is settled correctly and machine is inside charging base!") preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:LocalString(@"OK") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:LocalString(@"Ok") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
         UInt8 controlCode = 0x01;
         NSArray *data = @[@0x00,@0x01,@0x09,@0x01];
@@ -676,7 +676,7 @@
     }];
     //[okAction setValue:[UIColor ] forKey:@"titleTextColor"];
     
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:LocalString(@"CANCEL") style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:LocalString(@"Cancel") style:UIAlertActionStyleCancel handler:nil];
     //[cancelAction setValue:[UIColor blackColor] forKey:@"titleTextColor"];
     [alert addAction:okAction];
     [alert addAction:cancelAction];

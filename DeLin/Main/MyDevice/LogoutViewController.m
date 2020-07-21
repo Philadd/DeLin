@@ -79,7 +79,7 @@
         }];
         
         _logoutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_logoutBtn setTitle:LocalString(@"logout") forState:UIControlStateNormal];
+        [_logoutBtn setTitle:LocalString(@"Logout") forState:UIControlStateNormal];
         [_logoutBtn setTitleColor:[UIColor colorWithHexString:@"FDA31A"] forState:UIControlStateNormal];
         [_logoutBtn.titleLabel setFont:[UIFont systemFontOfSize:16.f]];
         [_logoutBtn addTarget:self action:@selector(goLogout) forControlEvents:UIControlEventTouchUpInside];

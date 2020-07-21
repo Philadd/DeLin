@@ -41,7 +41,7 @@
 
 #pragma mark - Lazy load
 - (void)setNavItem{
-    self.navigationItem.title = LocalString(@"PIN Code Setting");
+    self.navigationItem.title = LocalString(@"Pin code setting");
 }
 
 - (UIView *)bgTipView{
@@ -60,7 +60,7 @@
         tipLabel.backgroundColor = [UIColor clearColor];
         tipLabel.textColor = [UIColor colorWithHexString:@"333333"];
         tipLabel.textAlignment = NSTextAlignmentCenter;
-        tipLabel.text = LocalString(@"PIN Code Setting:");
+        tipLabel.text = LocalString(@"Pin code setting:");
         tipLabel.adjustsFontSizeToFitWidth = YES;
         [self.bgTipView addSubview:tipLabel];
         [tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -95,7 +95,7 @@
         _oldPinCodeTF.layer.borderWidth = 0.5;
         _oldPinCodeTF.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
         _oldPinCodeTF.layer.cornerRadius = 2.5f;
-        _oldPinCodeTF.placeholder = LocalString(@"Old PIN Code");
+        _oldPinCodeTF.placeholder = LocalString(@"Old pin code");
     }
     return _oldPinCodeTF;
 }
@@ -122,7 +122,7 @@
         _pinCodeTF.layer.borderWidth = 0.5;
         _pinCodeTF.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
         _pinCodeTF.layer.cornerRadius = 2.5f;
-        _pinCodeTF.placeholder = LocalString(@"New PIN Code");
+        _pinCodeTF.placeholder = LocalString(@"New pin code");
         
     }
     return _pinCodeTF;
@@ -150,7 +150,7 @@
         _repeatpinCodeTF.layer.borderWidth = 0.5;
         _repeatpinCodeTF.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
         _repeatpinCodeTF.layer.cornerRadius = 2.5f;
-        _repeatpinCodeTF.placeholder = LocalString(@"Repeat New PIN Code");
+        _repeatpinCodeTF.placeholder = LocalString(@"Repeat new pin code");
     }
     return _repeatpinCodeTF;
 }
@@ -195,7 +195,7 @@
 - (void)sure{
     
     if (self.oldPinCodeTF.text.length != 4 || self.pinCodeTF.text.length != 4 || self.repeatpinCodeTF.text.length != 4) {
-        [NSObject showHudTipStr:LocalString(@"PinCode restrictions 4 digits")];
+        [NSObject showHudTipStr:LocalString(@"Pin code restrictions 4 digits")];
     }else if (![self.pinCodeTF.text isEqualToString:self.repeatpinCodeTF.text])
     {
         [NSObject showHudTipStr:LocalString(@"Two input is inconsistent")];

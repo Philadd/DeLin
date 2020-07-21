@@ -41,7 +41,7 @@
 #pragma mark - setters and getters
 
 - (void)setNavItem{
-    self.navigationItem.title = LocalString(@"A NEW USER");
+    self.navigationItem.title = LocalString(@"A new user");
 }
 
 - (UIView *)labelBgView{
@@ -118,7 +118,7 @@
 - (UIButton *)continueBtn{
     if (!_continueBtn) {
         _continueBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_continueBtn setTitle:LocalString(@"Continue To") forState:UIControlStateNormal];
+        [_continueBtn setTitle:LocalString(@"Continue to") forState:UIControlStateNormal];
         [_continueBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_continueBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_continueBtn setBackgroundColor:[UIColor colorWithRed:153/255.0 green:153/255.0 blue:153/255.0 alpha:1.f]];

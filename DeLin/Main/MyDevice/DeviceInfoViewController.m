@@ -263,12 +263,12 @@ static float HEIGHT_CELL = 100.f;
 }
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:LocalString(@"delete") handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:LocalString(@"Delete") handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
         NSLog(@"点击了删除");
         GizWifiDevice *device = self.deviceArray[indexPath.row];
         //提示框
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:LocalString(@"Are you sure to delete ?")preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:LocalString(@"OK") style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:LocalString(@"Ok") style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
             NSLog(@"action = %@",action);
             
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -277,7 +277,7 @@ static float HEIGHT_CELL = 100.f;
             [[GizWifiSDK sharedInstance] unbindDevice:userUid token:userToken did:device.did];
             
         }];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:LocalString(@"CANCEL") style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:LocalString(@"Cancel") style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
             [self.navigationController popToRootViewControllerAnimated:YES];
             NSLog(@"action = %@",action);
         }];
@@ -383,15 +383,15 @@ static float HEIGHT_CELL = 100.f;
         };
         alert.modalPresentationStyle = UIModalPresentationOverCurrentContext;
         [self presentViewController:alert animated:NO completion:^{
-            alert.titleLabel.text = LocalString(@"Change Name");
+            alert.titleLabel.text = LocalString(@"Change name");
             
             if ([device.alias isEqualToString:@""]) {
                 alert.textField.text = LocalString(@"Robot_2_Mow");
             }else{
                 alert.textField.text = device.alias;
             }
-            [alert.leftBtn setTitle:LocalString(@"CANCEL") forState:UIControlStateNormal];
-            [alert.rightBtn setTitle:LocalString(@"OK") forState:UIControlStateNormal];
+            [alert.leftBtn setTitle:LocalString(@"Cancel") forState:UIControlStateNormal];
+            [alert.rightBtn setTitle:LocalString(@"Ok") forState:UIControlStateNormal];
         }];
         
     }

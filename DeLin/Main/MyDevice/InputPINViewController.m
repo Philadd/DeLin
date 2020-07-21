@@ -53,7 +53,7 @@
 #pragma mark - setters and getters
 
 - (void)setNavItem{
-    self.navigationItem.title = LocalString(@"A NEW USER");
+    self.navigationItem.title = LocalString(@"A new user");
 }
 
 - (UIView *)labelBgView{
@@ -63,7 +63,7 @@
         [self.view addSubview:_labelBgView];
         
         UILabel *welcomelabel = [[UILabel alloc] init];
-        welcomelabel.text = LocalString(@"Please input PIN Code");
+        welcomelabel.text = LocalString(@"Please input pin code");
         welcomelabel.font = [UIFont systemFontOfSize:25.f];
         welcomelabel.textColor = [UIColor whiteColor];
         welcomelabel.textAlignment = NSTextAlignmentCenter;
@@ -109,7 +109,7 @@
         }];
         
         UILabel *agreementLabel = [[UILabel alloc] init];
-        agreementLabel.text = LocalString(@"keep me loggged in");
+        agreementLabel.text = LocalString(@"Remember the password?");
         agreementLabel.font = [UIFont systemFontOfSize:14.f];
         agreementLabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.7];
         agreementLabel.numberOfLines = 0;
@@ -128,7 +128,7 @@
 - (UIButton *)continueBtn{
     if (!_continueBtn) {
         _continueBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_continueBtn setTitle:LocalString(@"Continue To") forState:UIControlStateNormal];
+        [_continueBtn setTitle:LocalString(@"Continue to") forState:UIControlStateNormal];
         [_continueBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_continueBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_continueBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:1.f]];

@@ -9,13 +9,14 @@
 #import "LoginPasswordController.h"
 #import "AAPasswordTF.h"
 #import "DeviceInfoViewController.h"
+#import "ForgetpasswordViewController.h"
 
 @interface LoginPasswordController ()<UITextFieldDelegate,GizWifiSDKDelegate>
 
 @property (nonatomic, strong) UIView *labelBgView;
 @property (nonatomic, strong) AAPasswordTF *passwordModelTF;
 @property (nonatomic, strong) UIButton *loginBtn;
-
+@property (nonatomic, strong) UIButton *forgetPWBtn;
 
 @end
 
@@ -29,6 +30,7 @@
     [self setNavItem];
     [self setUItextField];
     _loginBtn = [self loginBtn];
+    _forgetPWBtn = [self forgetPWBtn];
     
 }
 
@@ -43,7 +45,7 @@
 #pragma mark - setters and getters
 
 - (void)setNavItem{
-    self.navigationItem.title = LocalString(@"LOGIN");
+    self.navigationItem.title = LocalString(@"Login");
 }
 
 - (UIView *)labelBgView{
@@ -83,10 +85,28 @@
     return _labelBgView;
 }
 
+- (UIButton *)forgetPWBtn{
+    if (!_forgetPWBtn) {
+        _forgetPWBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_forgetPWBtn setTitle:LocalString(@"Forgot password？") forState:UIControlStateNormal];
+        [_forgetPWBtn setTitleColor:[UIColor colorWithHexString:@"FDA31A"] forState:UIControlStateNormal];
+        [_forgetPWBtn.titleLabel setFont:[UIFont systemFontOfSize:16.f]];
+        [_forgetPWBtn addTarget:self action:@selector(forgetPW) forControlEvents:UIControlEventTouchUpInside];
+        //_forgetPWBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
+        [self.view addSubview:_forgetPWBtn];
+        [_forgetPWBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(150), yAutoFit(20)));
+            make.top.equalTo(self.labelBgView.mas_bottom).offset(yAutoFit(200));
+            make.centerX.equalTo(self.view.mas_centerX);
+        }];
+    }
+    return _forgetPWBtn;
+}
+
 - (UIButton *)loginBtn{
     if (!_loginBtn) {
         _loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_loginBtn setTitle:LocalString(@"Continue To") forState:UIControlStateNormal];
+        [_loginBtn setTitle:LocalString(@"Continue to") forState:UIControlStateNormal];
         [_loginBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_loginBtn setBackgroundColor:[UIColor colorWithRed:220/255.0 green:168/255.0 blue:11/255.0 alpha:1.f]];
@@ -202,6 +222,15 @@
 - (void)goLogin{
     
     [[GizWifiSDK sharedInstance] userLogin:self.emailStr password:self.passwordModelTF.inputText.text];
+    
+}
+
+- (void)forgetPW{
+    
+    ForgetpasswordViewController *ForgetVC = [[ForgetpasswordViewController alloc] init];
+    ForgetVC.emailResetStr = self.emailStr;
+    ForgetVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:ForgetVC animated:YES completion:nil];
     
 }
 

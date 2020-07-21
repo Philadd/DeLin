@@ -57,7 +57,7 @@
         _titleLabel.backgroundColor = [UIColor clearColor];
         _titleLabel.textColor = [UIColor colorWithHexString:@"FFFFFF"];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.text = LocalString(@"Forget Password");
+        _titleLabel.text = LocalString(@"Forget password");
         _titleLabel.adjustsFontSizeToFitWidth = YES;
         [self.view addSubview:_titleLabel];
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -122,7 +122,7 @@
         }];
         
         UILabel *tiplabel = [[UILabel alloc] init];
-        tiplabel.text = [NSString stringWithFormat:@"%@\n%@",LocalString(@"We will send you the steps to reset your password. First, please your email address:"),self.emailResetStr];
+        tiplabel.text = [NSString stringWithFormat:@"%@\n%@",LocalString(@"We will send you the steps to reset your password.First,please your email address:"),self.emailResetStr];
         tiplabel.font = [UIFont systemFontOfSize:16.f];
         tiplabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.7];
         tiplabel.numberOfLines = 0;
@@ -233,7 +233,7 @@
 - (UIButton *)okBtn{
     if (!_okBtn) {
         _okBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_okBtn setTitle:LocalString(@"OK") forState:UIControlStateNormal];
+        [_okBtn setTitle:LocalString(@"Ok") forState:UIControlStateNormal];
         [_okBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_okBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_okBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:1.f]];

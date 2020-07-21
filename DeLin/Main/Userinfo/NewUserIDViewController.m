@@ -57,7 +57,7 @@ static float HEIGHT_CELL = 50.f;
 #pragma mark - setters and getters
 
 - (void)setNavItem{
-    self.navigationItem.title = LocalString(@"A NEW USER");
+    self.navigationItem.title = LocalString(@"A new user");
 }
 
 - (UIView *)labelBgView{
@@ -122,7 +122,7 @@ static float HEIGHT_CELL = 50.f;
 - (UIButton *)continueBtn{
     if (!_continueBtn) {
         _continueBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_continueBtn setTitle:LocalString(@"Continue To") forState:UIControlStateNormal];
+        [_continueBtn setTitle:LocalString(@"Continue to") forState:UIControlStateNormal];
         [_continueBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_continueBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_continueBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:1.f]];
@@ -162,7 +162,7 @@ static float HEIGHT_CELL = 50.f;
     if (cell == nil) {
         cell = [[NewUserIDCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier_NewUserIDCell];
     }
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed: @"img_deviceInfo_arrow"]];
     cell.leftLabel.text = LocalString(@"Region");
     cell.rightLabel.text = self->regionStr;
     

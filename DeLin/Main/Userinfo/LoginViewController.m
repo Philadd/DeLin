@@ -9,7 +9,6 @@
 #import "LoginViewController.h"
 #import "AppDelegate.h"
 #import "RegisterViewController.h"
-#import "ForgetpasswordViewController.h"
 #import "AAEmailTextField.h"
 #import "LoginPasswordController.h"
 
@@ -18,7 +17,6 @@
 @property (nonatomic, strong) UIView *labelBgView;
 @property (nonatomic, strong) AAEmailTextField *emailModelTF;
 @property (nonatomic, strong) UIButton *loginBtn;
-@property (nonatomic, strong) UIButton *forgetPWBtn;
 
 @end
 
@@ -35,7 +33,7 @@
     [self setNavItem];
     [self setUItextField];
     _loginBtn = [self loginBtn];
-    _forgetPWBtn = [self forgetPWBtn];
+    
     
 }
 
@@ -50,7 +48,7 @@
 #pragma mark - setters and getters
 
 - (void)setNavItem{
-    self.navigationItem.title = LocalString(@"LOGIN");
+    self.navigationItem.title = LocalString(@"Login");
 }
 
 - (UIView *)labelBgView{
@@ -93,7 +91,7 @@
 - (UIButton *)loginBtn{
     if (!_loginBtn) {
         _loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_loginBtn setTitle:LocalString(@"Continue To") forState:UIControlStateNormal];
+        [_loginBtn setTitle:LocalString(@"Continue to") forState:UIControlStateNormal];
         [_loginBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_loginBtn setBackgroundColor:[UIColor colorWithRed:153/255.0 green:153/255.0 blue:153/255.0 alpha:1.f]];
@@ -117,24 +115,6 @@
     return _loginBtn;
 }
 
-- (UIButton *)forgetPWBtn{
-    if (!_forgetPWBtn) {
-        _forgetPWBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_forgetPWBtn setTitle:LocalString(@"Forgot password？") forState:UIControlStateNormal];
-        [_forgetPWBtn setTitleColor:[UIColor colorWithHexString:@"FDA31A"] forState:UIControlStateNormal];
-        [_forgetPWBtn.titleLabel setFont:[UIFont systemFontOfSize:16.f]];
-        [_forgetPWBtn addTarget:self action:@selector(forgetPW) forControlEvents:UIControlEventTouchUpInside];
-        //_forgetPWBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
-        [self.view addSubview:_forgetPWBtn];
-        [_forgetPWBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(150), yAutoFit(20)));
-            make.top.equalTo(self.labelBgView.mas_bottom).offset(yAutoFit(200));
-            make.centerX.equalTo(self.view.mas_centerX);
-        }];
-    }
-    return _forgetPWBtn;
-}
-
 #pragma mark - UITextField Delegate
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
@@ -152,8 +132,10 @@
         [_loginBtn setBackgroundColor:[UIColor colorWithRed:153/255.0 green:153/255.0 blue:153/255.0 alpha:1.f]];
         _loginBtn.enabled = NO;
     }else{
-        [_loginBtn setBackgroundColor:[UIColor colorWithRed:220/255.0 green:168/255.0 blue:11/255.0 alpha:1.f]];
-        _loginBtn.enabled = YES;
+        if ([NSString validateEmail:self.emailModelTF.inputText.text]) {
+            [_loginBtn setBackgroundColor:[UIColor colorWithRed:220/255.0 green:168/255.0 blue:11/255.0 alpha:1.f]];
+            _loginBtn.enabled = YES;
+        }
     }
 }
 
@@ -185,25 +167,10 @@
 #pragma mark - Actions
 - (void)goLogin{
     
-    if (self.emailModelTF.inputText.text.length > 0) {
-        LoginPasswordController *loginVC = [[LoginPasswordController alloc] init];
-        loginVC.emailStr = self.emailModelTF.inputText.text;
-        [self.navigationController pushViewController:loginVC animated:YES];
-    }else{
-        [NSObject showHudTipStr:LocalString(@"Please enter your email address")];
-    }
+    LoginPasswordController *loginVC = [[LoginPasswordController alloc] init];
+    loginVC.emailStr = self.emailModelTF.inputText.text;
+    [self.navigationController pushViewController:loginVC animated:YES];
     
-}
-
-- (void)forgetPW{
-    if (self.emailModelTF.inputText.text.length > 0) {
-        ForgetpasswordViewController *ForgetVC = [[ForgetpasswordViewController alloc] init];
-        ForgetVC.emailResetStr = self.emailModelTF.inputText.text;
-        ForgetVC.modalPresentationStyle = UIModalPresentationFullScreen;
-        [self presentViewController:ForgetVC animated:YES completion:nil];
-    }else{
-        [NSObject showHudTipStr:LocalString(@"Please enter your email address")];
-    }
 }
 
 @end

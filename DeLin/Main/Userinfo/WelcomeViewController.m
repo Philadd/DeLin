@@ -65,7 +65,7 @@
         }];
         
         UILabel *tiplabel = [[UILabel alloc] init];
-        tiplabel.text = LocalString(@"From the beginning, applications can help you make the most of your connected devices.");
+        tiplabel.text = LocalString(@"From the beginning,applications can help you make the most of your connected devices.");
         tiplabel.font = [UIFont systemFontOfSize:16.f];
         tiplabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.7];
         tiplabel.numberOfLines = 0;
@@ -86,7 +86,7 @@
 - (UIButton *)signUpBtn{
     if (!_signUpBtn) {
         _signUpBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_signUpBtn setTitle:LocalString(@"NEW ID") forState:UIControlStateNormal];
+        [_signUpBtn setTitle:LocalString(@"A new user") forState:UIControlStateNormal];
         [_signUpBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_signUpBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_signUpBtn setBackgroundColor:[UIColor colorWithRed:253/255.0 green:153/255.0 blue:0/255.0 alpha:1.f]];
@@ -113,7 +113,7 @@
 - (UIButton *)signInBtn{
     if (!_signInBtn) {
         _signInBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_signInBtn setTitle:LocalString(@"LOGIN") forState:UIControlStateNormal];
+        [_signInBtn setTitle:LocalString(@"Login") forState:UIControlStateNormal];
         [_signInBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_signInBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_signInBtn setBackgroundColor:[UIColor colorWithRed:248/255.0 green:180/255.0 blue:18/255.0 alpha:1.f]];

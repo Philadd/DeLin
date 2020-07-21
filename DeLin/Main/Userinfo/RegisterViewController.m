@@ -65,7 +65,7 @@
         _emailTF.layer.borderWidth = 0.5;
         _emailTF.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
         _emailTF.layer.cornerRadius = 2.5f;
-        _emailTF.placeholder = LocalString(@"e-mail");
+        _emailTF.placeholder = LocalString(@"Email");
     }
     return _emailTF;
 }
@@ -92,7 +92,7 @@
         _passwordTF.layer.borderWidth = 0.5;
         _passwordTF.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
         _passwordTF.layer.cornerRadius = 2.5f;
-        _passwordTF.placeholder = LocalString(@"password");
+        _passwordTF.placeholder = LocalString(@"Password");
         
     }
     return _passwordTF;
@@ -120,7 +120,7 @@
         _repeatpasswordTF.layer.borderWidth = 0.5;
         _repeatpasswordTF.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
         _repeatpasswordTF.layer.cornerRadius = 2.5f;
-        _repeatpasswordTF.placeholder = LocalString(@"repeat password");
+        _repeatpasswordTF.placeholder = LocalString(@"Repeat password");
     }
     return _repeatpasswordTF;
 }
