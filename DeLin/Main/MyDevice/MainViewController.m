@@ -316,7 +316,7 @@
         _robotErrorLabel.backgroundColor = [UIColor clearColor];
         _robotErrorLabel.textColor = [UIColor colorWithHexString:@"333333"];
         _robotErrorLabel.textAlignment = NSTextAlignmentCenter;
-        _robotErrorLabel.text = LocalString(@"WARNING MASSAGE....");
+        _robotErrorLabel.text = LocalString(@"Offline");
         _robotErrorLabel.adjustsFontSizeToFitWidth = YES;
         [_bgTipView addSubview:_robotErrorLabel];
         [self.robotErrorLabel mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -8,7 +8,6 @@
 
 #import "LoginViewController.h"
 #import "AppDelegate.h"
-#import "RegisterViewController.h"
 #import "AAEmailTextField.h"
 #import "LoginPasswordController.h"
 

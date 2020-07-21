@@ -63,7 +63,7 @@
         [self.view addSubview:_labelBgView];
         
         UILabel *welcomelabel = [[UILabel alloc] init];
-        welcomelabel.text = LocalString(@"Please input pin code");
+        welcomelabel.text = LocalString(@"Please enter the device password");
         welcomelabel.font = [UIFont systemFontOfSize:25.f];
         welcomelabel.textColor = [UIColor whiteColor];
         welcomelabel.textAlignment = NSTextAlignmentCenter;
@@ -76,7 +76,7 @@
         }];
         
         UILabel *tiplabel = [[UILabel alloc] init];
-        tiplabel.text = LocalString(@"Passwords should be 4 characters");
+        tiplabel.text = LocalString(@"Please refer to the manual for details at the beginning.");
         tiplabel.font = [UIFont systemFontOfSize:16.f];
         tiplabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.7];
         tiplabel.numberOfLines = 0;
@@ -109,7 +109,7 @@
         }];
         
         UILabel *agreementLabel = [[UILabel alloc] init];
-        agreementLabel.text = LocalString(@"Remember the password?");
+        agreementLabel.text = LocalString(@"Remember the password");
         agreementLabel.font = [UIFont systemFontOfSize:14.f];
         agreementLabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.7];
         agreementLabel.numberOfLines = 0;
@@ -229,7 +229,7 @@
     if (currentTime - time >1) {
         
         if (self.passwordModelTF.inputText.text.length != 4) {
-            [NSObject showHudTipStr:LocalString(@"PinCode restrictions 4 digits")];
+            [NSObject showHudTipStr:LocalString(@"Pin needs 4 digits")];
         }else{
             
             dispatch_async(dispatch_get_main_queue(), ^{

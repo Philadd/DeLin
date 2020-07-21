@@ -22,7 +22,7 @@
 
 @property (nonatomic, strong) UIView *labelBgView;
 @property (nonatomic, strong) UIButton *continueBtn;
-@property (nonatomic, strong) UIButton *agreementBtn;
+//@property (nonatomic, strong) UIButton *agreementBtn;
 
 @property (nonatomic, strong) AAWiFiPasswordTF *passwordModelTF;
 
@@ -38,7 +38,7 @@
     
     _labelBgView = [self labelBgView];
     _wifiNameTF = [self wifiNameTF];
-    _agreementBtn = [self agreementBtn];
+    //_agreementBtn = [self agreementBtn];
     _continueBtn = [self continueBtn];
     [self setUItextField];
     if(@available(iOS 13.0, *)){
@@ -117,7 +117,7 @@
     
     CGRect passwordF = CGRectMake(0, 0, yAutoFit(320), yAutoFit(60));
     
-    self.passwordModelTF = [[AAWiFiPasswordTF alloc]initWithFrame:passwordF withPlaceholderText:LocalString(@"Wi-Fi password")];
+    self.passwordModelTF = [[AAWiFiPasswordTF alloc]initWithFrame:passwordF withPlaceholderText:LocalString(@"Password")];
     self.passwordModelTF.inputText.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.passwordModelTF.inputText.autocorrectionType = UITextAutocorrectionTypeNo;
     self.passwordModelTF.inputText.keyboardType = UIKeyboardTypeASCIICapable;
@@ -142,7 +142,7 @@
     NSLog(@"wifi");
 }
 
-- (UIButton *)agreementBtn{
+/*- (UIButton *)agreementBtn{
     if (!_agreementBtn) {
         _agreementBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _agreementBtn.tag = aUnselect;
@@ -174,7 +174,7 @@
         }];
     }
     return _agreementBtn;
-}
+}*/
 
 - (UIButton *)continueBtn{
     if (!_continueBtn) {
@@ -280,7 +280,7 @@
     }
 }
 
--(void)checkAgreement{
+/*-(void)checkAgreement{
     if (_agreementBtn.tag == aUnselect) {
         _agreementBtn.tag = aSelect;
         [_agreementBtn setImage:[UIImage imageNamed:@"img_unselect"] forState:UIControlStateNormal];
@@ -289,6 +289,6 @@
         [_agreementBtn setImage:[UIImage imageNamed:@"img_select"] forState:UIControlStateNormal];
     }
     
-}
+}*/
 
 @end

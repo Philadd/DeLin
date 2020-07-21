@@ -8,11 +8,12 @@
 
 #import "NewUserSuccessController.h"
 #import "DeviceInfoViewController.h"
+#import "SelectDeviceViewController.h"
 
 @interface NewUserSuccessController ()
 
 @property (nonatomic, strong) UIView *msgCenterView;
-@property (nonatomic, strong) UIButton *AddLaterBtn;
+//@property (nonatomic, strong) UIButton *AddLaterBtn;
 @property (nonatomic, strong) UIButton *AddEquipmentBtn;
 
 @end
@@ -74,18 +75,18 @@
             make.top.equalTo(successlabel.mas_bottom).offset(yAutoFit(10.f));
         }];
         
-        _AddLaterBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_AddLaterBtn setTitle:LocalString(@"Add your device later") forState:UIControlStateNormal];
-        [_AddLaterBtn setTitleColor:[UIColor colorWithHexString:@"FDA31A"] forState:UIControlStateNormal];
-        [_AddLaterBtn.titleLabel setFont:[UIFont systemFontOfSize:16.f]];
-        [_AddLaterBtn addTarget:self action:@selector(AddLater) forControlEvents:UIControlEventTouchUpInside];
-        _AddLaterBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
-        [self.msgCenterView addSubview:_AddLaterBtn];
-        [_AddLaterBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(150), yAutoFit(30)));
-            make.top.equalTo(tiplabel.mas_bottom).offset(yAutoFit(40));
-            make.centerX.equalTo(self.view.mas_centerX);
-        }];
+//        _AddLaterBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [_AddLaterBtn setTitle:LocalString(@"Add your device later") forState:UIControlStateNormal];
+//        [_AddLaterBtn setTitleColor:[UIColor colorWithHexString:@"FDA31A"] forState:UIControlStateNormal];
+//        [_AddLaterBtn.titleLabel setFont:[UIFont systemFontOfSize:16.f]];
+//        [_AddLaterBtn addTarget:self action:@selector(AddLater) forControlEvents:UIControlEventTouchUpInside];
+//        _AddLaterBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
+//        [self.msgCenterView addSubview:_AddLaterBtn];
+//        [_AddLaterBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.size.mas_equalTo(CGSizeMake(yAutoFit(150), yAutoFit(30)));
+//            make.top.equalTo(tiplabel.mas_bottom).offset(yAutoFit(40));
+//            make.centerX.equalTo(self.view.mas_centerX);
+//        }];
 
     }
     return _msgCenterView;
@@ -95,7 +96,7 @@
 - (UIButton *)AddEquipmentBtn{
     if (!_AddEquipmentBtn) {
         _AddEquipmentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_AddEquipmentBtn setTitle:LocalString(@"Add equipment") forState:UIControlStateNormal];
+        [_AddEquipmentBtn setTitle:LocalString(@"Ok") forState:UIControlStateNormal];
         [_AddEquipmentBtn.titleLabel setFont:[UIFont systemFontOfSize:18.f]];
         [_AddEquipmentBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_AddEquipmentBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:1.f]];
@@ -128,8 +129,13 @@
     [self presentViewController:nav animated:YES completion:nil];
 }
 
-- (void)AddLater{
-    
-    
-}
+//- (void)AddLater{
+//
+//    DeviceInfoViewController *InfoVC = [[DeviceInfoViewController alloc] init];
+//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:InfoVC];
+//    //iOS 13 的 presentViewController 默认有视差效果，模态出来的界面现在默认都下滑返回。一些页面必须要点确认才能消失的，需要适配。如果项目中页面高度全部是屏幕尺寸，那么多出来的导航高度会出现问题。
+//    nav.modalPresentationStyle = UIModalPresentationFullScreen;
+//    [self presentViewController:nav animated:YES completion:nil];
+//
+//}
 @end

@@ -39,7 +39,7 @@
         _eyespasswordBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
         [self.inputText addSubview:_eyespasswordBtn];
         [_eyespasswordBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(40.f), yAutoFit(40.f)));
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(25.f), yAutoFit(25.f)));
             make.right.equalTo(self.inputText.mas_right).offset(yAutoFit(- 20.f));
             make.centerY.equalTo(self.inputText.mas_centerY);
         }];

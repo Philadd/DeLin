@@ -37,7 +37,7 @@ static float HEIGHT_CELL = 100.f;
     _msgCenterView = [self msgCenterView];
     _deviceBgView = [self deviceBgView];
     _AddEquipmentBtn = [self AddEquipmentBtn];
-    
+    _deviceBgView.hidden = YES;
     [self setNavItem];
     //开启自动登录
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"isAutoLogin"] == NO) {
@@ -178,7 +178,7 @@ static float HEIGHT_CELL = 100.f;
         [_deviceBgView addSubview:labelBgView];
         
         UILabel *msglabel = [[UILabel alloc] init];
-        msglabel.text = LocalString(@"My equipment");
+        msglabel.text = LocalString(@"My devices");
         msglabel.font = [UIFont systemFontOfSize:25.f];
         msglabel.textColor = [UIColor whiteColor];
         msglabel.textAlignment = NSTextAlignmentCenter;
@@ -267,7 +267,7 @@ static float HEIGHT_CELL = 100.f;
         NSLog(@"点击了删除");
         GizWifiDevice *device = self.deviceArray[indexPath.row];
         //提示框
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:LocalString(@"Are you sure to delete ?")preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:LocalString(@"Are you sure to delete?")preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:LocalString(@"Ok") style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
             NSLog(@"action = %@",action);
             

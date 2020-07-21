@@ -185,9 +185,9 @@
         // 注册失败
         NSLog(@"注册失败%@",result);
         if (result.code == 9022) {
-            [NSObject showHudTipStr:LocalString(@"Failed,email already exists!")];
+            [NSObject showHudTipStr:LocalString(@"email unavailable!")];
         }else{
-            [NSObject showHudTipStr:LocalString(@"Registration failed")];
+            [NSObject showHudTipStr:LocalString(@"fail")];
         }
         
     }

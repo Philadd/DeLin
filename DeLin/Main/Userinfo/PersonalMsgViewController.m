@@ -141,7 +141,7 @@
     
     CGRect firstNameF = CGRectMake(yAutoFit(15), getRectNavAndStatusHight + yAutoFit(200), yAutoFit(160), yAutoFit(60));
     
-    self.firstNameTFModel = [[AAPersonalFirstNameTF alloc]initWithFrame:firstNameF withPlaceholderText:LocalString(@"FirstName")];
+    self.firstNameTFModel = [[AAPersonalFirstNameTF alloc]initWithFrame:firstNameF withPlaceholderText:LocalString(@"First name")];
     self.firstNameTFModel.inputFirstNameTF.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.firstNameTFModel.inputFirstNameTF.autocorrectionType = UITextAutocorrectionTypeNo;
     self.firstNameTFModel.inputFirstNameTF.keyboardType = UIKeyboardTypeDefault;
@@ -157,7 +157,7 @@
     
     CGRect lastNameF = CGRectMake(firstNameF.origin.x, getRectNavAndStatusHight + yAutoFit(200), yAutoFit(160), yAutoFit(60));
     
-    self.lastNameTFModel = [[AAPersonalLastNameTF alloc]initWithFrame:lastNameF withPlaceholderText:LocalString(@"LastName")];
+    self.lastNameTFModel = [[AAPersonalLastNameTF alloc]initWithFrame:lastNameF withPlaceholderText:LocalString(@"Last name")];
     self.lastNameTFModel.inputLastNameTF.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.lastNameTFModel.inputLastNameTF.autocorrectionType = UITextAutocorrectionTypeNo;
     self.lastNameTFModel.inputLastNameTF.keyboardType = UIKeyboardTypeDefault;

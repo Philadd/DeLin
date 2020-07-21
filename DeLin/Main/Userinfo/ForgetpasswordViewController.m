@@ -57,7 +57,7 @@
         _titleLabel.backgroundColor = [UIColor clearColor];
         _titleLabel.textColor = [UIColor colorWithHexString:@"FFFFFF"];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.text = LocalString(@"Forget password");
+        _titleLabel.text = LocalString(@"Forgot password");
         _titleLabel.adjustsFontSizeToFitWidth = YES;
         [self.view addSubview:_titleLabel];
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -122,7 +122,7 @@
         }];
         
         UILabel *tiplabel = [[UILabel alloc] init];
-        tiplabel.text = [NSString stringWithFormat:@"%@\n%@",LocalString(@"We will send you the steps to reset your password.First,please your email address:"),self.emailResetStr];
+        tiplabel.text = [NSString stringWithFormat:@"%@\n%@",LocalString(@"We will send you the steps to reset your password.First,please confirm your email address:"),self.emailResetStr];
         tiplabel.font = [UIFont systemFontOfSize:16.f];
         tiplabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.7];
         tiplabel.numberOfLines = 0;
@@ -190,7 +190,7 @@
         [_reSendEmailBtn setTitle:LocalString(@"I didn't get the mail") forState:UIControlStateNormal];
         [_reSendEmailBtn setTitleColor:[UIColor colorWithHexString:@"FDA31A"] forState:UIControlStateNormal];
         [_reSendEmailBtn.titleLabel setFont:[UIFont systemFontOfSize:16.f]];
-        [_reSendEmailBtn addTarget:self action:@selector(sendEmail) forControlEvents:UIControlEventTouchUpInside];
+        [_reSendEmailBtn addTarget:self action:@selector(goConfirm) forControlEvents:UIControlEventTouchUpInside];
         _reSendEmailBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
         [self.msgSuccessView addSubview:_reSendEmailBtn];
         [_reSendEmailBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -272,27 +272,14 @@
     } else {
         //重置密码邮件发送失败，弹出错误信息
         [SVProgressHUD dismiss];
-        [NSObject showHudTipStr:LocalString(@"Reset password mail failed to send")];
+        [NSObject showHudTipStr:LocalString(@"fail")];
     }
-}
-
--(void)sendEmail{
-    if ([self.emailResetStr isEqualToString:@""]) {
-        [NSObject showHudTipStr:LocalString(@"Please enter your e-mail address")];
-    }else{
-        [SVProgressHUD show];
-        [[GizWifiSDK sharedInstance] resetPassword:self.emailResetStr verifyCode:nil newPassword:nil accountType:GizUserEmail];
-    }
-    
 }
 
 -(void)goConfirm{
-    if ([self.emailResetStr isEqualToString:@""]) {
-        [NSObject showHudTipStr:LocalString(@"Please enter your e-mail address")];
-    }else{
-        [SVProgressHUD show];
-        [[GizWifiSDK sharedInstance] resetPassword:self.emailResetStr verifyCode:nil newPassword:nil accountType:GizUserEmail];
-    }
+    [SVProgressHUD show];
+    [[GizWifiSDK sharedInstance] resetPassword:self.emailResetStr verifyCode:nil newPassword:nil accountType:GizUserEmail];
+    
 }
 
 - (void)goOk{

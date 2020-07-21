@@ -97,7 +97,7 @@
         }];
         
         UILabel *tiplabel = [[UILabel alloc] init];
-        tiplabel.text = LocalString(@"Keep your router, phone,and mower as close to each other as possible.");
+        tiplabel.text = LocalString(@"Keep your router,phone,and mower as close to each other as possible.");
         tiplabel.font = [UIFont systemFontOfSize:16.f];
         tiplabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.7];;
         tiplabel.numberOfLines = 0;
@@ -170,7 +170,7 @@
         
     }else{
         
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:LocalString(@"Configue result") message:LocalString(@"Failed!") preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:LocalString(@"Configue result") message:LocalString(@"fail") preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:LocalString(@"I know") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
             [self.navigationController popToRootViewControllerAnimated:YES];
             NSLog(@"action = %@",action);

@@ -88,7 +88,7 @@
 - (UIButton *)forgetPWBtn{
     if (!_forgetPWBtn) {
         _forgetPWBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_forgetPWBtn setTitle:LocalString(@"Forgot password？") forState:UIControlStateNormal];
+        [_forgetPWBtn setTitle:LocalString(@"Forgot password") forState:UIControlStateNormal];
         [_forgetPWBtn setTitleColor:[UIColor colorWithHexString:@"FDA31A"] forState:UIControlStateNormal];
         [_forgetPWBtn.titleLabel setFont:[UIFont systemFontOfSize:16.f]];
         [_forgetPWBtn addTarget:self action:@selector(forgetPW) forControlEvents:UIControlEventTouchUpInside];
@@ -201,9 +201,9 @@
         // 登录失败
         NSLog(@"登录失败,%@", result);
         if (result.code == 9020) {
-            [NSObject showHudTipStr:LocalString(@"Failed,username or password error!")];
+            [NSObject showHudTipStr:LocalString(@"username or password error!")];
         }else{
-            [NSObject showHudTipStr:LocalString(@"Login failed")];
+            [NSObject showHudTipStr:LocalString(@"fail")];
         }  
         
     }

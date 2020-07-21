@@ -86,7 +86,7 @@ static CGFloat const Cell_Height = 50.f;
 -(UITableView *)houseTable{
     if (!_houseTable) {
         _houseTable = ({
-            TouchTableView *tableView = [[TouchTableView alloc] initWithFrame:CGRectMake(yAutoFit(30.f), yAutoFit(150.f) , ScreenWidth - yAutoFit(30.f) *2,Cell_Height * 6)];
+            TouchTableView *tableView = [[TouchTableView alloc] initWithFrame:CGRectMake(yAutoFit(30.f), yAutoFit(150.f) , ScreenWidth - yAutoFit(30.f) *2,Cell_Height * 5)];
             tableView.backgroundColor = [UIColor clearColor];
             tableView.dataSource = self;
             tableView.delegate = self;
@@ -113,7 +113,7 @@ static CGFloat const Cell_Height = 50.f;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return 3;
 }
 
 
@@ -129,12 +129,9 @@ static CGFloat const Cell_Height = 50.f;
             cell.leftLabel.text = LocalString(@"Help and support");
             break;
         case 1:
-            cell.leftLabel.text = LocalString(@"Set anti-theft password");
-            break;
-        case 2:
             cell.leftLabel.text = LocalString(@"Language selection");
             break;
-        case 3:
+        case 2:
             cell.leftLabel.text = LocalString(@"About the DE app application");
             break;
             
@@ -154,18 +151,12 @@ static CGFloat const Cell_Height = 50.f;
             break;
         case 1:
         {
-//            SetPinCodeViewController *pinCodeVC = [[SetPinCodeViewController alloc] init];
-//            [self.navigationController pushViewController:pinCodeVC animated:YES];
-        }
-            break;
-        case 2:
-        {
             SetLanguageViewController *languageVC = [[SetLanguageViewController alloc] init];
             [self.navigationController pushViewController:languageVC animated:YES];
         }
             
             break;
-        case 3:
+        case 2:
             
             break;
             

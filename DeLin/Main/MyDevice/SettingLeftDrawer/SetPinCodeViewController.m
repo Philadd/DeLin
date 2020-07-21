@@ -41,13 +41,13 @@
 
 #pragma mark - Lazy load
 - (void)setNavItem{
-    self.navigationItem.title = LocalString(@"Pin code setting");
+    self.navigationItem.title = LocalString(@"");
 }
 
 - (UIView *)bgTipView{
     if (!_bgTipView) {
         _bgTipView = [[UIView alloc] init];
-        _bgTipView.backgroundColor = [UIColor colorWithHexString:@"FF9700"];
+        _bgTipView.backgroundColor = [UIColor colorWithHexString:@"000000"];
         [self.view addSubview:_bgTipView];
         [_bgTipView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(40)));
@@ -56,15 +56,15 @@
         }];
         
         UILabel *tipLabel = [[UILabel alloc] init];
-        tipLabel.font = [UIFont systemFontOfSize:15.f];
+        tipLabel.font = [UIFont systemFontOfSize:20.f];
         tipLabel.backgroundColor = [UIColor clearColor];
-        tipLabel.textColor = [UIColor colorWithHexString:@"333333"];
+        tipLabel.textColor = [UIColor colorWithHexString:@"FFFFFF"];
         tipLabel.textAlignment = NSTextAlignmentCenter;
-        tipLabel.text = LocalString(@"Pin code setting:");
+        tipLabel.text = LocalString(@"Set anti-theft password");
         tipLabel.adjustsFontSizeToFitWidth = YES;
         [self.bgTipView addSubview:tipLabel];
         [tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(280), yAutoFit(40)));
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(300), yAutoFit(40)));
             make.centerX.mas_equalTo(self.bgTipView.mas_centerX);
             make.centerY.mas_equalTo(self.bgTipView.mas_centerY);
         }];
@@ -195,7 +195,7 @@
 - (void)sure{
     
     if (self.oldPinCodeTF.text.length != 4 || self.pinCodeTF.text.length != 4 || self.repeatpinCodeTF.text.length != 4) {
-        [NSObject showHudTipStr:LocalString(@"Pin code restrictions 4 digits")];
+        [NSObject showHudTipStr:LocalString(@"Pin needs 4 digits")];
     }else if (![self.pinCodeTF.text isEqualToString:self.repeatpinCodeTF.text])
     {
         [NSObject showHudTipStr:LocalString(@"Two input is inconsistent")];

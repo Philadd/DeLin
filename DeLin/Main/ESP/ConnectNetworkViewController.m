@@ -54,7 +54,7 @@
         }];
         
         UILabel *tiplabel = [[UILabel alloc] init];
-        tiplabel.text = LocalString(@"You need to open the wireless network Settings on the device, connect to the hotspot,and then return to the application.");
+        tiplabel.text = LocalString(@"You need to open the wireless network Settings on the device,connect to the hotspot,and then return to the application.");
         tiplabel.font = [UIFont systemFontOfSize:16.f];
         tiplabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.7];
         tiplabel.numberOfLines = 0;
