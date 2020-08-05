@@ -29,8 +29,7 @@
 
 - (void)setNavItem{
     //self.navigationItem.title = LocalString(@"Help and support");
-    
-    UIImage *image = [UIImage imageNamed:@"img_back_black"];
+    UIImage *image = [UIImage imageNamed:LocalString(@"img_back_black")];
     [self addLeftBarButtonWithImage:image action:@selector(backAction)];
     
 }
@@ -70,7 +69,7 @@ CGFloat scaleMax = 3.0;
         
         [self.view addSubview:_secondAgreementScrollView];
         
-        _headerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"img_help"]];
+        _headerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:LocalString(@"img_help_English")]];
         [_secondAgreementScrollView addSubview:_headerImage];
         [_headerImage mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(ScreenWidth, 3*ScreenHeight));
