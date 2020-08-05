@@ -18,8 +18,6 @@
     
     view.backgroundColor = [UIColor clearColor];
     
-    
-    
     UIButton *firstButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
     firstButton.frame = CGRectMake(0, 0, 44, 44);
@@ -27,23 +25,13 @@
     [firstButton setImage:image forState:UIControlStateNormal];
     
     [firstButton addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
+  
+    firstButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     
-    
-    
-    
-    
-    firstButton.contentHorizontalAlignment =UIControlContentHorizontalAlignmentLeft;
-    
-    [firstButton setImageEdgeInsets:UIEdgeInsetsMake(5 * ScreenHeight / 667.0,5 * ScreenWidth / 375.0,0,0)];
-    
-    
-    
-    
-    
+    [firstButton setImageEdgeInsets:UIEdgeInsetsMake(0, - 5*ScreenWidth /375.0,0,0)];
+  
     UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:firstButton];
-    
-    
-    
+   
     self.navigationItem.leftBarButtonItem = leftBarButtonItem;
     
 }

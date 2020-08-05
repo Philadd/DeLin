@@ -10,12 +10,14 @@
 #import "AAPasswordTF.h"
 #import "NewUserSuccessController.h"
 #import <GizWifiSDK/GizWifiSDK.h>
+#import "UserPrivacyAgreementController.h"
 
 @interface SetPasswordController () <UITextFieldDelegate,GizWifiSDKDelegate>
 
 @property (nonatomic, strong) UIView *labelBgView;
 @property (nonatomic, strong) UIButton *continueBtn;
 @property (nonatomic, strong) UIButton *agreementBtn;
+@property (strong, nonatomic) UIButton *goPrivacyBtn;
 
 @property (nonatomic, strong) AAPasswordTF *passwordModelTF;
 
@@ -31,6 +33,7 @@
     self.view.layer.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0].CGColor;
     _labelBgView = [self labelBgView];
     _agreementBtn = [self agreementBtn];
+    _goPrivacyBtn = [self goPrivacyBtn];
     _continueBtn = [self continueBtn];
     
     [self setNavItem];
@@ -113,6 +116,24 @@
         }];
     }
     return _agreementBtn;
+}
+
+- (UIButton *)goPrivacyBtn{
+    if (!_goPrivacyBtn) {
+        _goPrivacyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_goPrivacyBtn setTitle:LocalString(@"Delyn corporate privacy agreement") forState:UIControlStateNormal];
+        [_goPrivacyBtn setTitleColor:[UIColor colorWithHexString:@"FDA31A"] forState:UIControlStateNormal];
+        [_goPrivacyBtn.titleLabel setFont:[UIFont systemFontOfSize:16.f]];
+        [_goPrivacyBtn addTarget:self action:@selector(goPrivacyAgreement) forControlEvents:UIControlEventTouchUpInside];
+        _goPrivacyBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
+        [self.view addSubview:_goPrivacyBtn];
+        [_goPrivacyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(300), yAutoFit(40)));
+            make.top.equalTo(self.agreementBtn.mas_bottom).offset(yAutoFit(180));
+            make.centerX.equalTo(self.view.mas_centerX);
+        }];
+    }
+    return _goPrivacyBtn;
 }
 
 - (UIButton *)continueBtn{
@@ -246,6 +267,11 @@
         
     }
     
+}
+
+- (void)goPrivacyAgreement{
+    UserPrivacyAgreementController *userPrivacyVC = [[UserPrivacyAgreementController alloc] init];
+    [self.navigationController pushViewController:userPrivacyVC animated:YES];
 }
 
 @end

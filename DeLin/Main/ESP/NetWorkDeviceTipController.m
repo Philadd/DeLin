@@ -34,15 +34,15 @@
 
 - (UIView *)msgCenterView{
     if (!_msgCenterView) {
-        _msgCenterView = [[UIView alloc] initWithFrame:CGRectMake(0,0, ScreenWidth,ScreenHeight - yAutoFit(45))];
+        _msgCenterView = [[UIView alloc] initWithFrame:CGRectMake(0,getRectNavAndStatusHight, ScreenWidth,ScreenHeight - yAutoFit(45))];
         _msgCenterView.backgroundColor = [UIColor clearColor];
         [self.view addSubview:_msgCenterView];
         
         UIImageView *areaImg = [[UIImageView alloc] init];
-        [areaImg setImage:[UIImage imageNamed:@"img_logo"]];
+        [areaImg setImage:[UIImage imageNamed:@"img_netWork_heder"]];
         [_msgCenterView addSubview:areaImg];
         [areaImg mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(ScreenWidth, yAutoFit(312)));
+            make.size.mas_equalTo(CGSizeMake(ScreenWidth, yAutoFit(350)));
             make.top.equalTo(self.msgCenterView.mas_top);
             make.centerX.equalTo(self.msgCenterView.mas_centerX);
         }];

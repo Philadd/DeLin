@@ -11,6 +11,7 @@
 #import "SetPinCodeViewController.h"
 #import "SetLanguageViewController.h"
 #import "LogoutViewController.h"
+#import "HelpSupportViewController.h"
 
 NSString *const CellIdentifier_PersonSetting = @"CellID_PersonSetting";
 static CGFloat const Cell_Height = 50.f;
@@ -113,7 +114,7 @@ static CGFloat const Cell_Height = 50.f;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return 2;
 }
 
 
@@ -131,9 +132,9 @@ static CGFloat const Cell_Height = 50.f;
         case 1:
             cell.leftLabel.text = LocalString(@"Language selection");
             break;
-        case 2:
-            cell.leftLabel.text = LocalString(@"About the DE app application");
-            break;
+//        case 2:
+//            cell.leftLabel.text = LocalString(@"About the DE app application");
+//            break;
             
         default:
             
@@ -147,16 +148,16 @@ static CGFloat const Cell_Height = 50.f;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     switch (indexPath.row) {
         case 0:
-            
+        {
+            HelpSupportViewController *helpVC = [[HelpSupportViewController alloc] init];
+            [self.navigationController pushViewController:helpVC animated:YES];
+        }
             break;
         case 1:
         {
             SetLanguageViewController *languageVC = [[SetLanguageViewController alloc] init];
             [self.navigationController pushViewController:languageVC animated:YES];
         }
-            
-            break;
-        case 2:
             
             break;
             
