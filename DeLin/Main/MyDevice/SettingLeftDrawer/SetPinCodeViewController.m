@@ -7,6 +7,7 @@
 //
 
 #import "SetPinCodeViewController.h"
+#import <objc/runtime.h>
 
 @interface SetPinCodeViewController () <UITextFieldDelegate>
 
@@ -37,6 +38,7 @@
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [SVProgressHUD dismiss];
 }
 
 #pragma mark - Lazy load
@@ -76,26 +78,31 @@
 - (UITextField *)oldPinCodeTF{
     if (!_oldPinCodeTF) {
         _oldPinCodeTF = [[UITextField alloc] init];
-        _oldPinCodeTF.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+        _oldPinCodeTF.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0];
         _oldPinCodeTF.font = [UIFont systemFontOfSize:16.f];
+        _oldPinCodeTF.textColor = [UIColor whiteColor];
         _oldPinCodeTF.tintColor = [UIColor whiteColor];
         _oldPinCodeTF.clearButtonMode = UITextFieldViewModeWhileEditing;
         _oldPinCodeTF.autocorrectionType = UITextAutocorrectionTypeNo;
         _oldPinCodeTF.delegate = self;
-        _oldPinCodeTF.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+        _oldPinCodeTF.keyboardType = UIKeyboardTypeNumberPad;
         _oldPinCodeTF.borderStyle = UITextBorderStyleRoundedRect;
         [_oldPinCodeTF addTarget:self action:@selector(textFieldTextChange:) forControlEvents:UIControlEventEditingChanged];
         [self.view addSubview:_oldPinCodeTF];
         [_oldPinCodeTF mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(40)));
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(50)));
             make.top.equalTo(self.view.mas_top).offset(yAutoFit(200));
             make.centerX.mas_equalTo(self.view.mas_centerX);
         }];
         
-        _oldPinCodeTF.layer.borderWidth = 0.5;
+        _oldPinCodeTF.layer.borderWidth = 1.5;
         _oldPinCodeTF.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
         _oldPinCodeTF.layer.cornerRadius = 2.5f;
         _oldPinCodeTF.placeholder = LocalString(@"Old pin code");
+        
+        Ivar ivar =  class_getInstanceVariable([UITextField class], "_placeholderLabel");
+        UILabel *placeholderLabel = object_getIvar(_oldPinCodeTF, ivar);
+        placeholderLabel.textColor = [UIColor grayColor];
     }
     return _oldPinCodeTF;
 }
@@ -103,26 +110,31 @@
 - (UITextField *)pinCodeTF{
     if (!_pinCodeTF) {
         _pinCodeTF = [[UITextField alloc] init];
-        _pinCodeTF.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+        _pinCodeTF.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0];
         _pinCodeTF.font = [UIFont systemFontOfSize:16.f];
+        _pinCodeTF.textColor = [UIColor whiteColor];
         _pinCodeTF.tintColor = [UIColor whiteColor];
         _pinCodeTF.clearButtonMode = UITextFieldViewModeWhileEditing;
         _pinCodeTF.autocorrectionType = UITextAutocorrectionTypeNo;
         _pinCodeTF.delegate = self;
-        _pinCodeTF.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+        _pinCodeTF.keyboardType = UIKeyboardTypeNumberPad;
         _pinCodeTF.borderStyle = UITextBorderStyleRoundedRect;
         [_pinCodeTF addTarget:self action:@selector(textFieldTextChange:) forControlEvents:UIControlEventEditingChanged];
         [self.view addSubview:_pinCodeTF];
         [_pinCodeTF mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(40)));
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(50)));
             make.top.equalTo(self.oldPinCodeTF.mas_bottom).offset(yAutoFit(30));
             make.centerX.mas_equalTo(self.view.mas_centerX);
         }];
         
-        _pinCodeTF.layer.borderWidth = 0.5;
+        _pinCodeTF.layer.borderWidth = 1.5;
         _pinCodeTF.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
         _pinCodeTF.layer.cornerRadius = 2.5f;
         _pinCodeTF.placeholder = LocalString(@"New pin code");
+        
+        Ivar ivar =  class_getInstanceVariable([UITextField class], "_placeholderLabel");
+        UILabel *placeholderLabel = object_getIvar(_pinCodeTF, ivar);
+        placeholderLabel.textColor = [UIColor grayColor];
         
     }
     return _pinCodeTF;
@@ -131,26 +143,31 @@
 - (UITextField *)repeatpinCodeTF{
     if (!_repeatpinCodeTF) {
         _repeatpinCodeTF = [[UITextField alloc] init];
-        _repeatpinCodeTF.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+        _repeatpinCodeTF.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0];
         _repeatpinCodeTF.font = [UIFont systemFontOfSize:16.f];
+        _repeatpinCodeTF.textColor = [UIColor whiteColor];
         _repeatpinCodeTF.tintColor = [UIColor whiteColor];
         _repeatpinCodeTF.clearButtonMode = UITextFieldViewModeWhileEditing;
         _repeatpinCodeTF.autocorrectionType = UITextAutocorrectionTypeNo;
         _repeatpinCodeTF.delegate = self;
-        _repeatpinCodeTF.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+        _repeatpinCodeTF.keyboardType = UIKeyboardTypeNumberPad;
         _repeatpinCodeTF.borderStyle = UITextBorderStyleRoundedRect;
         [_repeatpinCodeTF addTarget:self action:@selector(textFieldTextChange:) forControlEvents:UIControlEventEditingChanged];
         [self.view addSubview:_repeatpinCodeTF];
         [_repeatpinCodeTF mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(40)));
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(320), yAutoFit(50)));
             make.top.equalTo(self.pinCodeTF.mas_bottom).offset(yAutoFit(30));
             make.centerX.mas_equalTo(self.view.mas_centerX);
         }];
         
-        _repeatpinCodeTF.layer.borderWidth = 0.5;
+        _repeatpinCodeTF.layer.borderWidth = 1.5;
         _repeatpinCodeTF.layer.borderColor = [UIColor colorWithRed:226/255.0 green:230/255.0 blue:234/255.0 alpha:1.0].CGColor;
         _repeatpinCodeTF.layer.cornerRadius = 2.5f;
         _repeatpinCodeTF.placeholder = LocalString(@"Repeat new pin code");
+        
+        Ivar ivar =  class_getInstanceVariable([UITextField class], "_placeholderLabel");
+        UILabel *placeholderLabel = object_getIvar(_repeatpinCodeTF, ivar);
+        placeholderLabel.textColor = [UIColor grayColor];
     }
     return _repeatpinCodeTF;
 }
@@ -187,7 +204,7 @@
         [_sureBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:1.f]];
         _sureBtn.enabled = YES;
     }else{
-        [_sureBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:0.4f]];
+        [_sureBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:0.6f]];
         _sureBtn.enabled = NO;
     }
 }
@@ -212,7 +229,8 @@
             [dataContent addObject:[NSNumber numberWithUnsignedInteger:[self.repeatpinCodeTF.text characterAtIndex:1] - 48]];
             [dataContent addObject:[NSNumber numberWithUnsignedInteger:[self.repeatpinCodeTF.text characterAtIndex:2] - 48]];
             [dataContent addObject:[NSNumber numberWithUnsignedInteger:[self.repeatpinCodeTF.text characterAtIndex:3] - 48]];
-
+            
+            [SVProgressHUD show];
             UInt8 controlCode = 0x01;
             //可变插入
             [dataContent insertObject:@0x01 atIndex:0];
@@ -222,6 +240,13 @@
             
             [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:dataContent failuer:nil];
             
+            //超时判断
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [SVProgressHUD dismiss];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"timeOutsetModifyPin" object:nil userInfo:nil];
+                
+            });
         });
         
         //延时1秒

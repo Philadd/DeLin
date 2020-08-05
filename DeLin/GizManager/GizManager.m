@@ -259,6 +259,9 @@ static GizManager *_gizManager = nil;
         
     }else{
         NSLog(@"result---- %@",result);
+        if (result.code ==GIZ_SDK_REQUEST_TIMEOUT) {
+            [NSObject showHudTipStr2:LocalString(@"time out")];
+        }
     }
 }
 

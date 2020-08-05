@@ -47,6 +47,7 @@
     NSString *robotF_Error;
     int areaMax;
     NSTimeInterval timeT;
+    NSNumber *deviceType;
 }
 
 - (void)viewDidLoad {
@@ -97,7 +98,7 @@
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    
+    [SVProgressHUD dismiss];
     [_timer setFireDate:[NSDate distantFuture]];
     [_timer invalidate];
     _timer = nil;
@@ -434,17 +435,32 @@
     NSNumber *robotF_Error = dict[@"robotF_Error"];
     //区分机型的最大割草面积
     switch ([deviceType integerValue]) {
-        case 0x12://600
+        case 0x12://600  type 0
+        {
             self->areaMax = 600;
             
+            //保存设备类型
+            self->deviceType = @0;
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setObject: self->deviceType forKey:@"deviceType"];
+            [userDefaults synchronize];
+        }
             break;
-        case 0x13://1000
+        case 0x13://1000 type 1
+        {
             self->areaMax = 1000;
+            //保存设备类型
+            self->deviceType = @1;
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setObject: self->deviceType forKey:@"deviceType"];
+            [userDefaults synchronize];
+        }
             
             break;
         case 0x14://1500
-            
+        {
             self->areaMax = 1500;
+        }
             break;
         default:
             
@@ -644,24 +660,41 @@
 
     NSTimeInterval currentTimeT = [NSDate date].timeIntervalSince1970;
     if (currentTimeT - timeT > 1 ) {
+        
+        [SVProgressHUD show];
         UInt8 controlCode = 0x01;
         NSArray *data = @[@0x00,@0x01,@0x02,@0x01];
         [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
         
         timeT = currentTimeT;
     }
+    //超时判断
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        [SVProgressHUD dismiss];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"timeOutstoped" object:nil userInfo:nil];
+        
+    });
 }
 
 - (void)goHome{
     
     NSTimeInterval currentTimeT = [NSDate date].timeIntervalSince1970;
     if (currentTimeT - timeT > 1 ) {
+        [SVProgressHUD show];
         UInt8 controlCode = 0x01;
         NSArray *data = @[@0x00,@0x01,@0x01,@0x01];
         [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
         
         timeT = currentTimeT;
     }
+    //超时判断
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        [SVProgressHUD dismiss];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"timeOutgoHome" object:nil userInfo:nil];
+        
+    });
 }
 
 - (void)goStart{
@@ -669,9 +702,18 @@
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:LocalString(@"Please make sure that boundary wire is settled correctly and machine is inside charging base!") preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:LocalString(@"Ok") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
+        [SVProgressHUD show];
         UInt8 controlCode = 0x01;
         NSArray *data = @[@0x00,@0x01,@0x09,@0x01];
         [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
+        
+        //超时判断
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            [SVProgressHUD dismiss];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"timeOutgoStart" object:nil userInfo:nil];
+            
+        });
         
     }];
     //[okAction setValue:[UIColor ] forKey:@"titleTextColor"];

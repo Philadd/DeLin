@@ -42,7 +42,7 @@
         [areaImg setImage:[UIImage imageNamed:@"img_netWork_heder"]];
         [_msgCenterView addSubview:areaImg];
         [areaImg mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(ScreenWidth, yAutoFit(350)));
+            make.size.mas_equalTo(CGSizeMake(yAutoFit(250), yAutoFit(250)));
             make.top.equalTo(self.msgCenterView.mas_top);
             make.centerX.equalTo(self.msgCenterView.mas_centerX);
         }];
@@ -65,7 +65,7 @@
         }];
         
         UILabel *tiplabel = [[UILabel alloc] init];
-        tiplabel.text = LocalString(@"When the robot's wireless network indicator flashes,the robot is ready to connect.");
+        tiplabel.text = LocalString(@"When the Repeater's wireless network indicator flashes,the robot is ready to connect.");
         tiplabel.font = [UIFont systemFontOfSize:16.f];
         tiplabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.7];
         tiplabel.numberOfLines = 0;

@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NetWorkHomeTipController : BaseViewController
 
-@property (copy, nonatomic) NSString *robotCodeStr;//机器型号
+@property (copy, nonatomic) NSNumber *robotCode;//机器型号
 
 @end
 

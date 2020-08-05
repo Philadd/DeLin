@@ -47,7 +47,7 @@
     [super viewWillDisappear:animated];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"inputPINCode" object:nil];
-    
+    [SVProgressHUD dismiss];
 }
 
 #pragma mark - setters and getters
@@ -171,6 +171,8 @@
 #pragma mark - notification
 
 - (void)inputPINCodeMain{
+    [SVProgressHUD dismiss];
+    [self getMainDeviceMsg];
     NSUserDefaults *pinCode = [NSUserDefaults standardUserDefaults];
     if (_agreementBtn.tag == aSelect) {
         
@@ -227,6 +229,7 @@
     
     NSTimeInterval currentTime = [NSDate date].timeIntervalSince1970;
     if (currentTime - time >1) {
+        [SVProgressHUD show];
         
         if (self.passwordModelTF.inputText.text.length != 4) {
             [NSObject showHudTipStr:LocalString(@"Pin needs 4 digits")];
@@ -248,6 +251,13 @@
                 [dataContent insertObject:@0x00 atIndex:0];
                 
                 [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:dataContent failuer:nil];
+                //超时判断
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    
+                    [SVProgressHUD dismiss];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"timeOutGetPin" object:nil userInfo:nil];
+                    
+                });
                 
             });
             
@@ -256,6 +266,12 @@
         time = currentTime;
     }
     
+}
+
+- (void)getMainDeviceMsg{
+    UInt8 controlCode = 0x01;
+    NSArray *data = @[@0x00,@0x01,@0x00,@0x00];
+    [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
 }
 
 -(void)checkAgreement{

@@ -30,9 +30,10 @@
 "1.Turn on your Robot." = "1.Turn on your Robot.";
 "2.Change the interface as shown and press “OK”,the text “Network Configuration……” will appear." = "2.Change the interface as shown and press “OK”,the text “Network Configuration……” will appear.";
 "3.Press the connect button" = "3.Press the connect button";
-"Connect hotspot “Robot_2_Mow” in settings,Password:123456789" = "Connect hotspot “Robot_2_Mow” in settings,Password:123456789";
+"Connect hotspot “Robot_2_Mow” in settings" = "Connect hotspot “Robot_2_Mow” in settings";
 "Jump prompt" = "Jump prompt";
 "Tip" = "Tip";
+"time out" = "time out";
 "Please make sure that boundary wire is settled correctly and machine is inside charging base!" = "Please make sure that boundary wire is settled correctly and machine is inside charging base!";
 "Ok" = "Ok";
 "Cancel" = "Cancel";
@@ -54,7 +55,7 @@
 "Please prepare your home wireless network password You may need it later" = "Please prepare your home wireless network password You may need it later";
 "Ok,got it" = "Ok,got it";
 "Press the robot network button" = "Press the robot network button";
-"When the robot's wireless network indicator flashes,the robot is ready to connect." = "When the robot's wireless network indicator flashes,the robot is ready to connect.";
+"When the Repeater's wireless network indicator flashes,the robot is ready to connect." = "When the Repeater's wireless network indicator flashes,the robot is ready to connect.";
 "Add equipment" = "Add equipment";
 "Select your device" = "Select your device";
 "Please enter the device password" = "Please enter the device password";

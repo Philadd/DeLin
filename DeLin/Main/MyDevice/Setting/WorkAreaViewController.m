@@ -42,7 +42,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"recieveWorkArea" object:nil];
-
+    [SVProgressHUD dismiss];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
@@ -166,13 +166,21 @@
     if (currentTimeA - timeA > 1 ) {
         
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            
+            [SVProgressHUD show];
             UInt8 controlCode = 0x01;
             NSArray *data = @[@0x00,@0x01,@0x05,@0x01,area1,area2];
             [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
             
         });
         timeA = currentTimeA;
+        
+        //超时判断
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            [SVProgressHUD dismiss];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"timeOutsetArea" object:nil userInfo:nil];
+            
+        });
     }
     
 

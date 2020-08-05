@@ -33,6 +33,7 @@
     if (tipStr && tipStr.length > 0) {
         
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:yKeyWindow animated:YES];
+        hud.label.font = [UIFont fontWithName:@"PingFangSC-Regular" size:20];
         hud.mode = MBProgressHUDModeText;
         hud.square = YES;
         hud.label.text = tipStr;

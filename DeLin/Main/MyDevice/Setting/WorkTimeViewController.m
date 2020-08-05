@@ -67,7 +67,7 @@ static CGFloat cellHeight = 60.0;
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
+    [SVProgressHUD dismiss];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"recieveWorkingTime" object:nil];
     
     [_timer setFireDate:[NSDate distantFuture]];
@@ -484,7 +484,7 @@ static CGFloat cellHeight = 60.0;
     if (currentTimeW - timeW > 1 ) {
         
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            
+            [SVProgressHUD show];
             UInt8 controlCode = 0x01;
             NSArray *data = @[@0x00,@0x01,@0x04,@0x01];
             NSArray *workData = [data arrayByAddingObjectsFromArray:self.selectrowArray];
@@ -493,6 +493,13 @@ static CGFloat cellHeight = 60.0;
         });
         
         timeW = currentTimeW;
+        //超时判断
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            [SVProgressHUD dismiss];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"timeOutsetWorkTime" object:nil userInfo:nil];
+            
+        });
     }
     
 }

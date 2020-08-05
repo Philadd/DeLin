@@ -22,6 +22,9 @@ NSString *const CellIdentifier_SelectDeviceCell = @"SelectDeviceCell";
 @end
 
 @implementation SelectDeviceViewController
+{
+    NSNumber *deviceType;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -90,7 +93,7 @@ NSString *const CellIdentifier_SelectDeviceCell = @"SelectDeviceCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return 2;
 }
 
 
@@ -104,15 +107,21 @@ NSString *const CellIdentifier_SelectDeviceCell = @"SelectDeviceCell";
     cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed: @"img_deviceInfo_arrow"]];
     switch (indexPath.row) {
         case 0:
+        {
             cell.chooseImage.image = [UIImage imageNamed:@"img_selectDeviceRM18_Cell"];
             //cell.rightNameLab.text = LocalString(@"RM18");
+        }
             break;
         case 1:
+        {
             cell.chooseImage.image = [UIImage imageNamed:@"img_selectDeviceRM24_Cell"];
             //cell.rightNameLab.text = LocalString(@"RM24");
+        }
             break;
         case 2:
-            cell.chooseImage.image = [UIImage imageNamed:@"img_selectDevice3_Cell"];
+        {
+            //cell.chooseImage.image = [UIImage imageNamed:@"img_selectDevice3_Cell"];
+        }
             break;
             
         default:
@@ -126,7 +135,7 @@ NSString *const CellIdentifier_SelectDeviceCell = @"SelectDeviceCell";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NetWorkHomeTipController *VC = [[NetWorkHomeTipController alloc] init];
-    VC.robotCodeStr = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
+    VC.robotCode = [NSNumber numberWithLong:(long)indexPath.row];
     [self.navigationController pushViewController:VC animated:YES];
 
 }

@@ -24,6 +24,11 @@
     _headerBgView = [self headerBgView];
     _continueBtn = [self continueBtn];
     
+    //保存设备类型
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject: self.robotCode forKey:@"deviceType"];
+    [userDefaults synchronize];
+    
     [self setNavItem];
 }
 

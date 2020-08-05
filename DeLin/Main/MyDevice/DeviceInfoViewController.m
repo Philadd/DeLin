@@ -241,7 +241,23 @@ static float HEIGHT_CELL = 100.f;
         cell = [[DeviceListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier_DeviceList];
     }
     GizWifiDevice *device = _deviceArray[indexPath.row];
-    cell.deviceImage.image = [UIImage imageNamed:@"img_selectDeviceRM18_Cell"];
+    //区分设备类型 本地化
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSNumber *deviceType = [userDefaults valueForKey:@"deviceType"];
+    
+    switch ([deviceType intValue]) {
+        case 0:
+            cell.deviceImage.image = [UIImage imageNamed:@"img_selectDeviceRM18_Cell"];
+            break;
+        case 1:
+            cell.deviceImage.image = [UIImage imageNamed:@"img_selectDeviceRM24_Cell"];
+        break;
+            
+        default:
+            cell.deviceImage.image = [UIImage imageNamed:@"img_selectDeviceRM18_Cell"];
+            break;
+    }
+    
     cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed: @"img_deviceInfo_arrow"]];
     
     cell.deviceListLabel.text = device.alias;
