@@ -481,7 +481,7 @@ static CGFloat cellHeight = 60.0;
      后七位：周一至周日的进行工作状态是否开启;
      */
     NSTimeInterval currentTimeW = [NSDate date].timeIntervalSince1970;
-    if (currentTimeW - timeW > 1 ) {
+    if (currentTimeW - timeW > 2 ) {
         
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
             [SVProgressHUD show];
@@ -493,14 +493,18 @@ static CGFloat cellHeight = 60.0;
         });
         
         timeW = currentTimeW;
+        
+        [[NetWorkManager shareNetWorkManager].atimeOut fire];
         //超时判断
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
             [SVProgressHUD dismiss];
             //定时器开启
-            [[NetWorkManager shareNetWorkManager].atimeOut setFireDate:[NSDate date]];
+            [[NetWorkManager shareNetWorkManager].atimeOut setFireDate:[NSDate distantPast]];
             
         });
+        //延时 标志位
+        [NetWorkManager shareNetWorkManager].timeOutFlag = 1;
     }
     
 }

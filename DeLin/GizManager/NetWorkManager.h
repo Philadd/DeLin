@@ -51,6 +51,7 @@ static NSInteger tempCountVer = 1000;
 
 ///@brief 消息类型
 @property (nonatomic, assign) NSTimer *atimeOut;
+@property (nonatomic, assign) uint8_t timeOutFlag;
 
 ///@brief 消息类型
 @property (nonatomic, assign) MsgType68 msg68Type;

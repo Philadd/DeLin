@@ -62,8 +62,9 @@ static int noUserInteractionHeartbeat = 0;
             _recivedData68 = [[NSMutableArray alloc] init];
         }
         _frameCount = 0;
+        _timeOutFlag = 0;
         
-        _atimeOut = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(timeOut) userInfo:nil repeats:YES];
+        _atimeOut = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timeOut) userInfo:nil repeats:YES];
         [_atimeOut setFireDate:[NSDate distantFuture]];
     }
     return self;
@@ -73,11 +74,22 @@ static int noUserInteractionHeartbeat = 0;
     _netWorkManager = nil;
     oneToken = 0l;
 }
+
+- (void)dealloc{
+    [_atimeOut setFireDate:[NSDate distantFuture]];
+    [_atimeOut invalidate];
+    _atimeOut = nil;
+}
 //超时提醒
 - (void)timeOut{
+    if (_timeOutFlag == 1) {
+        _timeOutFlag = 0;
+        [SVProgressHUD dismiss];
+        [NSObject showHudTipStr2:LocalString(@"time out")];
+        [_atimeOut setFireDate:[NSDate distantFuture]];
+    }
     
-    [NSObject showHudTipStr2:LocalString(@"time out")];
-    [_atimeOut setFireDate:[NSDate distantFuture]];
+    
 }
 #pragma mark - 帧的发送
 
@@ -279,6 +291,7 @@ static int noUserInteractionHeartbeat = 0;
             {
                 //移除通知
                 [SVProgressHUD dismiss];
+                [_atimeOut setFireDate:[NSDate distantFuture]];
                 
                 if (self.msg68Type == getHome){
                     resendCount = 0;
@@ -291,6 +304,8 @@ static int noUserInteractionHeartbeat = 0;
                     }
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"getHome" object:nil userInfo:nil];
+                    //标准位 置0
+                    _timeOutFlag = 0;
                     
                 }else if (self.msg68Type == getStop){
                     if ([_recivedData68[12] unsignedIntegerValue] == 0) {
@@ -302,6 +317,8 @@ static int noUserInteractionHeartbeat = 0;
                     }
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"getStop" object:nil userInfo:nil];
+                    //标准位 置0
+                    _timeOutFlag = 0;
                     
                 }else if (self.msg68Type == setCurrentTime){
                     resendCount = 0;
@@ -315,6 +332,8 @@ static int noUserInteractionHeartbeat = 0;
                     }
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"setCurrentTime" object:nil userInfo:nil];
+                    //标准位 置0
+                    _timeOutFlag = 0;
                     
                 }else if (self.msg68Type == getWorkTime){
                     if ([_recivedData68[12] unsignedIntegerValue] == 0) {
@@ -326,7 +345,8 @@ static int noUserInteractionHeartbeat = 0;
                     }
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"getWorkTime" object:nil userInfo:nil];
-                    
+                    //标准位 置0
+                    _timeOutFlag = 0;
                     
                 }else if (self.msg68Type == getWorkArea){
                     if ([_recivedData68[12] unsignedIntegerValue] == 0) {
@@ -338,6 +358,8 @@ static int noUserInteractionHeartbeat = 0;
                     }
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"setWorkArea" object:nil userInfo:nil];
+                    //标准位 置0
+                    _timeOutFlag = 0;
                     
                     
                 }else if (self.msg68Type == inputPINCode){
@@ -349,6 +371,8 @@ static int noUserInteractionHeartbeat = 0;
                         
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"inputPINCode" object:nil userInfo:nil];
                     }
+                    //标准位 置0
+                    _timeOutFlag = 0;
                     
                     
                 }else if (self.msg68Type == reSetPINCode){
@@ -365,6 +389,8 @@ static int noUserInteractionHeartbeat = 0;
                     }
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetPINCode" object:nil userInfo:nil];
+                    //标准位 置0
+                    _timeOutFlag = 0;
                     
                 }else if (self.msg68Type == getStart){
                     
@@ -375,6 +401,8 @@ static int noUserInteractionHeartbeat = 0;
                     if ([_recivedData68[12] unsignedIntegerValue] == 1) {
                         [NSObject showHudTipStr:LocalString(@"success")];
                     }
+                    //标准位 置0
+                    _timeOutFlag = 0;
                     
                 }
                 

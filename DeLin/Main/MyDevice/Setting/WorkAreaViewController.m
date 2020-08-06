@@ -173,6 +173,8 @@
             
         });
         timeA = currentTimeA;
+        //延时 标志位
+        [NetWorkManager shareNetWorkManager].timeOutFlag = 1;
         
         //超时判断
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

@@ -667,15 +667,19 @@
         [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
         
         timeT = currentTimeT;
+        
+        //延时 标志位
+        [NetWorkManager shareNetWorkManager].timeOutFlag = 1;
+        //超时判断
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            [SVProgressHUD dismiss];
+            //定时器开启
+            [[NetWorkManager shareNetWorkManager].atimeOut setFireDate:[NSDate date]];
+            
+        });
     }
-    //超时判断
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        [SVProgressHUD dismiss];
-        //定时器开启
-        [[NetWorkManager shareNetWorkManager].atimeOut setFireDate:[NSDate date]];
-        
-    });
+    
 }
 
 - (void)goHome{
@@ -688,15 +692,19 @@
         [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
         
         timeT = currentTimeT;
+        
+        //延时 标志位
+        [NetWorkManager shareNetWorkManager].timeOutFlag = 1;
+        //超时判断
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            [SVProgressHUD dismiss];
+            //定时器开启
+            [[NetWorkManager shareNetWorkManager].atimeOut setFireDate:[NSDate date]];
+            
+        });
     }
-    //超时判断
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        [SVProgressHUD dismiss];
-        //定时器开启
-        [[NetWorkManager shareNetWorkManager].atimeOut setFireDate:[NSDate date]];
-        
-    });
+
 }
 
 - (void)goStart{
@@ -708,7 +716,8 @@
         UInt8 controlCode = 0x01;
         NSArray *data = @[@0x00,@0x01,@0x09,@0x01];
         [[NetWorkManager shareNetWorkManager] sendData68With:controlCode data:data failuer:nil];
-        
+        //延时 标志位
+        [NetWorkManager shareNetWorkManager].timeOutFlag = 1;
         //超时判断
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
