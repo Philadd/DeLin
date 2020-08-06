@@ -50,6 +50,9 @@ static NSInteger tempCountVer = 1000;
 @property (nonatomic, strong) NSMutableArray *recivedData68;
 
 ///@brief 消息类型
+@property (nonatomic, assign) NSTimer *atimeOut;
+
+///@brief 消息类型
 @property (nonatomic, assign) MsgType68 msg68Type;
 ///@brief 帧类型
 @property (nonatomic, assign) FrameType68 frame68Type;

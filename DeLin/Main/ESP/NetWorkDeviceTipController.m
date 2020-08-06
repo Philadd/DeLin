@@ -52,7 +52,7 @@
         [_msgCenterView addSubview:labelBgView];
         
         UILabel *welcomelabel = [[UILabel alloc] init];
-        welcomelabel.text = LocalString(@"Press the robot network button");
+        welcomelabel.text = LocalString(@"Press the repeater network button");
         welcomelabel.font = [UIFont systemFontOfSize:25.f];
         welcomelabel.textColor = [UIColor whiteColor];
         welcomelabel.textAlignment = NSTextAlignmentCenter;

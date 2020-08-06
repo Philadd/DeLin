@@ -63,13 +63,8 @@ static int noUserInteractionHeartbeat = 0;
         }
         _frameCount = 0;
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timeOut) name:@"timeOutgoStart" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timeOut) name:@"timeOutstoped" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timeOut) name:@"timeOutgoHome" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timeOut) name:@"timeOutsetArea" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timeOut) name:@"timeOutsetWorkTime" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timeOut) name:@"timeOutsetModifyPin" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timeOut) name:@"timeOutGetPin" object:nil];
+        _atimeOut = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(timeOut) userInfo:nil repeats:YES];
+        [_atimeOut setFireDate:[NSDate distantFuture]];
     }
     return self;
 }
@@ -77,19 +72,12 @@ static int noUserInteractionHeartbeat = 0;
 + (void)destroyInstance{
     _netWorkManager = nil;
     oneToken = 0l;
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"timeOutgoStart" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"timeOutstoped" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"timeOutgoHome" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"timeOutsetArea" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"timeOutsetWorkTime" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"timeOutsetModifyPin" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"timeOutGetPin" object:nil];
 }
 //超时提醒
 - (void)timeOut{
     
     [NSObject showHudTipStr2:LocalString(@"time out")];
+    [_atimeOut setFireDate:[NSDate distantFuture]];
 }
 #pragma mark - 帧的发送
 
@@ -303,7 +291,6 @@ static int noUserInteractionHeartbeat = 0;
                     }
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"getHome" object:nil userInfo:nil];
-                    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"timeOutgoHome" object:nil];
                     
                 }else if (self.msg68Type == getStop){
                     if ([_recivedData68[12] unsignedIntegerValue] == 0) {
@@ -315,7 +302,7 @@ static int noUserInteractionHeartbeat = 0;
                     }
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"getStop" object:nil userInfo:nil];
-                    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"timeOutstoped" object:nil];
+                    
                 }else if (self.msg68Type == setCurrentTime){
                     resendCount = 0;
                     
@@ -339,7 +326,7 @@ static int noUserInteractionHeartbeat = 0;
                     }
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"getWorkTime" object:nil userInfo:nil];
-                    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"timeOutsetWorkTime" object:nil];
+                    
                     
                 }else if (self.msg68Type == getWorkArea){
                     if ([_recivedData68[12] unsignedIntegerValue] == 0) {
@@ -351,7 +338,7 @@ static int noUserInteractionHeartbeat = 0;
                     }
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"setWorkArea" object:nil userInfo:nil];
-                    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"timeOutsetArea" object:nil];
+                    
                     
                 }else if (self.msg68Type == inputPINCode){
                     if ([_recivedData68[12] unsignedIntegerValue] == 0) {
@@ -362,7 +349,7 @@ static int noUserInteractionHeartbeat = 0;
                         
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"inputPINCode" object:nil userInfo:nil];
                     }
-                    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"timeOutGetPin" object:nil];
+                    
                     
                 }else if (self.msg68Type == reSetPINCode){
                     
@@ -378,7 +365,7 @@ static int noUserInteractionHeartbeat = 0;
                     }
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetPINCode" object:nil userInfo:nil];
-                    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"timeOutsetModifyPin" object:nil];
+                    
                 }else if (self.msg68Type == getStart){
                     
                     if ([_recivedData68[12] unsignedIntegerValue] == 0) {
@@ -388,7 +375,7 @@ static int noUserInteractionHeartbeat = 0;
                     if ([_recivedData68[12] unsignedIntegerValue] == 1) {
                         [NSObject showHudTipStr:LocalString(@"success")];
                     }
-                    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"timeOutgoStart" object:nil];
+                    
                 }
                 
             }
