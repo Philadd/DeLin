@@ -1142,7 +1142,7 @@
 		369C65EB235EE42F008D6230 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = com.thingcom;
 				TargetAttributes = {
 					369C65F2235EE42F008D6230 = {

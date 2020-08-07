@@ -64,7 +64,7 @@ static int noUserInteractionHeartbeat = 0;
         _frameCount = 0;
         _timeOutFlag = 0;
         
-        _atimeOut = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timeOut) userInfo:nil repeats:YES];
+        _atimeOut = [NSTimer scheduledTimerWithTimeInterval:5000 target:self selector:@selector(timeOut) userInfo:nil repeats:YES];
         [_atimeOut setFireDate:[NSDate distantFuture]];
     }
     return self;
@@ -295,6 +295,7 @@ static int noUserInteractionHeartbeat = 0;
                 
                 if (self.msg68Type == getHome){
                     resendCount = 0;
+                    
                     if ([_recivedData68[12] unsignedIntegerValue] == 0) {
                         [NSObject showHudTipStr:LocalString(@"fail")];
                     }
@@ -306,6 +307,7 @@ static int noUserInteractionHeartbeat = 0;
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"getHome" object:nil userInfo:nil];
                     //标准位 置0
                     _timeOutFlag = 0;
+                    [_atimeOut setFireDate:[NSDate distantFuture]];
                     
                 }else if (self.msg68Type == getStop){
                     if ([_recivedData68[12] unsignedIntegerValue] == 0) {
@@ -319,6 +321,7 @@ static int noUserInteractionHeartbeat = 0;
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"getStop" object:nil userInfo:nil];
                     //标准位 置0
                     _timeOutFlag = 0;
+                    [_atimeOut setFireDate:[NSDate distantFuture]];
                     
                 }else if (self.msg68Type == setCurrentTime){
                     resendCount = 0;
@@ -334,6 +337,7 @@ static int noUserInteractionHeartbeat = 0;
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"setCurrentTime" object:nil userInfo:nil];
                     //标准位 置0
                     _timeOutFlag = 0;
+                    [_atimeOut setFireDate:[NSDate distantFuture]];
                     
                 }else if (self.msg68Type == getWorkTime){
                     if ([_recivedData68[12] unsignedIntegerValue] == 0) {
@@ -347,6 +351,7 @@ static int noUserInteractionHeartbeat = 0;
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"getWorkTime" object:nil userInfo:nil];
                     //标准位 置0
                     _timeOutFlag = 0;
+                    [_atimeOut setFireDate:[NSDate distantFuture]];
                     
                 }else if (self.msg68Type == getWorkArea){
                     if ([_recivedData68[12] unsignedIntegerValue] == 0) {
@@ -360,6 +365,7 @@ static int noUserInteractionHeartbeat = 0;
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"setWorkArea" object:nil userInfo:nil];
                     //标准位 置0
                     _timeOutFlag = 0;
+                    [_atimeOut setFireDate:[NSDate distantFuture]];
                     
                     
                 }else if (self.msg68Type == inputPINCode){
@@ -373,7 +379,7 @@ static int noUserInteractionHeartbeat = 0;
                     }
                     //标准位 置0
                     _timeOutFlag = 0;
-                    
+                    [_atimeOut setFireDate:[NSDate distantFuture]];
                     
                 }else if (self.msg68Type == reSetPINCode){
                     
@@ -391,6 +397,7 @@ static int noUserInteractionHeartbeat = 0;
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetPINCode" object:nil userInfo:nil];
                     //标准位 置0
                     _timeOutFlag = 0;
+                    [_atimeOut setFireDate:[NSDate distantFuture]];
                     
                 }else if (self.msg68Type == getStart){
                     
@@ -403,6 +410,7 @@ static int noUserInteractionHeartbeat = 0;
                     }
                     //标准位 置0
                     _timeOutFlag = 0;
+                    [_atimeOut setFireDate:[NSDate distantFuture]];
                     
                 }
                 
