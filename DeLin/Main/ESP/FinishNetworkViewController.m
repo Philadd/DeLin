@@ -140,6 +140,11 @@
     if(result.code == GIZ_SDK_SUCCESS){
         // 配置成功
         NSLog(@"配网成功");
+        //区分设备类型 本地化
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSNumber *deviceType = [userDefaults valueForKey:@"deviceType"];
+        
+        [device setCustomInfo:[NSString stringWithFormat:@"%@",deviceType] alias:nil];
     }
     if(result.code == GIZ_SDK_ONBOARDING_STOPPED) {
         // 配网终止

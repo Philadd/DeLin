@@ -241,11 +241,8 @@ static float HEIGHT_CELL = 100.f;
         cell = [[DeviceListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier_DeviceList];
     }
     GizWifiDevice *device = _deviceArray[indexPath.row];
-    //区分设备类型 本地化
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSNumber *deviceType = [userDefaults valueForKey:@"deviceType"];
     
-    switch ([deviceType intValue]) {
+    switch ([device.remark intValue]) {
         case 0:
             cell.deviceImage.image = [UIImage imageNamed:@"img_selectDeviceRM18_Cell"];
             break;
@@ -394,7 +391,7 @@ static float HEIGHT_CELL = 100.f;
         };
         alert.rBlock = ^(NSString * _Nullable text) {
             //修改设备 别名
-            [device setCustomInfo:nil alias:text];
+            [device setCustomInfo:NULL alias:text];
             
         };
         alert.modalPresentationStyle = UIModalPresentationOverCurrentContext;

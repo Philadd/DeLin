@@ -438,12 +438,10 @@
         case 0x12://600  type 0
         {
             self->areaMax = 600;
-            
             //保存设备类型
             self->deviceType = @0;
-            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            [userDefaults setObject: self->deviceType forKey:@"deviceType"];
-            [userDefaults synchronize];
+            
+            [[GizManager shareInstance].device setCustomInfo:[NSString stringWithFormat:@"%@",self->deviceType] alias:NULL];
         }
             break;
         case 0x13://1000 type 1
@@ -451,9 +449,7 @@
             self->areaMax = 1000;
             //保存设备类型
             self->deviceType = @1;
-            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            [userDefaults setObject: self->deviceType forKey:@"deviceType"];
-            [userDefaults synchronize];
+            [[GizManager shareInstance].device setCustomInfo:[NSString stringWithFormat:@"%@",self->deviceType] alias:NULL];
         }
             
             break;
