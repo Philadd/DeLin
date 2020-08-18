@@ -326,6 +326,10 @@ static float HEIGHT_CELL = 100.f;
     if(result.code == GIZ_SDK_SUCCESS) {
         // 解绑成功
         NSLog(@"解绑成功");
+        //移除设备 清除记住密码
+        NSUserDefaults *pinCode = [NSUserDefaults standardUserDefaults];
+        [pinCode removeObjectForKey:@"pinCode"];
+        [pinCode synchronize];
     } else {
         // 解绑失败
         NSLog(@"解绑失败");
