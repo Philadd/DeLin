@@ -391,7 +391,7 @@ static int noUserInteractionHeartbeat = 0;
                         [NSObject showHudTipStr:LocalString(@"success")];
                     }
                     if ([_recivedData68[12] unsignedIntegerValue] == 2) {
-                        [NSObject showHudTipStr:LocalString(@"fail")];
+                        [NSObject showHudTipStr:LocalString(@"Error password")];
                     }
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetPINCode" object:nil userInfo:nil];

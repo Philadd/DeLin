@@ -67,7 +67,7 @@
         self.workAreaArray = [[NSMutableArray alloc] init];
         
         //1平方米 = 0.000247英亩 10 000平方米 = 1公顷 = 2.4710538 英亩(acres)
-        for (int i = 0; i < self.area+50 ; i = i+50) {
+        for (int i = 50; i < self.area+50 ; i = i+50) {
             [self.workAreaArray addObject:[NSString stringWithFormat:@"%d%@%.3f%@",i,@"m²/",i*0.000247,@"acre"]];
         }
         
