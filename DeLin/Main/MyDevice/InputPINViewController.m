@@ -209,6 +209,7 @@
     self.passwordModelTF.inputText.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.passwordModelTF.inputText.autocorrectionType = UITextAutocorrectionTypeNo;
     self.passwordModelTF.inputText.keyboardType = UIKeyboardTypeNumberPad;
+    [self.passwordModelTF.inputText addTarget:self action:@selector(TFchange:) forControlEvents:UIControlEventEditingChanged];
     self.passwordModelTF.inputText.secureTextEntry = YES;
     self.passwordModelTF.frame = accountF;
     self.passwordModelTF.inputText.delegate = self;
@@ -233,6 +234,7 @@
         
         if (self.passwordModelTF.inputText.text.length != 4) {
             [NSObject showHudTipStr:LocalString(@"Pin needs 4 digits")];
+            [SVProgressHUD dismiss];
         }else{
             
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -286,6 +288,13 @@
         [_agreementBtn setImage:[UIImage imageNamed:@"img_unselect"] forState:UIControlStateNormal];
     }
     
+}
+//PIN 输入限制
+- (void)TFchange:(UITextField *)textField{
+  
+  if (self.passwordModelTF.inputText.text.length >4) {
+      self.passwordModelTF.inputText.text = [self.passwordModelTF.inputText.text substringWithRange:NSMakeRange(0, 4)];
+  }
 }
 
 @end

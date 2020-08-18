@@ -207,6 +207,15 @@
         [_sureBtn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:153/255.0 blue:0/255.0 alpha:0.6f]];
         _sureBtn.enabled = NO;
     }
+    if (self.oldPinCodeTF.text.length >4) {
+        self.oldPinCodeTF.text = [self.oldPinCodeTF.text substringWithRange:NSMakeRange(0, 4)];
+    }
+    if (self.pinCodeTF.text.length >4) {
+        self.pinCodeTF.text = [self.pinCodeTF.text substringWithRange:NSMakeRange(0, 4)];
+    }
+    if (self.repeatpinCodeTF.text.length >4) {
+        self.repeatpinCodeTF.text = [self.repeatpinCodeTF.text substringWithRange:NSMakeRange(0, 4)];
+    }
 }
 
 - (void)sure{
