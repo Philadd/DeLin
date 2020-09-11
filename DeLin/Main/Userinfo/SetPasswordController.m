@@ -102,7 +102,7 @@
         }];
         
         UILabel *agreementLabel = [[UILabel alloc] init];
-        agreementLabel.text = LocalString(@"Agree with delyn's global privacy policy");
+        agreementLabel.text = LocalString(@"Agree with NGP's global privacy policy");
         agreementLabel.font = [UIFont systemFontOfSize:14.f];
         agreementLabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.7];
         agreementLabel.numberOfLines = 0;
@@ -121,7 +121,7 @@
 - (UIButton *)goPrivacyBtn{
     if (!_goPrivacyBtn) {
         _goPrivacyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_goPrivacyBtn setTitle:LocalString(@"Delyn corporate privacy agreement") forState:UIControlStateNormal];
+        [_goPrivacyBtn setTitle:LocalString(@"NGP corporate privacy agreement") forState:UIControlStateNormal];
         [_goPrivacyBtn setTitleColor:[UIColor colorWithHexString:@"FDA31A"] forState:UIControlStateNormal];
         [_goPrivacyBtn.titleLabel setFont:[UIFont systemFontOfSize:16.f]];
         [_goPrivacyBtn addTarget:self action:@selector(goPrivacyAgreement) forControlEvents:UIControlEventTouchUpInside];
