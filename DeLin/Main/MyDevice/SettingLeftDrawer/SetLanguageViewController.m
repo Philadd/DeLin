@@ -9,6 +9,7 @@
 #import "SetLanguageViewController.h"
 #import "YULanguageManager.h"
 #import "DeviceInfoViewController.h"
+#import "AppDelegate.h"
 
 @interface SetLanguageViewController () <UIPickerViewDataSource,UIPickerViewDelegate>
 
@@ -193,13 +194,14 @@
         [self.navigationController popViewControllerAnimated:YES];
     });
     //解决奇怪的动画bug。
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//
-//        DeviceInfoViewController *deviceInfoVC = [[DeviceInfoViewController alloc] init];
-//        [UIApplication sharedApplication].keyWindow.rootViewController = deviceInfoVC;
-//
-//
-//    });
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+        DeviceInfoViewController *deviceInfoVC = [[DeviceInfoViewController alloc] init];
+        appDelegate.navController = [[UINavigationController alloc] initWithRootViewController:deviceInfoVC];
+        appDelegate.window.rootViewController= appDelegate.navController;
+
+    });
     
     
 }
